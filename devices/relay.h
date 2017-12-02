@@ -4,7 +4,7 @@
  * 				mik-stan@go2.pl
  * $Modified: 2017-12-02 $
  * $Created: 2017-11-04 $
- * @version 1.1
+ * @version 1.0
  *
  * Uzyte piny procesora: 1<br>
  * Plik naglowkowy obslugujacy przekaznik akustycznie przekazujacy dane binarne z wstapna sekwencja
@@ -33,6 +33,10 @@
 #define RELAY_PORT PORTD
 //! adres przekaznika
 #define RELAY_ADDR (1 << PD7)
+//! zmienia stan przekaznika na przeciwny
+#define RELAY_CH() RELAY_PORT ^= RELAY_ADDR
+//! sprawdza czy zlacze przekaznika aktywne
+#define RELAY_IS_ON() (RELAY_PORT & RELAY_ADDR)
 
 // stale czasowe
 //! mnoznik stalej czasowej informacji 1 gdy aktualnie stan wysoki
@@ -62,12 +66,6 @@
 
 //! sumaryczny czas przerwy miedzy sekwencja startu w stanie wysokim a wlasciwym kodowaniem czasu liczony w ms
 #define RELAY_LOW_START_MS 1000
-
-//! zmienia stan przekaznika na przeciwny
-#define RELAY_CH() RELAY_PORT ^= RELAY_ADDR
-
-//! sprawdza czy zlacze przekaznika aktywne
-#define RELAY_IS_ON() (RELAY_PORT & RELAY_ADDR)
 
 
 
