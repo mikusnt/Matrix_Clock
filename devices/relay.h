@@ -4,7 +4,7 @@
  * 				mik-stan@go2.pl
  * $Modified: 2017-12-02 $
  * $Created: 2017-11-04 $
- * @version 1.0
+ * @version 1.1
  *
  * Uzyte piny procesora: 1<br>
  * Plik naglowkowy obslugujacy przekaznik akustycznie przekazujacy dane binarne z wstapna sekwencja
