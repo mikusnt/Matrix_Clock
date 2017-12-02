@@ -75,12 +75,12 @@ typedef struct {
  */
 //! inicjalizacja struktury
 inline void TimeInit(Time *t);
-//! laduje do struktury stala czasowa
-inline void ResetTimeDecCounter(Time *t);
 //! rozbija dwucyfrowe skladniki czasu na jednocyfrowe
 inline void LoadToSingleTime(Time *t);
+//! sprawdza czy pelna godzina tzn minuty i sekundy wyzerowane
+inline bool IsHourStart(Time *t);
 
-// pakuje czas z pojedynczych cyft na liczby
+// pakuje czas z pojedynczych cyfr na liczby
 //static inline void LoadToGroupTime(Time *t);
 
 //! aktualizuje czas w buforze na podstawie oryginalnego
@@ -89,14 +89,9 @@ extern void TryTimeUpdateMS(Time *edit_from, Time *to);
 /*! w tym ladowanie najpotrzebniejszych zmiennych
  * @param 		t adres struktury czasu*/
 inline void TimeInit(Time *t) {
-	ResetTimeDecCounter(t);
+	t->uiActTimeMs = TIME_DECREMENT_MS;
 	for (int i = TimeH10Pos; i <= TimeS0Pos; i++)
 		t->uitSingleTime[i] = 0;
-}
-
-
-inline void ResetTimeDecCounter(Time *t) {
-	t->uiActTimeMs = TIME_DECREMENT_MS;
 }
 
 /*!
@@ -110,6 +105,13 @@ inline void LoadToSingleTime(Time *t) {
 
 	t->uitSingleTime[TimeS10Pos] = t->uiSeconds / 10;
 	t->uitSingleTime[TimeS0Pos] = t->uiSeconds % 10;
+} // END inline void LoadToSingleTime
+
+/*! przydatne w okreslaniu czy uruchomic ladowania ogniw
+ * @see		TryCharge*/
+inline bool IsHourStart(Time *t) {
+	if ((t->uiMinutes == 0) && (t->uiSeconds == 0)) return true;
+	return false;
 }
 
 #endif /* DEVICES_DATE_TIME_H_ */

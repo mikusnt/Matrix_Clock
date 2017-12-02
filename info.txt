@@ -1,8 +1,8 @@
 Procesor:
-ATMega 328 20MHz
+ATmega 328 20MHz
 Okres taktu procesora: 0,05us = 50ns
 Wykorzystany timer g³ówny jako podstawa odœwie¿ania matrycy
-Obs³uga 5 rejestrów przesuwnych 74hc595, 4 ze wspólnym sterowaniem na osi Y, pi¹ty na osi X 
+Obs³uga 5 rejestrów przesuwnych 74hc595, 4 ze wspólnym sterowaniem na osi X, pi¹ty na osi Y 
 
 Obliczenia konfiguracyjne timera g³ównego:
 Tryb: CTC
@@ -21,3 +21,5 @@ Iloœc taktów do wyzwolenia: 20 000 000 / 1 0000 = 20 000
 Timer sprzêtowy: 8 bitowy Timer2
 Preskaler: 256
 OCR: 78
+
+Info na temat ladowania li-ion:

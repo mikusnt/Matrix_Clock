@@ -1,8 +1,13 @@
-/*
- * main.c
+/*!
+ * @file main.h
+ * @author 		Mikolaj Stankowiak <br>
+ * 				mik-stan@go2.pl
+ * $Modified: 2017-11-10 $
+ * $Created: 2017-11-04 $
+ * @version 0.1
  *
- *  Created on: 3 lut 2016
- *      Author: MS-2
+ * Plik glowny projektu
+ * @see info.txt
  */
 
 #include "group_includes.h"
@@ -21,6 +26,7 @@
  *
  */
 
+//volatile uint16_t ui16Ms;
 //DiodeMatrix matrix;
 volatile Relay relay;
 //Time RTCTime;
@@ -95,6 +101,8 @@ ISR(TIMER0_COMPA_vect) {
 // timer odniesienia czasowego 1 MS
 ISR(TIMER2_COMPA_vect) {
 	RelayTryClickMS(&relay);
+	//ui16Ms++;
+	//if (ui16Ms == 100) ADCStart();
 }
 
 // przerwanie pomiaru ADC

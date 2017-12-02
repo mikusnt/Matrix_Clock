@@ -27,9 +27,10 @@ void Timer2Init() {
 	OCR2A = 78;
 } // END void Timer2Init
 
-/*! konfiguruje rejestry przetwornika ADC oraz inicjalizuje strukture ADCData
+/*! konfiguruje rejestr ladowania, rejestry przetwornika ADC oraz inicjalizuje strukture ADCData
  * @param		a adres struktury przetwornika ADC*/
-void ADCInit(ADCData *a) {
+void ADCVoltageDataInit(ADCVoltageData *a) {
+	CHARGE_DDR |= CHARGE_ADDR;
 	// domyslnie Vref rowne zasilaniu, niezaleznie od pinu Aref; ADMUX
 	// domyslnie tryb pojedynczego odczytu
 	ADCSRA |= (1 << ADEN) // aktywacja ADC
@@ -39,10 +40,7 @@ void ADCInit(ADCData *a) {
 			| (1 << ADIE); // uruchomienie przerwan
 	// rozdzielczosc 10bit
 	//ADMUX |= (1 << ADLAR); // rozdzieczosc 8 bitowa
-	a->uiActReadNumber = 0;
-	a->ui16BatSum = 0;
-	a->ui16PhotoSum = 0;
-	a->uiActChannel = adcBatteryAdr;
+	a->uiActBright = MAX_MATRIX_BRIGHT;
 	SetADCChannel(a);
 } // END void ADCInit
 
