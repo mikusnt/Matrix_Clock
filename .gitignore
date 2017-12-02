@@ -54,3 +54,6 @@ dkms.conf
 Release/**
 Debug/**
 
+*.project
+*.cproject
+
