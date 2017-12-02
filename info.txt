@@ -1,0 +1,23 @@
+Procesor:
+ATMega 328 20MHz
+Okres taktu procesora: 0,05us = 50ns
+Wykorzystany timer g³ówny jako podstawa odœwie¿ania matrycy
+Obs³uga 5 rejestrów przesuwnych 74hc595, 4 ze wspólnym sterowaniem na osi Y, pi¹ty na osi X 
+
+Obliczenia konfiguracyjne timera g³ównego:
+Tryb: CTC
+Odœwie¿anie matrycy: 100Hz
+Iloœc X poziomów matrycy: 8
+Iloœc poziomów jasnoœci: 20
+Iloœc taktów do wyzwolenia: 20 000 000 / 100 / 8 / 20 = 1250
+Timer sprzêtowy: 8 bitowy Timer0
+Preskaler: 8
+OCR: 157
+
+Obliczenia konfiguracyjne timera podstawy czasu:
+Tryb: CTC
+Podstawowe odniesienie czasu: 1ms = 1 000us
+Iloœc taktów do wyzwolenia: 20 000 000 / 1 0000 = 20 000
+Timer sprzêtowy: 8 bitowy Timer2
+Preskaler: 256
+OCR: 78
