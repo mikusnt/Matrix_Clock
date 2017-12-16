@@ -60,7 +60,7 @@ void USART_Init( uint16_t baud ) {
 // procedura obs³ugi przerwania Tx Complete, gdy zostanie opó¿niony UDR
 // kompilacja gdy u¿ywamy RS485
 #ifdef UART_DE_PORT
-ISR( USART_TXC_vect ) {
+ISR( USART_TX_vect ) {
   UART_DE_PORT &= ~UART_DE_BIT;	// zablokuj nadajnik RS485
 }
 #endif
@@ -126,7 +126,7 @@ char uart_getc(void) {
 }
 
 // definiujemy procedurê obs³ugi przerwania odbiorczego, zapisuj¹c¹ dane do bufora cyklicznego
-ISR( USART_RXC_vect ) {
+ISR( USART_RX_vect ) {
     uint8_t tmp_head;
     char data;
 

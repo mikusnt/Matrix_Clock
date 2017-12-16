@@ -51,8 +51,7 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-Release/**
-Debug/**
+**/Release
+**/Debug
 
-
-/Release/
+**/*.[sb]#*
