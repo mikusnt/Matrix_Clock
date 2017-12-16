@@ -2,7 +2,7 @@
  * @file main.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-11-10 $
+ * $Modified: 2017-12-07 $
  * $Created: 2017-11-04 $
  * @version 0.1
  *
@@ -29,6 +29,7 @@
 //volatile uint16_t ui16Ms;
 //DiodeMatrix matrix;
 volatile Relay relay;
+volatile ADCVoltageData adcData;
 //Time RTCTime;
 //Time actTime;
 //Date mainDate;
@@ -36,6 +37,7 @@ volatile Relay relay;
 
 // flaga zmiany pozycji Y
 //volatile uint8_t uivModifyY;
+volatile bool bLoadTime;
 
 
 /*
@@ -56,11 +58,15 @@ volatile Relay relay;
 
 
 int main (void) {
-	uint8_t i = 0, value = 1;
-	uint16_t j = 0;
+	/*
+	 *
+	 *		Blok inicjalizacji
+	 *
+	 */
 //	DiodeMatrixInit(&matrix);
 	RelayInit();
 	RegistersInit();
+	ADCVoltageDataInit(&adcData);
 	//loadToBuffer(0);
 	//SendRegisterX(tabl, true);
 //	Timer0Init();
@@ -77,15 +83,21 @@ int main (void) {
 	//DDRD |= 1 << PD7;
 	//
 	//PYRegisterSW(HIGH);
+	/*
+	 *
+	 *		Petla glowna
+	 *
+	 */
 	sei();
-
 	while(1) {
-		Test_Relay_X0(&relay, &i);
+		Test_Relay_Minutes_X0(&relay);
+		Test_Relay_Hours_X0(&relay);
+
 		//Test_Y(&i);
 	}
-}
+} // END int main (void)
 
-// timer pracy matrycy LED
+//! timer pracy matrycy LED
 ISR(TIMER0_COMPA_vect) {
 //	// obsluga zmiany jasnosci
 //	uivModifyY = IncrementBrightness(&matrix);
@@ -98,18 +110,17 @@ ISR(TIMER0_COMPA_vect) {
 //	}
 }
 
-// timer odniesienia czasowego 1 MS
+//! przerwanie timera w trybie CTC, odniesieni czasowe 1 MS
 ISR(TIMER2_COMPA_vect) {
 	RelayTryClickMS(&relay);
-	//ui16Ms++;
-	//if (ui16Ms == 100) ADCStart();
 }
 
-// przerwanie pomiaru ADC
+//! przerwanie zakonczenia pomiaru ADC
 ISR(ADC_vect) {
-
+	ReadADCToADCData(&adcData);
 }
 
+// przerwania przelacznikow, flagi nowej sekundy bLoadTime
 ISR(PCINT0_vect) {
 
 }

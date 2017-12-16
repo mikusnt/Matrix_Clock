@@ -2,7 +2,7 @@
  * @file relay.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-12-02 $
+ * $Modified: 2017-12-07 $
  * $Created: 2017-11-04 $
  * @version 1.0
  */
@@ -58,12 +58,12 @@ void RelayInit() {
  * @param 		uiByteInfo bajt, ktory ma byc przekazany za pomoca impulsow przekaznika
  * @param 		bIsMinutes wartosc true jesli uiByteInfo jest podany w minutach, w przeciwnym
  * 				wypadku godzina*/
-void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, LogicState bIsMinutes) {
+void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, bool bIsMinutes) {
 	// zaladowanie danych o godzinie/minucie do struktury
 	// gdy minuty
 	if (bIsMinutes) {
-		while (uiByteInfo > 60) uiByteInfo -= 60;
-		relay->uiByteLength = uiByteInfo / 10;
+		while (uiByteInfo >= 60) uiByteInfo -= 60;
+		relay->uiByteLength = uiByteInfo / 30;
 		relay->uiByteInfo = 0;
 	// gdy godziny
 	} else {
@@ -84,9 +84,13 @@ void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, LogicState bI
 	relay->ui16tTimeMSToClick[relayShortHPos] = RELAY_STATE_MS * RELAY_SHORT_HIGH_MUL;
 	relay->ui16tTimeMSToClick[relayShortLPos] = RELAY_STATE_MS * RELAY_SHORT_LOW_MUL;
 	// zmiany stanu wysokiego + przerwa
-	relay->uiStartLength = RELAY_HIGH_START_COUNT;
-
+	if (bIsMinutes)
+		relay->uiStartLength = RELAY_HIGH_START_M_COUNT;
+	else
+		relay->uiStartLength = RELAY_HIGH_START_H_COUNT;
+	relay->bIsMinutes = bIsMinutes;
 	// zerowanie zmiennych przed pierwszym kliknieciem
+	relay->uiONY = 0;
 	relay->ui16ActTimeMS = 1;
 	RelayTryClickMS(relay);
 } // END void RelayStartClicking
@@ -104,6 +108,10 @@ void RelayTryClickMS(volatile Relay *relay) {
 				// zmiana stanu przekaznika gdy tryb drgania (relay->uiStartLength > 0)
 					RELAY_CH();
 					relay->ui16ActTimeMS = RELAY_HIGH_START_MS;
+					if (relay->bIsMinutes)
+						relay->uiONY += 2;
+					else
+						relay->uiONY++;
 				// zmiana z drybu drgania na przerwe
 				if (--relay->uiStartLength == 0) {
 					RelaySW(LOW);

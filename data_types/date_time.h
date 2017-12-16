@@ -73,6 +73,7 @@ typedef struct {
  *		Deklaracje funkcji
  *
  */
+
 //! inicjalizacja struktury
 inline void TimeInit(Time *t);
 //! rozbija dwucyfrowe skladniki czasu na jednocyfrowe
@@ -84,8 +85,13 @@ inline bool IsHourStart(Time *t);
 //static inline void LoadToGroupTime(Time *t);
 
 //! aktualizuje czas w buforze na podstawie oryginalnego
-extern void TryTimeUpdateMS(Time *edit_from, Time *to);
+extern void TryTimeUpdateMS(Time *edit_from, Time *to, bool bWithSlowDecrement);
 
+/*
+ *
+ *		Funkcje inline
+ *
+ */
 /*! w tym ladowanie najpotrzebniejszych zmiennych
  * @param 		t adres struktury czasu*/
 inline void TimeInit(Time *t) {

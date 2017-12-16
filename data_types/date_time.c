@@ -19,11 +19,12 @@ static inline void LoadToGroupTime(Time *t) {
  * @param 		from_e adres struktury dazacej do aktualnej
  * @param 		to aktualna struktura czasu, czas powiniec byc rozpakowanydo pojedynczych cyfr
  * najlepiej podczas przerwania RTC
+ * @param 		bWithSlowDecrement decyzja czy dekrementowac cyfry z opoznieniem
  * @see 		LoadToSingleTime()*/
-extern void TryTimeUpdateMS(Time *from_e, Time *to) {
+extern void TryTimeUpdateMS(Time *from_e, Time *to, bool bWithSlowDecrement) {
 	bool bDec = true;
 	// gdy odliczanie sie zakonczylo sprawdz czy trzeba dekrementowac cyfre
-	if (!(--from_e->uiActTimeMs)) {
+	if (!(--from_e->uiActTimeMs) && bWithSlowDecrement) {
 		// pojedyncze czesci minuty
 		if(from_e->uitSingleTime[TimeM0Pos] > to-> uitSingleTime[TimeM0Pos])
 			from_e->uitSingleTime[TimeM0Pos]--;
@@ -44,7 +45,7 @@ extern void TryTimeUpdateMS(Time *from_e, Time *to) {
 		from_e->uiActTimeMs = TIME_DECREMENT_MS;
 	}
 	// inkrementacja gdy nie dokonano zadnej dekrementacji
-	if (!bDec) {
+	if (!bDec || !bWithSlowDecrement) {
 		// inkrementacja aktualnego czasu
 		if(from_e->uitSingleTime[TimeM0Pos] < to->uitSingleTime[TimeM0Pos])
 			from_e->uitSingleTime[TimeM0Pos]++;

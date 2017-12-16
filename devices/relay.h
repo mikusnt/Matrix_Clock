@@ -2,7 +2,7 @@
  * @file relay.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-12-02 $
+ * $Modified: 2017-12-07 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -51,7 +51,7 @@
 #define RELAY_MUL_SUM 10
 
 //! czas jednego taktu przekaznika liczony w ms
-#define RELAY_INTERVAL_MS 1500
+#define RELAY_INTERVAL_MS 1000
 
 //! czas czesci taku przekaznika liczony w ms
 #define RELAY_STATE_MS (RELAY_INTERVAL_MS / RELAY_MUL_SUM)
@@ -60,9 +60,13 @@
 //! (drganie pzekaznika)
 #define RELAY_HIGH_START_MS 50
 
-//! ilosc zmian stanu przekaznika gdy aktualnie stan wysoki, najlepiej wartosc parzysta
+//! ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie godzin, najlepiej wartosc parzysta
 //! aby ostatni stan wysoki nie zostal wygaszony przez przerwe
-#define RELAY_HIGH_START_COUNT 10
+// w przypadku zmiany nalezy skonfigurowac
+#define RELAY_HIGH_START_H_COUNT 8
+
+//! ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie minut
+#define RELAY_HIGH_START_M_COUNT 4
 
 //! sumaryczny czas przerwy miedzy sekwencja startu w stanie wysokim a wlasciwym kodowaniem czasu liczony w ms
 #define RELAY_LOW_START_MS 1000
@@ -103,6 +107,10 @@ typedef struct {
 	uint8_t uiByteLength;
 	//! dlugosc startowej informacji
 	uint8_t uiStartLength;
+	//! informacja czy kodowanie minut, jesli nie to kodowanie godzin
+	bool bIsMinutes;
+	//! ilosc zapalonych diod dla osi Y matrycy, wykorzystywane jako progress
+	uint8_t uiONY;
 } Relay;
 
 /*
@@ -120,7 +128,7 @@ typedef struct {
 //! inicjalizacja przekaznika
 extern void RelayInit();
 //! zaladowanie potrzebnych danych do klikania w strukturze
-extern void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, LogicState bIsMinutes);
+extern void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, bool bIsMinutes);
 //! proba klikania wg danych struktury, wyzwalana co ms
 extern void RelayTryClickMS(volatile Relay *relay);
 

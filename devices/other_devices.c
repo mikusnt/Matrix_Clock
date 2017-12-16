@@ -1,8 +1,10 @@
 /*
- * io_devices.c
- *
- *  Created on: 4 lis 2017
- *      Author: MS
+ * @file other_devices.h
+ * @author 		Mikolaj Stankowiak <br>
+ * 				mik-stan@go2.pl
+ * $Modified: 2017-12-07 $
+ * $Created: 2017-11-04 $
+ * @version 1.0
  */
 
 #include "other_devices.h"
@@ -21,15 +23,16 @@ void Timer2Init() {
 	// tryb CTC
 	TCCR2A |= (1 << WGM21);
 	// preskaler 256
-	TCCR2B |= (1 << CS22) | (1 < CS21);
+	TCCR2B |= (1 << CS22) | (1 << CS21);
 	// odblokowanie przerwan
 	TIMSK2 |= (1 << OCIE2A);
-	OCR2A = 78;
+	//OCR2A = 78; dla 20 MHz
+	OCR2A = 39; // 8 MHz
 } // END void Timer2Init
 
 /*! konfiguruje rejestr ladowania, rejestry przetwornika ADC oraz inicjalizuje strukture ADCData
  * @param		a adres struktury przetwornika ADC*/
-void ADCVoltageDataInit(ADCVoltageData *a) {
+void ADCVoltageDataInit(volatile ADCVoltageData *a) {
 	CHARGE_DDR |= CHARGE_ADDR;
 	// domyslnie Vref rowne zasilaniu, niezaleznie od pinu Aref; ADMUX
 	// domyslnie tryb pojedynczego odczytu

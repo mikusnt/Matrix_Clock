@@ -10,19 +10,34 @@
 #include "tests.h"
 
 /*! @param 		r wskaznik na przekaznik
- *  @param 		i wskaznik na licznik potrzebny do iterowania
  *  @see 		relay.h
  *  @see 		register.h
  * */
-void Test_Relay_X0(volatile Relay *r, uint8_t *i) {
-	LoadToBuffer(*i);
-	SendRegisterX(tabl, true);
-	D_S(1);
+void Test_Relay_Hours_X0(volatile Relay *r) {
+	uint8_t i;
+	do {
+		LoadToBuffer(i);
+		SendRegisterX(tabl, true);
+		D_S(1);
 
-	RelayStartClicking(r, *i, false);
-	while (r->uiByteLength > 0);
-	if (++(*i) > 23) *i = 0;
-	D_S(2);
+		RelayStartClicking(r, i, false);
+		while (r->uiByteLength > 0);
+		D_S(2);
+	} while (++i < 24);
+} // END void Test_Relay_X0
+
+void Test_Relay_Minutes_X0(volatile Relay *r) {
+	uint8_t i;
+	do {
+		LoadToBuffer(i);
+		SendRegisterX(tabl, true);
+		D_S(1);
+
+		RelayStartClicking(r, i, true);
+		while (r->uiByteLength > 0);
+		D_S(2);
+		i += 10;
+	} while (i < 60);
 } // END void Test_Relay_X0
 
 /*! @param 		i wskaznik na licznik potrzebny do iterowania

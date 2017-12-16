@@ -2,7 +2,7 @@
  * @file other_devices.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-11-10 $
+ * $Modified: 2017-12-07 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -25,7 +25,7 @@
  */
 
 //! ilosc pomiarow ADC do sredniej
-#define ADC_READ_COUNT 20
+#define ADC_READ_COUNT 10
 // kana³y ADC
 //! adres baterii w ADC
 #define ADC_BAT (1 << PC0)
@@ -37,8 +37,8 @@
 //! test aktywnego kanalu ADC
 #define ADC_ADR_IS(x) (((~ADMUX_MASK) & ADMUX) == x)
 //! stosunek liczby wyliczen sredniej od fotorezystora wzgledem obliczenia sredniej baterii
-//! obliczenia poprawne gdy pojedynczy odczyt ADC cosekunde
-#define PHOTO_TO_BATTERY_RATIO ((3600 / ADC_READ_COUNT) - (ADC_READ_COUNT * 2))
+//! obliczenia poprawne gdy pojedynczy odczyt ADC co sekunde
+#define PHOTO_TO_BATTERY_RATIO  59//((3600 / ADC_READ_COUNT) - (ADC_READ_COUNT * 2))
 
 
 //! wartosc ADC fotorezystora przy ktorej nastepuje skok jasnosci
@@ -53,6 +53,8 @@
 #define MIN_MATRIX_BRIGHT 2
 //! maksymalna jasnosc matrycy
 #define MAX_MATRIX_BRIGHT 15
+
+#define ENERGY_SAVE_LVL 700
 
 /*  Zlacza we  */
 #define BUTTON_LEFT_DDR DDRD
@@ -114,6 +116,8 @@ typedef struct {
 	uint16_t uiPhotoAvg;
 	//! aktualna wartosc jasnosci matrycy
 	uint8_t uiActBright;
+	//! informacja o oszczedzaniu energii na podstawie napiêcia akumulatora
+	bool bEnergySaving;
 } ADCVoltageData;
 
 /*
@@ -127,21 +131,19 @@ extern void Timer0Init();
 //! inicjalizacja Timera2 odpowiedzialnego za odniesienie czasu 1 ms
 extern void Timer2Init();
 //! inicjalizacja struktury ADCVoltageData
-extern void ADCVoltageDataInit(ADCVoltageData *a);
+extern void ADCVoltageDataInit(volatile ADCVoltageData *a);
 //! uruchomienie odczytu ADC
 inline void ADCStart();
 //! laduje kanal ADC ze struktury do odpowiedniego rejestru
-inline void SetADCChannel(ADCVoltageData *a);
+inline void SetADCChannel(volatile ADCVoltageData *a);
 //! zaladowanie odczytanych danych do struktury ADC
-inline void ReadADCToADCData(ADCVoltageData *a);
+inline void ReadADCToADCData(volatile ADCVoltageData *a);
 //! zwraca jasnosc matrycy na podstawie odczytu fotorezystora
-inline uint8_t MatrixBright(ADCVoltageData *a);
+inline uint8_t MatrixBright(volatile ADCVoltageData *a);
 
 //! inicjalizacja przyciskow
 extern void ButtonsInit();
 
-//! na podstawie sredniego napiecia baterii decyduje czy uruchomic tryb ladowania
-inline void TryCharge(ADCVoltageData *a);
 
 /*
  *
@@ -157,14 +159,14 @@ inline void ADCStart() {
 
 /*! nalezy wywolac przed dokonaniem pomiaru
  * @param 		a adres struktury przetwornika ADC*/
-inline void SetADCChannel(ADCVoltageData *a) {
+inline void SetADCChannel(volatile ADCVoltageData *a) {
 	ADMUX = (ADMUX & ADMUX_MASK) | a->uiActChannel; // ustawienie odpowiedniego kana³u ADC
 }
 
 /*! jest wykonywany jako obsluga przerwania pomiaru ADC
  * @param 		a adres struktury przetwornika ADC
  * @see ADCStart()*/
-inline void ReadADCToADCData(ADCVoltageData *a) {
+inline void ReadADCToADCData(volatile ADCVoltageData *a) {
 	// dodawanie skladnikow sumy
 	if (a->uiActChannel == adcBatteryAdr) a->ui16BatSum += ADC;
 	else if (a->uiActChannel == adcPhotoAdr) a->ui16PhotoSum += ADC;
@@ -185,6 +187,10 @@ inline void ReadADCToADCData(ADCVoltageData *a) {
 		// gdy zakonczono pomiary baterii z powrotem do pomiarow fotorezystora
 		if (a->uiActChannel == adcBatteryAdr) {
 			a->uiBatAvg = a->ui16BatSum / ADC_READ_COUNT;
+
+			if (a->uiBatAvg < ENERGY_SAVE_LVL) a->bEnergySaving = true;
+			else a->bEnergySaving = false;
+
 			a->ui16BatSum = 0;
 			a->uiActChannel = adcPhotoAdr;
 		}
@@ -194,17 +200,10 @@ inline void ReadADCToADCData(ADCVoltageData *a) {
 } // END inline void ReadADCToADCData
 
 /*! @param 		a adres struktury przetwornika ADC*/
-inline uint8_t MatrixBright(ADCVoltageData *a) {
+inline uint8_t MatrixBright(volatile ADCVoltageData *a) {
 	if (a->uiPhotoAvg < HIST_LOW) a->uiActBright = MIN_MATRIX_BRIGHT;
 	else if (a->uiPhotoAvg > HIST_HIGH) a->uiActBright = MAX_MATRIX_BRIGHT;
 	return a->uiActBright;
-}
-
-/*! powinno byc wyzwalane co jakis okres czasu np. pelna godzine
-  @param 		a adres struktury przetwornika ADC*/
-inline void TryCharge(ADCVoltageData *a) {
-	if (a->uiBatAvg < CHARGE_THRESHOLD) CHARGE_PORT |= CHARGE_ADDR;
-	else CHARGE_PORT &= ~CHARGE_ADDR;
 }
 
 #endif /* OTHER_DEVICES_H_ */
