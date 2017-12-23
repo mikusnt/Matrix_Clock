@@ -14,8 +14,9 @@
 #include "devices/other_devices.h"
 #include "devices/relay.h"
 #include "devices/ds3231.h"
-#include "data_types/date_time.h"
 #include "devices/register.h"
+#include "data_types/date_time.h"
+#include "devices/bluetooth/uart_processing.h"
 #include "tests.h"
 
 
@@ -132,3 +133,4 @@ ISR(PCINT1_vect) {
 ISR(PCINT2_vect) {
 
 }
+

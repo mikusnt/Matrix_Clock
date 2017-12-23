@@ -14,7 +14,7 @@
  *  @see 		register.h
  * */
 void Test_Relay_Hours_X0(volatile Relay *r) {
-	uint8_t i;
+	uint8_t i = 0;
 	do {
 		LoadToBuffer(i);
 		SendRegisterX(tabl, true);
@@ -27,7 +27,7 @@ void Test_Relay_Hours_X0(volatile Relay *r) {
 } // END void Test_Relay_X0
 
 void Test_Relay_Minutes_X0(volatile Relay *r) {
-	uint8_t i;
+	uint8_t i = 0;
 	do {
 		LoadToBuffer(i);
 		SendRegisterX(tabl, true);

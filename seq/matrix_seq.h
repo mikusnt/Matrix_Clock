@@ -20,5 +20,9 @@
 #include "../group_includes.h"
 #include "../data_types/diode_matrix.h"
 
+//! ilosc sekwencji
+#define SEQ_NUMBER 0
 
+//! rozmiar bufora znakowego
+#define TEXT_BUFFER_SIZE 32
 #endif /* MATRIX_SEQUENCES_H_ */

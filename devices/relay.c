@@ -1,4 +1,4 @@
-/*
+/*!
  * @file relay.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl

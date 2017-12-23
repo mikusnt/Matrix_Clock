@@ -1,44 +1,92 @@
-/*
- * mkuart.h
+/*!
+ * @file relay.h
+ * @author 		Miros³aw Kardaœ <br>
+ * 				http://mirekk36.blogspot.com/
+ * 				https://sklep.atnel.pl/
+ * $Modified: 2017-12-07 $
+ * $Created: 2010-09-04 $
+ * @version 2.0
  *
- *  Created on: 2010-09-04
- *       Autor: Miros³aw Kardaœ
+ * Kod bazowy stworzony przez Miros³awa Kardasia zawierajacy obsluge UART.
  */
+
+#include "../../group_includes.h"
 
 #ifndef MKUART_H_
 #define MKUART_H_
 
+/*
+ *
+ *		Makroinstrukcje
+ *
+ */
+//! predkosc UART w bitach
+#define UART_BAUD 9600
+//! wartosc preskalera UART
+#define __UBRR F_CPU/16/UART_BAUD-1
 
-#define UART_BAUD 9600		// tu definiujemy interesuj¹c¹ nas prêdkoœæ
-#define __UBRR F_CPU/16/UART_BAUD-1  // obliczamy UBRR dla U2X=0
-
-// definicje na potrzeby RS485
+//! rejestr stanu dla RS485
 #define UART_DE_PORT PORTD
+//! rejestr kierunku dla RS485
 #define UART_DE_DIR DDRD
+//! adres dla RS485
 #define UART_DE_BIT (1<<PD2)
 
-#define UART_DE_ODBIERANIE  UART_DE_PORT |= UART_DE_BIT
-#define UART_DE_NADAWANIE  UART_DE_PORT &= ~UART_DE_BIT
+//! ustawienie stanu logicznego DE dla odbierania
+#define UART_DE_ODBIERANIE()  UART_DE_PORT |= UART_DE_BIT
+//! ustawienie stanu logicznego DE dla nadawania
+#define UART_DE_NADAWANIE()  UART_DE_PORT &= ~UART_DE_BIT
 
-
-#define UART_RX_BUF_SIZE 32 // definiujemy bufor o rozmiarze 32 bajtów
-// definiujemy maskê dla naszego bufora
+//! rozmiar bufora odczytu
+#define UART_RX_BUF_SIZE 32
+//! maska bufora odczytu
 #define UART_RX_BUF_MASK ( UART_RX_BUF_SIZE - 1)
-
-#define UART_TX_BUF_SIZE 16 // definiujemy bufor o rozmiarze 16 bajtów
-// definiujemy maskê dla naszego bufora
+//! rozmiar bufora zapisu
+#define UART_TX_BUF_SIZE 16
+//! maska bufora zapisu
 #define UART_TX_BUF_MASK ( UART_TX_BUF_SIZE - 1)
 
+//! bufor cykliczny odczytu
+extern volatile char UART_RxBuf[UART_RX_BUF_SIZE];
+//! poczatek wszystkich danych bufora odczytu
+extern volatile uint8_t UART_RxHead;
+//! koniec wszystkich danych bufora odczytu
+extern volatile uint8_t UART_RxTail;
+//! bufor cykliczny zapisu
+extern volatile char UART_TxBuf[UART_TX_BUF_SIZE];
+//! poczatek wszystkich danych bufora zapisu
+extern volatile uint8_t UART_TxHead;
+//! poczatek wszystkich danych bufora odczytu
+extern volatile uint8_t UART_TxTail;
 
 
-
-// deklaracje funkcji publicznych
-
+/*
+ *
+ *		Deklaracje funkcji / procedur
+ *
+ */
+//! inicjalizacja UART
 void USART_Init( uint16_t baud );
-
-char uart_getc(void);
+//! sprawdza czy sa jakies nieodczytane dane
+inline bool IsUnreadData();
+//! odczytanie pojedynczego znaku z bufora cyklicznego
+char uart_getc();
+//! wyslanie pojedynczego znaku
 void uart_putc( char data );
+//! wyslanie tekstu
 void uart_puts(char *s);
+//! wyslanie liczby o danej podstawie jako tekstu
 void uart_putint(int value, int radix);
+
+/*
+ *
+ *		Definicje funkcji inline
+ *
+ */
+/*! @return		true jesli w buforze cyklicznym odczytu sa jakies nieodczytane dane, false w przeciwnym wypadku*/
+inline bool IsUnreadData() {
+	if (UART_RxHead != UART_RxTail) return true;
+	else return false;
+}
 
 #endif /* MKUART_H_ */
