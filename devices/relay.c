@@ -1,12 +1,9 @@
 /*!
- * @file relay.h
+ * @file relay.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-12-07 $
- * $Created: 2017-11-04 $
- * @version 1.0
+ * @see relay.h
  */
-
 #include "relay.h"
 
 

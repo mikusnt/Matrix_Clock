@@ -1,9 +1,8 @@
-/*
- * alphabet.c
- *
- *  Created on: 2 lip 2016
- *      Author: MS-1
- *      version: 1.0
+/*!
+ * @file alphabet.c
+ * @author 		Mikolaj Stankowiak <br>
+ * 				mik-stan@go2.pl
+ * @see alphabet.h
  */
 
 #include "alphabet.h"
@@ -14,16 +13,9 @@
  *
  */
 
-// pierwsza wspolzedna to nr znaku y [0..ALPHABET_SIZE]
-// druga to nr pionowej zawartoœci znaku [0..4]
-// wszystkie znaki kodowane w formacie 5x8
-// Legenda d³ugoœci znaków
-/* 5: 0..4 -- |p    |
- * 3: 0..3 <- |p    |
- * 3: 1..3 -> | p   |
- * 2: 1..2 <- | p   |
- * 1: 2..2 -> |  p  |
- */
+/*! pierwsza wspolzedna to nr znaku y [0..ALPHABET_SIZE],
+ *  druga to nr pionowej zawartosci znaku [0..4],
+ *  wszystkie znaki kodowane w formacie 5x8*/
 const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 //		{ // A, y = 0
 //				{0, 1, 1, 1, 0},
@@ -1152,19 +1144,37 @@ static void LoadTextFromPGM(char buffer[], const char *data) {
 	buffer[i] = '\0';
 } // END static void LoadTextFromPGM
 
-/*! @param 		cSign kod ASCII znaku
+/*! @param 		uiIntSign wewnetrzny kod znaku do tablicy Alphabet
  *  @param 		uiByteNr indeks pionowego bajtu danych
  *  @return		zawartosc pionowego bajtu znaku */
-uint8_t LoadSignByte(char cSign, uint8_t uiByteNr) {
+uint8_t LoadIntSignByte(uint8_t uiIntSign, uint8_t uiByteNr) {
 	if (uiByteNr > 4) return 0;
-	else return ALPHABET_YX(TranslateToAlphabet(cSign), uiByteNr);
+	else return ALPHABET_YX(uiIntSign, uiByteNr);
 } // END uint8_t LoadSignByte
 
-/*! @param 		cSign kod ASCII znaku
+/*! @param 		uiIntSign wewnetrzny kod znaku do tablicy Alphabet
  *  @return		ilosc pionowych bajtow w znaku*/
-uint8_t LoadSignLength(char cSign) {
-	return AL_LENGTH(TranslateToAlphabet(cSign));
+uint8_t LoadIntSignLength(uint8_t uiIntSign) {
+	if (uiIntSign >= ALPHABET_SIZE) return 0;
+	else return AL_LENGTH(uiIntSign);
 } // END uint8_t LoadSignByte
+
+/*! Legenda dlugosci znakow
+ * 5: 0..4 -- |p    |
+ * 4: 0..3 <- |p    |
+ * 3: 1..3 -> | p   |
+ * 2: 1..2 <- | p   |
+ * 1: 2..2 -> |  p  |
+ *  @param		cSign kod ASCII znaku
+ *  @param		uiStart_s poczatkowa wspolrzedna x
+ *  @param		uiStop_s koncowa wspolrzedna x
+ *  @param		uiIntSign_s wewnetrzny kod znaku do tablicy Alphabet*/
+void LoadSign(char cSign, uint8_t *uiStart_s, uint8_t *uiStop_s, uint8_t *uiIntSign_s) {
+	*uiIntSign_s = TranslateToAlphabet(cSign);
+	uint8_t uiSize = AL_LENGTH(*uiIntSign_s);
+	*uiStart_s = (5 - uiSize) / 2;
+	*uiStop_s = *uiStart_s + uiSize - 1;
+} // END void LoadSign
 
 /*! @param 		eSign kod okreslonej animacji
  *  @param		uiByteNr indeks pionowego bajtu danych
