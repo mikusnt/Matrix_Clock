@@ -28,11 +28,11 @@
 
 // IO
 //! rejestr kierunku przekaznika
-#define RELAY_DDR DDRD
+#define RELAY_DDR DDRC
 //! rejestr stanu przekaznika
-#define RELAY_PORT PORTD
+#define RELAY_PORT PORTC
 //! adres przekaznika
-#define RELAY_ADDR (1 << PD7)
+#define RELAY_ADDR (1 << PC3)
 //! zmienia stan przekaznika na przeciwny
 #define RELAY_CH() RELAY_PORT ^= RELAY_ADDR
 //! sprawdza czy zlacze przekaznika aktywne

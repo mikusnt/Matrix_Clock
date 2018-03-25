@@ -1,7 +1,7 @@
-avrtarget/ClockFrequency=8000000
+avrtarget/ClockFrequency=20000000
 avrtarget/ExtRAMSize=0
 avrtarget/ExtendedRAM=false
-avrtarget/MCUType=atmega88p
+avrtarget/MCUType=atmega168pa
 avrtarget/UseEEPROM=false
 avrtarget/UseExtendedRAMforHeap=true
 avrtarget/avrdude/BitBangDelay=

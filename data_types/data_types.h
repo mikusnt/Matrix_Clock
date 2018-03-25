@@ -86,4 +86,21 @@ inline void LoadToBuffer(uint8_t byte) {
 		byte >>= 1;
 	}
 }
+
+//! parametry wejsciowe funkcji Histereza
+typedef struct {
+	uint8_t uiThreshold;	//!< wartosc liczby gdy zmiana stanu wytjsciowego
+	uint8_t uiDelta;		//!< poziom hosterezy
+	uint8_t uiMinValue;		//!< minimalna wartosc wyjsciowa
+	uint8_t uiMaxValue;		//!< maksymalna wartosc wyjsciowa
+	uint8_t uiValue;		//!< na jej podstawie generowane jest wyjscie, uiThreshold to prog dla tej liczby
+	uint8_t *uiOutValue;	//!< wyprowadzony za zewnatrz wynik histerezy, przyjmuje wartosci uiMinValue i uiMaxValue
+} HistData;
+
+inline void Hysteresis(HistData *sHistData) {
+	if (sHistData->uiValue < (sHistData->uiThreshold - sHistData->uiDelta))
+		*(sHistData->uiOutValue) = sHistData->uiMinValue;
+	if (sHistData->uiValue > (sHistData->uiThreshold + sHistData->uiDelta))
+			*(sHistData->uiOutValue) = sHistData->uiMaxValue;
+}
 #endif /* DATA_TYPES_H_ */

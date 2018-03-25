@@ -91,7 +91,7 @@ int main (void) {
 	 */
 	sei();
 	while(1) {
-		Test_Relay_Minutes_X0(&relay);
+		//Test_Relay_Minutes_X0(&relay);
 		Test_Relay_Hours_X0(&relay);
 
 		//Test_Y(&i);

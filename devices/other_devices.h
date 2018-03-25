@@ -30,7 +30,7 @@
 //! adres baterii w ADC
 #define ADC_BAT (1 << PC0)
 //! adres fotorezystora w ADC
-#define ADC_PHOTO (1 << PC1)
+#define ADC_PHOTO (1 << PC2)
 
 //! maska ADC przeyslaniajaca bity kanalu ADC w ADMUX
 #define ADMUX_MASK 0xF0
