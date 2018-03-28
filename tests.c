@@ -48,3 +48,26 @@ void Test_Y(uint8_t *i) {
 	D_S(1);
 	if (++*i > 7) *i = 0;
 } // END void Test_Y
+
+void Load_MatrixBuffer(volatile DiodeMatrix *m) {
+	//m->uitBufferYX[0][0] = 1;
+	//m->uitBufferYX[0][31] = 20;
+	for (uint8_t i = 0; i < MATRIX_X_SIZE; i++) {
+		for (uint8_t j = 0; j < MATRIX_Y_SIZE; j++) {
+			if (i < 16) {
+			if (j < 4)
+				m->uitBufferYX[j][i] = gamma_o[4];
+			else
+				m->uitBufferYX[j][i] = gamma_o[2];
+			} else {
+				if (j < 4)
+					m->uitBufferYX[j][i] = gamma_o[3];
+				else
+					m->uitBufferYX[j][i] = gamma_o[1];
+			}
+		}
+	}
+	m->uitBufferYX[0][MATRIX_X_SIZE+3] = gamma_o[4];
+	m->uitBufferYX[7][MATRIX_X_SIZE+3] = gamma_o[1];
+	m->uiEndBufferPosition = MATRIX_X_SIZE+4;
+}

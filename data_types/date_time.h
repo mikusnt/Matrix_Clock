@@ -25,6 +25,8 @@
 //! czas dekrementacji cyfry czasu o 1 liczony w milisekundach [ms]
 #define TIME_DECREMENT_MS 100
 
+#define MAX_PROGRESS 8
+
 
 /*
  *
@@ -45,8 +47,6 @@ typedef enum {
 
 //! glowna struktura czasu
 typedef struct {
-	//! aktualny czas w ms, gdy 0 zmiana stanu i zaladowanie z TIME_DECREMENT_MS
-	uint8_t uiActTimeMs;
 	//! godzina dziesietnie
 	uint8_t uiHours;
 	//! minuty dziesietnie
@@ -56,6 +56,7 @@ typedef struct {
 	//! tablica poszczegolnych cyfr czasu
 	/*! @see SingleTimePos*/
 	uint8_t uitSingleTime[6];
+	uint8_t uiSingleProgress[4];
 } Time;
 
 //! glowna struktura daty
@@ -78,14 +79,14 @@ typedef struct {
 inline void TimeInit(Time *t);
 //! rozbija dwucyfrowe skladniki czasu na jednocyfrowe
 inline void LoadToSingleTime(Time *t);
-//! sprawdza czy pelna godzina tzn minuty i sekundy wyzerowane
-inline bool IsHourStart(Time *t);
+extern void IncreaseProgress(Time *from, Time *to);
+extern void ResetProgress(Time *time);
 
 // pakuje czas z pojedynczych cyfr na liczby
-//static inline void LoadToGroupTime(Time *t);
+extern void LoadToGroupTime(Time *t);
 
-//! aktualizuje czas w buforze na podstawie oryginalnego
-extern void TryTimeUpdateMS(Time *edit_from, Time *to, bool bWithSlowDecrement);
+// aktualizuje czas w buforze na podstawie oryginalnego
+//extern void TryTimeUpdateMS(Time *edit_from, Time *to, bool bWithSlowDecrement);
 
 /*
  *
@@ -95,7 +96,6 @@ extern void TryTimeUpdateMS(Time *edit_from, Time *to, bool bWithSlowDecrement);
 /*! w tym ladowanie najpotrzebniejszych zmiennych
  * @param 		t adres struktury czasu*/
 inline void TimeInit(Time *t) {
-	t->uiActTimeMs = TIME_DECREMENT_MS;
 	for (int i = TimeH10Pos; i <= TimeS0Pos; i++)
 		t->uitSingleTime[i] = 0;
 }
@@ -113,11 +113,5 @@ inline void LoadToSingleTime(Time *t) {
 	t->uitSingleTime[TimeS0Pos] = t->uiSeconds % 10;
 } // END inline void LoadToSingleTime
 
-/*! przydatne w okreslaniu czy uruchomic ladowania ogniw
- * @see		TryCharge*/
-inline bool IsHourStart(Time *t) {
-	if ((t->uiMinutes == 0) && (t->uiSeconds == 0)) return true;
-	return false;
-}
 
 #endif /* DEVICES_DATE_TIME_H_ */

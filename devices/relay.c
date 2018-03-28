@@ -60,8 +60,8 @@ void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, bool bIsMinut
 	// gdy minuty
 	if (bIsMinutes) {
 		while (uiByteInfo >= 60) uiByteInfo -= 60;
-		relay->uiByteLength = uiByteInfo / 30;
-		relay->uiByteInfo = 0;
+		if (uiByteInfo > 0)
+			relay->uiByteInfo = RoundByte(uiByteInfo / 15, &relay->uiByteLength);
 	// gdy godziny
 	} else {
 		while (uiByteInfo > 12) uiByteInfo -= 12;

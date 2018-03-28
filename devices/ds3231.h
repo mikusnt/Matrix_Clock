@@ -27,7 +27,7 @@
  *
  */
 
-#define DS3231 0x68 // I2C bus address of DS3231 RTC  0xD0
+#define DS3231 0xD0 // I2C bus address of DS3231 RTC  0xD0
 #define CH_MASK 0b01100000
 
 #define SECONDS_REGISTER 0x00

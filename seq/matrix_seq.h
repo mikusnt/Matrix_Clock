@@ -19,10 +19,24 @@
 
 #include "../group_includes.h"
 #include "../data_types/diode_matrix.h"
+#include "../data_types/date_time.h"
+#include "alphabet.h"
 
 //! ilosc sekwencji
 #define SEQ_NUMBER 0
 
 //! rozmiar bufora znakowego
 #define TEXT_BUFFER_SIZE 32
+
+
+#define SEC_SIGN_POS 12
+
+#define SEC_END_POS 31
+
+extern uint8_t uitHMPos[4];
+
+
+extern void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE], uint8_t brightness);
+extern void LoadTimeToMatrix(volatile DiodeMatrix *m, Time *from, Time *to, uint8_t brightness);
+
 #endif /* MATRIX_SEQUENCES_H_ */

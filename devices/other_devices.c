@@ -9,16 +9,18 @@
 
 #include "other_devices.h"
 
+/*! konfiguracja 8-bitowego timera0 jako licznika dla matrycy LED, przerwanie co 1250 taktot zegara*/
 void Timer0Init() {
 	// tryb CTC
 	TCCR0A |= (1 << WGM01);
 	// preskaler 8
-	TCCR0B |= (1 << CS01);
+	TCCR0B |= (1 << CS01) | (1 << CS00);
 	// odblokowanie przerwan
 	TIMSK0 |= (1 << OCIE0A);
-	OCR0A = 157;
+	OCR0A = 33;
 } // END void Timer0Init
 
+//! konfiguracja 8-bitowego timera2 jako podstawowego odniesienia czasu 1 ms
 void Timer2Init() {
 	// tryb CTC
 	TCCR2A |= (1 << WGM21);
@@ -26,8 +28,8 @@ void Timer2Init() {
 	TCCR2B |= (1 << CS22) | (1 << CS21);
 	// odblokowanie przerwan
 	TIMSK2 |= (1 << OCIE2A);
-	//OCR2A = 78; dla 20 MHz
-	OCR2A = 39; // 8 MHz
+	OCR2A = 78; //dla 20 MHz
+	//OCR2A = 39; // 8 MHz
 } // END void Timer2Init
 
 /*! konfiguruje rejestr ladowania, rejestry przetwornika ADC oraz inicjalizuje strukture ADCData
@@ -49,15 +51,8 @@ void ADCVoltageDataInit(volatile ADCVoltageData *a) {
 
 /*! ustawia rejestr przyciskow na wejscie z podciagnieciem do zasilania i konfiguruje przerwania
  * sprzetowe PCINT*/
-void ButtonsInit() {
-	BUTTON_LEFT_PORT |= BUTTON_LEFT_ADDR;
-	BUTTON_RIGHT_PORT |= BUTTON_RIGHT_ADDR;
-	BUTTON_CENTER_PORT |= BUTTON_CENTER_ADDR;
-
-	PCICR |= (1 << PCIE2)
-			| (1 << PCIE1)
-			| (1 << PCIE0); // odblokowanie wszystkich grup przerwan PCINT
-	PCMSK2 |= 0; // nalezy ustawic odpowiednie bity mask
-	PCMSK1 |= 0; // nalezy ustawic odpowiednie bity mask
-	PCMSK0 |= 0; // nalezy ustawic odpowiednie bity mask
+void PCINTInit() {
+	SQW_DDR &= ~SQW_ADDR;
+	PCICR |= (1 << PCIE1); // odblokowanie przerwan od nr 8-14
+	PCMSK1 |= (1 << PCINT9);
 }

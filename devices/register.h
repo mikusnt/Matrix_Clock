@@ -2,7 +2,7 @@
  * @file register.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-12-02 $
+ * $Modified: 2018-03-28 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -146,6 +146,20 @@
 //! adres zegara wejscia danych dla rejestru Y
 #define Y_CLK_DATA_ADDR (1 << PD2)
 
+
+/*
+ *		Y_RESET
+ */
+//! rejestr kierunku zegara wejscia szeregowego dla rejestru Y
+#define Y_RESET_DDR DDRD
+//! rejestr stanu zegara wejscia szeregowego dla rejestru Y
+#define Y_RESET_PORT PORTD
+//! adres wejscia danych dla rejestru Y
+#define Y_RESET_ADDR (1 << PD3)
+//! ustawia wartosc wejscia danych dla rejestru Y na HIGH
+#define Y_ON() Y_RESET_PORT &= ~Y_RESET_ADDR
+//! ustawia wartosc wejscia danych dla rejestru Y na LOW
+#define Y_OFF() Y_RESET_PORT |= Y_RESET_ADDR
 /*
  *		LATCH
  */
@@ -170,11 +184,11 @@
 //! inicjalizacja rejestrow
 extern void RegistersInit();
 //! wysyla pojedynczy bit do rejestru Y
-inline void SendRegisterY(BinarySwitch eB, bool bWithLoad);
+inline void SendRegisterY(volatile BinarySwitch eB, bool bWithLoad);
 //! wysyla tablice bitow do rejestow X0 - X3
-inline void SendRegistersX(uint8_t uitBuffer[32], bool bWithLoad);
+inline void SendRegistersX(volatile uint8_t uitBuffer[32], bool bWithLoad, bool withData);
 //! wysyla tablice bitow do rejestru X0
-inline void SendRegisterX(uint8_t uitBuffer[8], bool bWithLoad);
+inline void SendRegisterX(volatile uint8_t uitBuffer[8], bool bWithLoad);
 
 /*
  *
@@ -194,8 +208,8 @@ inline void X_CLK_01() {
 }
 
 inline void LATCH_01() {
-	LATCH_HIGH();
 	LATCH_LOW();
+	LATCH_HIGH();
 }
 
 /*
@@ -207,7 +221,7 @@ inline void YSw(BinarySwitch eB) {
 
 /*! @param		eB wartosc logiczna przesylana do rejestru
  *  @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie*/
-inline void SendRegisterY(BinarySwitch eB, bool bWithLoad) {
+inline void SendRegisterY(volatile BinarySwitch eB, bool bWithLoad) {
 	if (eB) Y_DATA_HIGH();
 	else Y_DATA_LOW();
 	Y_CLK_01();
@@ -217,17 +231,17 @@ inline void SendRegisterY(BinarySwitch eB, bool bWithLoad) {
 
 /*! @param		uitBuffer tablica bitow danych szeregowych dla rejestrow X0 - X3
  *  @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie*/
-inline void SendRegistersX(uint8_t uitBuffer[32], bool bWithLoad) {
+inline void SendRegistersX(volatile uint8_t uitBuffer[32], bool bWithLoad, bool withData) {
 	int8_t i;
 	// 8 bitow do 4 rejestrow, od tylu ze wzgledu na przesuwnosc rejestru, pierwsze bity beda osatnimi
-	for (i = 7; i >= 0; i--) {
-		if (uitBuffer[i]) X0_DATA_HIGH();
+	for (i = 0; i < 8; i++) {
+		if (uitBuffer[i] && withData) X0_DATA_HIGH();
 			else X0_DATA_LOW();
-		if (uitBuffer[i + 8] ) X1_DATA_HIGH();
+		if (uitBuffer[i + 8] && withData) X1_DATA_HIGH();
 			else X1_DATA_LOW();
-		if (uitBuffer[i + 16]) X2_DATA_HIGH();
+		if (uitBuffer[i + 16] && withData) X2_DATA_HIGH();
 			else X2_DATA_LOW();
-		if (uitBuffer[i + 24]) X3_DATA_HIGH();
+		if (uitBuffer[i + 24] && withData) X3_DATA_HIGH();
 			else X3_DATA_LOW();
 		X_CLK_01();
 	}
@@ -236,9 +250,9 @@ inline void SendRegistersX(uint8_t uitBuffer[32], bool bWithLoad) {
 
 /*!  @param		uitBuffer tablica bitow danych szeregowych dla rejestru X0
  *   @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie*/
-inline void SendRegisterX(uint8_t uitBuffer[8], bool bWithLoad) {
+inline void SendRegisterX(volatile uint8_t uitBuffer[8], bool bWithLoad) {
 	int8_t i;
-	for (i = 7; i >= 0; i--) {
+	for (i = 0; i < 8; i++) {
 		if (uitBuffer[i]) X0_DATA_HIGH();
 			else X0_DATA_LOW();
 		X_CLK_01();

@@ -2,7 +2,7 @@
  * @file relay.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-12-07 $
+ * $Modified: 2018-30-28 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -51,19 +51,19 @@
 #define RELAY_MUL_SUM 10
 
 //! czas jednego taktu przekaznika liczony w ms
-#define RELAY_INTERVAL_MS 1000
+#define RELAY_INTERVAL_MS 1500
 
 //! czas czesci taku przekaznika liczony w ms
 #define RELAY_STATE_MS (RELAY_INTERVAL_MS / RELAY_MUL_SUM)
 
 //! czas dla zmiany sekwencji startowej gdy aktualnie stan wysoki liczony w ms
 //! (drganie pzekaznika)
-#define RELAY_HIGH_START_MS 50
+#define RELAY_HIGH_START_MS 75
 
 //! ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie godzin, najlepiej wartosc parzysta
 //! aby ostatni stan wysoki nie zostal wygaszony przez przerwe
 // w przypadku zmiany nalezy skonfigurowac
-#define RELAY_HIGH_START_H_COUNT 8
+#define RELAY_HIGH_START_H_COUNT 10
 
 //! ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie minut
 #define RELAY_HIGH_START_M_COUNT 4

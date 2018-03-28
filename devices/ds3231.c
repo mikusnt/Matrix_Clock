@@ -77,10 +77,14 @@ static uint8_t I2C_ReadRegister(uint8_t deviceAddr, uint8_t registerAddr, uint8_
 uint8_t DS3231_Init(void){
     uint8_t byte;
     if (I2C_ReadRegister(DS3231, CONTROL_0_REGISTER, &byte)) {
+
     	byte &= CH_MASK;
     	byte |= (1 << BBSQW)
     		| (1 << CONV);
-    	if (I2C_WriteRegister(DS3231, SECONDS_REGISTER, byte)) return 1;
+    	if (I2C_WriteRegister(DS3231, CONTROL_0_REGISTER, byte) &&
+    			I2C_WriteRegister(DS3231, CONTROL_1_REGISTER, 0)) {
+    		return 1;
+    	}
     	return 0;
     }
     return 0;
@@ -93,6 +97,7 @@ uint8_t DS3231_Init(void){
 uint8_t DS3231_GetTime(uint8_t *hour_s, uint8_t *minute_s, uint8_t *second_s)
 {
 	uint8_t temp_hour, temp_minute, temp_second;
+
 	if (I2C_ReadRegister(DS3231,HOURS_REGISTER, &temp_hour)
 			&& I2C_ReadRegister(DS3231,MINUTES_REGISTER, &temp_minute)
 			&& I2C_ReadRegister(DS3231,SECONDS_REGISTER, &temp_second)) {
@@ -170,7 +175,7 @@ void DS3231_Test() {
 	uint8_t hour, min, sec, nhour, nmin, nsec;
 	uint8_t count = 10; // maksymalna ilosc powtorzen
 	DS3231_GetTime(&hour, &min, &sec);
-	D_MS(1200);
+	D_MS(1500);
 	DS3231_GetTime(&nhour, &nmin, &nsec);
 
 

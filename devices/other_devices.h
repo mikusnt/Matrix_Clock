@@ -56,32 +56,17 @@
 
 #define ENERGY_SAVE_LVL 700
 
-/*  Zlacza we  */
-#define BUTTON_LEFT_DDR DDRD
-#define BUTTON_LEFT_PORT PORTD
-#define BUTTON_LEFT_PIN PIND
-#define BUTTON_LEFT_ADDR (1 << PD0)
-
-#define BUTTON_RIGHT_DDR DDRD
-#define BUTTON_RIGHT_PORT PORTD
-#define BUTTON_RIGHT_PIN PIND
-#define BUTTON_RIGHT_ADDR (1 << PD0)
-
-#define BUTTON_CENTER_DDR DDRD
-#define BUTTON_CENTER_PORT PORTD
-#define BUTTON_CENTER_PIN PIND
-#define BUTTON_CENTER_ADDR (1 << PD0)
-
-#define LEFT_PRESSED (!(BUTTON_LEFT_PIN & BUTTON_LEFT_ADDR))
-#define RIGHT_PRESSED (!(BUTTON_RIGHT_PIN & BUTTON_RIGHT_ADDR))
-#define CENTER_PRESSED (!(BUTTON_CENTER_PIN & BUTTON_CENTER_ADDR))
 
 #define CHARGE_DDR DDRB
 #define CHARGE_PORT PORTB
 #define CHARGE_ADDR (1 << PB2)
 #define CHARGE_THRESHOLD 700
 
-// KONIECZNIE USTAWIC MASKI PRZERWAN PO WYBRANIU ADRESOW WEJSC PRZYCISKOW!!!
+#define SQW_DDR DDRC
+#define SQW_PORT PORTC
+#define SQW_PIN PINC
+#define SQW_ADDR (1 << PC1)
+#define SQW_IS_HIGH() (SQW_PIN & SQW_ADDR)
 
 /*
  *
@@ -142,7 +127,7 @@ inline void ReadADCToADCData(volatile ADCVoltageData *a);
 inline uint8_t MatrixBright(volatile ADCVoltageData *a);
 
 //! inicjalizacja przyciskow
-extern void ButtonsInit();
+extern void PCINTInit();
 
 
 /*
@@ -205,5 +190,6 @@ inline uint8_t MatrixBright(volatile ADCVoltageData *a) {
 	else if (a->uiPhotoAvg > HIST_HIGH) a->uiActBright = MAX_MATRIX_BRIGHT;
 	return a->uiActBright;
 }
+
 
 #endif /* OTHER_DEVICES_H_ */

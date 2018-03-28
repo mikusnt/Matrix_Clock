@@ -6,13 +6,13 @@ Obs³uga 5 rejestrów przesuwnych 74hc595, 4 ze wspólnym sterowaniem na osi X, pi¹
 
 Obliczenia konfiguracyjne timera g³ównego:
 Tryb: CTC
-Odœwie¿anie matrycy: 100Hz
-Iloœc X poziomów matrycy: 8
+Odœwie¿anie matrycy: 60Hz
+Iloœc Y poziomów matrycy: 8
 Iloœc poziomów jasnoœci: 20
-Iloœc taktów do wyzwolenia: 20 000 000 / 100 / 8 / 20 = 1250
+Iloœc taktów do wyzwolenia: 20 000 000 / 60 / 8 / 20 = 2084
 Timer sprzêtowy: 8 bitowy Timer0
-Preskaler: 8
-OCR: 157
+Preskaler: 64
+OCR: 33
 
 Obliczenia konfiguracyjne timera podstawy czasu:
 Tryb: CTC

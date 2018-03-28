@@ -20,8 +20,13 @@ void RegistersInit() {
 
 	Y_DATA_DDR |= Y_DATA_ADDR;
 	Y_CLK_DATA_DDR |= Y_CLK_DATA_ADDR;
+	Y_RESET_DDR |= Y_RESET_ADDR;
 
-	LATCH_DDR |= LATCH_DDR;
+	LATCH_DDR |= LATCH_ADDR;
+	Y_ON();
+
+	for(int i = 0; i < 8; i++)
+		SendRegisterY(OFF, false);
 
 } // END void RegistersInit
 

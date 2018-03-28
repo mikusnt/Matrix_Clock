@@ -17,6 +17,8 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
