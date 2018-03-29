@@ -1,3 +1,9 @@
+/*!
+ * @file diode_matrix.c
+ * @author 		Mikolaj Stankowiak <br>
+ * 				mik-stan@go2.pl
+ * @see diode_matrix.h*/
+
 #include "diode_matrix.h"
 
 const uint8_t gamma_o[MAX_GAMMA_BRIGHTNESS+1] = {0, 1, 3, 10, 19};

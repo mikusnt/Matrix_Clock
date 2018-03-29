@@ -1,5 +1,5 @@
 /*!
- * @file uart_read.h
+ * @file uart_processing.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
  * $Modified: 23-12-2017 $

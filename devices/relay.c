@@ -2,8 +2,7 @@
  * @file relay.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * @see relay.h
- */
+ * @see relay.h*/
 #include "relay.h"
 
 
@@ -14,8 +13,7 @@
  */
 
 /*! steruje wyjsciem cyfrowym przekaznika
- * @param 		eB wartosc logiczna dzialania przekaznika
- */
+ * @param 		eB wartosc logiczna dzialania przekaznika*/
 static inline void RelaySW(BinarySwitch eB) {
 	if (eB) RELAY_PORT |= RELAY_ADDR;
 	else RELAY_PORT &= ~RELAY_ADDR;
@@ -53,41 +51,39 @@ void RelayInit() {
 
 /*!@param 		relay adres struktury przekaznika
  * @param 		uiByteInfo bajt, ktory ma byc przekazany za pomoca impulsow przekaznika
- * @param 		bIsMinutes wartosc true jesli uiByteInfo jest podany w minutach, w przeciwnym
- * 				wypadku godzina*/
-void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, bool bIsMinutes) {
-	// zaladowanie danych o godzinie/minucie do struktury
-	// gdy minuty
-	if (bIsMinutes) {
-		while (uiByteInfo >= 60) uiByteInfo -= 60;
-		if (uiByteInfo > 0)
-			relay->uiByteInfo = RoundByte(uiByteInfo / 15, &relay->uiByteLength);
-	// gdy godziny
-	} else {
-		while (uiByteInfo > 12) uiByteInfo -= 12;
-		if (uiByteInfo == 12) uiByteInfo = 0;
-		// gdy godzina mniejsza od 2 nie odwracaj
-		if (uiByteInfo < 2) {
-			relay->uiByteLength = (uiByteInfo == 0) ? 8 : 1;
-			relay->uiByteInfo = uiByteInfo;
-		} else {
+ * @param 		dataType typ danych wejsciowych*/
+void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType dataType) {
+	relay->dataType = dataType;
+	// zaladowanie danychdo struktury
+	switch(dataType) {
+		case RelayDataHours: {
+			while (uiByteInfo > 12) uiByteInfo -= 12;
+			if (uiByteInfo == 12) uiByteInfo = 0;
+			// gdy godzina mniejsza od 2 nie odwracaj
+			if (uiByteInfo < 2) {
+				relay->uiByteLength = (uiByteInfo == 0) ? 8 : 1;
+				relay->uiByteInfo = uiByteInfo;
+			} else {
+				relay->uiByteInfo = RoundByte(uiByteInfo, &relay->uiByteLength);
+			}
+			relay->uiStartLength = RELAY_HIGH_START_H_COUNT;
+			relay->uiHighStartTimeMS = RELAY_HIGH_START_MS;
+		} break;
+		case RelayDataMinutes: {
+			while (uiByteInfo >= 60) uiByteInfo -= 60;
+			if (uiByteInfo > 0)
+				relay->uiByteInfo = RoundByte(uiByteInfo / 15, &relay->uiByteLength);
+			relay->uiStartLength = RELAY_HIGH_START_M_COUNT;
+			relay->uiHighStartTimeMS = RELAY_HIGH_START_MS;
+		} break;
+		case RelayDataNumber: {
 			relay->uiByteInfo = RoundByte(uiByteInfo, &relay->uiByteLength);
+			relay->uiStartLength = RELAY_HIGH_START_N_COUNT;
+			relay->uiHighStartTimeMS = RELAY_HIGH_START_MS;
 		}
 	}
 
-	// uzupelnienie tablicy stalych czasowych dla stanu wysokiego i niskiego
-	relay->ui16tTimeMSToClick[relayLongHPos] = RELAY_STATE_MS * RELAY_LONG_HIGH_MUL;
-	relay->ui16tTimeMSToClick[relayLongLPos] = RELAY_STATE_MS * RELAY_LONG_LOW_MUL;
-	relay->ui16tTimeMSToClick[relayShortHPos] = RELAY_STATE_MS * RELAY_SHORT_HIGH_MUL;
-	relay->ui16tTimeMSToClick[relayShortLPos] = RELAY_STATE_MS * RELAY_SHORT_LOW_MUL;
-	// zmiany stanu wysokiego + przerwa
-	if (bIsMinutes)
-		relay->uiStartLength = RELAY_HIGH_START_M_COUNT;
-	else
-		relay->uiStartLength = RELAY_HIGH_START_H_COUNT;
-	relay->bIsMinutes = bIsMinutes;
 	// zerowanie zmiennych przed pierwszym kliknieciem
-	relay->uiONY = 0;
 	relay->ui16ActTimeMS = 1;
 	RelayTryClickMS(relay);
 } // END void RelayStartClicking
@@ -104,11 +100,7 @@ void RelayTryClickMS(volatile Relay *relay) {
 			if (relay->uiStartLength) {
 				// zmiana stanu przekaznika gdy tryb drgania (relay->uiStartLength > 0)
 					RELAY_CH();
-					relay->ui16ActTimeMS = RELAY_HIGH_START_MS;
-					if (relay->bIsMinutes)
-						relay->uiONY += 2;
-					else
-						relay->uiONY++;
+					relay->ui16ActTimeMS = relay->uiHighStartTimeMS;
 				// zmiana z drybu drgania na przerwe
 				if (--relay->uiStartLength == 0) {
 					RelaySW(LOW);
@@ -119,9 +111,11 @@ void RelayTryClickMS(volatile Relay *relay) {
 				// gdy aktualnie wysoki to zainicjuj niski (nastepny bit)
 				if (RELAY_IS_ON()) {
 					if(relay->uiByteInfo % 2) {
-						relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayLongLPos];
+						//relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayLongLPos];
+						relay->ui16ActTimeMS = RELAY_LONG_LOW_TIME;
 					} else {
-						relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayShortLPos];
+						//relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayShortLPos];
+						relay->ui16ActTimeMS = RELAY_SHORT_LOW_TIME;
 					}
 					relay->uiByteInfo >>= 1;
 					relay->uiByteLength--;
@@ -129,9 +123,11 @@ void RelayTryClickMS(volatile Relay *relay) {
 				} else {
 					// gdy aktualnie niski to zainicjuj wysoki
 					if(relay->uiByteInfo % 2) {
-						relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayLongHPos];
+						//relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayLongHPos];
+						relay->ui16ActTimeMS = RELAY_LONG_HIGH_TIME;
 					} else {
-						relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayShortHPos];
+						//relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayShortHPos];
+						relay->ui16ActTimeMS = RELAY_SHORT_HIGH_TIME;
 					}
 				}
 
@@ -139,5 +135,5 @@ void RelayTryClickMS(volatile Relay *relay) {
 			}
 
 		}
-	} else RelaySW(0);
+	} else RelaySW(OFF);
 } // END void RelayTryClickMS

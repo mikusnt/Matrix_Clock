@@ -56,7 +56,7 @@ typedef struct {
 	//! tablica poszczegolnych cyfr czasu
 	/*! @see SingleTimePos*/
 	uint8_t uitSingleTime[6];
-	uint8_t uiSingleProgress[4];
+	uint8_t uiSingleProgress[6];
 } Time;
 
 //! glowna struktura daty
@@ -96,8 +96,10 @@ extern void LoadToGroupTime(Time *t);
 /*! w tym ladowanie najpotrzebniejszych zmiennych
  * @param 		t adres struktury czasu*/
 inline void TimeInit(Time *t) {
-	for (int i = TimeH10Pos; i <= TimeS0Pos; i++)
+	for (int i = TimeH10Pos; i <= TimeS0Pos; i++) {
 		t->uitSingleTime[i] = 0;
+		t->uiSingleProgress[i] = 0;
+	}
 }
 
 /*!

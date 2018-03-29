@@ -1,11 +1,8 @@
-/*
- * @file other_devices.h
+/*!
+ * @file other_devices.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-12-07 $
- * $Created: 2017-11-04 $
- * @version 1.0
- */
+ * @see other_devices.h*/
 
 #include "other_devices.h"
 
@@ -17,7 +14,7 @@ void Timer0Init() {
 	TCCR0B |= (1 << CS01) | (1 << CS00);
 	// odblokowanie przerwan
 	TIMSK0 |= (1 << OCIE0A);
-	OCR0A = 33;
+	OCR0A = 33; // 33
 } // END void Timer0Init
 
 //! konfiguracja 8-bitowego timera2 jako podstawowego odniesienia czasu 1 ms
@@ -34,7 +31,7 @@ void Timer2Init() {
 
 /*! konfiguruje rejestr ladowania, rejestry przetwornika ADC oraz inicjalizuje strukture ADCData
  * @param		a adres struktury przetwornika ADC*/
-void ADCVoltageDataInit(volatile ADCVoltageData *a) {
+void ADCInit(volatile ADCVoltageData *a) {
 	CHARGE_DDR |= CHARGE_ADDR;
 	// domyslnie Vref rowne zasilaniu, niezaleznie od pinu Aref; ADMUX
 	// domyslnie tryb pojedynczego odczytu
@@ -45,8 +42,11 @@ void ADCVoltageDataInit(volatile ADCVoltageData *a) {
 			| (1 << ADIE); // uruchomienie przerwan
 	// rozdzielczosc 10bit
 	//ADMUX |= (1 << ADLAR); // rozdzieczosc 8 bitowa
-	a->uiActBright = MAX_MATRIX_BRIGHT;
-	SetADCChannel(a);
+	a->uiActBright = gamma_o[1];
+	// zrodlo wewnetrzne 1.1V
+	ADMUX |= (1 << REFS0) | (1 << REFS1);
+	// ustawienie kanalu ADC
+	ADMUX = (ADMUX & ADMUX_MASK) | ADC_PHOTO_ADR;
 } // END void ADCInit
 
 /*! ustawia rejestr przyciskow na wejscie z podciagnieciem do zasilania i konfiguruje przerwania

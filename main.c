@@ -1,5 +1,5 @@
 /*!
- * @file main.h
+ * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
  * $Modified: 2017-12-07 $
@@ -30,40 +30,48 @@
  *
  */
 
+//! podstawa odniesienia czasu w milisekundach, [0 - 1000]
 volatile uint16_t ui16Ms;
-uint8_t ui16MsLastRefresh;
+//! czas w milisekundach ostatniego odswiezenia LoadTimeToMatrix, przyjmuje wartosci ui16Ms
+volatile uint16_t ui16MsLastRefresh = 10000;
+//! podstawa odniesienia czasu w sekundach, w kooperacji z ui16Ms
 volatile uint8_t uiSeconds;
+//! matryca LED
 volatile DiodeMatrix matrix;
+//! przekaznik
 volatile Relay relay;
+//! floaga nowej sekundy, na podstawie przerwania SQW od DS3231
 volatile bool bNewTime;
-//volatile ADCVoltageData adcData;
+//! dane ADC o jasnosci
+volatile ADCVoltageData adcVD;
+//! czas pobierany z RTC
 Time RTCTime;
+//! czas wyswietlany na matrycy
+//! @see 	LoadTimeToMatrix
 Time actTime;
-//Date mainDate;
-//ADCData mainADC;
-
-// flaga zmiany pozycji Y
+//! flaga zmiany poziomu Y
 volatile uint8_t uivModifyY;
-
-//volatile bool bLoadTime;
+//! aktualnie uruchomiona sekweencja
+//! @see SetSeqParams
+ActualSeq eActualSeq = SeqTimer;
 
 
 /*
  *
- *		Deklaracje funkcji
+ *		Przerwania
  *
  */
 
 // ISR(TIMER0_COMPA_vect)
 // ISR(TIMER2_COMPA_vect)
 // ISR(ADC_vect)
+// ISR(PCINT1_vect)
 
 /*
  *
- *		Pêtla g³ówna
+ *		Funkcja glowna
  *
  */
-
 
 int main (void) {
 	/*
@@ -71,39 +79,63 @@ int main (void) {
 	 *		Blok inicjalizacji
 	 *
 	 */
+	RegistersInit();
 	DiodeMatrixInit(&matrix);
 	RelayInit();
-	RegistersInit();
 	Timer0Init();
 	Timer2Init();
 	PCINTInit();
 
+	ADCInit(&adcVD);
+	SetSeqParams(eActualSeq, &matrix, &adcVD);
+	TimeInit(&actTime);
+	sei();
+
 	I2C_Init();
 	DS3231_Init();
-	DS3231_Test();
+	//RelayStartClicking(&relay, 12, RelayDataHours);
 	wdt_enable(WDTO_2S);
-	LoadTextToMatrix(&matrix, "00 00", gamma_o[1]);
-	sei();
+
+	/*
+	 *
+	 *		Petla glowna
+	 *
+	 */
 	while(1) {
-		if (bNewTime) {
-			DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
-			wdt_reset();
-			LoadToSingleTime(&RTCTime);
-			// aktywacja przekaxnika
-			if (RTCTime.uiSeconds == 0) {
-				ResetProgress(&actTime);
-				if (RTCTime.uiMinutes == 0)
-					RelayStartClicking(&relay, RTCTime.uiHours, false);
-				else
-					if ((RTCTime.uiMinutes % 15) == 0)
-						RelayStartClicking(&relay, RTCTime.uiMinutes, true);
-			}
-			ui16Ms = 0;
-			bNewTime = false;
+		// zmiana jasnosci
+		if (adcVD.bNewBright) {
+			SetBrightness(&matrix, adcVD.uiActBright);
+			adcVD.bNewBright = false;
 		}
-		if (((ui16Ms % TIME_DECREMENT_MS) == 0) && (ui16Ms != ui16MsLastRefresh)){
-			ui16MsLastRefresh = ui16Ms;
-			LoadTimeToMatrix(&matrix, &actTime, &RTCTime, gamma_o[1]);
+		switch(eActualSeq) {
+			// tryb zegara
+			case SeqTimer: {
+				if (bNewTime) {
+
+					DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
+					wdt_reset();
+					LoadToSingleTime(&RTCTime);
+					// aktywacja przekaxnika
+					if (RTCTime.uiSeconds == 0) {
+						ResetProgress(&actTime);
+						if (RTCTime.uiMinutes == 0)
+							RelayStartClicking(&relay, RTCTime.uiHours, RelayDataHours);
+						else
+							if ((RTCTime.uiMinutes % 15) == 0)
+								RelayStartClicking(&relay, RTCTime.uiMinutes, RelayDataMinutes);
+					}
+					bNewTime = false;
+				}
+
+				if ((ui16MsLastRefresh < 1000) && ((ui16Ms % TIME_DECREMENT_MS) == 0) && (ui16Ms != ui16MsLastRefresh)){
+					ui16MsLastRefresh = ui16Ms;
+					LoadTimeToMatrix(&matrix, &actTime, &RTCTime, adcVD.uiActBright);
+				}
+			} break;
+			case SeqText: {
+
+			} break;
+			// kolejne case'y
 		}
 	}
 } // END int main (void)
@@ -119,17 +151,13 @@ ISR(TIMER0_COMPA_vect) {
 			SendRegisterY(ReturnYValue(&matrix), true);
 		}
 		SendRegistersX(matrix.etBufferFlag, true, true);
-
-
 	}
-
-
-}
+} // END ISR(TIMER0_COMPA_vect)
 
 //! przerwanie timera w trybie CTC, odniesieni czasowe 1 MS
 ISR(TIMER2_COMPA_vect) {
 	RelayTryClickMS(&relay);
-	if (++ui16Ms >= 10000) {
+	if (++ui16Ms >= 1000) {
 		ui16Ms = 0;
 		if (++uiSeconds >= 60)
 			uiSeconds = 0;
@@ -139,29 +167,20 @@ ISR(TIMER2_COMPA_vect) {
 
 	if ((ui16Ms % INC_POS_MS) == 0)
 		IncrementBufferPosition(&matrix);
+} // END ISR(TIMER2_COMPA_vect)
 
-
-}
-/*
 //! przerwanie zakonczenia pomiaru ADC
 ISR(ADC_vect) {
-	//ReadADCToADCData(&adcData);
+	ReadADCToADCData(&adcVD);
 }
 
-// przerwania przelacznikow, flagi nowej sekundy bLoadTime
-ISR(PCINT0_vect) {
 
-}
-*/
-
+//! przerwanie sygnalu SQW z timera DS3231
 ISR(PCINT1_vect) {
+	ADCStart();
 	if (SQW_IS_HIGH()) {
-		//actTime.uiSeconds++;
+		ui16MsLastRefresh = 0;
 		bNewTime = true;
 	}
-}
-/*
-ISR(PCINT2_vect) {
+} // END ISR(PCINT1_vect)
 
-}
-*/

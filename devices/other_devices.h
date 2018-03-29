@@ -2,21 +2,21 @@
  * @file other_devices.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-12-07 $
+ * $Modified: 2018-30-29 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
- * NIETESTOWANY!!!<br>
  * Uzyte piny procesora: 6<br>
  * Plik naglowkowy zawierajacy konfiguracje timerow sprzetowych oraz przetwornika ADC w trybie
  * pojedynczego odczytu. Odczytanie zawartosci ADC odbywa sie w ramach przerwania po skonczonym
- * pomiarze ADC.
+ * pomiarze ADC. Za kazdym razem wymagane reczne uruchomienie kolejnego odczytu.
  */
 
 #ifndef OTHER_DEVICES_H_
 #define OTHER_DEVICES_H_
 
 #include "../group_includes.h"
+#include "../data_types/diode_matrix.h"
 
 /*
  *
@@ -25,7 +25,7 @@
  */
 
 //! ilosc pomiarow ADC do sredniej
-#define ADC_READ_COUNT 10
+#define ADC_READ_COUNT 2
 // kana³y ADC
 //! adres baterii w ADC
 #define ADC_BAT (1 << PC0)
@@ -49,10 +49,7 @@
 #define HIST_LOW (BRIGHT_CHANGE_POINT - BRIGHT_HIST_DELTA)
 //! maksymalna wartosc histerezy jasnosci z odczytu fotorezystora
 #define HIST_HIGH (BRIGHT_CHANGE_POINT + BRIGHT_HIST_DELTA)
-//! minimalna jasnosc matrycy
-#define MIN_MATRIX_BRIGHT 2
-//! maksymalna jasnosc matrycy
-#define MAX_MATRIX_BRIGHT 15
+
 
 #define ENERGY_SAVE_LVL 700
 
@@ -68,41 +65,24 @@
 #define SQW_ADDR (1 << PC1)
 #define SQW_IS_HIGH() (SQW_PIN & SQW_ADDR)
 
+#define ADC_PHOTO_ADR 2
 /*
  *
  *		Glowne typy danych
  *
  */
-
-//! adresy kanalow ADC
-/*! @see ADCData*/
-typedef enum {
-	adcBatteryAdr = 0,	//!< adres kanalu odczytu baerii
-	adcPhotoAdr			//!< adres kanalu odczytu fotorezystora
-} ADCAdr;
-
 //! glowny typ danych przetwornika ADC
 typedef struct {
 	//! aktualna ilosc pomiarow do danej sumy
 	uint8_t uiActReadCount;
-	//! aktualna ilosc wyliczenia srednich dla fotorezystora, jako dzielnik dla czestotliwosci
-	//! sredniej baterii
-	uint16_t ui16ActPhotoCount;
-	//! aktualny numer kanalu do ktorego ladowane sa odczyty ADC
-	/*! @see ADCAdr*/
-	uint8_t uiActChannel;
-	//! chwilowa suma odczytow ADC dla baterii
-	uint16_t ui16BatSum;
-	//! srednia wartosc ADC da baterii
-	uint16_t uiBatAvg;
 	//! chwilowa suma odczytow ADC dla fotorezystora
 	uint16_t ui16PhotoSum;
 	//! srednia wartosc ADC da fotorezystora
-	uint16_t uiPhotoAvg;
+	uint16_t ui16PhotoAvg;
 	//! aktualna wartosc jasnosci matrycy
 	uint8_t uiActBright;
-	//! informacja o oszczedzaniu energii na podstawie napiêcia akumulatora
-	bool bEnergySaving;
+	//! flaga nowej wartosci jasnosci, ustawiana przez ReadADCToADCData
+	bool bNewBright;
 } ADCVoltageData;
 
 /*
@@ -116,16 +96,11 @@ extern void Timer0Init();
 //! inicjalizacja Timera2 odpowiedzialnego za odniesienie czasu 1 ms
 extern void Timer2Init();
 //! inicjalizacja struktury ADCVoltageData
-extern void ADCVoltageDataInit(volatile ADCVoltageData *a);
+extern void ADCInit(volatile ADCVoltageData *a);
 //! uruchomienie odczytu ADC
 inline void ADCStart();
-//! laduje kanal ADC ze struktury do odpowiedniego rejestru
-inline void SetADCChannel(volatile ADCVoltageData *a);
 //! zaladowanie odczytanych danych do struktury ADC
 inline void ReadADCToADCData(volatile ADCVoltageData *a);
-//! zwraca jasnosc matrycy na podstawie odczytu fotorezystora
-inline uint8_t MatrixBright(volatile ADCVoltageData *a);
-
 //! inicjalizacja przyciskow
 extern void PCINTInit();
 
@@ -142,54 +117,27 @@ inline void ADCStart() {
 	ADCSRA |= (1 << ADSC); // uruchmienie konwersji
 }
 
-/*! nalezy wywolac przed dokonaniem pomiaru
- * @param 		a adres struktury przetwornika ADC*/
-inline void SetADCChannel(volatile ADCVoltageData *a) {
-	ADMUX = (ADMUX & ADMUX_MASK) | a->uiActChannel; // ustawienie odpowiedniego kana³u ADC
-}
-
 /*! jest wykonywany jako obsluga przerwania pomiaru ADC
  * @param 		a adres struktury przetwornika ADC
  * @see ADCStart()*/
 inline void ReadADCToADCData(volatile ADCVoltageData *a) {
 	// dodawanie skladnikow sumy
-	if (a->uiActChannel == adcBatteryAdr) a->ui16BatSum += ADC;
-	else if (a->uiActChannel == adcPhotoAdr) a->ui16PhotoSum += ADC;
+	a->ui16PhotoSum += ADC;
 
 	// gdy zakonczono pomiary dla danej sredniej
 	if (++a->uiActReadCount >= ADC_READ_COUNT) {
 		a->uiActReadCount = 0;
 		// gdy zakonczono pomiary fotorezystora
-		if (a->uiActChannel == adcPhotoAdr) {
-			a->uiPhotoAvg = a->ui16PhotoSum / ADC_READ_COUNT;
-			a->ui16PhotoSum = 0;
-			// gdy osiagnieto czas obliczanie sredniej baterii
-			if (++a->ui16ActPhotoCount >= PHOTO_TO_BATTERY_RATIO) {
-				a->ui16ActPhotoCount = 0;
-				a->uiActChannel = adcBatteryAdr;
-			}
+		a->ui16PhotoAvg = a->ui16PhotoSum / ADC_READ_COUNT;
+		a->ui16PhotoSum = 0;
+		uint8_t out = a->uiActBright;
+		HystData hystData = {730, 20, gamma_o[1], gamma_o[3], a->ui16PhotoAvg, &out};
+		Hysteresis(&hystData);
+		if (a->uiActBright != out) {
+			a->uiActBright = out;
+			a->bNewBright = true;
 		}
-		// gdy zakonczono pomiary baterii z powrotem do pomiarow fotorezystora
-		if (a->uiActChannel == adcBatteryAdr) {
-			a->uiBatAvg = a->ui16BatSum / ADC_READ_COUNT;
-
-			if (a->uiBatAvg < ENERGY_SAVE_LVL) a->bEnergySaving = true;
-			else a->bEnergySaving = false;
-
-			a->ui16BatSum = 0;
-			a->uiActChannel = adcPhotoAdr;
-		}
-		// zaladuj nowy kanal do rejestru ADC
-		SetADCChannel(a);
 	}
 } // END inline void ReadADCToADCData
-
-/*! @param 		a adres struktury przetwornika ADC*/
-inline uint8_t MatrixBright(volatile ADCVoltageData *a) {
-	if (a->uiPhotoAvg < HIST_LOW) a->uiActBright = MIN_MATRIX_BRIGHT;
-	else if (a->uiPhotoAvg > HIST_HIGH) a->uiActBright = MAX_MATRIX_BRIGHT;
-	return a->uiActBright;
-}
-
 
 #endif /* OTHER_DEVICES_H_ */

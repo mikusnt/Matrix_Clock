@@ -1,9 +1,8 @@
-/*
- * date_time.c
- *
- *  Created on: 9 lis 2017
- *      Author: MS
- */
+/*!
+ * @file date_time.c
+ * @author 		Mikolaj Stankowiak <br>
+ * 				mik-stan@go2.pl
+ * @see date_time.h*/
 
 #include "date_time.h"
 

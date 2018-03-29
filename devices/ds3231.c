@@ -175,7 +175,7 @@ void DS3231_Test() {
 	uint8_t hour, min, sec, nhour, nmin, nsec;
 	uint8_t count = 10; // maksymalna ilosc powtorzen
 	DS3231_GetTime(&hour, &min, &sec);
-	D_MS(1500);
+	D_MS(1100);
 	DS3231_GetTime(&nhour, &nmin, &nsec);
 
 

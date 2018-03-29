@@ -2,7 +2,7 @@
  * @file relay.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-30-28 $
+ * $Modified: 2018-03-29 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -39,26 +39,27 @@
 #define RELAY_IS_ON() (RELAY_PORT & RELAY_ADDR)
 
 // stale czasowe
-//! mnoznik stalej czasowej informacji 1 gdy aktualnie stan wysoki
-#define RELAY_LONG_HIGH_MUL 5
-//! mnoznik stalej czasowej informacji 1 gdy aktualnie stan niski
-#define RELAY_LONG_LOW_MUL 5
-//! mnoznik stalej czasowej informacji 0 gdy aktualnie stan wysoki
-#define RELAY_SHORT_HIGH_MUL 1
-//! mnoznik stalej czasowej informacji 0 gdy aktualnie stan niski
-#define RELAY_SHORT_LOW_MUL 9
-//! suma mnoznikow  LOW i HIGH
+//! suma mnoznikow  LOW i HIGH, mnozniki zawarte
+//! @see		 RELAY_LONG_HIGH_TIME
+//! @see		 RELAY_LONG_LOW_TIME
 #define RELAY_MUL_SUM 10
 
 //! czas jednego taktu przekaznika liczony w ms
 #define RELAY_INTERVAL_MS 1500
 
-//! czas czesci taku przekaznika liczony w ms
+//! czas czesci taktu przekaznika liczony w ms
 #define RELAY_STATE_MS (RELAY_INTERVAL_MS / RELAY_MUL_SUM)
 
-//! czas dla zmiany sekwencji startowej gdy aktualnie stan wysoki liczony w ms
+#define RELAY_LONG_HIGH_TIME RELAY_STATE_MS * 5
+#define RELAY_LONG_LOW_TIME RELAY_STATE_MS * 5
+#define RELAY_SHORT_HIGH_TIME RELAY_STATE_MS * 1
+#define RELAY_SHORT_LOW_TIME RELAY_STATE_MS * 9
+
+//! czas dla zmiany sekwencji startowej gdy aktualnie stan wysoki liczony w ms dla minuty i godziny
 //! (drganie pzekaznika)
-#define RELAY_HIGH_START_MS 75
+#define RELAY_HIGH_START_MS 50
+//! czas dla zmiany sekwencji testwej gdy aktualnie stan wysoki liczony w ms dla liczby
+#define RELAY_HIGH_START_MS_NUMBER 30
 
 //! ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie godzin, najlepiej wartosc parzysta
 //! aby ostatni stan wysoki nie zostal wygaszony przez przerwe
@@ -68,39 +69,30 @@
 //! ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie minut
 #define RELAY_HIGH_START_M_COUNT 4
 
+//! ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie liczb
+#define RELAY_HIGH_START_N_COUNT 10
+
 //! sumaryczny czas przerwy miedzy sekwencja startu w stanie wysokim a wlasciwym kodowaniem czasu liczony w ms
-#define RELAY_LOW_START_MS 1000
-
-
-
-
-
-//! pozycje w tablicy stalych czasowych stanow wysokiego i niskiego dla informacji 1 i 0
-typedef enum {
-	//! informacja 1 stan wysoki
-	relayLongHPos, //!< relayLongHPos
-	//! informacja 1 stan niski
-	relayLongLPos, //!< relayLongLPos
-	//! informacja 0 stan wysoki
-	relayShortHPos,//!< relayShortHPos
-	//! informacja 0 stan niski
-	relayShortLPos //!< relayShortLPos
-} RelayTime;
-
+#define RELAY_LOW_START_MS 1500
 
 /*
  *
  *		Glowny typ danych
  *
  */
+
+//! rodzaje typow danych wprowadzanych to przekaznika
+typedef enum {
+	RelayDataHours = 0,
+	RelayDataMinutes,
+	RelayDataNumber
+} RelayDataType;
+
 //! glowna struktura przekaznika
 typedef struct {
 	//! aktualny czas w ms, gdy 0 zmiana stanu i zaladowanie z ui16tTimeMSToClick
 	/*! @see		ui16TimeMsToClick*/
 	uint16_t ui16ActTimeMS;
-	//! tablica stalych czasowych stanow wysokiego i niskiego
-	/*! @see 		RelayTime*/
-	uint16_t ui16tTimeMSToClick[4];
 	//! binarna informacja przekazywana za pomoca przekaznika
 	uint8_t uiByteInfo;
 	//! dlugosc binarnej informacji
@@ -108,9 +100,9 @@ typedef struct {
 	//! dlugosc startowej informacji
 	uint8_t uiStartLength;
 	//! informacja czy kodowanie minut, jesli nie to kodowanie godzin
-	bool bIsMinutes;
-	//! ilosc zapalonych diod dla osi Y matrycy, wykorzystywane jako progress
-	uint8_t uiONY;
+	RelayDataType dataType;
+	//! czas dla zmiany sekwencji startowej gdy aktualnie stan wysoki, drganie przekaznika
+	uint8_t uiHighStartTimeMS;
 } Relay;
 
 /*
@@ -121,14 +113,13 @@ typedef struct {
 
 // steruje wyjsciem cyfrowym przekaznika
 //static inline void RelaySW(uint8_t uiValue);
-
 // obraca bajt wejsciowy i zwraca jego dlugosc
 //static inline uint8_t RoundByte(uint8_t byte, uint8_t *uiByteLength)
 
 //! inicjalizacja przekaznika
 extern void RelayInit();
 //! zaladowanie potrzebnych danych do klikania w strukturze
-extern void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, bool bIsMinutes);
+extern void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType dataType);
 //! proba klikania wg danych struktury, wyzwalana co ms
 extern void RelayTryClickMS(volatile Relay *relay);
 

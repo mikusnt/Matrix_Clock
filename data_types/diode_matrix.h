@@ -8,6 +8,7 @@
  *
  * Uzyte piny procesora: 0<br>
  * Plik naglowkowy obslugujacy logiczna strukture macierzy LED sluzacej do wyswietlania danych.
+ * @see		register.h
  */
 
 #ifndef DIODE_MATRIX_H_
@@ -84,7 +85,7 @@ inline void DiodeMatrixInit(volatile DiodeMatrix *m);
 inline void RefreshBufferFlag(volatile DiodeMatrix *m);
 //! zwieksza aktualna pozycje wyswietlania danych z bufora o 1, gdy wartosc osiagnie koncowa to reset do 0
 inline void IncrementBufferPosition(volatile DiodeMatrix *m);
-//! ustawia tryb wyswietlania bufora, resetuje pozycje wyzeietlania danych z bufora
+//! ustawia tryb wyswietlania bufora, resetuje pozycje wyswietlania danych z bufora
 extern void SetMoving(volatile DiodeMatrix *m, bool isMoving);
 //! laduje do calej linijki bufora o danej wysokosci dana wartosc jasnosci
 extern void SetYBuffer(volatile DiodeMatrix *m, uint8_t y_pos, uint8_t value);
@@ -95,6 +96,8 @@ extern void SetXRoundBuffer(volatile DiodeMatrix *m, uint8_t x_pos, uint8_t y_po
 //! zeruje caly bufor
 extern void ClearBuffer(volatile DiodeMatrix *m);
 extern void CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round, uint8_t x_buffer);
+//! zmienia jasnosc calego bufora
+inline void SetBrightness(volatile DiodeMatrix *m, uint8_t brightness);
 /*
  *
  *		Definicje funkcji inline
@@ -179,5 +182,14 @@ inline void IncrementBufferPosition(volatile DiodeMatrix *m) {
 			m->i16BufferPosition = 0;
 	}
 } // END inline void IncrementBufferPosition
+
+/*! @param			m adres struktury macierzy LED
+ *  @param			brightness nowa jscnosc*/
+inline void SetBrightness(volatile DiodeMatrix *m, uint8_t brightness) {
+	for(uint8_t i = 0; i < MATRIX_Y_SIZE; i++)
+		for (uint8_t j = 0; j < BUFFER_X_SIZE; j++)
+			if (m->uitBufferYX[i][j] > 0)
+				m->uitBufferYX[i][j] = brightness;
+} // END inline void SetBrightness
 
 #endif /* DIODE_MATRIX_H_ */

@@ -2,9 +2,9 @@
  * @file data_types.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-11-26 $
+ * $Modified: 2018-03-29 $
  * $Created: 2017-11-04 $
- * @version 1.0
+ * @version 1.1
  *
  * Plik naglowkowy zawierajacy uniwersalne makra i typy danych.
  */
@@ -89,18 +89,18 @@ inline void LoadToBuffer(uint8_t byte) {
 
 //! parametry wejsciowe funkcji Histereza
 typedef struct {
-	uint8_t uiThreshold;	//!< wartosc liczby gdy zmiana stanu wytjsciowego
-	uint8_t uiDelta;		//!< poziom hosterezy
+	uint16_t ui16Threshold;	//!< wartosc liczby gdy zmiana stanu wytjsciowego
+	uint8_t uiDelta;		//!< poziom histerezy
 	uint8_t uiMinValue;		//!< minimalna wartosc wyjsciowa
 	uint8_t uiMaxValue;		//!< maksymalna wartosc wyjsciowa
-	uint8_t uiValue;		//!< na jej podstawie generowane jest wyjscie, uiThreshold to prog dla tej liczby
+	uint16_t ui16Value;		//!< na jej podstawie generowane jest wyjscie, uiThreshold to prog dla tej liczby
 	uint8_t *uiOutValue;	//!< wyprowadzony za zewnatrz wynik histerezy, przyjmuje wartosci uiMinValue i uiMaxValue
-} HistData;
+} HystData;
 
-inline void Hysteresis(HistData *sHistData) {
-	if (sHistData->uiValue < (sHistData->uiThreshold - sHistData->uiDelta))
+inline void Hysteresis(HystData *sHistData) {
+	if (sHistData->ui16Value < (sHistData->ui16Threshold - sHistData->uiDelta))
 		*(sHistData->uiOutValue) = sHistData->uiMinValue;
-	if (sHistData->uiValue > (sHistData->uiThreshold + sHistData->uiDelta))
+	if (sHistData->ui16Value > (sHistData->ui16Threshold + sHistData->uiDelta))
 			*(sHistData->uiOutValue) = sHistData->uiMaxValue;
 }
 #endif /* DATA_TYPES_H_ */

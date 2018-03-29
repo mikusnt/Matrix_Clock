@@ -20,12 +20,12 @@
 #include "devices/register.h"
 
 //! testuje dzialanie przekaznika dla wszystkich godzin oraz wypisuje godzine na rejestrze X0
-extern void Test_Relay_Hours_X0(volatile Relay *r);
+extern void Test_Relay_Hours(volatile Relay *r);
 //! testuje dzialanie przekaznika dla wszystkich minut oraz wypisuje minuty na rejestrze X0
-extern void Test_Relay_Minutes_X0(volatile Relay *r);
+extern void Test_Relay_Minutes(volatile Relay *r);
 //! testuje dzialanie rejestru Y
 extern void Test_Y(uint8_t *i);
-
-extern void Load_MatrixBuffer(volatile DiodeMatrix *m);
+//! testuje dzialanie matrycy LED poprzez wyswietlanie 4 poziomow jasnosci
+extern void Test_MatrixBuffer(volatile DiodeMatrix *m);
 
 #endif /* TESTS_H_ */

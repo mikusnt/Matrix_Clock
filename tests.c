@@ -1,57 +1,47 @@
-/*
+/*!
  * @file tests.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2 gru 2017 $
- * $Created: 2 gru 2017 $
- * @version 0.1
- */
+ * @see tests.h*/
 
 #include "tests.h"
 
 /*! @param 		r wskaznik na przekaznik
- *  @see 		relay.h
- *  @see 		register.h
- * */
-void Test_Relay_Hours_X0(volatile Relay *r) {
+ *  @see 		relay.h*/
+void Test_Relay_Hours(volatile Relay *r) {
 	uint8_t i = 0;
 	do {
-		LoadToBuffer(i);
-		SendRegisterX(tabl, true);
-		D_S(1);
-
 		RelayStartClicking(r, i, false);
 		while (r->uiByteLength > 0);
-		D_S(2);
+		D_S(1);
 	} while (++i < 24);
-} // END void Test_Relay_X0
+} // END void Test_Relay
 
-void Test_Relay_Minutes_X0(volatile Relay *r) {
+/*! @param 		r wskaznik na przekaznik
+ *  @see 		relay.h*/
+void Test_Relay_Minutes(volatile Relay *r) {
 	uint8_t i = 0;
 	do {
-		LoadToBuffer(i);
-		SendRegisterX(tabl, true);
 		D_S(1);
-
 		RelayStartClicking(r, i, true);
 		while (r->uiByteLength > 0);
 		D_S(2);
-		i += 10;
+		i += 15;
 	} while (i < 60);
-} // END void Test_Relay_X0
+} // END void Test_Relay
 
 /*! @param 		i wskaznik na licznik potrzebny do iterowania
- *  @see 		register.h
- *  */
+ *  @see 		register.h*/
 void Test_Y(uint8_t *i) {
 	SendRegisterY((*i > 0) ? 0 : 1, true);
 	D_S(1);
 	if (++*i > 7) *i = 0;
 } // END void Test_Y
 
-void Load_MatrixBuffer(volatile DiodeMatrix *m) {
-	//m->uitBufferYX[0][0] = 1;
-	//m->uitBufferYX[0][31] = 20;
+/*! @param		m adres struktury macierzy LED
+ *  @see		diode_matrix.h*/
+void Test_MatrixBuffer(volatile DiodeMatrix *m) {
+
 	for (uint8_t i = 0; i < MATRIX_X_SIZE; i++) {
 		for (uint8_t j = 0; j < MATRIX_Y_SIZE; j++) {
 			if (i < 16) {
@@ -70,4 +60,4 @@ void Load_MatrixBuffer(volatile DiodeMatrix *m) {
 	m->uitBufferYX[0][MATRIX_X_SIZE+3] = gamma_o[4];
 	m->uitBufferYX[7][MATRIX_X_SIZE+3] = gamma_o[1];
 	m->uiEndBufferPosition = MATRIX_X_SIZE+4;
-}
+} // END void Test_MatrixBuffer

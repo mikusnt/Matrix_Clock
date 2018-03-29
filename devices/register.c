@@ -1,23 +1,14 @@
-/*
- * @file register.h
+/*!
+ * @file register.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-12-02 $
- * $Created: 2017-11-04 $
- * @version 1.0
- */
+ * @see register.h*/
 
 #include "register.h"
 
 
 /*! konfiguracja rejestrow IO do pracy rejestrow 74HC595*/
 void RegistersInit() {
-	X0_DATA_DDR |= X0_DATA_ADDR;
-	X1_DATA_DDR |= X1_DATA_ADDR;
-	X2_DATA_DDR |= X2_DATA_ADDR;
-	X3_DATA_DDR |= X3_DATA_ADDR;
-	X_CLK_DATA_DDR |= X_CLK_DATA_ADDR;
-
 	Y_DATA_DDR |= Y_DATA_ADDR;
 	Y_CLK_DATA_DDR |= Y_CLK_DATA_ADDR;
 	Y_RESET_DDR |= Y_RESET_ADDR;
@@ -25,8 +16,15 @@ void RegistersInit() {
 	LATCH_DDR |= LATCH_ADDR;
 	Y_ON();
 
-	for(int i = 0; i < 8; i++)
+	for(int i = 0; i < 7; i++)
 		SendRegisterY(OFF, false);
+	SendRegisterY(OFF, true);
+
+	X0_DATA_DDR |= X0_DATA_ADDR;
+	X1_DATA_DDR |= X1_DATA_ADDR;
+	X2_DATA_DDR |= X2_DATA_ADDR;
+	X3_DATA_DDR |= X3_DATA_ADDR;
+	X_CLK_DATA_DDR |= X_CLK_DATA_ADDR;
 
 } // END void RegistersInit
 

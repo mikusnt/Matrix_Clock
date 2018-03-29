@@ -2,7 +2,7 @@
  * @file register.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-03-28 $
+ * $Modified: 2018-03-29 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -25,7 +25,8 @@
  * 		- wspolny sygnal zegarowy dla wejscia szeregowego dla rejestrow X, osobny dla Y<br>
  * 		- wspolny sygnal zegarowy dla zatrzasku wyjscia rownoneglego dla rejestrow X i Y<br>
  * 		- rejestr Y posiada sterowanie stanem wyjscia rownoleglego, mozna przejsc na stan wysokiej
- * 	      impedancji, co jest wykorzystywane w wylaczeniu calej matrycy<br>
+ * 	      impedancji, co jest wykorzystywane w wylaczeniu calej matrycy, niestety efekt duchow<br>
+ * 	      nalezalo obejsc poprzez zaladowanie zer dla X0-X4, dopiero pozniej mozna przelaczyc Y
  *
  * @see DiodeMatrix
  */
@@ -41,18 +42,6 @@
  *
  */
 
-/*
- *
- *  wykorzystywane sa wszystkie grupy rejestrow
-//! rejestr kierunku wejscia danych dla grupy rejestrow X
-#define REGISTERSB_DDR DDRB
-//! rejestr kierunku wejscia danych dla grupy rejestrow X
-#define REGISTERSC_DDR DDRC
-//! rejestr stanu wejscia danych dla grupy rejestrow X
-#define REGISTERSB_PORT PORTB
-//! rejestr stanu wejscia danych dla grupy rejestrow X
-#define REGISTERSC_PORT PORTC
-*/
 
 /*
  *		X0
@@ -186,7 +175,7 @@ extern void RegistersInit();
 //! wysyla pojedynczy bit do rejestru Y
 inline void SendRegisterY(volatile BinarySwitch eB, bool bWithLoad);
 //! wysyla tablice bitow do rejestow X0 - X3
-inline void SendRegistersX(volatile uint8_t uitBuffer[32], bool bWithLoad, bool withData);
+inline void SendRegistersX(volatile uint8_t uitBuffer[32], bool bWithLoad, bool bWithData);
 //! wysyla tablice bitow do rejestru X0
 inline void SendRegisterX(volatile uint8_t uitBuffer[8], bool bWithLoad);
 
@@ -230,18 +219,19 @@ inline void SendRegisterY(volatile BinarySwitch eB, bool bWithLoad) {
 } // END inline void SendRegisterY
 
 /*! @param		uitBuffer tablica bitow danych szeregowych dla rejestrow X0 - X3
- *  @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie*/
-inline void SendRegistersX(volatile uint8_t uitBuffer[32], bool bWithLoad, bool withData) {
+ *  @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie
+ *  @param		bWithData decyzja o tym czy wysylac dane z uitBuffer czy same zera*/
+inline void SendRegistersX(volatile uint8_t uitBuffer[32], bool bWithLoad, bool bWithData) {
 	int8_t i;
 	// 8 bitow do 4 rejestrow, od tylu ze wzgledu na przesuwnosc rejestru, pierwsze bity beda osatnimi
 	for (i = 0; i < 8; i++) {
-		if (uitBuffer[i] && withData) X0_DATA_HIGH();
+		if (uitBuffer[i] && bWithData) X0_DATA_HIGH();
 			else X0_DATA_LOW();
-		if (uitBuffer[i + 8] && withData) X1_DATA_HIGH();
+		if (uitBuffer[i + 8] && bWithData) X1_DATA_HIGH();
 			else X1_DATA_LOW();
-		if (uitBuffer[i + 16] && withData) X2_DATA_HIGH();
+		if (uitBuffer[i + 16] && bWithData) X2_DATA_HIGH();
 			else X2_DATA_LOW();
-		if (uitBuffer[i + 24] && withData) X3_DATA_HIGH();
+		if (uitBuffer[i + 24] && bWithData) X3_DATA_HIGH();
 			else X3_DATA_LOW();
 		X_CLK_01();
 	}
