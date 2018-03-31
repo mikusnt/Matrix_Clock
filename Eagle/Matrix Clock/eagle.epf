@@ -1,5 +1,5 @@
 [Eagle]
-Version="08 03 02"
+Version="08 06 02"
 Platform="Windows"
 Globals="Globals"
 Desktop="Desktop"
@@ -170,6 +170,7 @@ UsedLibraryUrn="urn:adsk.eagle:library:321"
 UsedLibraryUrn="urn:adsk.eagle:library:322"
 UsedLibraryUrn="urn:adsk.eagle:library:323"
 UsedLibraryUrn="urn:adsk.eagle:library:324"
+UsedLibraryUrn="urn:adsk.eagle:library:325"
 UsedLibraryUrn="urn:adsk.eagle:library:326"
 UsedLibraryUrn="urn:adsk.eagle:library:327"
 UsedLibraryUrn="urn:adsk.eagle:library:103"
@@ -195,6 +196,7 @@ UsedLibraryUrn="urn:adsk.eagle:library:345"
 UsedLibraryUrn="urn:adsk.eagle:library:346"
 UsedLibraryUrn="urn:adsk.eagle:library:347"
 UsedLibraryUrn="urn:adsk.eagle:library:105"
+UsedLibraryUrn="urn:adsk.eagle:library:348"
 UsedLibraryUrn="urn:adsk.eagle:library:349"
 UsedLibraryUrn="urn:adsk.eagle:library:350"
 UsedLibraryUrn="urn:adsk.eagle:library:351"
@@ -345,14 +347,9 @@ UsedLibraryUrn="urn:adsk.eagle:library:174"
 UsedLibraryUrn="urn:adsk.eagle:library:175"
 UsedLibraryUrn="urn:adsk.eagle:library:176"
 UsedLibraryUrn="urn:adsk.eagle:library:177"
-UsedLibrary="C:/EAGLE 8.3.2/lbr/TC4422.lbr"
-UsedLibrary="C:/EAGLE 8.3.2/lbr/pinhead.lbr"
-UsedLibrary="C:/EAGLE 8.3.2/lbr/resistor.lbr"
 
 [Win_1]
 Type="Control Panel"
-Loc="0 0 1439 836"
-State=1
 Number=0
 
 [Desktop]

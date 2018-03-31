@@ -65,6 +65,12 @@ typedef struct {
 	//! false - wyswietlenie zawartosci bufora i przejscie do konca
 	bool bIsMoving;
 	uint8_t uitRoundBufferYX[MATRIX_Y_SIZE * 2][5];
+	//! wlaga dzialania matrycy, gdy OFF matryca wylaczona
+	BinarySwitch eMatrixState;
+	//! pozycja oczyszczania bufora, ustawiana przez
+	//! @see 	RunSlowClearedPos
+	//! @see 	DecrementTo0SlowClear
+	uint8_t uiSlowClearedPos;
 } DiodeMatrix;
 
 /*
@@ -84,7 +90,7 @@ inline void DiodeMatrixInit(volatile DiodeMatrix *m);
 //! odswieza tablice dzialania LED dla danej pozycji Y
 inline void RefreshBufferFlag(volatile DiodeMatrix *m);
 //! zwieksza aktualna pozycje wyswietlania danych z bufora o 1, gdy wartosc osiagnie koncowa to reset do 0
-inline void IncrementBufferPosition(volatile DiodeMatrix *m);
+inline bool IncrementBufferPosition(volatile DiodeMatrix *m);
 //! ustawia tryb wyswietlania bufora, resetuje pozycje wyswietlania danych z bufora
 extern void SetMoving(volatile DiodeMatrix *m, bool isMoving);
 //! laduje do calej linijki bufora o danej wysokosci dana wartosc jasnosci
@@ -98,15 +104,20 @@ extern void ClearBuffer(volatile DiodeMatrix *m);
 extern void CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round, uint8_t x_buffer);
 //! zmienia jasnosc calego bufora
 inline void SetBrightness(volatile DiodeMatrix *m, uint8_t brightness);
+//! zmniejsza pozycje oczyszczania bufora o 1
+inline bool DecrementTo0SlowClear(volatile DiodeMatrix *m);
+//! ustawia pozycje oczyszczania bufora na koniec zapisanego bufora
+inline void RunSlowClearedPos(volatile DiodeMatrix *m);
 /*
  *
  *		Definicje funkcji inline
  *
  */
 
-// zwraca 1 jeœli nast¹pi³ reset jasnoœci i inkrementacja X
-// czysci flagê modyfikacji
-/*! @param			m adres struktury macierzy LED
+
+/*! zwraca 1 jeœli nast¹pi³ reset jasnoœci i inkrementacja X, 0 w przeciwnym wypadku
+ *  czysci flagê modyfikacji
+ * @param			m adres struktury macierzy LED
  *  @return 		1 jesli doszlo do zwiekszenia wspolrzednej Y, 0 w przeciwnym wypadku*/
 inline volatile uint8_t IncrementBrightness(volatile DiodeMatrix *m){
 	m->bModifyFlag = false;
@@ -117,6 +128,7 @@ inline volatile uint8_t IncrementBrightness(volatile DiodeMatrix *m){
 	}
 	return 0;
 }
+
 /*! @param			m adres struktury macierzy LED*/
 inline void IncrementY(volatile DiodeMatrix *m){
 	if (++m->uiActY >= MATRIX_Y_SIZE) m->uiActY = 0;
@@ -126,7 +138,7 @@ inline void IncrementY(volatile DiodeMatrix *m){
 /*! @param			m adres struktury macierzy LED
  *  @return 		nowa wartosc szeregowa dla rejestru Y */
 inline volatile uint8_t ReturnYValue(volatile DiodeMatrix *m) {
-	return (m->uiActY) ? 0 : 1;
+	return (m->uiActY) ? 0 : m->eMatrixState;
 }
 
 /*! @param			m adres struktury macierzy LED
@@ -150,6 +162,7 @@ inline void DiodeMatrixInit(volatile DiodeMatrix *m) {
 	m->bModifyFlag = 0;
 	m->i16BufferPosition = 0;
 	m->uiEndBufferPosition = MATRIX_X_SIZE;
+	m->eMatrixState = ON;
 
 } // END inline void DiodeMatrixInit
 
@@ -158,7 +171,8 @@ inline void RefreshBufferFlag(volatile DiodeMatrix *m) {
 	uint8_t i;
 	for (i = 0; i < MATRIX_X_SIZE; i++) {
 		int16_t adr = i+m->i16BufferPosition;
-		if ((adr >= 0) && (adr < BUFFER_X_SIZE) && (m->uitBufferYX[m->uiActY][adr] > m->uiActBrightness)) {
+		if ((adr >= 0) && (adr < BUFFER_X_SIZE) && (m->uitBufferYX[m->uiActY][adr] > m->uiActBrightness)
+				&& (m->eMatrixState == ON)) {
 			if (!m->etBufferFlag[i]) {
 				m->bModifyFlag = true;
 				m->etBufferFlag[i] = ON;
@@ -172,14 +186,21 @@ inline void RefreshBufferFlag(volatile DiodeMatrix *m) {
 	}
 } // END inline void RefreshBufferFlag
 
-/*! @param			m adres struktury macierzy LED*/
-inline void IncrementBufferPosition(volatile DiodeMatrix *m) {
+/*! @param			m adres struktury macierzy LED
+ *  @return			true jesli zresetowano do poczatku*/
+inline bool IncrementBufferPosition(volatile DiodeMatrix *m) {
 	if (m->bIsMoving) {
-		if (++m->i16BufferPosition > m->uiEndBufferPosition)
+		if (++m->i16BufferPosition > m->uiEndBufferPosition){
 			m->i16BufferPosition = -MATRIX_X_SIZE;
+			return true;
+		}
+		return false;
 	} else {
-		if (++m->i16BufferPosition > (m->uiEndBufferPosition - MATRIX_X_SIZE))
+		if (++m->i16BufferPosition > (m->uiEndBufferPosition - MATRIX_X_SIZE)) {
 			m->i16BufferPosition = 0;
+			return true;
+		}
+		return false;
 	}
 } // END inline void IncrementBufferPosition
 
@@ -191,5 +212,22 @@ inline void SetBrightness(volatile DiodeMatrix *m, uint8_t brightness) {
 			if (m->uitBufferYX[i][j] > 0)
 				m->uitBufferYX[i][j] = brightness;
 } // END inline void SetBrightness
+
+/*! @param			m adres struktury macierzy LED
+ *  @return			true jesli wlasnie osiagnieto poczatek, false w przeciwnym wypadku*/
+inline bool DecrementTo0SlowClear(volatile DiodeMatrix *m) {
+	if (m->uiSlowClearedPos) {
+		SetXBuffer(m, --m->uiSlowClearedPos, 0, 0);
+		if (m->uiSlowClearedPos == 0)
+			return true;
+		return false;
+	}
+	return false;
+} // END inline bool DecrementTo0SlowClear
+
+/*! @param			m adres struktury macierzy LED*/
+inline void RunSlowClearedPos(volatile DiodeMatrix *m) {
+	m->uiSlowClearedPos = m->uiEndBufferPosition;
+}
 
 #endif /* DIODE_MATRIX_H_ */

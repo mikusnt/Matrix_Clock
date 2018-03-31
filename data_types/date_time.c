@@ -8,7 +8,7 @@
 
 
 /*! pakuje czas z pojedynczych cyft na liczby*/
- void LoadToGroupTime(Time *t) {
+ void LoadToGroupTime(TimeDate *t) {
 	t->uiHours = t->uitSingleTime[TimeH10Pos] * 10 + t->uitSingleTime[TimeH0Pos];
 	t->uiMinutes = t->uitSingleTime[TimeM10Pos] * 10 + t->uitSingleTime[TimeM0Pos];
 	t->uiSeconds = t->uitSingleTime[TimeS10Pos] * 10 + t->uitSingleTime[TimeS0Pos];
@@ -59,7 +59,7 @@ extern void TryTimeUpdateMS(Time *from_e, Time *to, bool bWithSlowDecrement) {
 }
 */
 
-void IncreaseProgress(Time *from, Time *to) {
+void IncreaseProgress(TimeDate *from, TimeDate *to) {
 	for (uint8_t i = 0; i < 4; i++) {
 		if (to->uitSingleTime[5-i] != from->uitSingleTime[5-i]) {
 			if (to->uiSingleProgress[5-i] < MAX_PROGRESS) {
@@ -73,7 +73,7 @@ void IncreaseProgress(Time *from, Time *to) {
 	LoadToGroupTime(to);
 } // END void IncreaseProgress
 
-void ResetProgress(Time *time) {
+void ResetProgress(TimeDate *time) {
 	for (uint8_t i = 0; i < 4; i++) {
 		time->uiSingleProgress[i] = 0;
 	}

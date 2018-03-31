@@ -26,17 +26,22 @@ static inline void RelaySW(BinarySwitch eB) {
  * @return 		bajt, ktory ma zamieniona kolejnosc bitow*/
 static inline uint8_t RoundByte(uint8_t byte, volatile uint8_t *uiByteLength_s) {
 	uint8_t temp = 0;
-	*uiByteLength_s = 8;
-	temp |= ((byte & 0x80) >> 7) | ((byte & 0x01) << 7);
-	temp |= ((byte & 0x40) >> 5) | ((byte & 0x02) << 5);
-	temp |= ((byte & 0x20) >> 3) | ((byte & 0x04) << 3);
-	temp |= ((byte & 0x10) >> 1) | ((byte & 0x08) << 1);
+	if (byte) {
+		*uiByteLength_s = 8;
+		temp |= ((byte & 0x80) >> 7) | ((byte & 0x01) << 7);
+		temp |= ((byte & 0x40) >> 5) | ((byte & 0x02) << 5);
+		temp |= ((byte & 0x20) >> 3) | ((byte & 0x04) << 3);
+		temp |= ((byte & 0x10) >> 1) | ((byte & 0x08) << 1);
 
-	while (!(temp % 2)) {
-		temp >>= 1;
-		(*uiByteLength_s)--;
+		while (!(temp % 2)) {
+			temp >>= 1;
+			(*uiByteLength_s)--;
+		}
+		return temp;
+	} else {
+		*uiByteLength_s = 1;
+		return 0;
 	}
-	return temp;
 } // END static inline uint8_t RoundByte
 
 /*
@@ -79,7 +84,7 @@ void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType
 		case RelayDataNumber: {
 			relay->uiByteInfo = RoundByte(uiByteInfo, &relay->uiByteLength);
 			relay->uiStartLength = RELAY_HIGH_START_N_COUNT;
-			relay->uiHighStartTimeMS = RELAY_HIGH_START_MS;
+			relay->uiHighStartTimeMS = RELAY_HIGH_START_MS_NUMBER;
 		}
 	}
 
@@ -111,10 +116,8 @@ void RelayTryClickMS(volatile Relay *relay) {
 				// gdy aktualnie wysoki to zainicjuj niski (nastepny bit)
 				if (RELAY_IS_ON()) {
 					if(relay->uiByteInfo % 2) {
-						//relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayLongLPos];
 						relay->ui16ActTimeMS = RELAY_LONG_LOW_TIME;
 					} else {
-						//relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayShortLPos];
 						relay->ui16ActTimeMS = RELAY_SHORT_LOW_TIME;
 					}
 					relay->uiByteInfo >>= 1;
@@ -123,10 +126,8 @@ void RelayTryClickMS(volatile Relay *relay) {
 				} else {
 					// gdy aktualnie niski to zainicjuj wysoki
 					if(relay->uiByteInfo % 2) {
-						//relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayLongHPos];
 						relay->ui16ActTimeMS = RELAY_LONG_HIGH_TIME;
 					} else {
-						//relay->ui16ActTimeMS = relay->ui16tTimeMSToClick[relayShortHPos];
 						relay->ui16ActTimeMS = RELAY_SHORT_HIGH_TIME;
 					}
 				}

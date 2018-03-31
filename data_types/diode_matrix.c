@@ -30,10 +30,10 @@ void SetYBuffer(volatile DiodeMatrix *m, uint8_t y_pos, uint8_t value) {
  *  @param			x_pos wspolrzedna x
  *  @param			signMask maska danej linijki, bit 0 to brak swiecenia, 1 to swiecenie o danej jasnosci
  *  @param 			value wartosc jasnosci*/
-void SetXBuffer(volatile DiodeMatrix *m, uint8_t x_pos, uint8_t signMask, uint8_t value) {
+void SetXBuffer(volatile DiodeMatrix *m, uint8_t x_pos, uint8_t signMask, uint8_t brightness) {
 	for (uint8_t i = 0; i < MATRIX_Y_SIZE; i++){
 		if (signMask % 2)
-			m->uitBufferYX[i][x_pos] = value;
+			m->uitBufferYX[i][x_pos] = brightness;
 		else
 			m->uitBufferYX[i][x_pos] = 0;
 		signMask >>= 1;
@@ -60,6 +60,7 @@ void ClearBuffer(volatile DiodeMatrix *m) {
 	for (uint8_t i = 0; i < MATRIX_Y_SIZE; i++)
 		for (uint8_t j = 0; j < BUFFER_X_SIZE; j++)
 			m->uitBufferYX[i][j] = 0;
+	m->i16BufferPosition = 0;
 }
 
 void CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round, uint8_t x_buffer) {

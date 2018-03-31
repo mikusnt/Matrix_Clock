@@ -57,8 +57,15 @@ typedef struct {
 	/*! @see SingleTimePos*/
 	uint8_t uitSingleTime[6];
 	uint8_t uiSingleProgress[6];
-} Time;
 
+	//! dni miesiaca dziesietnie
+	uint8_t uiDays;
+	//! miesiace dziesietnie
+	uint8_t uiMonths;
+	//! trzycyfrowy rok (bez tysiecy)
+	uint8_t uiYears;
+} TimeDate;
+/*
 //! glowna struktura daty
 typedef struct {
 	//! dni miesiaca dziesietnie
@@ -68,7 +75,7 @@ typedef struct {
 	//! trzycyfrowy rok (bez tysiecy)
 	uint8_t uiYears;
 } Date;
-
+*/
 /*
  *
  *		Deklaracje funkcji
@@ -76,14 +83,14 @@ typedef struct {
  */
 
 //! inicjalizacja struktury
-inline void TimeInit(Time *t);
+inline void TimeInit(TimeDate *t);
 //! rozbija dwucyfrowe skladniki czasu na jednocyfrowe
-inline void LoadToSingleTime(Time *t);
-extern void IncreaseProgress(Time *from, Time *to);
-extern void ResetProgress(Time *time);
+inline void LoadToSingleTime(TimeDate *t);
+extern void IncreaseProgress(TimeDate *from, TimeDate *to);
+extern void ResetProgress(TimeDate *time);
 
 // pakuje czas z pojedynczych cyfr na liczby
-extern void LoadToGroupTime(Time *t);
+extern void LoadToGroupTime(TimeDate *t);
 
 // aktualizuje czas w buforze na podstawie oryginalnego
 //extern void TryTimeUpdateMS(Time *edit_from, Time *to, bool bWithSlowDecrement);
@@ -95,7 +102,7 @@ extern void LoadToGroupTime(Time *t);
  */
 /*! w tym ladowanie najpotrzebniejszych zmiennych
  * @param 		t adres struktury czasu*/
-inline void TimeInit(Time *t) {
+inline void TimeInit(TimeDate *t) {
 	for (int i = TimeH10Pos; i <= TimeS0Pos; i++) {
 		t->uitSingleTime[i] = 0;
 		t->uiSingleProgress[i] = 0;
@@ -104,7 +111,7 @@ inline void TimeInit(Time *t) {
 
 /*!
  * @param 		t adres struktury czasu*/
-inline void LoadToSingleTime(Time *t) {
+inline void LoadToSingleTime(TimeDate *t) {
 	t->uitSingleTime[TimeH10Pos] = t->uiHours / 10;
 	t->uitSingleTime[TimeH0Pos] = t->uiHours % 10;
 

@@ -32,7 +32,6 @@ void Timer2Init() {
 /*! konfiguruje rejestr ladowania, rejestry przetwornika ADC oraz inicjalizuje strukture ADCData
  * @param		a adres struktury przetwornika ADC*/
 void ADCInit(volatile ADCVoltageData *a) {
-	CHARGE_DDR |= CHARGE_ADDR;
 	// domyslnie Vref rowne zasilaniu, niezaleznie od pinu Aref; ADMUX
 	// domyslnie tryb pojedynczego odczytu
 	ADCSRA |= (1 << ADEN) // aktywacja ADC
@@ -47,12 +46,17 @@ void ADCInit(volatile ADCVoltageData *a) {
 	ADMUX |= (1 << REFS0) | (1 << REFS1);
 	// ustawienie kanalu ADC
 	ADMUX = (ADMUX & ADMUX_MASK) | ADC_PHOTO_ADR;
+
 } // END void ADCInit
 
 /*! ustawia rejestr przyciskow na wejscie z podciagnieciem do zasilania i konfiguruje przerwania
  * sprzetowe PCINT*/
 void PCINTInit() {
 	SQW_DDR &= ~SQW_ADDR;
-	PCICR |= (1 << PCIE1); // odblokowanie przerwan od nr 8-14
-	PCMSK1 |= (1 << PCINT9);
+	BLUETOOTH_DDR &= ~BLUETOOTH_ADDR;
+	BLUETOOTH_PORT |= BLUETOOTH_ADDR;
+
+	PCICR |= (1 << PCIE1) | (1 << PCIE2); // odblokowanie przerwan od nr 8-14 i 16-23
+	PCMSK1 |= (1 << PCINT9); // SQW
+	PCMSK2 |= (1 << PCINT23); // Bluetooth
 }

@@ -53,7 +53,8 @@
 
 #define HOURS_24_MASK 0x3F
 #define HOURS_12_MASK 0x1F
-#define MONTH_MASK 0x3F
+#define MONTH_MASK 0x1F
+#define CENTURY_MASK 0x80
 //#define RAM_BEGIN 0x08
 //#define RAM_END 0x3F
 

@@ -41,23 +41,11 @@
 #define PHOTO_TO_BATTERY_RATIO  59//((3600 / ADC_READ_COUNT) - (ADC_READ_COUNT * 2))
 
 
-//! wartosc ADC fotorezystora przy ktorej nastepuje skok jasnosci
-#define BRIGHT_CHANGE_POINT 200
-//! odleglosc od BRIGHT_CHANGE_POINT dla histerezy
-#define BRIGHT_HIST_DELTA 25
-//! minimalna wartosc histerezy jasnosci z odczytu fotorezystora
-#define HIST_LOW (BRIGHT_CHANGE_POINT - BRIGHT_HIST_DELTA)
-//! maksymalna wartosc histerezy jasnosci z odczytu fotorezystora
-#define HIST_HIGH (BRIGHT_CHANGE_POINT + BRIGHT_HIST_DELTA)
-
-
-#define ENERGY_SAVE_LVL 700
-
-
-#define CHARGE_DDR DDRB
-#define CHARGE_PORT PORTB
-#define CHARGE_ADDR (1 << PB2)
-#define CHARGE_THRESHOLD 700
+#define BLUETOOTH_DDR DDRD
+#define BLUETOOTH_PORT PORTD
+#define BLUETOOTH_PIN PIND
+#define BLUETOOTH_ADDR (1 << PD7)
+#define BLUETOOTH_IS_ON() (!(BLUETOOTH_PIN & BLUETOOTH_ADDR))
 
 #define SQW_DDR DDRC
 #define SQW_PORT PORTC
@@ -131,7 +119,7 @@ inline void ReadADCToADCData(volatile ADCVoltageData *a) {
 		a->ui16PhotoAvg = a->ui16PhotoSum / ADC_READ_COUNT;
 		a->ui16PhotoSum = 0;
 		uint8_t out = a->uiActBright;
-		HystData hystData = {730, 20, gamma_o[1], gamma_o[3], a->ui16PhotoAvg, &out};
+		HystData hystData = {800, 20, gamma_o[1], gamma_o[3], a->ui16PhotoAvg, &out};
 		Hysteresis(&hystData);
 		if (a->uiActBright != out) {
 			a->uiActBright = out;

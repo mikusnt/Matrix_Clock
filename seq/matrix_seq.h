@@ -20,13 +20,15 @@
 #include "../data_types/diode_matrix.h"
 #include "../data_types/date_time.h"
 #include "../devices/other_devices.h"
+#include "../devices/bluetooth/uart_processing.h"
+#include "../devices/relay.h"
 #include "alphabet.h"
 
 //! ilosc sekwencji
-#define SEQ_NUMBER 2
+#define SEQ_NUMBER 4
 
-//! rozmiar bufora znakowego
-#define TEXT_BUFFER_SIZE 32
+//! rozmiar bufora znakowego, 32 znaki i \0
+#define TEXT_BUFFER_SIZE 33
 
 //! pozycja dwukropka w buforze matrycy
 #define SEC_SIGN_POS 12
@@ -39,10 +41,22 @@
 //! pozycje godzin i minut bloku binarnego sekundkina w buforze matrycy
 extern uint8_t uitHMPos[4];
 
+extern char ctTextBuffer[TEXT_BUFFER_SIZE];
+
 typedef enum {
-	SeqTimer = 0,
-	SeqText
+	SeqTimer = 1,
+	SeqADC,
+	SeqText,
+	SeqRelayNumber,
+	SeqManualPix
 } ActualSeq;
+
+typedef enum {
+	ModeSetPix = 1,
+	ModeRelay
+} DeviceMode;
+
+extern ActualSeq eActualSeq;
 
 /*
  *
@@ -63,13 +77,15 @@ typedef enum {
  *		Funkcje zewnetrzne
  *
  */
-//! wczytuje dany tekst do bufura matrycy w oparciu o alfabet
+//! wczytuje dany tekst do buf0ra matrycy w oparciu o alfabet
 extern void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE], uint8_t brightness);
 //! wczytuje godzine do bufora matrycy w oparciu o alfabet, efekt powolnej zmiany cyfr (RoundBuffer)
-extern void LoadTimeToMatrix(volatile DiodeMatrix *m, Time *from, Time *to, uint8_t brightness);
+extern void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to, uint8_t brightness);
+//! wczytuje date w formacie dd/mm/rrrr do bufora matrycy
+extern void LoadDateToMatrix(volatile DiodeMatrix *m, TimeDate *time, uint8_t brightness);
 //! wczytuje liczbe calkowita w formacie 5 cyfr do bufora matrycy
 extern void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number, uint8_t brightness);
 //! ustawia potrzebne parametry w przypadku zmiany sekwencji
-extern void SetSeqParams(ActualSeq seq, volatile DiodeMatrix *m, volatile ADCVoltageData *adc);
+extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *relay, uint8_t brightness);
 
 #endif /* MATRIX_SEQUENCES_H_ */

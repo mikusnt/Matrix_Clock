@@ -132,9 +132,13 @@ uint8_t DS3231_GetDate(uint8_t *day_s, uint8_t *month_s, uint8_t *year_s)
 	if (I2C_ReadRegister(DS3231,MONTHS_REGISTER, month_s)
 			&& I2C_ReadRegister(DS3231,DAYS_REGISTER, day_s)
 			&& I2C_ReadRegister(DS3231,YEARS_REGISTER, year_s)) {
-		*month_s = bcd2dec(*month_s & MONTH_MASK);		// pozbycie sie wieku na 7 bicie, 6 pusty
-		*day_s = bcd2dec(*day_s);
 		*year_s = bcd2dec(*year_s);
+		if (*month_s & CENTURY_MASK) {
+			*year_s += 100;
+		}
+		*month_s = bcd2dec(*month_s & MONTH_MASK);		// pozbycie sie wieku na 7 bicie, 6 i 5 pusty
+		*day_s = bcd2dec(*day_s);
+
 		return 1;
 	}
 	else return 0;
@@ -161,9 +165,14 @@ uint8_t  DS3231_SetTime(uint8_t hour, uint8_t minute, uint8_t second) {
  *  @param			year ustawiany rok dziesietnie
  *  @return 		1 gdy powodzenie, 0 gdy niepowodzenie*/
 uint8_t  DS3231_SetDate(uint8_t day, uint8_t month, uint8_t year) {
-	if ((day > 31) || (day < 1) || (month > 12) || (month < 1) || (year > 99)) return 0;
-
-	if (I2C_WriteRegister(DS3231,MONTHS_REGISTER, dec2bcd(month) & MONTH_MASK)
+	if ((day > 31) || (month > 12) || (year > 199)) return 0;
+	// ustawienie bitu kolejnego wieku
+	dec2bcd(month);
+	if (year > 99) {
+		year -= 100;
+		month |= CENTURY_MASK;
+	}
+	if (I2C_WriteRegister(DS3231,MONTHS_REGISTER, month)
 			&& I2C_WriteRegister(DS3231,DAYS_REGISTER, dec2bcd(day))
 			&& I2C_WriteRegister(DS3231,YEARS_REGISTER, dec2bcd(year)))
 		return 1;

@@ -18,6 +18,7 @@ volatile uint8_t UART_RxTail;
 volatile char UART_TxBuf[UART_TX_BUF_SIZE];
 volatile uint8_t UART_TxHead;
 volatile uint8_t UART_TxTail;
+volatile bool UART_FirstEndFlag;
 
 
 
@@ -49,6 +50,14 @@ void USART_Init( uint16_t baud ) {
 		// jeœli nie  korzystamy z interefejsu RS485
 		UCSRB |= (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0);
 	#endif
+
+	// resetowanie buforow
+	for (uint8_t i = 0; i < UART_RX_BUF_SIZE; i++)
+		UART_RxBuf[i] = 0;
+	for (uint8_t i = 0; i < UART_TX_BUF_SIZE; i++)
+		UART_TxBuf[i] = 0;
+
+	UART_RxHead = UART_RxTail = UART_TxHead = UART_TxTail = 0;
 } // END void USART_Init
 
 /*! @return 		wartosc przechowana w buforze cyklicznym, gdy brak danych 0 */
@@ -90,6 +99,15 @@ void uart_puts(char *s)		// wysy³a ³añcuch z pamiêci RAM na UART
   while ((c = *s++)) uart_putc(c);			// dopóki nie napotkasz 0 wysy³aj znak
 } // END void uart_puts
 
+
+void uart_puts_p(const char *progmem_s )
+{
+    register char c;
+    while ( (c = pgm_read_byte(progmem_s++)) )
+      uart_putc(c);
+
+}/* uart1_puts_p */
+
 /*! @param 		value liczba ktora ma zostac wyslana
  *  @param 		radix podstawa systemu w jakim liczba ma zostac przeslana*/
 void uart_putint(int value, int radix)	// wysy³a na port szeregowy liczbe jako tekst o okreslonej podstawie
@@ -127,7 +145,8 @@ ISR( USART_RX_vect ) {
     char data;
 
     data = UDR0; //pobieramy natychmiast bajt danych z bufora sprzêtowego
-
+    if (data == END_FRAME_CODE)
+    	UART_FirstEndFlag = true;
     // obliczamy nowy indeks „g³owy wê¿a”
     tmp_head = ( UART_RxHead + 1) & UART_RX_BUF_MASK;
 

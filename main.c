@@ -31,9 +31,7 @@
  */
 
 //! podstawa odniesienia czasu w milisekundach, [0 - 1000]
-volatile uint16_t ui16Ms;
-//! czas w milisekundach ostatniego odswiezenia LoadTimeToMatrix, przyjmuje wartosci ui16Ms
-volatile uint16_t ui16MsLastRefresh = 10000;
+volatile uint16_t ui16Ms = 0;
 //! podstawa odniesienia czasu w sekundach, w kooperacji z ui16Ms
 volatile uint8_t uiSeconds;
 //! matryca LED
@@ -41,20 +39,22 @@ volatile DiodeMatrix matrix;
 //! przekaznik
 volatile Relay relay;
 //! floaga nowej sekundy, na podstawie przerwania SQW od DS3231
-volatile bool bNewTime;
+volatile bool bNewTime = false;
+//! flaga nowego taktu odswiezenia bufora obrotowego dla czasu
+volatile bool bNewRoundRefresh = false;
 //! dane ADC o jasnosci
-volatile ADCVoltageData adcVD;
+volatile ADCVoltageData adc;
 //! czas pobierany z RTC
-Time RTCTime;
+TimeDate RTCTime;
 //! czas wyswietlany na matrycy
 //! @see 	LoadTimeToMatrix
-Time actTime;
+TimeDate actTime;
 //! flaga zmiany poziomu Y
 volatile uint8_t uivModifyY;
-//! aktualnie uruchomiona sekweencja
-//! @see SetSeqParams
-ActualSeq eActualSeq = SeqTimer;
-
+//! okresla ilosc powtorzen wyswietlania tekstu na matrycy
+volatile int8_t iCountToTimer;
+//! flaga zezwolenia na dekrementacje czyszczonej pozycji w trybie czyszczenia
+volatile bool bEnableDecrement;
 
 /*
  *
@@ -86,71 +86,111 @@ int main (void) {
 	Timer2Init();
 	PCINTInit();
 
-	ADCInit(&adcVD);
-	SetSeqParams(eActualSeq, &matrix, &adcVD);
-	TimeInit(&actTime);
+	ADCInit(&adc);
+	USART_Init(__UBRR);
+	I2C_Init();
+
+	DS3231_Init();
+	DS3231_SetDate(31, 3, 18);
+	DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
+	DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
+
+	LoadToSingleTime(&RTCTime);
+	SetSeqParams(&matrix, &actTime, &relay, adc.uiActBright);
+
+	//LoadNumberToMatrix(&matrix, 12345, adcVD.uiActBright);
+	//SetSlowClearedPos(&matrix);
 	sei();
 
-	I2C_Init();
-	DS3231_Init();
-	//RelayStartClicking(&relay, 12, RelayDataHours);
-	wdt_enable(WDTO_2S);
 
+	RelayStartClicking(&relay, 0, RelayDataNumber);
+	wdt_enable(WDTO_2S);
 	/*
 	 *
 	 *		Petla glowna
 	 *
 	 */
 	while(1) {
+
 		// zmiana jasnosci
-		if (adcVD.bNewBright) {
-			SetBrightness(&matrix, adcVD.uiActBright);
-			adcVD.bNewBright = false;
+		if (adc.bNewBright) {
+			SetBrightness(&matrix, adc.uiActBright);
+			adc.bNewBright = false;
 		}
-		switch(eActualSeq) {
-			// tryb zegara
-			case SeqTimer: {
-				if (bNewTime) {
+		// oczyszczanie bufora, po osiagnieciu poczatku uruchomienie sekwencji zawartej w eACtualSeq
+		if (bEnableDecrement) {
+			if (DecrementTo0SlowClear(&matrix)) {
+				SetSeqParams(&matrix, &actTime, &relay, adc.uiActBright);
+				iCountToTimer = 2;
 
-					DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
-					wdt_reset();
-					LoadToSingleTime(&RTCTime);
-					// aktywacja przekaxnika
-					if (RTCTime.uiSeconds == 0) {
-						ResetProgress(&actTime);
-						if (RTCTime.uiMinutes == 0)
-							RelayStartClicking(&relay, RTCTime.uiHours, RelayDataHours);
-						else
-							if ((RTCTime.uiMinutes % 15) == 0)
-								RelayStartClicking(&relay, RTCTime.uiMinutes, RelayDataMinutes);
+			}
+			// proba obslugi komendy UART
+			TryLoadCommand(&matrix, &relay, adc.uiActBright);
+			bEnableDecrement = false;
+		}
+		// Jesli tryb czyszczenia bufora nieaktywny
+		if (matrix.uiSlowClearedPos == 0) {
+			switch(eActualSeq) {
+				// tryb zegara
+				case SeqTimer: {
+					if (bNewTime) {
+						DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
+						sprintf(ctTextBuffer, "%02d-%02d-2%03d %02d:%02d:%02d\n", RTCTime.uiDays,
+								RTCTime.uiMonths, RTCTime.uiYears, RTCTime.uiHours,
+								RTCTime.uiMinutes, RTCTime.uiSeconds);
+						//uart_puts(ctTextBuffer);
+						LoadToSingleTime(&RTCTime);
+						// aktywacja przekaxnika
+						if (RTCTime.uiSeconds == 0) {
+							ResetProgress(&actTime);
+							if (RTCTime.uiMinutes == 0)
+								RelayStartClicking(&relay, RTCTime.uiHours, RelayDataHours);
+								if (RTCTime.uiHours == 0)
+									DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
+							else
+								if ((RTCTime.uiMinutes % 15) == 0)
+									RelayStartClicking(&relay, RTCTime.uiMinutes, RelayDataMinutes);
+						}
+						bNewTime = false;
 					}
-					bNewTime = false;
-				}
 
-				if ((ui16MsLastRefresh < 1000) && ((ui16Ms % TIME_DECREMENT_MS) == 0) && (ui16Ms != ui16MsLastRefresh)){
-					ui16MsLastRefresh = ui16Ms;
-					LoadTimeToMatrix(&matrix, &actTime, &RTCTime, adcVD.uiActBright);
-				}
-			} break;
-			case SeqText: {
-
-			} break;
-			// kolejne case'y
+					if (bNewRoundRefresh){
+						LoadTimeToMatrix(&matrix, &actTime, &RTCTime, adc.uiActBright);
+						bNewRoundRefresh = false;
+					}
+				} break;
+				case SeqADC: {
+					// wypisanie ADC do matrycy i UART
+					if (bNewTime) {
+						LoadNumberToMatrix(&matrix, adc.ui16PhotoAvg, adc.uiActBright);
+						//ctTextBuffer[4] = '\n';
+						//uart_puts(ctTextBuffer);
+						bNewTime = false;
+					}
+				} break;
+				// zaladowanie bufora podczas SetSeqParams
+				case SeqText: {} break;
+				// wyslanie liczby do przekaznika
+				case SeqRelayNumber: {} break;
+				case SeqManualPix: {} break;
+				// kolejne case'y
+			}
 		}
 	}
 } // END int main (void)
 
-//! timer pracy matrycy LED
+//! timer pracy matrycy LED, konieczna optymalizacja
 ISR(TIMER0_COMPA_vect) {
 	// obsluga zmiany jasnosci
 	uivModifyY = IncrementBrightness(&matrix);
 	RefreshBufferFlag(&matrix);
 	if (matrix.bModifyFlag) {
 		if (uivModifyY) {
-			SendRegistersX(matrix.etBufferFlag, true, false);
+			//ClearRegistersX(true);
 			SendRegisterY(ReturnYValue(&matrix), true);
 		}
-		SendRegistersX(matrix.etBufferFlag, true, true);
+		if (matrix.eMatrixState == ON)
+			SendRegistersX(matrix.etBufferFlag, true);
 	}
 } // END ISR(TIMER0_COMPA_vect)
 
@@ -161,26 +201,43 @@ ISR(TIMER2_COMPA_vect) {
 		ui16Ms = 0;
 		if (++uiSeconds >= 60)
 			uiSeconds = 0;
-
-		//SecondsBinary(&matrix, uiSeconds, gamma_o[2]);
 	}
-
+	// ustawienie flagi nowego taktu odswiezenia bufora obrotowego
+	if ((ui16Ms % TIME_DECREMENT_MS) == 0)
+		bNewRoundRefresh = true;
+	// zmiana w pozycji bufora i powrot do SeqTimer w przypadku wyswietlania tekstu
 	if ((ui16Ms % INC_POS_MS) == 0)
-		IncrementBufferPosition(&matrix);
+		if (IncrementBufferPosition(&matrix)) {
+			if ((eActualSeq == SeqText) && (matrix.uiSlowClearedPos == 0) && ((--iCountToTimer) == 0) ) {
+				eActualSeq = SeqTimer;
+				SetSeqParams(&matrix, &actTime, &relay, adc.uiActBright);
+			}
+		}
+	if ((ui16Ms % 30) == 15)
+		bEnableDecrement = true;
 } // END ISR(TIMER2_COMPA_vect)
 
-//! przerwanie zakonczenia pomiaru ADC
+//! przerwanie zakonczenia pomiaru ADC, odczytanie zawartosci ADC
 ISR(ADC_vect) {
-	ReadADCToADCData(&adcVD);
+	ReadADCToADCData(&adc);
 }
 
 
-//! przerwanie sygnalu SQW z timera DS3231
+//! przerwanie sygnalu SQW z timera DS3231, ustawienie flagi nowego czasu i reset watch doga
 ISR(PCINT1_vect) {
 	ADCStart();
 	if (SQW_IS_HIGH()) {
-		ui16MsLastRefresh = 0;
+		wdt_reset();
 		bNewTime = true;
 	}
 } // END ISR(PCINT1_vect)
+
+//! przerwanie stanu Bluetooth, inicjalizacja UART gdy uruchomiono Bluetooth
+ISR(PCINT2_vect) {
+
+	if (BLUETOOTH_IS_ON()) {
+		USART_Init(__UBRR);
+	}
+} // ISR(PCINT2_vect)
+
 
