@@ -184,7 +184,7 @@ void DS3231_Test() {
 	uint8_t hour, min, sec, nhour, nmin, nsec;
 	uint8_t count = 10; // maksymalna ilosc powtorzen
 	DS3231_GetTime(&hour, &min, &sec);
-	D_MS(1100);
+	D_MS(1200);
 	DS3231_GetTime(&nhour, &nmin, &nsec);
 
 
@@ -193,7 +193,7 @@ void DS3231_Test() {
 		wdt_disable();
 		wdt_enable(WDTO_2S);
 		DS3231_Init();
-		DS3231_SetTime(12, 0, 0);
+		//DS3231_SetTime(12, 0, 0);
 		DS3231_GetTime(&hour, &min, &sec);
 		D_MS(1200);
 		DS3231_GetTime(&nhour, &nmin, &nsec);

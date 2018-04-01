@@ -67,7 +67,7 @@
 #define RELAY_HIGH_START_H_COUNT 10
 
 //! ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie minut
-#define RELAY_HIGH_START_M_COUNT 4
+#define RELAY_HIGH_START_M_COUNT 6
 
 //! ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie liczb
 #define RELAY_HIGH_START_N_COUNT 10

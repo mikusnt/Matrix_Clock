@@ -14,28 +14,30 @@
 #include "../../group_includes.h"
 #include "mkuart.h"
 #include "../../seq/matrix_seq.h"
-#include "../relay.h"
+#include "../ds3231.h"
 
 // kody specjalne bajtow
 //! kod naglowka ramki zmiany sekwencji
-#define MODIFY_SEQ_CODE 0xF0
+#define MODIFY_SEQ_CODE 's'
 //! kod naglowka ramki zmiany trybu pracy
-#define DEVICE_MODE_CODE 0xF1
+#define DEVICE_TASK_CODE 't'
 //! kod naglowka ramki godziny/daty
-#define LOAD_DATE_CODE 0xF2
+#define LOAD_DATE_CODE 'd'
 //! kod naglowka ramki analizatora widma
 #define SPECTRUM_CODE 0xF3
 //! kod naglowka ramki utworu
 #define MUSIC_CODE 0xF4
-//! kod zakonczenia ramki
-#define END_FRAME_CODE 0xFF
-
-#define MAX_COMMAND_LENGTH 32
-
-#define GOOD_COMMAND END_FRAME_CODE
-#define ERROR_COMMAND 0xE0
-#define ERROR_PARAMS 0xE1
+//! kod poprawnego rozpoznania ramki
+#define GOOD_COMMAND 0
+//! kod bledu polecenia
+#define ERROR_COMMAND 1
+//! kod bledu paramentrow polecenia
+#define ERROR_PARAMS 2
+//! maska spakowanego dnia
+#define UART_DAY_MASK 0xF0
+//! maska spakowanego miesiaca
+#define UART_MONTH_MASK 0x0F
 
 //! proba zaladowania i obsluzenia pojedynczej komendy wraz z danymi
-extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, uint8_t brightness);
+extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time, uint8_t brightness);
 #endif /* DEVICES_BLUETOOTH_UART_PROCESSING_H_ */

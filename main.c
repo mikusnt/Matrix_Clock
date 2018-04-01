@@ -26,7 +26,7 @@
 
 /*
  *
- *		Typy danych
+ *		Zmienne
  *
  */
 
@@ -91,27 +91,28 @@ int main (void) {
 	I2C_Init();
 
 	DS3231_Init();
-	DS3231_SetDate(31, 3, 18);
+	//DS3231_SetDate(31, 3, 18);
+	//DS3231_SetTime(22, 34, 10);
 	DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
 	DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
 
 	LoadToSingleTime(&RTCTime);
 	SetSeqParams(&matrix, &actTime, &relay, adc.uiActBright);
-
-	//LoadNumberToMatrix(&matrix, 12345, adcVD.uiActBright);
-	//SetSlowClearedPos(&matrix);
+	RelayStartClicking(&relay, 0, RelayDataNumber);
 	sei();
 
 
-	RelayStartClicking(&relay, 0, RelayDataNumber);
-	wdt_enable(WDTO_2S);
+
+
+	wdt_enable(WDTO_60MS);
 	/*
 	 *
 	 *		Petla glowna
 	 *
 	 */
-	while(1) {
 
+	while(1) {
+		wdt_reset();
 		// zmiana jasnosci
 		if (adc.bNewBright) {
 			SetBrightness(&matrix, adc.uiActBright);
@@ -125,7 +126,7 @@ int main (void) {
 
 			}
 			// proba obslugi komendy UART
-			TryLoadCommand(&matrix, &relay, adc.uiActBright);
+			TryLoadCommand(&matrix, &relay, &RTCTime, adc.uiActBright);
 			bEnableDecrement = false;
 		}
 		// Jesli tryb czyszczenia bufora nieaktywny
@@ -135,18 +136,22 @@ int main (void) {
 				case SeqTimer: {
 					if (bNewTime) {
 						DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
-						sprintf(ctTextBuffer, "%02d-%02d-2%03d %02d:%02d:%02d\n", RTCTime.uiDays,
+						LoadToSingleTime(&RTCTime);
+						// aktywacja przekaxnika i zaladowanjie daty gdy polnoc
+						if ((RTCTime.uiSeconds % 10) == 0) {
+							sprintf(ctTextBuffer, "%02d-%02d-2%03d %02d:%02d:%02d\n", RTCTime.uiDays,
 								RTCTime.uiMonths, RTCTime.uiYears, RTCTime.uiHours,
 								RTCTime.uiMinutes, RTCTime.uiSeconds);
-						//uart_puts(ctTextBuffer);
-						LoadToSingleTime(&RTCTime);
-						// aktywacja przekaxnika
+							uart_puts(ctTextBuffer);
+						}
 						if (RTCTime.uiSeconds == 0) {
+
 							ResetProgress(&actTime);
-							if (RTCTime.uiMinutes == 0)
+							if (RTCTime.uiMinutes == 0) {
 								RelayStartClicking(&relay, RTCTime.uiHours, RelayDataHours);
 								if (RTCTime.uiHours == 0)
 									DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
+							}
 							else
 								if ((RTCTime.uiMinutes % 15) == 0)
 									RelayStartClicking(&relay, RTCTime.uiMinutes, RelayDataMinutes);
@@ -162,9 +167,13 @@ int main (void) {
 				case SeqADC: {
 					// wypisanie ADC do matrycy i UART
 					if (bNewTime) {
+						DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
 						LoadNumberToMatrix(&matrix, adc.ui16PhotoAvg, adc.uiActBright);
-						//ctTextBuffer[4] = '\n';
-						//uart_puts(ctTextBuffer);
+						if ((RTCTime.uiSeconds % 10) == 0) {
+							uart_puts_p(PSTR("Brightness: "));
+							ctTextBuffer[4] = '\n';
+							uart_puts(ctTextBuffer);
+						}
 						bNewTime = false;
 					}
 				} break;
@@ -172,7 +181,7 @@ int main (void) {
 				case SeqText: {} break;
 				// wyslanie liczby do przekaznika
 				case SeqRelayNumber: {} break;
-				case SeqManualPix: {} break;
+				case SeqEmpty: {} break;
 				// kolejne case'y
 			}
 		}
@@ -223,11 +232,10 @@ ISR(ADC_vect) {
 }
 
 
-//! przerwanie sygnalu SQW z timera DS3231, ustawienie flagi nowego czasu i reset watch doga
+//! przerwanie sygnalu SQW z timera DS3231, ustawienie flagi nowego czasu
 ISR(PCINT1_vect) {
 	ADCStart();
 	if (SQW_IS_HIGH()) {
-		wdt_reset();
 		bNewTime = true;
 	}
 } // END ISR(PCINT1_vect)

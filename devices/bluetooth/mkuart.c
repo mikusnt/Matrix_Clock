@@ -99,7 +99,7 @@ void uart_puts(char *s)		// wysy³a ³añcuch z pamiêci RAM na UART
   while ((c = *s++)) uart_putc(c);			// dopóki nie napotkasz 0 wysy³aj znak
 } // END void uart_puts
 
-
+/*! @param 		s adres tablicy znakowej z pamieci programu*/
 void uart_puts_p(const char *progmem_s )
 {
     register char c;

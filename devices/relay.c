@@ -66,7 +66,7 @@ void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType
 			if (uiByteInfo == 12) uiByteInfo = 0;
 			// gdy godzina mniejsza od 2 nie odwracaj
 			if (uiByteInfo < 2) {
-				relay->uiByteLength = (uiByteInfo == 0) ? 8 : 1;
+				relay->uiByteLength = (uiByteInfo == 0) ? 6 : 1;
 				relay->uiByteInfo = uiByteInfo;
 			} else {
 				relay->uiByteInfo = RoundByte(uiByteInfo, &relay->uiByteLength);

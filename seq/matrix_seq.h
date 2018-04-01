@@ -20,42 +20,45 @@
 #include "../data_types/diode_matrix.h"
 #include "../data_types/date_time.h"
 #include "../devices/other_devices.h"
-#include "../devices/bluetooth/uart_processing.h"
 #include "../devices/relay.h"
+#include "../devices/bluetooth/mkuart.h"
 #include "alphabet.h"
 
-//! ilosc sekwencji
-#define SEQ_NUMBER 4
 
 //! rozmiar bufora znakowego, 32 znaki i \0
 #define TEXT_BUFFER_SIZE 33
 
 //! pozycja dwukropka w buforze matrycy
 #define SEC_SIGN_POS 12
-
 //! ostania pozycja bloku binarnego sekundkina w buforze matrycy
 #define SEC_END_POS 31
+//! przejscie z liczby na liczbe z wg ASCII
+#define DIGIT_ASCII 48
 
-#define NUMBER_TO_ASCII 48
 
 //! pozycje godzin i minut bloku binarnego sekundkina w buforze matrycy
 extern uint8_t uitHMPos[4];
-
+//! uniwersalny bufor danych tekstowych
+//! @see uart_processing.h
 extern char ctTextBuffer[TEXT_BUFFER_SIZE];
 
+//! mozliwe sekwencje pracy urzadzenia
 typedef enum {
-	SeqTimer = 1,
-	SeqADC,
-	SeqText,
-	SeqRelayNumber,
-	SeqManualPix
+	SeqTimer = 't',
+	SeqADC = 'a',
+	SeqText = 'e',
+	SeqRelayNumber = 'n',
+	SeqEmpty = 'c'
 } ActualSeq;
 
+//! dodatkowe zadania, ktore obsluguje urzadzenie
 typedef enum {
-	ModeSetPix = 1,
-	ModeRelay
-} DeviceMode;
+	TaskSetPix = 'p',
+	TaskRelay = 'r'
+} DeviceTask;
 
+//! ektualnie aktywna sekwencja
+//! @see SetSeqParams
 extern ActualSeq eActualSeq;
 
 /*

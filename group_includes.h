@@ -24,7 +24,7 @@
 #include <avr/pgmspace.h>
 #include <avr/wdt.h>
 #include <avr/cpufunc.h>
-#include "./data_types/data_types.h"
+#include "data_types/data_types.h"
 
 
 #endif /* group_includes_H_ */

@@ -1,0 +1,16 @@
+Plik okresla mozliwe ramki danych przesylane przez bluetooth
+Legenda:
+	9 - cyfra
+	"" - ciag znakow dowolnej dlugosci
+
+Przelaczanie sekwencji:
+	st$ 					Timer 
+ 	sa$						odczyt ADC
+ 	se""$					wyswietlanie tekstu
+ 	sn999$					wyswietlenie liczby i przekaznika
+ 	sc$						wyczyszczenie matrycy, oczekiwanie
+ 
+Zadania:
+  	tp9999$					zapalenie konkretnego piksela {Y, X, jasnosc}
+  	tr999$					przekaznik kodujacy liczbe
+  	d99-99-999 99:99:99$	ustawienie nowej daty i czasu {dzien 2, miesiac 2, rok 3, godzina 2, minuta 2, sekunda 2}

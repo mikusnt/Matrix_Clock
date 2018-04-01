@@ -60,8 +60,8 @@ extern volatile uint8_t UART_TxHead;
 extern volatile uint8_t UART_TxTail;
 //! flaga osiagniecia pierwszego bajtu konca
 extern volatile bool UART_FirstEndFlag;
-
-#define END_FRAME_CODE 0xFF
+//! kod konca ramki
+#define END_FRAME_CODE '$'
 
 
 /*
@@ -79,6 +79,7 @@ char uart_getc();
 void uart_putc( char data );
 //! wyslanie tekstu
 void uart_puts(char *s);
+//! wysylanie tekstu z pamieci programu
 void uart_puts_p(const char *progmem_s ) ;
 //! wyslanie liczby o danej podstawie jako tekstu
 void uart_putint(int value, int radix);
