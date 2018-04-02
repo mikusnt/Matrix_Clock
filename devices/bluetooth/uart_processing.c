@@ -98,6 +98,9 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			case MUSIC_CODE: {
 			} break;
 			default: { uiEndCode = ERROR_COMMAND; } break;
+			case QUESTION_CODE: {
+				uart_puts_p(PSTR("Hello! "));
+			} break;
 
 		}
 		// wyslanie zwrotne kodu wykonania

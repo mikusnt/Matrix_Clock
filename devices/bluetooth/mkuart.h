@@ -3,7 +3,7 @@
  * @author 		Miros³aw Kardaœ <br>
  * 				http://mirekk36.blogspot.com/
  * 				https://sklep.atnel.pl/
- * $Modified: 2017-12-07 $
+ * $Modified: 2018-03-31 $
  * $Created: 2010-09-04 $
  * @version 2.0
  *

@@ -2,8 +2,8 @@
  * @file uart_processing.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 23-12-2017 $
- * $Created: 23-12-2017 $
+ * $Modified: 2018-04-02 $
+ * $Created: 2017-11-04 $
  * @version 0.1
  *
  * Plik naglowkowy zawierajacy obsluge przetwarzania danych zgromadzonych w buforze UART
@@ -28,6 +28,7 @@
 //! kod naglowka ramki utworu
 #define MUSIC_CODE 0xF4
 //! kod poprawnego rozpoznania ramki
+#define QUESTION_CODE 'q'
 #define GOOD_COMMAND 0
 //! kod bledu polecenia
 #define ERROR_COMMAND 1

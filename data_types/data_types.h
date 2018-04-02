@@ -2,7 +2,7 @@
  * @file data_types.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-03-29 $
+ * $Modified: 2018-04-02 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -12,7 +12,9 @@
 #ifndef DATA_TYPES_H_
 #define DATA_TYPES_H_
 
-#include "../group_includes.h"
+#include <util/delay.h>
+#include <stdlib.h>
+#include <avr/wdt.h>
 
 /* Format zmiennych:
  * 		1. skrot typu
@@ -103,4 +105,12 @@ inline void Hysteresis(HystData *sHistData) {
 	if (sHistData->ui16Value > (sHistData->ui16Threshold + sHistData->uiDelta))
 			*(sHistData->uiOutValue) = sHistData->uiMaxValue;
 }
+
+inline void Reset_UC() {
+	while(1){
+		wdt_enable(WDTO_15MS);
+		while(1);
+	}
+}
+
 #endif /* DATA_TYPES_H_ */

@@ -2,7 +2,7 @@
  * @file diode_matrix.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-03-28 $
+ * $Modified: 2018-04-02 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -55,8 +55,6 @@ typedef struct {
 	uint8_t uiActY;
 	//! bufor aktualnego dzialania LED
 	uint8_t uitBufferFlag[MATRIX_X_SIZE];
-	//! flaga modyfikacji macierzy uitBufferFlag
-	//bool bModifyFlag;
 	//! aktualna pozycja wyswietlania danych z bufora, zmieniana przez funkcje
 	//! @see IncrementBufferPosition
 	int16_t i16BufferPosition;
@@ -98,19 +96,15 @@ inline bool IncrementBufferPosition(volatile DiodeMatrix *m);
 extern void SetMoving(volatile DiodeMatrix *m, bool isMoving);
 //! laduje do calej linijki bufora o danej wysokosci dana wartosc jasnosci
 extern void SetYBuffer(volatile DiodeMatrix *m, uint8_t y_pos, uint8_t value);
-//! laduje do calej linijki pionowej bufora o danej wspolrzednej x wartosc jasnosci
-//extern void SetXBuffer(volatile DiodeMatrix *m, uint8_t x_pos, uint8_t signMask, uint8_t value);
-//! laduje do calej linijki pionowej bufora obrotowego danej wspolrzednej x wartosc jasnosci
-//extern void SetXRoundBuffer(volatile DiodeMatrix *m, uint8_t x_pos, uint8_t y_pos, uint8_t signMask, uint8_t value);
 //! zeruje caly bufor
 extern void ClearBuffer(volatile DiodeMatrix *m);
+//! kopiuje czesc zawartosci bufora obrotowego do bufora matrycy
 extern void CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round, uint8_t x_buffer);
-//! zmienia jasnosc calego bufora
-//inline void SetBrightness(volatile DiodeMatrix *m, uint8_t brightness);
 //! zmniejsza pozycje oczyszczania bufora o 1
 inline bool DecrementTo0SlowClear(volatile DiodeMatrix *m);
 //! ustawia pozycje oczyszczania bufora na koniec zapisanego bufora
 inline void RunSlowClearedPos(volatile DiodeMatrix *m);
+//! ustawia wartosc binarna dla danego piksela
 inline void SetPixelBuffer(volatile DiodeMatrix *m, uint8_t x_pos, uint8_t y_pos, BinarySwitch *state);
 /*
  *
@@ -144,12 +138,6 @@ inline void IncrementY(volatile DiodeMatrix *m){
 inline volatile BinarySwitch ReturnYValue(volatile DiodeMatrix *m) {
 	return (m->uiActY) ? 0 : m->uiBrightness;
 }
-/*
-! @param			m adres struktury macierzy LED
- *  @return 		tablica dzialania poziomej linijki LED
-inline volatile BinarySwitch* ReturnYBufferFlag(volatile DiodeMatrix *m) {
-	return m->etBufferFlag;
-}*/
 
 /*! @param			m adres struktury macierzy LED*/
 inline void DiodeMatrixInit(volatile DiodeMatrix *m) {
@@ -195,15 +183,6 @@ inline bool IncrementBufferPosition(volatile DiodeMatrix *m) {
 		return false;
 	}
 } // END inline void IncrementBufferPosition
-/*
-! @param			m adres struktury macierzy LED
- *  @param			brightness nowa jscnosc
-inline void SetBrightness(volatile DiodeMatrix *m, uint8_t brightness) {
-	for(uint8_t i = 0; i < MATRIX_Y_SIZE; i++)
-		for (uint8_t j = 0; j < BUFFER_X_SIZE; j++)
-			if (m->uitBufferX[i][j] > 0)
-				m->uitBufferX[i][j] = brightness;
-} // END inline void SetBrightness*/
 
 /*! @param			m adres struktury macierzy LED
  *  @return			true jesli wlasnie osiagnieto poczatek, false w przeciwnym wypadku*/

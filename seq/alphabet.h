@@ -2,7 +2,7 @@
  * @file alphabet.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-03-29 $
+ * $Modified: 2018-04-02 $
  * $Created: 2017-11-04 $
  * @version 2.0
  *

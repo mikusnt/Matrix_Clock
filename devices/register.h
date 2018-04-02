@@ -2,7 +2,7 @@
  * @file register.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-03-29 $
+ * $Modified: 2018-04-02 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -220,7 +220,7 @@ inline void SendRegisterY(volatile BinarySwitch eB, bool bWithLoad) {
 	if (bWithLoad) LATCH_01();
 } // END inline void SendRegisterY
 
-/*! @param		uitBuffer tablica bitow danych szeregowych dla rejestrow X0 - X3
+/*! @param		uitLineBuffer tablica bitow danych szeregowych dla rejestrow X0 - X3
  *  @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie*/
 inline void SendRegistersX(volatile uint8_t uitLineBuffer[32], bool bWithLoad) {
 	register int8_t i;

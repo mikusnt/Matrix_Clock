@@ -70,8 +70,7 @@ static void InsertCharToRoundBuffer(volatile DiodeMatrix *m, char sign, uint8_t 
 
 /*! laduje do bufora matrycy informacje o wartosci ADC w postaci kropek na pozycji 7
  *  @param		m adres struktury macierzy LED
- *  @param		adcValue wartosc ADC
- *  @param 		brightness jasnosc*/
+ *  @param		adcValue wartosc ADC*/
 void LoadADCToMatrix(volatile DiodeMatrix *m, uint16_t adcValue) {
 	adcValue /= 32;
 	for (int8_t i = 31; i >= 0; i--){
@@ -145,18 +144,15 @@ void LoadDateToMatrix(volatile DiodeMatrix *m, TimeDate *time) {
 
 
 /*! @param		m adres struktury macierzy LED
- *  @param		number wstawiana liczba
- *	@param		brightness jasnosc*/
+ *  @param		number wstawiana liczba*/
 void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number) {
 	sprintf(ctTextBuffer, "%04d%c", number, 0);
 	LoadTextToMatrix(m, ctTextBuffer);
 } // END void LoadNumberToMatrix
 
-/*! @param		seq ustawiona wczesniej sekwencja
- *  @param		m adres struktury macierzy LED
+/*! @param		m adres struktury macierzy LED
  *  @param		actTime adres struktury aktualnego czasu
- *  @param		relay adres struktury przekaznika
- *  @param		brightness jasnosc*/
+ *  @param		relay adres struktury przekaznika*/
 void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *relay) {
 	ClearBuffer(m);
 	uart_puts_p(PSTR("Seq: "));

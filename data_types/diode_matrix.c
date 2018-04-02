@@ -28,42 +28,16 @@ void SetYBuffer(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch value) {
 	}
 } // END void SetYBuffer
 
-/*
-! @param			m adres struktury macierzy LED
- *  @param			x_pos wspolrzedna x
- *  @param			signMask maska danej linijki, bit 0 to brak swiecenia, 1 to swiecenie o danej jasnosci
- *  @param 			value wartosc jasnosci
-void SetXBuffer(volatile DiodeMatrix *m, uint8_t x_pos, uint8_t signMask) {
-	for (uint8_t i = 0; i < MATRIX_Y_SIZE; i++){
-		if (signMask % 2)
-			m->uitBufferX[i][x_pos] = brightness;
-		else
-			m->uitBufferX[i][x_pos] = 0;
-		signMask >>= 1;
-	}
-} // END void SetYBuffer*/
-
-/*
-! @param			m adres struktury macierzy LED
- *  @param			x_pos wspolrzedna x
- *  @param			y_pos poczatkowa wspolrzedna Y
- *  @param			signMask maska danej linijki, bit 0 to brak swiecenia, 1 to swiecenie o danej jasnosci
-void SetXRoundBuffer(volatile DiodeMatrix *m, uint8_t x_pos, uint8_t y_pos, uint8_t signMask) {
-		if (signMask % 2)
-			m->uitRoundBufferYX[i+y_pos][x_pos] = value;
-		else
-			m->uitRoundBufferYX[i+y_pos][x_pos] = 0;
-		signMask >>= 1;
-	}
-} // END void SetYBuffer*/
-
 /*! @param			m adres struktury macierzy LED*/
 void ClearBuffer(volatile DiodeMatrix *m) {
 	for (uint8_t j = 0; j < BUFFER_X_SIZE; j++)
 		m->uitBufferX[j] = 0;
 	m->i16BufferPosition = 0;
-}
+} // END void ClearBuffer
 
+/*! @param 			m adres struktury macierzy LED
+ *  @param			y_round wspolrzedna y dla bufora obrotowego
+ *  @param			x_buffer wspolrzedna poczatkowa x bufora matrycy*/
 void CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round, uint8_t x_buffer) {
 	uint8_t y0_round_mask = 0xFF << y_round;
 	uint8_t y1_round_mask = ~y0_round_mask;
@@ -72,5 +46,4 @@ void CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round, uint8_t x_b
 		m->uitBufferX[x_buffer + j] |= (m->uitRoundBufferYX[0][j] & y0_round_mask) >> y_round;
 		m->uitBufferX[x_buffer + j] |= (m->uitRoundBufferYX[1][j] & y1_round_mask) << (8 - y_round);
 	}
-
-}
+} // END void CopyFromRoundToBuffer

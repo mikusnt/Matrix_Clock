@@ -2,7 +2,7 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-12-07 $
+ * $Modified: 2018-04-02 $
  * $Created: 2017-11-04 $
  * @version 0.1
  *
@@ -79,6 +79,7 @@ int main (void) {
 	 *		Blok inicjalizacji
 	 *
 	 */
+
 	RegistersInit();
 	DiodeMatrixInit(&matrix);
 	RelayInit();
@@ -91,17 +92,16 @@ int main (void) {
 	I2C_Init();
 
 	DS3231_Init();
-	//DS3231_SetDate(31, 3, 18);
-	//DS3231_SetTime(22, 34, 10);
-	DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
-	DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
-
-	LoadToSingleTime(&RTCTime);
 	SetSeqParams(&matrix, &actTime, &relay);
 	RelayStartClicking(&relay, 0, RelayDataNumber);
+
+	wdt_enable(WDTO_60MS);
+	DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
+	DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
+	LoadToSingleTime(&RTCTime);
+
 	sei();
 
-	//wdt_enable(WDTO_60MS);
 	/*
 	 *
 	 *		Petla glowna
@@ -109,9 +109,7 @@ int main (void) {
 	 */
 
 	while(1) {
-		//wdt_reset();
-		//Test_MatrixBuffer(&matrix);
-
+		wdt_reset();
 		// oczyszczanie bufora, po osiagnieciu poczatku uruchomienie sekwencji zawartej w eACtualSeq
 		if (bEnableDecrement) {
 			if (DecrementTo0SlowClear(&matrix)) {
@@ -236,7 +234,6 @@ ISR(PCINT1_vect) {
 
 //! przerwanie stanu Bluetooth, inicjalizacja UART gdy uruchomiono Bluetooth
 ISR(PCINT2_vect) {
-
 	if (BLUETOOTH_IS_ON()) {
 		USART_Init(__UBRR);
 	}

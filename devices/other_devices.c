@@ -6,7 +6,7 @@
 
 #include "other_devices.h"
 
-/*! konfiguracja 8-bitowego timera0 jako licznika dla matrycy LED, przerwanie co 1250 taktot zegara*/
+/*! konfiguracja 8-bitowego timera0 jako licznika dla matrycy LED, przerwanie co 1250 taktow zegara*/
 void Timer0Init() {
 	// tryb CTC
 	TCCR0A |= (1 << WGM01);
@@ -14,7 +14,7 @@ void Timer0Init() {
 	TCCR0B |= (1 << CS01) | (1 << CS00);
 	// odblokowanie przerwan
 	TIMSK0 |= (1 << OCIE0A);
-	OCR0A = 33; // 33
+	OCR0A = 20; // 33
 } // END void Timer0Init
 
 //! konfiguracja 8-bitowego timera2 jako podstawowego odniesienia czasu 1 ms
@@ -58,4 +58,8 @@ void PCINTInit() {
 	PCICR |= (1 << PCIE1) | (1 << PCIE2); // odblokowanie przerwan od nr 8-14 i 16-23
 	PCMSK1 |= (1 << PCINT9); // SQW
 	PCMSK2 |= (1 << PCINT23); // Bluetooth
+} // END void PCINTInit()
+
+void PowerReductionInit() {
+	PRR |= (1 << PRTIM1); // wylaczenie timera1
 }

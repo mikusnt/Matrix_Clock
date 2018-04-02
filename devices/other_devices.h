@@ -2,7 +2,7 @@
  * @file other_devices.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-30-29 $
+ * $Modified: 2018-04-02 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -87,6 +87,7 @@ inline void ADCStart();
 inline void ReadADCToADCData(volatile ADCVoltageData *a, volatile uint8_t *bright);
 //! inicjalizacja przyciskow
 extern void PCINTInit();
+extern void PowerReductionInit();
 
 
 /*
@@ -103,6 +104,7 @@ inline void ADCStart() {
 
 /*! jest wykonywany jako obsluga przerwania pomiaru ADC
  * @param 		a adres struktury przetwornika ADC
+ * @param		bright adres jasnosci wynikowej
  * @see ADCStart()*/
 inline void ReadADCToADCData(volatile ADCVoltageData *a, volatile uint8_t *bright) {
 	// dodawanie skladnikow sumy

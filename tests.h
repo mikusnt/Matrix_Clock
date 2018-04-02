@@ -2,9 +2,10 @@
  * @file tests.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2 gru 2017 $
- * $Created: 2 gru 2017 $
- * @version 0.1
+ * $Modified: 2018-04-02 $
+ * $Created: 2017-11-04 $
+ * @version 1.0
+ *
  * Testy poszczegolnych funkcji urzadzenia.
  * Ka¿dy test powinien byc uruchomiony w petli glownej po inicjalizacji skladowych testowych.
  */
