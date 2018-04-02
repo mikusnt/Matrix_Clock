@@ -97,14 +97,11 @@ int main (void) {
 	DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
 
 	LoadToSingleTime(&RTCTime);
-	SetSeqParams(&matrix, &actTime, &relay, adc.uiActBright);
+	SetSeqParams(&matrix, &actTime, &relay);
 	RelayStartClicking(&relay, 0, RelayDataNumber);
 	sei();
 
-
-
-
-	wdt_enable(WDTO_60MS);
+	//wdt_enable(WDTO_60MS);
 	/*
 	 *
 	 *		Petla glowna
@@ -112,21 +109,18 @@ int main (void) {
 	 */
 
 	while(1) {
-		wdt_reset();
-		// zmiana jasnosci
-		if (adc.bNewBright) {
-			SetBrightness(&matrix, adc.uiActBright);
-			adc.bNewBright = false;
-		}
+		//wdt_reset();
+		//Test_MatrixBuffer(&matrix);
+
 		// oczyszczanie bufora, po osiagnieciu poczatku uruchomienie sekwencji zawartej w eACtualSeq
 		if (bEnableDecrement) {
 			if (DecrementTo0SlowClear(&matrix)) {
-				SetSeqParams(&matrix, &actTime, &relay, adc.uiActBright);
+				SetSeqParams(&matrix, &actTime, &relay);
 				iCountToTimer = 2;
 
 			}
 			// proba obslugi komendy UART
-			TryLoadCommand(&matrix, &relay, &RTCTime, adc.uiActBright);
+			TryLoadCommand(&matrix, &relay, &RTCTime);
 			bEnableDecrement = false;
 		}
 		// Jesli tryb czyszczenia bufora nieaktywny
@@ -160,7 +154,7 @@ int main (void) {
 					}
 
 					if (bNewRoundRefresh){
-						LoadTimeToMatrix(&matrix, &actTime, &RTCTime, adc.uiActBright);
+						LoadTimeToMatrix(&matrix, &actTime, &RTCTime);
 						bNewRoundRefresh = false;
 					}
 				} break;
@@ -168,7 +162,7 @@ int main (void) {
 					// wypisanie ADC do matrycy i UART
 					if (bNewTime) {
 						DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
-						LoadNumberToMatrix(&matrix, adc.ui16PhotoAvg, adc.uiActBright);
+						LoadNumberToMatrix(&matrix, adc.ui16PhotoAvg);
 						if ((RTCTime.uiSeconds % 10) == 0) {
 							uart_puts_p(PSTR("Brightness: "));
 							ctTextBuffer[4] = '\n';
@@ -184,6 +178,7 @@ int main (void) {
 				case SeqEmpty: {} break;
 				// kolejne case'y
 			}
+
 		}
 	}
 } // END int main (void)
@@ -192,15 +187,14 @@ int main (void) {
 ISR(TIMER0_COMPA_vect) {
 	// obsluga zmiany jasnosci
 	uivModifyY = IncrementBrightness(&matrix);
-	RefreshBufferFlag(&matrix);
-	if (matrix.bModifyFlag) {
-		if (uivModifyY) {
-			//ClearRegistersX(true);
-			SendRegisterY(ReturnYValue(&matrix), true);
+	if (uivModifyY) {
+		SendRegisterY(ReturnYValue(&matrix), true);
+		if (matrix.uiBrightness) {
+			RefreshBufferFlag(&matrix);
+			SendRegistersX(matrix.uitBufferFlag, true);
 		}
-		if (matrix.eMatrixState == ON)
-			SendRegistersX(matrix.etBufferFlag, true);
-	}
+	} else if (matrix.uiBrightCount == matrix.uiBrightness)
+		ClearRegistersX(true);
 } // END ISR(TIMER0_COMPA_vect)
 
 //! przerwanie timera w trybie CTC, odniesieni czasowe 1 MS
@@ -219,7 +213,7 @@ ISR(TIMER2_COMPA_vect) {
 		if (IncrementBufferPosition(&matrix)) {
 			if ((eActualSeq == SeqText) && (matrix.uiSlowClearedPos == 0) && ((--iCountToTimer) == 0) ) {
 				eActualSeq = SeqTimer;
-				SetSeqParams(&matrix, &actTime, &relay, adc.uiActBright);
+				SetSeqParams(&matrix, &actTime, &relay);
 			}
 		}
 	if ((ui16Ms % 30) == 15)
@@ -228,7 +222,7 @@ ISR(TIMER2_COMPA_vect) {
 
 //! przerwanie zakonczenia pomiaru ADC, odczytanie zawartosci ADC
 ISR(ADC_vect) {
-	ReadADCToADCData(&adc);
+	ReadADCToADCData(&adc, &matrix.uiBrightness);
 }
 
 

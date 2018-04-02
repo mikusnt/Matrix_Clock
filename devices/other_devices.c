@@ -41,7 +41,6 @@ void ADCInit(volatile ADCVoltageData *a) {
 			| (1 << ADIE); // uruchomienie przerwan
 	// rozdzielczosc 10bit
 	//ADMUX |= (1 << ADLAR); // rozdzieczosc 8 bitowa
-	a->uiActBright = gamma_o[1];
 	// zrodlo wewnetrzne 1.1V
 	ADMUX |= (1 << REFS0) | (1 << REFS1);
 	// ustawienie kanalu ADC

@@ -6,7 +6,7 @@ static inline void RelayThreeToOne(char *buffer) {
 }
 
 
-extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time, uint8_t brightness) {
+extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time) {
 	// odczytaj polecenie jesli sa nieodczytane dane
 	if (UART_FirstEndFlag && IsUnreadData()) {
 		register uint8_t i = 0;
@@ -55,8 +55,10 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 						uint8_t x_pos = (ctTextBuffer[2] - DIGIT_ASCII) * 10 + (ctTextBuffer[3] - DIGIT_ASCII);
 						uint8_t brightness = (ctTextBuffer[4] - DIGIT_ASCII);
 						if ((y_pos < MATRIX_Y_SIZE) && (x_pos < MATRIX_X_SIZE)
-								&& (brightness <= MAX_GAMMA_BRIGHTNESS))
-							m->uitBufferYX[y_pos][x_pos] = gamma_o[brightness];
+								&& (brightness <= MAX_GAMMA_BRIGHTNESS)) {
+							m->uitBufferX[x_pos] &= ~(1 << y_pos);
+							m->uitBufferX[x_pos] |= (brightness > 0) << y_pos;
+						}
 						else {
 							uiEndCode = ERROR_PARAMS;
 							break;

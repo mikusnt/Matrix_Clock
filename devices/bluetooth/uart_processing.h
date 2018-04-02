@@ -39,5 +39,5 @@
 #define UART_MONTH_MASK 0x0F
 
 //! proba zaladowania i obsluzenia pojedynczej komendy wraz z danymi
-extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time, uint8_t brightness);
+extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time);
 #endif /* DEVICES_BLUETOOTH_UART_PROCESSING_H_ */

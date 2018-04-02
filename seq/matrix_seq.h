@@ -81,14 +81,14 @@ extern ActualSeq eActualSeq;
  *
  */
 //! wczytuje dany tekst do buf0ra matrycy w oparciu o alfabet
-extern void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE], uint8_t brightness);
+extern void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE]);
 //! wczytuje godzine do bufora matrycy w oparciu o alfabet, efekt powolnej zmiany cyfr (RoundBuffer)
-extern void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to, uint8_t brightness);
+extern void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to);
 //! wczytuje date w formacie dd/mm/rrrr do bufora matrycy
-extern void LoadDateToMatrix(volatile DiodeMatrix *m, TimeDate *time, uint8_t brightness);
+extern void LoadDateToMatrix(volatile DiodeMatrix *m, TimeDate *time);
 //! wczytuje liczbe calkowita w formacie 5 cyfr do bufora matrycy
-extern void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number, uint8_t brightness);
+extern void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number);
 //! ustawia potrzebne parametry w przypadku zmiany sekwencji
-extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *relay, uint8_t brightness);
+extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *relay);
 
 #endif /* MATRIX_SEQUENCES_H_ */

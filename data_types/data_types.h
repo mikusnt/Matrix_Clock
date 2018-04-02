@@ -94,7 +94,7 @@ typedef struct {
 	uint8_t uiMinValue;		//!< minimalna wartosc wyjsciowa
 	uint8_t uiMaxValue;		//!< maksymalna wartosc wyjsciowa
 	uint16_t ui16Value;		//!< na jej podstawie generowane jest wyjscie, uiThreshold to prog dla tej liczby
-	uint8_t *uiOutValue;	//!< wyprowadzony za zewnatrz wynik histerezy, przyjmuje wartosci uiMinValue i uiMaxValue
+	volatile uint8_t *uiOutValue;	//!< wyprowadzony za zewnatrz wynik histerezy, przyjmuje wartosci uiMinValue i uiMaxValue
 } HystData;
 
 inline void Hysteresis(HystData *sHistData) {

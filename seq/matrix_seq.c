@@ -21,23 +21,17 @@ ActualSeq eActualSeq = SeqTimer;
 
 /*! laduje do bufora matrycy sekundy w binarnym kodzie BCD
  *  @param		m adres struktury macierzy LED
- *  @param		seconds sekundy ktore maja byc wieswietlone
- *  @param 		brightness jasnosc*/
-static inline void SecondsBinary(volatile DiodeMatrix *m, volatile uint8_t seconds, uint8_t brightness) {
+ *  @param		seconds sekundy ktore maja byc wieswietlone*/
+static inline void SecondsBinary(volatile DiodeMatrix *m, volatile uint8_t seconds) {
 	uint8_t tens = seconds / 10;
 	uint8_t ones = seconds % 10;
 	for(uint8_t i = 0; i < 4; i++) {
-		if (tens % 2) {
-			m->uitBufferYX[2][SEC_END_POS - i] = brightness;
-		}else{
-			m->uitBufferYX[2][SEC_END_POS - i] = 0;
-		}
+		m->uitBufferX[SEC_END_POS - i] = 0;
+		if (tens % 2)
+			m->uitBufferX[SEC_END_POS - i] |= 1 << 2;
 		tens >>= 1;
-		if (ones % 2){
-			m->uitBufferYX[5][SEC_END_POS - i] = brightness;
-		}else{
-			m->uitBufferYX[5][SEC_END_POS - i] = 0;
-		}
+		if (ones % 2)
+			m->uitBufferX[SEC_END_POS - i] |= 1 << 5;
 		ones >>= 1;
 	}
 } // END static inline void SecondsBinary
@@ -46,13 +40,12 @@ static inline void SecondsBinary(volatile DiodeMatrix *m, volatile uint8_t secon
  *  @param		m adres struktury macierzy LED
  *  @param		sign znak jaki ma byc wstawiony
  *  @param		x_pos pozycja X w buforze
- *  @param 		brightness jasnosc
  *  @return		pozycja konca wczytywanego znaku*/
-static uint8_t InsertCharToMatrix(volatile DiodeMatrix *m, char sign, uint8_t x_pos, uint8_t brightness) {
+static uint8_t InsertCharToMatrix(volatile DiodeMatrix *m, char sign, uint8_t x_pos) {
 	uint8_t start, stop, signCode;
 	LoadSign(sign, &start, &stop, &signCode);
 	for (uint8_t j = start; j <= stop; j++) {
-		SetXBuffer(m, x_pos++, LoadIntSignByte(signCode, j), brightness);
+		m->uitBufferX[x_pos++] = LoadIntSignByte(signCode, j);
 		if (x_pos >= BUFFER_X_SIZE)
 			return BUFFER_X_SIZE - 1;
 	}
@@ -62,15 +55,16 @@ static uint8_t InsertCharToMatrix(volatile DiodeMatrix *m, char sign, uint8_t x_
 /*! laduje do bufora obrotowego matrycy wskazany znak na odpowiedniej pozycji
  *  @param		m adres struktury macierzy LED
  *  @param		sign znak jaki ma byc wstawiony
- *  @param		y_pos pozycja Y w buforze obrotowym
- *  @param 		brightness jasnosc*/
-static void InsertCharToRoundBuffer(volatile DiodeMatrix *m, char sign, uint8_t y_pos, uint8_t brightness) {
-	uint8_t start, stop, signCode;
-	LoadSign(sign, &start, &stop, &signCode);
-	for (uint8_t i = 0; i < 5; i++)
-		SetXRoundBuffer(m, i, y_pos, 0, 0);
-	for (uint8_t j = start; j <= stop; j++) {
-		SetXRoundBuffer(m, j, y_pos, LoadIntSignByte(signCode, j), brightness);
+ *  @param		y_pos pozycja Y w buforze obrotowym*/
+static void InsertCharToRoundBuffer(volatile DiodeMatrix *m, char sign, uint8_t y_pos) {
+	if (y_pos < 2) {
+		uint8_t start, stop, signCode;
+		LoadSign(sign, &start, &stop, &signCode);
+		for (uint8_t i = 0; i < 5; i++)
+			m->uitRoundBufferYX[y_pos][i] = 0;
+		for (uint8_t j = start; j <= stop; j++) {
+			m->uitRoundBufferYX[y_pos][j] = LoadIntSignByte(signCode, j);
+		}
 	}
 } // END static void InsertCharToRoundBuffer
 
@@ -78,13 +72,12 @@ static void InsertCharToRoundBuffer(volatile DiodeMatrix *m, char sign, uint8_t 
  *  @param		m adres struktury macierzy LED
  *  @param		adcValue wartosc ADC
  *  @param 		brightness jasnosc*/
-void LoadADCToMatrix(volatile DiodeMatrix *m, uint16_t adcValue, uint8_t brightness) {
+void LoadADCToMatrix(volatile DiodeMatrix *m, uint16_t adcValue) {
 	adcValue /= 32;
 	for (int8_t i = 31; i >= 0; i--){
+		m->uitBufferX[i] &= ~(1 << 7);
 		if (i >= MATRIX_X_SIZE - adcValue)
-			m->uitBufferYX[MATRIX_Y_SIZE - 1][i] = brightness;
-		else
-			m->uitBufferYX[MATRIX_Y_SIZE - 1][i] = 0;
+			m->uitBufferX[i] |= 1 << 7;
 	}
 } // END void LoadADCToMatrix
 
@@ -96,16 +89,15 @@ void LoadADCToMatrix(volatile DiodeMatrix *m, uint16_t adcValue, uint8_t brightn
 
 /*! laduje parametry kazdego ze znakow z alfabetu, laduje zawartosc znaku do kolejnej pozycji bufora
  *  @param		m adres struktury macierzy LED
- *  @param		text tekst ktory zostanie zaladowany do bufora macierzy
- *	@param		brightness jasnosc poszczegolnych pikseli */
-void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE], uint8_t brightness) {
+ *  @param		text tekst ktory zostanie zaladowany do bufora macierzy*/
+void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE]) {
 	uint8_t i = 0;
 	uint8_t addr = 0;
 	while(text[i] && (addr < BUFFER_X_SIZE)) {
-		addr = InsertCharToMatrix(m, text[i], addr, brightness);
+		addr = InsertCharToMatrix(m, text[i], addr);
 		i++;
 		if (addr < BUFFER_X_SIZE - 1)
-			SetXBuffer(m, addr++, 0, brightness);
+			m->uitBufferX[addr++] = 0;
 	}
 	m->uiEndBufferPosition = addr;
 } // END void LoadTextToMatrix
@@ -114,10 +106,9 @@ void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE], uint
  *  Wykorzystuje bufor obrotowy do plynnego przejscia pomiedzy dwiema cyframi
  *  @param		m adres struktury macierzy LED
  *  @param		from czas wyswietlany na matrycy, dazy do czasu to
- *  @param		to czas rzeczywisty
- *	@param		brightness jasnosc poszczegolnych pikseli */
-void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to, uint8_t brightness) {
-	SetXBuffer(m, SEC_SIGN_POS, (to->uiSeconds % 2) == 0 ? 0x44 : 0x00, brightness);
+ *  @param		to czas rzeczywisty*/
+void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to) {
+	m->uitBufferX[SEC_SIGN_POS] = (to->uiSeconds % 2) == 0 ? 0x44 : 0x00;
 	for (int8_t i = 3; i >= 0; i--) {
 		// gdy cyfry takie same
 		if ((from->uitSingleTime[i] == to->uitSingleTime[i]) && (from->uiSingleProgress[i] < MAX_PROGRESS))
@@ -126,8 +117,8 @@ void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to, uin
 		// stopniowe ladowanie z bufora obrotowego
 		if (from->uiSingleProgress[i] < MAX_PROGRESS) {
 			if (from->uiSingleProgress[i] == 0) {
-				InsertCharToRoundBuffer(m, from->uitSingleTime[i] + DIGIT_ASCII, 0, brightness);
-				InsertCharToRoundBuffer(m, to->uitSingleTime[i] + DIGIT_ASCII, 8, brightness);
+				InsertCharToRoundBuffer(m, from->uitSingleTime[i] + DIGIT_ASCII, 0);
+				InsertCharToRoundBuffer(m, to->uitSingleTime[i] + DIGIT_ASCII, 1);
 			}
 			CopyFromRoundToBuffer(m, from->uiSingleProgress[i]++, uitHMPos[i]);
 			break;
@@ -135,30 +126,30 @@ void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to, uin
 		} else if (from->uiSingleProgress[i] == MAX_PROGRESS){
 			from->uitSingleTime[i] = to->uitSingleTime[i];
 			LoadToGroupTime(from);
-			InsertCharToMatrix(m, from->uitSingleTime[i] + DIGIT_ASCII, uitHMPos[i], brightness);
+			InsertCharToMatrix(m, from->uitSingleTime[i] + DIGIT_ASCII, uitHMPos[i]);
 			// blokaga na ponowne wstawienie gdy wstawiono
 			from->uiSingleProgress[i] = MAX_PROGRESS + 1;
 		}
 	}
 
-	SecondsBinary(m, to->uiSeconds, brightness);
+	SecondsBinary(m, to->uiSeconds);
 	//LoadADCToMatrix(m, adcValue, brightness);
 
 	m->uiEndBufferPosition = SEC_END_POS + 1;
 } // END void LoadTimeToMatrix
 
-void LoadDateToMatrix(volatile DiodeMatrix *m, TimeDate *time, uint8_t brightness) {
+void LoadDateToMatrix(volatile DiodeMatrix *m, TimeDate *time) {
 	sprintf(ctTextBuffer, "%02d-%02d-%02d", time->uiDays, time->uiMonths, time->uiYears);
-	LoadTextToMatrix(m, ctTextBuffer, brightness);
+	LoadTextToMatrix(m, ctTextBuffer);
 }
 
 
 /*! @param		m adres struktury macierzy LED
  *  @param		number wstawiana liczba
  *	@param		brightness jasnosc*/
-void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number, uint8_t brightness) {
+void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number) {
 	sprintf(ctTextBuffer, "%04d%c", number, 0);
-	LoadTextToMatrix(m, ctTextBuffer, brightness);
+	LoadTextToMatrix(m, ctTextBuffer);
 } // END void LoadNumberToMatrix
 
 /*! @param		seq ustawiona wczesniej sekwencja
@@ -166,13 +157,13 @@ void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number, uint8_t bright
  *  @param		actTime adres struktury aktualnego czasu
  *  @param		relay adres struktury przekaznika
  *  @param		brightness jasnosc*/
-void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *relay, uint8_t brightness) {
+void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *relay) {
 	ClearBuffer(m);
 	uart_puts_p(PSTR("Seq: "));
 
 	switch(eActualSeq) {
 		case SeqTimer: {
-			LoadTextToMatrix(m, "00 00", brightness);
+			LoadTextToMatrix(m, "00 00");
 			TimeInit(actTime);
 			SetMoving(m, false);
 			uart_puts_p(PSTR("Timer"));
@@ -182,13 +173,13 @@ void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *re
 			uart_puts_p(PSTR("ADC brightness"));
 		} break;
 		case SeqText: {
-			LoadTextToMatrix(m, ctTextBuffer, brightness);
+			LoadTextToMatrix(m, ctTextBuffer);
 			SetMoving(m, true);
 			uart_puts_p(PSTR("Text"));
 		} break;
 		case SeqRelayNumber: {
 			RelayStartClicking(relay, ctTextBuffer[0], RelayDataNumber);
-			LoadNumberToMatrix(m, ctTextBuffer[0], brightness);
+			LoadNumberToMatrix(m, ctTextBuffer[0]);
 			SetMoving(m, false);
 			uart_puts_p(PSTR("Relay with number"));
 		} break;
