@@ -26,9 +26,10 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			i++;
 		}
 		// wyslanie zwrotne polecenia
-		uart_putc(uiCode);
-		uart_puts(ctTextBuffer);
-		uart_putc(' ');
+		//uart_putc(uiCode);
+		//uart_puts(ctTextBuffer);
+		//uart_putc(' ');
+
 		// obsluga poszczegolnych komend
 		switch (uiCode) {
 			case MODIFY_SEQ_CODE: {
@@ -40,58 +41,71 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 						break;
 					}
 					eActualSeq = ctTextBuffer[0];
-					if (eActualSeq == SeqText)
-						ctTextBuffer[0] = ' ';
-					if (eActualSeq == SeqRelayNumber)
+					if (eActualSeq == SeqText) {
+						// przesuwanie napisu o 1 w lewo
+						i = 0;
+						while(ctTextBuffer[i] != 0) {
+							ctTextBuffer[i] = ctTextBuffer[i+1];
+							i++;
+						}
+					}
+					if (eActualSeq == SeqRelayNumber) {
+						if (i >= 4) {
 						RelayThreeToOne(ctTextBuffer);
+						} else {
+							uiEndCode = ERROR_PARAMS;
+							break;
+						}
+					}
 					RunSlowClearedPos(m);
 				} else
 					uiEndCode = ERROR_COMMAND;
 			} break;
 			case DEVICE_TASK_CODE: {
-				switch (ctTextBuffer[0]) {
-					case TaskSetPix: {
-						uint8_t y_pos = ctTextBuffer[1] - DIGIT_ASCII;
-						uint8_t x_pos = (ctTextBuffer[2] - DIGIT_ASCII) * 10 + (ctTextBuffer[3] - DIGIT_ASCII);
-						uint8_t brightness = (ctTextBuffer[4] - DIGIT_ASCII);
-						if ((y_pos < MATRIX_Y_SIZE) && (x_pos < MATRIX_X_SIZE)
-								&& (brightness <= MAX_GAMMA_BRIGHTNESS)) {
-							m->uitBufferX[x_pos] &= ~(1 << y_pos);
-							m->uitBufferX[x_pos] |= (brightness > 0) << y_pos;
-						}
-						else {
-							uiEndCode = ERROR_PARAMS;
-							break;
-						}
-					} break;
-					case TaskRelay: {
-						RelayThreeToOne(ctTextBuffer);
-						RelayStartClicking(relay, ctTextBuffer[0], RelayDataNumber);
-					} break;
-					default: { uiEndCode = ERROR_COMMAND; } break;
-				}
+					switch (ctTextBuffer[0]) {
+						case TaskSetPix: {
+							uint8_t y_pos = ctTextBuffer[1] - DIGIT_ASCII;
+							uint8_t x_pos = (ctTextBuffer[2] - DIGIT_ASCII) * 10 + (ctTextBuffer[3] - DIGIT_ASCII);
+							uint8_t brightness = (ctTextBuffer[4] - DIGIT_ASCII);
+							if ((i >= 5) && (y_pos < MATRIX_Y_SIZE) && (x_pos < MATRIX_X_SIZE)
+									&& (brightness <= MAX_GAMMA_BRIGHTNESS)) {
+								m->uitBufferX[x_pos] &= ~(1 << y_pos);
+								m->uitBufferX[x_pos] |= (brightness > 0) << y_pos;
+							}
+							else
+								uiEndCode = ERROR_PARAMS;
+						} break;
+						case TaskRelay: {
+							if (i >= 4) {
+								RelayThreeToOne(ctTextBuffer);
+								RelayStartClicking(relay, ctTextBuffer[0], RelayDataNumber);
+							} else
+								uiEndCode = ERROR_PARAMS;
+						} break;
+						default: { uiEndCode = ERROR_COMMAND; } break;
+					}
 			} break;
 			case LOAD_DATE_CODE: {
-				uint8_t day = (ctTextBuffer[0] - DIGIT_ASCII) * 10 + (ctTextBuffer[1] - DIGIT_ASCII);
-				// myslnik
-				uint8_t month = (ctTextBuffer[3] - DIGIT_ASCII) * 10 + (ctTextBuffer[4] - DIGIT_ASCII);
-				// myslnik
-				uint8_t year = (ctTextBuffer[6] - DIGIT_ASCII) * 100
-						+(ctTextBuffer[7] - DIGIT_ASCII) * 10 + (ctTextBuffer[8] - DIGIT_ASCII);
-				// spacja
-				uint8_t hour = (ctTextBuffer[10] - DIGIT_ASCII) * 10 + (ctTextBuffer[11] - DIGIT_ASCII);
-				// dwukropek
-				uint8_t minute = (ctTextBuffer[13] - DIGIT_ASCII) * 10 + (ctTextBuffer[14] - DIGIT_ASCII);
-				// dwukropek
-				uint8_t second = (ctTextBuffer[16] - DIGIT_ASCII) * 10 + (ctTextBuffer[17] - DIGIT_ASCII);
+					uint8_t day = (ctTextBuffer[0] - DIGIT_ASCII) * 10 + (ctTextBuffer[1] - DIGIT_ASCII);
+					// myslnik
+					uint8_t month = (ctTextBuffer[3] - DIGIT_ASCII) * 10 + (ctTextBuffer[4] - DIGIT_ASCII);
+					// myslnik
+					uint8_t year = (ctTextBuffer[6] - DIGIT_ASCII) * 100
+							+(ctTextBuffer[7] - DIGIT_ASCII) * 10 + (ctTextBuffer[8] - DIGIT_ASCII);
+					// spacja
+					uint8_t hour = (ctTextBuffer[10] - DIGIT_ASCII) * 10 + (ctTextBuffer[11] - DIGIT_ASCII);
+					// dwukropek
+					uint8_t minute = (ctTextBuffer[13] - DIGIT_ASCII) * 10 + (ctTextBuffer[14] - DIGIT_ASCII);
+					// dwukropek
+					uint8_t second = (ctTextBuffer[16] - DIGIT_ASCII) * 10 + (ctTextBuffer[17] - DIGIT_ASCII);
 
-				if ((day <= 31) && (month <= 12) && (year < 200) && (hour < 24) && (minute < 60)
-						&& (second < 60)) {
-					DS3231_SetDate(day, month, year);
-					DS3231_SetTime(hour, minute, second);
-					DS3231_GetDate(&time->uiDays, &time->uiMonths, &time->uiYears);
-				} else
-					uiEndCode = ERROR_PARAMS;
+					if ((i >= 18) && (day <= 31) && (month <= 12) && (year < 200) && (hour < 24) && (minute < 60)
+							&& (second < 60)) {
+						DS3231_SetDate(day, month, year);
+						DS3231_SetTime(hour, minute, second);
+						DS3231_GetDate(&time->uiDays, &time->uiMonths, &time->uiYears);
+					} else
+						uiEndCode = ERROR_PARAMS;
 			} break;
 			case SPECTRUM_CODE: {
 			} break;
@@ -99,7 +113,14 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			} break;
 			default: { uiEndCode = ERROR_COMMAND; } break;
 			case QUESTION_CODE: {
-				uart_puts_p(PSTR("Hello! "));
+				uart_puts_p(PSTR("Hey! "));
+			} break;
+			case VERSION_CODE: {
+				uart_puts_p(PSTR("Matrix Clock PixBit v0.9 by MiSt "));
+			} break;
+			case RESET_CODE: {
+				uart_puts_p(PSTR("Reset ok\n"));
+				Reset_UC();
 			} break;
 
 		}

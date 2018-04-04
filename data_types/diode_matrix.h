@@ -156,13 +156,15 @@ inline void DiodeMatrixInit(volatile DiodeMatrix *m) {
 /*! @param			m adres struktury macierzy LED*/
 inline void RefreshBufferFlag(volatile DiodeMatrix *m) {
 	register uint8_t i;
-	register uint8_t y_mask = 1 << m->uiActY;
+	register const uint8_t y_mask = 1 << m->uiActY;
+	register int16_t adr;
 	for (i = 0; i < MATRIX_X_SIZE; i++) {
-		int16_t adr = i+m->i16BufferPosition;
+		adr = i+m->i16BufferPosition;
 		m->uitBufferFlag[i] = 0;
 		if ((adr >= 0) && (adr < BUFFER_X_SIZE)) {
 			m->uitBufferFlag[i] = m->uitBufferX[adr] & y_mask;
-		}
+		} else
+			m->uitBufferFlag[i] = 0;
 	}
 } // END inline void RefreshBufferFlag
 

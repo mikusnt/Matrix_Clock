@@ -19,7 +19,7 @@
 #define I2C_RepSTARTError 2
 #define I2C_NoNACK 3
 #define I2C_NoACK 4
-#define I2C_FREQKHZ 100
+#define I2C_FREQKHZ 10
 
 uint8_t I2C_Error;
 

@@ -137,12 +137,6 @@ void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to) {
 	m->uiEndBufferPosition = SEC_END_POS + 1;
 } // END void LoadTimeToMatrix
 
-void LoadDateToMatrix(volatile DiodeMatrix *m, TimeDate *time) {
-	sprintf(ctTextBuffer, "%02d-%02d-%02d", time->uiDays, time->uiMonths, time->uiYears);
-	LoadTextToMatrix(m, ctTextBuffer);
-}
-
-
 /*! @param		m adres struktury macierzy LED
  *  @param		number wstawiana liczba*/
 void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number) {
@@ -171,13 +165,17 @@ void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *re
 		case SeqText: {
 			LoadTextToMatrix(m, ctTextBuffer);
 			SetMoving(m, true);
-			uart_puts_p(PSTR("Text"));
+			uart_puts_p(PSTR("Text \""));
+			uart_puts(ctTextBuffer);
+			uart_putc('\"');
 		} break;
 		case SeqRelayNumber: {
+			uart_puts_p(PSTR("Relay with number "));
+			uart_putint(ctTextBuffer[0], 10);
 			RelayStartClicking(relay, ctTextBuffer[0], RelayDataNumber);
 			LoadNumberToMatrix(m, ctTextBuffer[0]);
 			SetMoving(m, false);
-			uart_puts_p(PSTR("Relay with number"));
+
 		} break;
 		case SeqEmpty: {
 			SetMoving(m, false);

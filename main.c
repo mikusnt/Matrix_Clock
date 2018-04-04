@@ -2,7 +2,7 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-02 $
+ * $Modified: 2018-04-04 $
  * $Created: 2017-11-04 $
  * @version 0.1
  *
@@ -129,15 +129,22 @@ int main (void) {
 					if (bNewTime) {
 						DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
 						LoadToSingleTime(&RTCTime);
-						// aktywacja przekaxnika i zaladowanjie daty gdy polnoc
+
 						if ((RTCTime.uiSeconds % 10) == 0) {
 							sprintf(ctTextBuffer, "%02d-%02d-2%03d %02d:%02d:%02d\n", RTCTime.uiDays,
 								RTCTime.uiMonths, RTCTime.uiYears, RTCTime.uiHours,
 								RTCTime.uiMinutes, RTCTime.uiSeconds);
 							uart_puts(ctTextBuffer);
 						}
-						if (RTCTime.uiSeconds == 0) {
+						// wyswietlenie daty co 5 minut w 10 sekundzie
+						if ((RTCTime.uiSeconds == 10) && ((RTCTime.uiMinutes % 5) == 0)) {
+							sprintf(ctTextBuffer, "%02d-%02d-2%03d", RTCTime.uiDays, RTCTime.uiMonths, RTCTime.uiYears);
+							eActualSeq = SeqText;
+							RunSlowClearedPos(&matrix);
+						}
 
+						// aktywacja przekaxnika i zaladowanjie daty gdy polnoc
+						if (RTCTime.uiSeconds == 0) {
 							ResetProgress(&actTime);
 							if (RTCTime.uiMinutes == 0) {
 								RelayStartClicking(&relay, RTCTime.uiHours, RelayDataHours);

@@ -2,7 +2,7 @@
  * @file matrix_seq.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-02 $
+ * $Modified: 2018-04-04 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -84,8 +84,6 @@ extern ActualSeq eActualSeq;
 extern void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE]);
 //! wczytuje godzine do bufora matrycy w oparciu o alfabet, efekt powolnej zmiany cyfr (RoundBuffer)
 extern void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to);
-//! wczytuje date w formacie dd/mm/rrrr do bufora matrycy
-extern void LoadDateToMatrix(volatile DiodeMatrix *m, TimeDate *time);
 //! wczytuje liczbe calkowita w formacie 5 cyfr do bufora matrycy
 extern void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number);
 //! ustawia potrzebne parametry w przypadku zmiany sekwencji

@@ -2,7 +2,7 @@
  * @file uart_processing.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-02 $
+ * $Modified: 2018-04-04 $
  * $Created: 2017-11-04 $
  * @version 0.1
  *
@@ -27,8 +27,13 @@
 #define SPECTRUM_CODE 0xF3
 //! kod naglowka ramki utworu
 #define MUSIC_CODE 0xF4
-//! kod poprawnego rozpoznania ramki
+//! kod naglowka ramki poprawnej odpowiedzi
 #define QUESTION_CODE 'q'
+//! kod naglowka ramki wersji programu
+#define VERSION_CODE 'v'
+//! kod naglowka ramki resetu urzadzenia
+#define RESET_CODE 'r'
+//! kod poprawnego rozpoznania ramki
 #define GOOD_COMMAND 0
 //! kod bledu polecenia
 #define ERROR_COMMAND 1
