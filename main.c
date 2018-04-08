@@ -110,6 +110,8 @@ int main (void) {
 
 	while(1) {
 		wdt_reset();
+		// proba obslugi komendy UART
+		TryLoadCommand(&matrix, &relay, &RTCTime);
 		// oczyszczanie bufora, po osiagnieciu poczatku uruchomienie sekwencji zawartej w eACtualSeq
 		if (bEnableDecrement) {
 			if (DecrementTo0SlowClear(&matrix)) {
@@ -117,10 +119,9 @@ int main (void) {
 				iCountToTimer = 2;
 
 			}
-			// proba obslugi komendy UART
-			TryLoadCommand(&matrix, &relay, &RTCTime);
 			bEnableDecrement = false;
 		}
+
 		// Jesli tryb czyszczenia bufora nieaktywny
 		if (matrix.uiSlowClearedPos == 0) {
 			switch(eActualSeq) {
@@ -137,7 +138,7 @@ int main (void) {
 							uart_puts(ctTextBuffer);
 						}
 						// wyswietlenie daty co 5 minut w 10 sekundzie
-						if ((RTCTime.uiSeconds == 10) && ((RTCTime.uiMinutes % 5) == 0)) {
+						if ((RTCTime.uiSeconds == 10) && ((RTCTime.uiMinutes % 3) == 1)) {
 							sprintf(ctTextBuffer, "%02d-%02d-2%03d", RTCTime.uiDays, RTCTime.uiMonths, RTCTime.uiYears);
 							eActualSeq = SeqText;
 							RunSlowClearedPos(&matrix);
