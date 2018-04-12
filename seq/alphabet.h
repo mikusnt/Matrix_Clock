@@ -2,7 +2,7 @@
  * @file alphabet.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-02 $
+ * $Modified: 2018-04-10 $
  * $Created: 2017-11-04 $
  * @version 2.0
  *
@@ -24,7 +24,7 @@
  */
 
 //! ilosc znakow tablicy znakow alfabetu
-#define ALPHABET_SIZE 82
+#define ALPHABET_SIZE 89
 //! ilosc znakow tablicy znakow animacji
 #define ANIMATIONS_SIZE 7
 //! maksymalny rozmiar tekstu dla znakow char ladowanych do bufora

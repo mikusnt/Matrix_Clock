@@ -2,9 +2,9 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-04 $
+ * $Modified: 2018-04-09 $
  * $Created: 2017-11-04 $
- * @version 0.1
+ * @version 0.91
  *
  * Plik glowny projektu
  * @see info.txt
@@ -144,13 +144,12 @@ int main (void) {
 							RunSlowClearedPos(&matrix);
 						}
 
-						// aktywacja przekaxnika i zaladowanjie daty gdy polnoc
+						// aktywacja przekaznika i zaladowanjie daty co godzine
 						if (RTCTime.uiSeconds == 0) {
 							ResetProgress(&actTime);
 							if (RTCTime.uiMinutes == 0) {
 								RelayStartClicking(&relay, RTCTime.uiHours, RelayDataHours);
-								if (RTCTime.uiHours == 0)
-									DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
+								DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
 							}
 							else
 								if ((RTCTime.uiMinutes % 15) == 0)

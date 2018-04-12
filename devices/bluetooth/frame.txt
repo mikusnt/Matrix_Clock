@@ -10,7 +10,7 @@ Przelaczanie sekwencji:
  	se""$					wyswietlanie tekstu
  	sn999$					wyswietlenie liczby i przekaznika
  	sc$						wyczyszczenie matrycy, oczekiwanie
- 
+
 Zadania:
   	tp9999$					zapalenie konkretnego piksela (Y {1}, X {2}, dzialanie {1})
   	tr999$					przekaznik kodujacy liczbe

@@ -1,8 +1,14 @@
 #include "uart_processing.h"
-static inline void RelayThreeToOne(char *buffer) {
-	buffer[0] = (buffer[1] - DIGIT_ASCII) * 100;
-	buffer[0] += (buffer[2] - DIGIT_ASCII) * 10;
-	buffer[0] += (buffer[3] - DIGIT_ASCII);
+
+//! zamienia znaki ASCII trzech cyfr na liczbe i zapisuje do poczatku bufora jesli
+//! miesci sie na jednym bajcie
+//! @return 		dwubajtowa liczba bedaca wynikiem scalania ASCII
+static inline uint16_t RelayThreeToOne(char buffer[4]) {
+	uint16_t temp  = (buffer[1] - DIGIT_ASCII) * 100;
+	temp += (buffer[2] - DIGIT_ASCII) * 10;
+	temp += (buffer[3] - DIGIT_ASCII);
+	buffer[0] = temp;
+	return temp;
 }
 
 
@@ -17,7 +23,8 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 
 		// zaladuj dane polecenia do bufora
 		while (IsUnreadData() && (i < TEXT_BUFFER_SIZE)) {
-			if ((ctTextBuffer[i] = uart_getc()) == END_FRAME_CODE) {
+			if (((ctTextBuffer[i] = uart_getc()) == END_FRAME_CODE)
+				|| (ctTextBuffer[i] == 0)) {
 				ctTextBuffer[i] = 0;
 				if (!IsUnreadData())
 					UART_FirstEndFlag = false;
@@ -25,7 +32,13 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			}
 			i++;
 		}
+		// gdy przepelniono bufor odczytu polecenia, pobranie pozostalej zawartosci
+		// z bufora UART
+		if (i >= TEXT_BUFFER_SIZE) {
+			while (uart_getc() != END_FRAME_CODE);
+		}
 		// wyslanie zwrotne polecenia
+		// DEBUG
 		//uart_putc(uiCode);
 		//uart_puts(ctTextBuffer);
 		//uart_putc(' ');
@@ -45,14 +58,12 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 						// przesuwanie napisu o 1 w lewo
 						i = 0;
 						while(ctTextBuffer[i] != 0) {
-							ctTextBuffer[i] = ctTextBuffer[i+1];
+							ctTextBuffer[i] = ctTextBuffer[i + 1];
 							i++;
 						}
 					}
 					if (eActualSeq == SeqRelayNumber) {
-						if (i >= 4) {
-						RelayThreeToOne(ctTextBuffer);
-						} else {
+						if ((i < 4) || (RelayThreeToOne(ctTextBuffer) > 255)) {
 							uiEndCode = ERROR_PARAMS;
 							break;
 						}
@@ -67,8 +78,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 							uint8_t y_pos = ctTextBuffer[1] - DIGIT_ASCII;
 							uint8_t x_pos = (ctTextBuffer[2] - DIGIT_ASCII) * 10 + (ctTextBuffer[3] - DIGIT_ASCII);
 							uint8_t brightness = (ctTextBuffer[4] - DIGIT_ASCII);
-							if ((i >= 5) && (y_pos < MATRIX_Y_SIZE) && (x_pos < MATRIX_X_SIZE)
-									&& (brightness <= MAX_GAMMA_BRIGHTNESS)) {
+							if ((i >= 5) && (y_pos < MATRIX_Y_SIZE) && (x_pos < MATRIX_X_SIZE)) {
 								m->uitBufferX[x_pos] &= ~(1 << y_pos);
 								m->uitBufferX[x_pos] |= (brightness > 0) << y_pos;
 							}
@@ -76,8 +86,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 								uiEndCode = ERROR_PARAMS;
 						} break;
 						case TaskRelay: {
-							if (i >= 4) {
-								RelayThreeToOne(ctTextBuffer);
+							if ((i >= 4) && (RelayThreeToOne(ctTextBuffer) <= 255)) {
 								RelayStartClicking(relay, ctTextBuffer[0], RelayDataNumber);
 							} else
 								uiEndCode = ERROR_PARAMS;
@@ -116,7 +125,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 				uart_puts_p(PSTR("Hey! "));
 			} break;
 			case VERSION_CODE: {
-				uart_puts_p(PSTR("Matrix Clock PixBit v0.9 by MiSt "));
+				uart_puts_p(PSTR("Matrix Clock PixBit v0.91 by MiSt "));
 			} break;
 			case RESET_CODE: {
 				uart_puts_p(PSTR("Reset ok\n"));
@@ -131,8 +140,5 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			case ERROR_PARAMS: {uart_puts_p(PSTR("incorrect params")); } break;
 		}
 		uart_putc('\n');
-
 	}
-
-
-}
+} // END extern void TryLoadCommand

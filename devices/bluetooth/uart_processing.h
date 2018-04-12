@@ -2,7 +2,7 @@
  * @file uart_processing.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-04 $
+ * $Modified: 2018-04-09 $
  * $Created: 2017-11-04 $
  * @version 0.1
  *
@@ -39,10 +39,6 @@
 #define ERROR_COMMAND 1
 //! kod bledu paramentrow polecenia
 #define ERROR_PARAMS 2
-//! maska spakowanego dnia
-#define UART_DAY_MASK 0xF0
-//! maska spakowanego miesiaca
-#define UART_MONTH_MASK 0x0F
 
 //! proba zaladowania i obsluzenia pojedynczej komendy wraz z danymi
 extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time);

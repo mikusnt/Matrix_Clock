@@ -63,7 +63,7 @@ void USART_Init( uint16_t baud ) {
 /*! @return 		wartosc przechowana w buforze cyklicznym, gdy brak danych 0 */
 char uart_getc() {
     // sprawdzamy czy indeksy s¹ równe
-    if ( UART_RxHead == UART_RxTail ) {
+    if (!IsUnreadData()) {
     	return 0;
     }
 
@@ -155,6 +155,9 @@ ISR( USART_RX_vect ) {
     	// tutaj mo¿emy w jakiœ wygodny dla nas sposób obs³u¿yæ  b³¹d spowodowany
     	// prób¹ nadpisania danych w buforze, mog³oby dojœæ do sytuacji gdzie
     	// nasz w¹¿ zacz¹³by zjadaæ w³asny ogon
+    	// oznaczenie bajtu przed poczatkiem jako koniec
+    	UART_FirstEndFlag = true;
+    	UART_RxBuf[UART_RxHead] = END_FRAME_CODE;
     } else {
     	UART_RxHead = tmp_head; 		// zapamiêtujemy nowy indeks
     	UART_RxBuf[tmp_head] = data; 	// wpisujemy odebrany bajt do bufora

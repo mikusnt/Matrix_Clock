@@ -886,7 +886,7 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 //				{0, 0, 0, 0, 0}
 //		},
 				{ 0x48, 0x56, 0x55, 0x24, 0x00 },
-//		{ // ¿, z = 79
+//		{ // ¿, y = 79
 //				{0, 0, 1, 0, 0},
 //				{0, 0, 0, 0, 0},
 //				{1, 1, 1, 1, 1},
@@ -897,7 +897,7 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 //				{0, 0, 0, 0, 0}
 //		},
 				{ 0x44, 0x64, 0x55, 0x4C, 0x44 },
-//		{ // Ÿ, z = 80
+//		{ // Ÿ, y = 80
 //				{0, 0, 0, 1, 0},
 //				{0, 0, 1, 0, 0},
 //				{1, 1, 1, 1, 1},
@@ -907,7 +907,86 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 //				{1, 1, 1, 1, 1},
 //				{0, 0, 0, 0, 0}
 //		},
-				{ 0x44, 0x64, 0x56, 0x4D, 0x44 }
+				{ 0x44, 0x64, 0x56, 0x4D, 0x44 },
+//		{ // Ÿ, y = 81
+				{ 0x00, 0x00, 0x00, 0x00, 0x00 },
+//		{ // #, y = 82
+//				{0, 1, 0, 1, 0},
+//				{0, 1, 0, 1, 0},
+//				{1, 1, 1, 1, 1},
+//				{0, 1, 0, 1, 0},
+//				{1, 1, 1, 1, 1},
+//				{0, 1, 0, 1, 0},
+//				{0, 1, 0, 1, 0},
+//				{0, 0, 0, 0, 0}
+//		},
+				{ 0x14, 0x7F, 0x14, 0x7F, 0x7F },
+//		{ // $, y = 83
+//				{0, 1, 1, 1, 0},
+//				{1, 0, 1, 0, 1},
+//				{1, 0, 1, 0, 0},
+//				{0, 1, 1, 1, 0},
+//				{0, 0, 1, 0, 1},
+//				{1, 0, 1, 0, 1},
+//				{0, 1, 1, 1, 0},
+//				{0, 0, 0, 0, 0}
+//		},
+				{ 0x26, 0x49, 0x7F, 0x49, 0x32 },
+//		{ // %, y = 84
+//				{0, 0, 0, 0, 1},
+//				{1, 0, 0, 1, 0},
+//				{0, 0, 0, 1, 0},
+//				{0, 0, 1, 0, 0},
+//				{0, 1, 0, 0, 0},
+//				{0, 1, 0, 0, 1},
+//				{1, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0}
+//		},
+				{ 0x42, 0x30, 0x08, 0x06, 0x21 },
+//		{ // &, y = 85
+//				{0, 1, 0, 0, 0},
+//				{1, 0, 1, 0, 0},
+//				{1, 0, 1, 0, 0},
+//				{0, 1, 0, 0, 0},
+//				{1, 0, 1, 0, 1},
+//				{1, 0, 0, 1, 0},
+//				{0, 1, 1, 0, 1},
+//				{0, 0, 0, 0, 0}
+//		},
+				{ 0x36, 0x49, 0x56, 0x20, 0x50 },
+//		{ // (, y = 86
+//				{0, 0, 1, 0, 0},
+//				{0, 1, 0, 0, 0},
+//				{0, 1, 0, 0, 0},
+//				{0, 1, 0, 0, 0},
+//				{0, 1, 0, 0, 0},
+//				{0, 1, 0, 0, 0},
+//				{0, 0, 1, 0, 0},
+//				{0, 0, 0, 0, 0}
+//		},
+				{ 0x00, 0x3E, 0x41, 0x00, 0x00 },
+//		{ // (, y = 87
+//				{0, 1, 0, 0, 0},
+//				{0, 0, 1, 0, 0},
+//				{0, 0, 1, 0, 0},
+//				{0, 0, 1, 0, 0},
+//				{0, 0, 1, 0, 0},
+//				{0, 0, 1, 0, 0},
+//				{0, 1, 0, 0, 0},
+//				{0, 0, 0, 0, 0}
+//		},
+				{ 0x00, 0x41, 0x3E, 0x00, 0x00 },
+//		{ // ( short error, y = 88
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 1, 0, 0}
+//		},
+				{ 0x00, 0x00, 0x80, 0x00, 0x00 },
 };
 
 const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM = {
@@ -984,7 +1063,7 @@ const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM = {
 		5, // smile, y = 70
 		3, // -, y = 71
 		5, // ¹, y = 72
-		4, // c z kresk¹, y = 73
+		4, // æ, y = 73
 		5, // ê, y = 74
 		3, // ³, y = 75
 		4, // ñ, y = 76
@@ -992,7 +1071,14 @@ const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM = {
 		4, // œ, y = 78
 		5, // ¿, y = 79
 		5, // Ÿ, y = 80
-		0 // pusty, y = 81
+		0, // pusty, y = 81
+		5, // #, y = 82
+		5, // $, y = 83
+		5, // %, y = 84
+		5, // &, y = 85
+		2, // (, y = 86
+		2, // ), y = 87
+		1, // short error, y = 88
 };
 
 const uint8_t uiAnimations[ANIMATIONS_SIZE][7] PROGMEM = {
@@ -1093,45 +1179,62 @@ static inline uint8_t TranslateToAlphabet(char cSign) {
 	// cyfry
 	if ((cSign >= 48) && (cSign <= 57)) return cSign - 22;
 	// spacja
-	else if (cSign == 32) return 67;
+	else if (cSign == ' ') return 67;
 	// .
-	else if (cSign == 46) return 63;
+	else if (cSign == '.') return 63;
 	// ,
-	else if (cSign == 44) return 64;
+	else if (cSign == ',') return 64;
 	// !
-	else if (cSign == 33) return 65;
+	else if (cSign == '!') return 65;
 	// ?
-	else if (cSign == 63) return 66;
+	else if (cSign == '?') return 66;
 	// : z odstepem
-	else if (cSign == 58) return 68;
+	else if (cSign == ':') return 68;
 	// : bez odstepu
 	else if (cSign == 0x80) return 69;
 	// smile
 	else if (cSign == 0x7F) return 70;
 	// -
-	else if (cSign == 45) return 71;
+	else if (cSign == '-') return 71;
+	// #
+	else if (cSign == '#') return 82;
+	// $
+	else if (cSign == '$') return 83;
+	// %
+	else if (cSign == '%') return 84;
+	// &
+	else if (cSign == '&') return 85;
+	// (
+	else if (cSign == '(') return 86;
+	// )
+	else if (cSign == ')') return 87;
+	/*
+	 *
+	 *		Polskie znaki
+	 *
+	 */
 	// ¹
-	else if ((cSign >= 0x82) && (cSign <= 0x8A)) return cSign - 58;
-	/*// æ
-	else if (cSign == 0x83) return 73;
+	else if (cSign == 0xA5) return 72;
+	// æ
+	else if (cSign == 0x86) return 73;
 	// ê
-	else if (cSign == 0x84) return 74;
+	else if (cSign == 0xA9) return 74;
 	// ³
-	else if (cSign == 0x85) return 75;
+	else if (cSign == 0x88) return 75;
 	// ñ
-	else if (cSign == 0x86) return 76;
+	else if (cSign == 0xE4) return 76;
 	// ó
-	else if (cSign == 0x87) return 77;
+	else if (cSign == 0xA2) return 77;
 	// œ
-	else if (cSign == 0x88) return 78;
+	else if (cSign == 0x98) return 78;
 	// ¿
-	else if (cSign == 0x89) return 79;
+	else if (cSign == 0xBE) return 79;
 	// Ÿ
-	else if (cSign == 0x8A) return 80;*/
+	else if (cSign == 0xAB) return 80;
 	// pusty
 	else if (cSign == 7) return 81;
-	// symbol braku znaku
-	else return 62;
+	// blad nieobslugiwanego znaku
+	else return 88;
 }
 
 //! ladowanie tekstu z pamieci programu do bufora znakowego
@@ -1209,7 +1312,6 @@ void LoadText(char buffer[], uint8_t uiTextNr ) {
 	}
 } // END void LoadText
 
-// poni¿ej kod nieprzetestowany !!!
 const char string_1[MAX_TEXT_SIZE] PROGMEM = "Witamy na Roboday 2017\0";
 const char string_2[MAX_TEXT_SIZE] PROGMEM = "Wy\x88wietlacz Widmowy x7\0";
 const char string_3[MAX_TEXT_SIZE] PROGMEM = "Prowadz\x82\acy drKlaus\0";
