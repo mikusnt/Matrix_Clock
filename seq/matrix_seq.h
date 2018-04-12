@@ -26,7 +26,7 @@
 
 
 //! rozmiar bufora znakowego, 32 znaki i \0
-#define TEXT_BUFFER_SIZE 33
+#define TEXT_BUFFER_SIZE ((BUFFER_X_SIZE / 4) + 1)
 
 //! pozycja dwukropka w buforze matrycy
 #define SEC_SIGN_POS 12
@@ -54,7 +54,8 @@ typedef enum {
 //! dodatkowe zadania, ktore obsluguje urzadzenie
 typedef enum {
 	TaskSetPix = 'p',
-	TaskRelay = 'r'
+	TaskRelayNumber = 'r',
+	TaskRelayMode = 'm'
 } DeviceTask;
 
 //! ektualnie aktywna sekwencja
@@ -83,7 +84,7 @@ extern ActualSeq eActualSeq;
 //! wczytuje dany tekst do buf0ra matrycy w oparciu o alfabet
 extern void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE]);
 //! wczytuje godzine do bufora matrycy w oparciu o alfabet, efekt powolnej zmiany cyfr (RoundBuffer)
-extern void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to);
+extern void LoadTimeToMatrix(volatile DiodeMatrix *m, volatile Relay *r, TimeDate *from, TimeDate *to);
 //! wczytuje liczbe calkowita w formacie 5 cyfr do bufora matrycy
 extern void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number);
 //! ustawia potrzebne parametry w przypadku zmiany sekwencji

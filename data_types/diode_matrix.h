@@ -27,7 +27,7 @@
 //! rozmiar X (poziomy)
 #define MATRIX_X_SIZE 32
 //! rozmiar X (poziomy) bufora po ktorym algorytm porusza sie aby wyswietlic fragment
-#define BUFFER_X_SIZE 32 * 4
+#define BUFFER_X_SIZE 32 * 8
 //! maksymalna liczbowa jasnosc
 #define MAX_MATRIX_BRIGHTNESS 19
 //! maksymalna jesnosc wedlug korekcji gamma z tablicy gamma_o
@@ -141,7 +141,7 @@ inline volatile BinarySwitch ReturnYValue(volatile DiodeMatrix *m) {
 
 /*! @param			m adres struktury macierzy LED*/
 inline void DiodeMatrixInit(volatile DiodeMatrix *m) {
-	uint8_t i;
+	uint16_t i;
 	for (i = 0; i < BUFFER_X_SIZE; i++)
 		m->uitBufferX[i] = 0;
 	m->uiBrightCount = 0;
@@ -190,7 +190,7 @@ inline bool IncrementBufferPosition(volatile DiodeMatrix *m) {
  *  @return			true jesli wlasnie osiagnieto poczatek, false w przeciwnym wypadku*/
 inline bool DecrementTo0SlowClear(volatile DiodeMatrix *m) {
 	if (m->uiSlowClearedPos) {
-		m->uitBufferX[--m->uiSlowClearedPos] = 0;
+		m->uitBufferX[m->uiSlowClearedPos--] = 0;
 		if (m->uiSlowClearedPos == 0)
 			return true;
 		return false;

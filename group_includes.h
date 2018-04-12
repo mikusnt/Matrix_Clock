@@ -24,6 +24,7 @@
 #include <avr/pgmspace.h>
 #include <avr/wdt.h>
 #include <avr/cpufunc.h>
+#include <avr/eeprom.h>
 #include "data_types/data_types.h"
 
 

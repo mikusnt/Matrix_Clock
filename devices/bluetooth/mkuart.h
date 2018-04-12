@@ -38,11 +38,11 @@
 #define UART_DE_NADAWANIE()  UART_DE_PORT &= ~UART_DE_BIT
 
 //! rozmiar bufora odczytu
-#define UART_RX_BUF_SIZE 32
+#define UART_RX_BUF_SIZE 64
 //! maska bufora odczytu
 #define UART_RX_BUF_MASK ( UART_RX_BUF_SIZE - 1)
 //! rozmiar bufora zapisu
-#define UART_TX_BUF_SIZE 16
+#define UART_TX_BUF_SIZE 32
 //! maska bufora zapisu
 #define UART_TX_BUF_MASK ( UART_TX_BUF_SIZE - 1)
 

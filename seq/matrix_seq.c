@@ -36,12 +36,20 @@ static inline void SecondsBinary(volatile DiodeMatrix *m, volatile uint8_t secon
 	}
 } // END static inline void SecondsBinary
 
+static inline void SetRelayModeToMatrix(volatile DiodeMatrix *m, volatile Relay *r) {
+	if (r->eState == ON) {
+		m->uitBufferX[0] &= 0x7F;
+	} else {
+		m->uitBufferX[0] |= 0x80;
+	}
+} // END static inline void RelayMode
+
 /*! laduje do bufora matrycy wybrany znak ASCII
  *  @param		m adres struktury macierzy LED
  *  @param		sign znak jaki ma byc wstawiony
  *  @param		x_pos pozycja X w buforze
  *  @return		pozycja konca wczytywanego znaku*/
-static uint8_t InsertCharToMatrix(volatile DiodeMatrix *m, char sign, uint8_t x_pos) {
+static uint8_t InsertCharToMatrix(volatile DiodeMatrix *m, char sign, uint16_t x_pos) {
 	uint8_t start, stop, signCode;
 	LoadSign(sign, &start, &stop, &signCode);
 	for (uint8_t j = start; j <= stop; j++) {
@@ -90,8 +98,8 @@ void LoadADCToMatrix(volatile DiodeMatrix *m, uint16_t adcValue) {
  *  @param		m adres struktury macierzy LED
  *  @param		text tekst ktory zostanie zaladowany do bufora macierzy*/
 void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE]) {
-	uint8_t i = 0;
-	uint8_t addr = 0;
+	uint16_t i = 0;
+	uint16_t addr = 0;
 	while(text[i] && (addr < BUFFER_X_SIZE)) {
 		addr = InsertCharToMatrix(m, text[i], addr);
 		i++;
@@ -106,7 +114,7 @@ void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE]) {
  *  @param		m adres struktury macierzy LED
  *  @param		from czas wyswietlany na matrycy, dazy do czasu to
  *  @param		to czas rzeczywisty*/
-void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to) {
+void LoadTimeToMatrix(volatile DiodeMatrix *m, volatile Relay *r, TimeDate *from, TimeDate *to) {
 	m->uitBufferX[SEC_SIGN_POS] = (to->uiSeconds % 2) == 0 ? 0x44 : 0x00;
 	for (int8_t i = 3; i >= 0; i--) {
 		// gdy cyfry takie same
@@ -132,6 +140,7 @@ void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to) {
 	}
 
 	SecondsBinary(m, to->uiSeconds);
+	SetRelayModeToMatrix(m, r);
 	//LoadADCToMatrix(m, adcValue, brightness);
 
 	m->uiEndBufferPosition = SEC_END_POS + 1;

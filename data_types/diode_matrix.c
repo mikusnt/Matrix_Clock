@@ -22,7 +22,8 @@ void SetMoving(volatile DiodeMatrix *m, bool isMoving) {
  *  @param			y_pos wspolrzedna y
  *  @param 			value piksela*/
 void SetYBuffer(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch value) {
-	for (uint8_t i = 0; i < BUFFER_X_SIZE; i++) {
+	register uint16_t i;
+	for (i = 0; i < BUFFER_X_SIZE; i++) {
 		m->uitBufferX[i] &= ~(1 << y_pos);
 		m->uitBufferX[i] |= (value << y_pos);
 	}
@@ -30,8 +31,9 @@ void SetYBuffer(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch value) {
 
 /*! @param			m adres struktury macierzy LED*/
 void ClearBuffer(volatile DiodeMatrix *m) {
-	for (uint8_t j = 0; j < BUFFER_X_SIZE; j++)
-		m->uitBufferX[j] = 0;
+	register uint16_t i;
+	for (i = 0; i < BUFFER_X_SIZE; i++)
+		m->uitBufferX[i] = 0;
 	m->i16BufferPosition = 0;
 } // END void ClearBuffer
 

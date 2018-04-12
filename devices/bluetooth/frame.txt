@@ -14,6 +14,7 @@ Przelaczanie sekwencji:
 Zadania:
   	tp9999$					zapalenie konkretnego piksela (Y {1}, X {2}, dzialanie {1})
   	tr999$					przekaznik kodujacy liczbe
+  	tm9$					zalaczanie, odlaczanie przekaznika
   	d99-99-999 99:99:99$	ustawienie nowej daty i czasu (dzien {2}, miesiac {2}, rok {3}, godzina {2}, minuta {2}, sekunda {2})
   	
  Dodatkowe:

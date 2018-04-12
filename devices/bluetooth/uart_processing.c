@@ -85,13 +85,24 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 							else
 								uiEndCode = ERROR_PARAMS;
 						} break;
-						case TaskRelay: {
+						case TaskRelayNumber: {
 							if ((i >= 4) && (RelayThreeToOne(ctTextBuffer) <= 255)) {
 								RelayStartClicking(relay, ctTextBuffer[0], RelayDataNumber);
+								if (relay->eState == OFF) {
+									uart_puts_p(PSTR("Relay disabled "));
+								}
+							} else
+								uiEndCode = ERROR_PARAMS;
+						} break;
+						case TaskRelayMode: {
+							uint8_t mode = ctTextBuffer[1] - DIGIT_ASCII;
+							if (i >= 2) {
+								SetRelayState(relay, (mode > 0) ? ON : OFF);
 							} else
 								uiEndCode = ERROR_PARAMS;
 						} break;
 						default: { uiEndCode = ERROR_COMMAND; } break;
+
 					}
 			} break;
 			case LOAD_DATE_CODE: {
@@ -125,7 +136,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 				uart_puts_p(PSTR("Hey! "));
 			} break;
 			case VERSION_CODE: {
-				uart_puts_p(PSTR("Matrix Clock PixBit v0.91 by MiSt "));
+				uart_puts_p(PSTR("Matrix Clock PixBit v0.92 by MiSt "));
 			} break;
 			case RESET_CODE: {
 				uart_puts_p(PSTR("Reset ok\n"));

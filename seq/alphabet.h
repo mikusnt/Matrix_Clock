@@ -24,7 +24,7 @@
  */
 
 //! ilosc znakow tablicy znakow alfabetu
-#define ALPHABET_SIZE 89
+#define ALPHABET_SIZE 91
 //! ilosc znakow tablicy znakow animacji
 #define ANIMATIONS_SIZE 7
 //! maksymalny rozmiar tekstu dla znakow char ladowanych do bufora

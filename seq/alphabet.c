@@ -933,16 +933,16 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 //		},
 				{ 0x26, 0x49, 0x7F, 0x49, 0x32 },
 //		{ // %, y = 84
-//				{0, 0, 0, 0, 1},
-//				{1, 0, 0, 1, 0},
+//				{1, 1, 0, 0, 0},
+//				{1, 1, 0, 0, 1},
 //				{0, 0, 0, 1, 0},
 //				{0, 0, 1, 0, 0},
 //				{0, 1, 0, 0, 0},
-//				{0, 1, 0, 0, 1},
-//				{1, 0, 0, 0, 0},
+//				{1, 0, 0, 1, 1},
+//				{0, 0, 0, 1, 1},
 //				{0, 0, 0, 0, 0}
 //		},
-				{ 0x42, 0x30, 0x08, 0x06, 0x21 },
+				{ 0x23, 0x13, 0x08, 0x64, 0x62 },
 //		{ // &, y = 85
 //				{0, 1, 0, 0, 0},
 //				{1, 0, 1, 0, 0},
@@ -965,7 +965,7 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 //				{0, 0, 0, 0, 0}
 //		},
 				{ 0x00, 0x3E, 0x41, 0x00, 0x00 },
-//		{ // (, y = 87
+//		{ // ), y = 87
 //				{0, 1, 0, 0, 0},
 //				{0, 0, 1, 0, 0},
 //				{0, 0, 1, 0, 0},
@@ -976,7 +976,7 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 //				{0, 0, 0, 0, 0}
 //		},
 				{ 0x00, 0x41, 0x3E, 0x00, 0x00 },
-//		{ // ( short error, y = 88
+//		{ // short error, y = 88
 //				{0, 0, 0, 0, 0},
 //				{0, 0, 0, 0, 0},
 //				{0, 0, 0, 0, 0},
@@ -987,6 +987,28 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 //				{0, 0, 1, 0, 0}
 //		},
 				{ 0x00, 0x00, 0x80, 0x00, 0x00 },
+//	{ // +, y = 89
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 1, 0, 0},
+//				{0, 1, 1, 1, 0},
+//				{0, 0, 1, 0, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0}
+//		},
+				{ 0x00, 0x08, 0x1C, 0x08, 0x00 },
+//	{ // *, y = 90
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 1, 0, 1, 0},
+//				{0, 0, 1, 0, 0},
+//				{0, 1, 0, 1, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0},
+//				{0, 0, 0, 0, 0}
+//		},
+				{ 0x00, 0x16, 0x08, 0x16, 0x00 }
 };
 
 const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM = {
@@ -1079,6 +1101,8 @@ const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM = {
 		2, // (, y = 86
 		2, // ), y = 87
 		1, // short error, y = 88
+		3, // +, y = 89
+		3, // *, y = 90
 };
 
 const uint8_t uiAnimations[ANIMATIONS_SIZE][7] PROGMEM = {
@@ -1208,6 +1232,10 @@ static inline uint8_t TranslateToAlphabet(char cSign) {
 	else if (cSign == '(') return 86;
 	// )
 	else if (cSign == ')') return 87;
+	// +
+	else if (cSign == '+') return 89;
+	// *
+	else if (cSign == '*') return 90;
 	/*
 	 *
 	 *		Polskie znaki

@@ -82,7 +82,7 @@ int main (void) {
 
 	RegistersInit();
 	DiodeMatrixInit(&matrix);
-	RelayInit();
+	RelayInit(&relay);
 	Timer0Init();
 	Timer2Init();
 	PCINTInit();
@@ -159,7 +159,7 @@ int main (void) {
 					}
 
 					if (bNewRoundRefresh){
-						LoadTimeToMatrix(&matrix, &actTime, &RTCTime);
+						LoadTimeToMatrix(&matrix, &relay, &actTime, &RTCTime);
 						bNewRoundRefresh = false;
 					}
 				} break;
@@ -221,7 +221,7 @@ ISR(TIMER2_COMPA_vect) {
 				SetSeqParams(&matrix, &actTime, &relay);
 			}
 		}
-	if ((ui16Ms % 30) == 15)
+	if ((ui16Ms % 10) == 7)
 		bEnableDecrement = true;
 } // END ISR(TIMER2_COMPA_vect)
 

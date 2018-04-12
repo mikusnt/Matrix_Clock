@@ -156,8 +156,8 @@ ISR( USART_RX_vect ) {
     	// prób¹ nadpisania danych w buforze, mog³oby dojœæ do sytuacji gdzie
     	// nasz w¹¿ zacz¹³by zjadaæ w³asny ogon
     	// oznaczenie bajtu przed poczatkiem jako koniec
-    	UART_FirstEndFlag = true;
     	UART_RxBuf[UART_RxHead] = END_FRAME_CODE;
+    	uart_putc(END_FRAME_CODE);
     } else {
     	UART_RxHead = tmp_head; 		// zapamiêtujemy nowy indeks
     	UART_RxBuf[tmp_head] = data; 	// wpisujemy odebrany bajt do bufora
