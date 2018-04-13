@@ -6,7 +6,7 @@
 
 #include "tests.h"
 
-/*! @param 		r wskaznik na przekaznik
+/*! @param 		r pointer of relay structure
  *  @see 		relay.h*/
 void Test_Relay_Hours(volatile Relay *r) {
 	uint8_t i = 0;
@@ -17,7 +17,7 @@ void Test_Relay_Hours(volatile Relay *r) {
 	} while (++i < 24);
 } // END void Test_Relay
 
-/*! @param 		r wskaznik na przekaznik
+/*! @param 		r pointer of relay structure
  *  @see 		relay.h*/
 void Test_Relay_Minutes(volatile Relay *r) {
 	uint8_t i = 0;
@@ -30,7 +30,7 @@ void Test_Relay_Minutes(volatile Relay *r) {
 	} while (i < 60);
 } // END void Test_Relay
 
-/*! @param 		i wskaznik na licznik potrzebny do iterowania
+/*! @param 		i pointer of external iterator
  *  @see 		register.h*/
 void Test_Y(uint8_t *i) {
 	SendRegisterY((*i > 0) ? 0 : 1, true);
@@ -38,7 +38,7 @@ void Test_Y(uint8_t *i) {
 	if (++*i > 7) *i = 0;
 } // END void Test_Y
 
-/*! @param		m adres struktury macierzy LED
+/*! @param		m pointer of matrix structure
  *  @see		diode_matrix.h*/
 void Test_MatrixBuffer(volatile DiodeMatrix *m) {
 	uint8_t i;

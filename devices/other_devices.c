@@ -10,7 +10,7 @@
 void Timer0Init() {
 	// tryb CTC
 	TCCR0A |= (1 << WGM01);
-	// preskaler 8
+	// preskaler 64
 	TCCR0B |= (1 << CS01) | (1 << CS00);
 	// odblokowanie przerwan
 	TIMSK0 |= (1 << OCIE0A);
