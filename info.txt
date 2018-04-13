@@ -21,5 +21,3 @@ Iloœc taktów do wyzwolenia: 20 000 000 / 1 0000 = 20 000
 Timer sprzêtowy: 8 bitowy Timer2
 Preskaler: 256
 OCR: 78
-
-Info na temat ladowania li-ion:
