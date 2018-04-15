@@ -6,9 +6,8 @@
  * $Created: 2017-11-04 $
  * @version 1.0
  *
- * Uzyte piny procesora: 0<br>
- * Plik naglowkowy zawierajacy najczesciej uzywane include aby skrocic zapis w
- * innych plikach naglowkowych
+ * Used uC pins: 0<br>
+ * Header file containing the most common libraries in project/
  */
 
 #ifndef GROUP_INCLUDES_H_

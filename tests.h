@@ -2,12 +2,12 @@
  * @file tests.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-02 $
+ * $Modified: 2018-04-015 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
- * Testy poszczegolnych funkcji urzadzenia.
- * Ka¿dy test powinien byc uruchomiony w petli glownej po inicjalizacji skladowych testowych.
+ * Simple tests of some basic functions.
+ * Test should be run in main function (infinite loop).
  */
 #ifndef TESTS_H_
 #define TESTS_H_

@@ -6,8 +6,8 @@
  * $Created: 2017-11-04 $
  * @version 1.0
  *
- * Uzyte piny procesora: 0<br>
- * Plik naglowkowy zawierajacy metody wypelniania matrycy LED danymi.
+ * Used uC pins: 0<br>
+ * Header file containing functions to fill LED matrix buffer.
  * @see DiodeMatrix
  * @see alphabet.h
  */
@@ -25,24 +25,23 @@
 #include "alphabet.h"
 
 
-//! rozmiar bufora znakowego, 32 znaki i \0
+//! size of text buffer plus 1 to end of char table
 #define TEXT_BUFFER_SIZE ((BUFFER_X_SIZE / 4) + 1)
-
-//! pozycja dwukropka w buforze matrycy
+//! position x of colon in matrix buffer
 #define SEC_SIGN_POS 12
-//! ostania pozycja bloku binarnego sekundkina w buforze matrycy
+//! end position of binary seconds counter block in matrix buffer
 #define SEC_END_POS 31
-//! przejscie z liczby na liczbe z wg ASCII
+//! reduction from ASCII to number
 #define DIGIT_ASCII 48
 
 
-//! pozycje godzin i minut bloku binarnego sekundkina w buforze matrycy
+//! position of hour and minute digit in binary seconds counter in matrix buffer
 extern uint8_t uitHMPos[4];
-//! uniwersalny bufor danych tekstowych
+//! universal data buffer
 //! @see uart_processing.h
 extern char ctTextBuffer[TEXT_BUFFER_SIZE];
 
-//! mozliwe sekwencje pracy urzadzenia
+//! device's sequences of work
 typedef enum {
 	SeqTimer = 't',
 	SeqADC = 'a',
@@ -51,20 +50,20 @@ typedef enum {
 	SeqEmpty = 'c'
 } ActualSeq;
 
-//! dodatkowe zadania, ktore obsluguje urzadzenie
+//! device's fimple tasks
 typedef enum {
 	TaskSetPix = 'p',
 	TaskRelayNumber = 'r',
 	TaskRelayMode = 'm'
 } DeviceTask;
 
-//! ektualnie aktywna sekwencja
+//! actual sequence displaying by device
 //! @see SetSeqParams
 extern ActualSeq eActualSeq;
 
 /*
  *
- * 		Funkcje wewnetrzne
+ * 		Internal functions
  *
  */
 // laduje do bufora matrycy sekundy w binarnym kodzie BCD
@@ -78,7 +77,7 @@ extern ActualSeq eActualSeq;
 
 /*
  *
- *		Funkcje zewnetrzne
+ *		External functions
  *
  */
 //! wczytuje dany tekst do buf0ra matrycy w oparciu o alfabet

@@ -2,11 +2,11 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-09 $
+ * $Modified: 2018-04-15 $
  * $Created: 2017-11-04 $
  * @version 0.91
  *
- * Plik glowny projektu
+ * Project main file
  * @see info.txt
  */
 
@@ -26,39 +26,39 @@
 
 /*
  *
- *		Zmienne
+ *		Variables
  *
  */
 
-//! podstawa odniesienia czasu w milisekundach, [0 - 1000]
+//! internal time in milliseconds, [0 - 1000]
 volatile uint16_t ui16Ms = 0;
-//! podstawa odniesienia czasu w sekundach, w kooperacji z ui16Ms
+//! internal time in seconds, cooperate with ui16Ms
 volatile uint8_t uiSeconds;
-//! matryca LED
+//! LED matrix struct
 volatile DiodeMatrix matrix;
-//! przekaznik
+//! Relay struct
 volatile Relay relay;
-//! floaga nowej sekundy, na podstawie przerwania SQW od DS3231
+//! flag of new second, setting by DS3231 SQW overflow
 volatile bool bNewTime = false;
-//! flaga nowego taktu odswiezenia bufora obrotowego dla czasu
+//! flag of refresh round buffer position
 volatile bool bNewRoundRefresh = false;
-//! dane ADC o jasnosci
+//! ADC data about brightness
 volatile ADCVoltageData adc;
-//! czas pobierany z RTC
+//! time from RTC
 TimeDate RTCTime;
-//! czas wyswietlany na matrycy
+//! actual time displaying on matrix
 //! @see 	LoadTimeToMatrix
 TimeDate actTime;
-//! flaga zmiany poziomu Y
+//! flag of new Y level of matrix
 volatile uint8_t uivModifyY;
-//! okresla ilosc powtorzen wyswietlania tekstu na matrycy
+//! number of repetition of text on matrix
 volatile int8_t iCountToTimer;
-//! flaga zezwolenia na dekrementacje czyszczonej pozycji w trybie czyszczenia
+//! flag of decrement cleaning position on clearing mode
 volatile bool bEnableDecrement;
 
 /*
  *
- *		Przerwania
+ *		Overflows
  *
  */
 
@@ -69,14 +69,14 @@ volatile bool bEnableDecrement;
 
 /*
  *
- *		Funkcja glowna
+ *		Main function
  *
  */
 
 int main (void) {
 	/*
 	 *
-	 *		Blok inicjalizacji
+	 *		Init block
 	 *
 	 */
 
@@ -104,15 +104,15 @@ int main (void) {
 
 	/*
 	 *
-	 *		Petla glowna
+	 *		Main loop
 	 *
 	 */
 
 	while(1) {
 		wdt_reset();
-		// proba obslugi komendy UART
+		// trying read and execute full UART command
 		TryLoadCommand(&matrix, &relay, &RTCTime);
-		// oczyszczanie bufora, po osiagnieciu poczatku uruchomienie sekwencji zawartej w eACtualSeq
+		// clearing buffer, change seq to eActualSeq after decrement to 0
 		if (bEnableDecrement) {
 			if (DecrementTo0SlowClear(&matrix)) {
 				SetSeqParams(&matrix, &actTime, &relay);
@@ -122,10 +122,10 @@ int main (void) {
 			bEnableDecrement = false;
 		}
 
-		// Jesli tryb czyszczenia bufora nieaktywny
+		// when clearing buffer mode deactiwated
 		if (matrix.uiSlowClearedPos == 0) {
 			switch(eActualSeq) {
-				// tryb zegara
+				// Timer mode
 				case SeqTimer: {
 					if (bNewTime) {
 						DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
@@ -137,14 +137,14 @@ int main (void) {
 								RTCTime.uiMinutes, RTCTime.uiSeconds);
 							uart_puts(ctTextBuffer);
 						}
-						// wyswietlenie daty co 5 minut w 10 sekundzie
+						// display dane every 5 minutes on 10 second
 						if ((RTCTime.uiSeconds == 10) && ((RTCTime.uiMinutes % 3) == 1)) {
 							sprintf(ctTextBuffer, "%02d-%02d-2%03d", RTCTime.uiDays, RTCTime.uiMonths, RTCTime.uiYears);
 							eActualSeq = SeqText;
 							RunSlowClearedPos(&matrix);
 						}
 
-						// aktywacja przekaznika i zaladowanjie daty co godzine
+						// activate relay and read date every hour
 						if (RTCTime.uiSeconds == 0) {
 							ResetProgress(&actTime);
 							if (RTCTime.uiMinutes == 0) {
@@ -164,7 +164,7 @@ int main (void) {
 					}
 				} break;
 				case SeqADC: {
-					// wypisanie ADC do matrycy i UART
+					// write ADC number to matrix and UART
 					if (bNewTime) {
 						DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
 						LoadNumberToMatrix(&matrix, adc.ui16PhotoAvg);
@@ -176,19 +176,16 @@ int main (void) {
 						bNewTime = false;
 					}
 				} break;
-				// zaladowanie bufora podczas SetSeqParams
 				case SeqText: {} break;
-				// wyslanie liczby do przekaznika
 				case SeqRelayNumber: {} break;
 				case SeqEmpty: {} break;
-				// kolejne case'y
 			}
 
 		}
 	}
 } // END int main (void)
 
-//! timer pracy matrycy LED, konieczna optymalizacja
+//! CTC timer0 overflow, refreshing matrix, required hard optimisation
 ISR(TIMER0_COMPA_vect) {
 	// obsluga zmiany jasnosci
 	uivModifyY = IncrementBrightness(&matrix);
@@ -202,7 +199,7 @@ ISR(TIMER0_COMPA_vect) {
 		ClearRegistersX(true);
 } // END ISR(TIMER0_COMPA_vect)
 
-//! przerwanie timera w trybie CTC, odniesieni czasowe 1 MS
+//! CTC timer2 overflow with 1ms period, internal time
 ISR(TIMER2_COMPA_vect) {
 	RelayTryClickMS(&relay);
 	if (++ui16Ms >= 1000) {
@@ -210,10 +207,11 @@ ISR(TIMER2_COMPA_vect) {
 		if (++uiSeconds >= 60)
 			uiSeconds = 0;
 	}
-	// ustawienie flagi nowego taktu odswiezenia bufora obrotowego
+	// setting flag of refresh round buffer
 	if ((ui16Ms % TIME_DECREMENT_MS) == 0)
 		bNewRoundRefresh = true;
 	// zmiana w pozycji bufora i powrot do SeqTimer w przypadku wyswietlania tekstu
+	// increasing buffer position and rename seq to SeqTimer when active is SeqText and iCountToTimer == 0
 	if ((ui16Ms % INC_POS_MS) == 0)
 		if (IncrementBufferPosition(&matrix)) {
 			if ((eActualSeq == SeqText) && (matrix.uiSlowClearedPos == 0) && ((--iCountToTimer) == 0) ) {
@@ -225,13 +223,13 @@ ISR(TIMER2_COMPA_vect) {
 		bEnableDecrement = true;
 } // END ISR(TIMER2_COMPA_vect)
 
-//! przerwanie zakonczenia pomiaru ADC, odczytanie zawartosci ADC
+//! end of ADC measurement overflow, reading ADC value
 ISR(ADC_vect) {
 	ReadADCToADCData(&adc, &matrix.uiBrightness);
 }
 
 
-//! przerwanie sygnalu SQW z timera DS3231, ustawienie flagi nowego czasu
+//! SQW signal from DS3231 overflow, set new time flag
 ISR(PCINT1_vect) {
 	ADCStart();
 	if (SQW_IS_HIGH()) {
@@ -239,7 +237,7 @@ ISR(PCINT1_vect) {
 	}
 } // END ISR(PCINT1_vect)
 
-//! przerwanie stanu Bluetooth, inicjalizacja UART gdy uruchomiono Bluetooth
+//! switch on bluetooth overflow, init UART after turning on module
 ISR(PCINT2_vect) {
 	if (BLUETOOTH_IS_ON()) {
 		USART_Init(__UBRR);

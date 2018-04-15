@@ -15,7 +15,6 @@ Connected to:
 Mode: CTC  
 Refresh freq: 1kHz  
 Y levels of matrix: 8
-
 Number of brightness level: 20  
 uC period of overflow: 20 000 000 / 100 / 8 / 20 =  1250  
 Prescaler: 64  
