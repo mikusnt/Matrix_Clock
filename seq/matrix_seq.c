@@ -38,9 +38,9 @@ static inline void SecondsBinary(volatile DiodeMatrix *m, volatile uint8_t secon
 
 static inline void SetRelayModeToMatrix(volatile DiodeMatrix *m, volatile Relay *r) {
 	if (r->eState == ON) {
-		m->uitBufferX[0] &= 0x7F;
+		m->uitBufferX[2] &= 0x7F;
 	} else {
-		m->uitBufferX[0] |= 0x80;
+		m->uitBufferX[2] |= 0x80;
 	}
 } // END static inline void RelayMode
 
@@ -115,7 +115,7 @@ void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE]) {
  *  @param		from czas wyswietlany na matrycy, dazy do czasu to
  *  @param		to czas rzeczywisty*/
 void LoadTimeToMatrix(volatile DiodeMatrix *m, volatile Relay *r, TimeDate *from, TimeDate *to) {
-	m->uitBufferX[SEC_SIGN_POS] = (to->uiSeconds % 2) == 0 ? 0x44 : 0x00;
+	m->uitBufferX[SEC_SIGN_POS] = (to->uiSeconds % 2) == 0 ? 0x24 : 0x00;
 	for (int8_t i = 3; i >= 0; i--) {
 		// gdy cyfry takie same
 		if ((from->uitSingleTime[i] == to->uitSingleTime[i]) && (from->uiSingleProgress[i] < MAX_PROGRESS))
@@ -175,6 +175,12 @@ void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *re
 			LoadTextToMatrix(m, ctTextBuffer);
 			SetMoving(m, true);
 			uart_puts_p(PSTR("Text \""));
+			uart_puts(ctTextBuffer);
+			uart_putc('\"');
+		} break;
+		case SeqTextDebug: {
+			LoadTextToMatrix(m, ctTextBuffer);
+			uart_puts_p(PSTR("Text debug \""));
 			uart_puts(ctTextBuffer);
 			uart_putc('\"');
 		} break;

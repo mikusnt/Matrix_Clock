@@ -95,7 +95,7 @@ int main (void) {
 	SetSeqParams(&matrix, &actTime, &relay);
 	RelayStartClicking(&relay, 0, RelayDataNumber);
 
-	wdt_enable(WDTO_60MS);
+	wdt_enable(WDTO_120MS);
 	DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
 	DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
 	LoadToSingleTime(&RTCTime);
@@ -138,7 +138,7 @@ int main (void) {
 							uart_puts(ctTextBuffer);
 						}
 						// display dane every 5 minutes on 10 second
-						if ((RTCTime.uiSeconds == 10) && ((RTCTime.uiMinutes % 3) == 1)) {
+						if ((RTCTime.uiSeconds == 10) && ((RTCTime.uiMinutes % 5) == 1)) {
 							sprintf(ctTextBuffer, "%02d-%02d-2%03d", RTCTime.uiDays, RTCTime.uiMonths, RTCTime.uiYears);
 							eActualSeq = SeqText;
 							RunSlowClearedPos(&matrix);
@@ -177,10 +177,10 @@ int main (void) {
 					}
 				} break;
 				case SeqText: {} break;
+				case SeqTextDebug: {} break;
 				case SeqRelayNumber: {} break;
 				case SeqEmpty: {} break;
 			}
-
 		}
 	}
 } // END int main (void)

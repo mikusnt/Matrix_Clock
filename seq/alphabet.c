@@ -698,7 +698,7 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 //				{1, 1, 1, 1, 1},
 //				{0, 0, 0, 0, 0}
 //		},
-				{ 0x44, 0x64, 0x54, 0x4C, 0x44 },
+				{ 0x44, 0x64, 0x54, 0x4C, 0x00 },
 //		{ // error, y = 62
 //				{0, 0, 0, 0, 1},
 //				{0, 0, 0, 1, 0},
@@ -1054,7 +1054,7 @@ const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM = {
 		4, // d, y = 39
 		4, // e, y = 40
 		4, // f, y = 41
-		5, // g, y = 42
+		4, // g, y = 42
 		4, // h, y = 43
 		3, // i, y = 44
 		4, // j, y = 45
@@ -1073,7 +1073,7 @@ const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM = {
 		5, // w, y = 58
 		5, // x, y = 59
 		4, // y, y = 60
-		5, // z, y = 61
+		4, // z, y = 61
 		5, // error, y = 62
 		1, // ., y = 63
 		3, // ,, y = 64

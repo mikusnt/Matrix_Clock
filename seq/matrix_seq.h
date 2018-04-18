@@ -46,6 +46,7 @@ typedef enum {
 	SeqTimer = 't',
 	SeqADC = 'a',
 	SeqText = 'e',
+	SeqTextDebug = 'd',
 	SeqRelayNumber = 'n',
 	SeqEmpty = 'c'
 } ActualSeq;

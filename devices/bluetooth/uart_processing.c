@@ -48,18 +48,21 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			case MODIFY_SEQ_CODE: {
 				if ((ctTextBuffer[0] == SeqTimer) || (ctTextBuffer[0] == SeqADC)
 						|| (ctTextBuffer[0] == SeqText) || (ctTextBuffer[0] == SeqRelayNumber)
-						|| (ctTextBuffer[0] == SeqEmpty)) {
+						|| (ctTextBuffer[0] == SeqEmpty) || (ctTextBuffer[0] == SeqTextDebug)) {
 					if ((ctTextBuffer[0] == SeqText) && (ctTextBuffer[1] == 0)) {
 						uiEndCode = ERROR_PARAMS;
 						break;
 					}
 					eActualSeq = ctTextBuffer[0];
-					if (eActualSeq == SeqText) {
+					if ((eActualSeq == SeqText) || (eActualSeq == SeqTextDebug)) {
 						// przesuwanie napisu o 1 w lewo
 						i = 0;
 						while(ctTextBuffer[i] != 0) {
 							ctTextBuffer[i] = ctTextBuffer[i + 1];
-							i++;
+							if ((++i >= 5) && (eActualSeq == SeqTextDebug)) {
+								ctTextBuffer[5] = 0;
+								break;
+							}
 						}
 					}
 					if (eActualSeq == SeqRelayNumber) {
@@ -96,7 +99,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 						} break;
 						case TaskRelayMode: {
 							uint8_t mode = ctTextBuffer[1] - DIGIT_ASCII;
-							if (i >= 2) {
+							if ((i >= 2) && (mode < 2)) {
 								SetRelayState(relay, (mode > 0) ? ON : OFF);
 							} else
 								uiEndCode = ERROR_PARAMS;
@@ -140,6 +143,8 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			} break;
 			case RESET_CODE: {
 				uart_puts_p(PSTR("Reset ok\n"));
+				m->uiBrightness = 0;
+				D_MS(1);
 				Reset_UC();
 			} break;
 
