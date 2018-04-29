@@ -19,56 +19,57 @@
 
 /*
  *
- *		Makroinstrukcje
+ *		Macros
  *
  */
 
-//! ilosc znakow tablicy znakow alfabetu
+//! number of chars in alphabet table
 #define ALPHABET_SIZE 91
-//! ilosc znakow tablicy znakow animacji
+//! number of signs in animation table
 #define ANIMATIONS_SIZE 7
-//! maksymalny rozmiar tekstu dla znakow char ladowanych do bufora
+//! max text length in text buffer
 #define MAX_TEXT_SIZE 30
-//! ilosc tekstow w pamieci programu
+//! number of texts in PROGMEM
 #define TEXT_NUMBER 5
 
-// odczytanie tablic z pamieci programu
+// load tables from PROGMEM
 //! odczytanie bajtow danych poszczegolnych liter
-/*! @param 			y wspolrzedna y odpowiedzialna za nr znaku
- *  @param 			x wspolrzedna x odpowiedzialna za nr pionowej pozycji znaku
- *  @return wybrany pionowy bajt danych okreslonej litery*/
+//! load one data byte of char from alphabet
+/*! @param 			y coordinate, number of char
+ *  @param 			x coordinate, number of vertical byte of char
+ *  @return one byte of char from alphabet*/
 #define ALPHABET_YX(y, x) (pgm_read_byte(&(uiAlphabet[y][x])))
-//! odczytanie szerokosci znaku
-/*! @param 			y numer znaku
- *  @return 			szerokosc znaku*/
+//! load char vertical length
+/*! @param 			y number of char
+ *  @return 		vertical length*/
 #define AL_LENGTH(y) (pgm_read_byte(&(uiAlLength[y])))
-//! odczytanie bajtow danych poszczegolnych klatek animacji
-/*! @param 			y wspolrzedna y odpowiedzialna za nr klatki
- *  @param 			x wspolrzedna x odpowiedzialna za nr pionowej pozycji klatki
- *  @return wybrany pionowy bajt danych okreslonej klatki animacji*/
+//! load one data byte of animation from animation table
+/*! @param 			y coordinate, code of animation
+ *  @param 			x coordinate, number of vertical byte of animation
+ *  @return one byte of animation from animation table*/
 #define ANIMATIONS_YX(y, x) (pgm_read_byte(&(uiAnimations[y][x])))
 
-//! oznaczenia pozycji tablicy znakowej klatek animacji
+//! name of animation in animation table
 typedef enum {
-	MarioS0 = 0,
-	MarioS1,
-	MarioS2,
-	MarioD0,
-	MarioD1,
-	Pacman0,
-	Pacman1
-} AnimationsSign;
+	MarioS0 = 0,//!< MarioS0
+	MarioS1,    //!< MarioS1
+	MarioS2,    //!< MarioS2
+	MarioD0,    //!< MarioD0
+	MarioD1,    //!< MarioD1
+	Pacman0,    //!< Pacman0
+	Pacman1     //!< Pacman1
+} AnimationsCode;
 
 /*
  *
- * 		Dane pamiêci FLASH
+ * 		Tables in PROGMEM
  *
  */
-//! poszczegolne znaki alfabetu i znaki specjalne
+//! all alphabet chars and special chars
 extern const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM;
-//! ilosc bajtow pionowych dla znakow powyzszej tablicy
+//! vertical length of uiAlphabet chars
 extern const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM;
-//! poszczegolne znaki animacji Mario i Pacman
+//! animation table of Mario i Pacman
 extern const uint8_t uiAnimations[ANIMATIONS_SIZE][7] PROGMEM;
 
 /*
@@ -77,26 +78,23 @@ extern const uint8_t uiAnimations[ANIMATIONS_SIZE][7] PROGMEM;
  *
  */
 
-//! zwraca pionowa zawartosc okreslonego znaku z tablicy Alphabet
+//! return one data byte of char from alphabet
 extern uint8_t LoadIntSignByte(uint8_t uiIntSign, uint8_t uiByteNr);
-//! zwraca pionowa dlugosc okreslonego znaku z tablicy Alphabet
+//! load char vertical length
 extern uint8_t LoadIntSignLength(uint8_t uiIntSign);
-//! laduje do zmiennych informacje o znaku
+//! load all info about char
 extern void LoadSign(char cSign, uint8_t *uiStart_s, uint8_t *uiStop_s, uint8_t *uiIntSign_s);
-//! zwraca pionowa zawartosc okreslonej sekwencji
-extern uint8_t LoadAnimationsByte(AnimationsSign eSign, uint8_t uiByteNr);
+//! load one data byte of animation from animation table
+extern uint8_t LoadAnimationsByte(AnimationsCode eSign, uint8_t uiByteNr);
 
-//! laduje okreslony tekst z pamieci programu do bufora
+
+extern const char string_1[MAX_TEXT_SIZE] PROGMEM;
+extern const char string_2[MAX_TEXT_SIZE] PROGMEM;
+extern const char string_3[MAX_TEXT_SIZE] PROGMEM;
+extern const char string_4[MAX_TEXT_SIZE] PROGMEM;
+extern const char string_5[MAX_TEXT_SIZE] PROGMEM;
+extern PGM_P const string_table[TEXT_NUMBER] PROGMEM;
+
+//! load text from PROGMEM to buffer
 extern void LoadText(char buffer[], uint8_t uiTextNr );
-
-//extern const char string_1[MAX_TEXT_SIZE] PROGMEM;
-//extern const char string_2[MAX_TEXT_SIZE] PROGMEM;
-//extern const char string_3[MAX_TEXT_SIZE] PROGMEM;
-//extern const char string_4[MAX_TEXT_SIZE] PROGMEM;
-//extern const char string_5[MAX_TEXT_SIZE] PROGMEM;
-//extern PGM_P const string_table[TEXT_NUMBER] PROGMEM;
-extern PGM_P const string_table[] PROGMEM;
-
-//! podobnie jak LoadText, wieksza optymalizacja, NIEPRZETESTOWANA
-extern void LoadText2(char buffer[], uint8_t uiTextNr );
 #endif /* ALPHABET_H_ */

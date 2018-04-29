@@ -90,16 +90,15 @@ $(document).ready(function(){initNavTree('tests_8c.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a2d32d220a2f80e9f4a2b1d4994624d10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8c.html#a2d32d220a2f80e9f4a2b1d4994624d10">Test_Relay_Hours</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *r)</td></tr>
-<tr class="memdesc:a2d32d220a2f80e9f4a2b1d4994624d10"><td class="mdescLeft">&#160;</td><td class="mdescRight">testuje dzialanie przekaznika dla wszystkich godzin oraz wypisuje godzine na rejestrze X0  <a href="#a2d32d220a2f80e9f4a2b1d4994624d10">More...</a><br /></td></tr>
+<tr class="memdesc:a2d32d220a2f80e9f4a2b1d4994624d10"><td class="mdescLeft">&#160;</td><td class="mdescRight">tests the relay's all hours operations  <a href="#a2d32d220a2f80e9f4a2b1d4994624d10">More...</a><br /></td></tr>
 <tr class="separator:a2d32d220a2f80e9f4a2b1d4994624d10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a950b68bdceab52969ad1ce03e0f38084"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8c.html#a950b68bdceab52969ad1ce03e0f38084">Test_Relay_Minutes</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *r)</td></tr>
-<tr class="memdesc:a950b68bdceab52969ad1ce03e0f38084"><td class="mdescLeft">&#160;</td><td class="mdescRight">testuje dzialanie przekaznika dla wszystkich minut oraz wypisuje minuty na rejestrze X0  <a href="#a950b68bdceab52969ad1ce03e0f38084">More...</a><br /></td></tr>
+<tr class="memdesc:a950b68bdceab52969ad1ce03e0f38084"><td class="mdescLeft">&#160;</td><td class="mdescRight">tests the ralay's all minutes operations  <a href="#a950b68bdceab52969ad1ce03e0f38084">More...</a><br /></td></tr>
 <tr class="separator:a950b68bdceab52969ad1ce03e0f38084"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab521934647684e2164d509c3051674d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8c.html#ab521934647684e2164d509c3051674d8">Test_Y</a> (uint8_t *i)</td></tr>
-<tr class="memdesc:ab521934647684e2164d509c3051674d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">testuje dzialanie rejestru Y  <a href="#ab521934647684e2164d509c3051674d8">More...</a><br /></td></tr>
 <tr class="separator:ab521934647684e2164d509c3051674d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac59f34362c59a39f550aea5c8bf5584"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tests_8c.html#aac59f34362c59a39f550aea5c8bf5584">Test_MatrixBuffer</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m)</td></tr>
-<tr class="memdesc:aac59f34362c59a39f550aea5c8bf5584"><td class="mdescLeft">&#160;</td><td class="mdescRight">testuje dzialanie matrycy LED poprzez wyswietlanie 4 poziomow jasnosci  <a href="#aac59f34362c59a39f550aea5c8bf5584">More...</a><br /></td></tr>
+<tr class="memdesc:aac59f34362c59a39f550aea5c8bf5584"><td class="mdescLeft">&#160;</td><td class="mdescRight">tests LED matrix, try to show 4 brightness levels  <a href="#aac59f34362c59a39f550aea5c8bf5584">More...</a><br /></td></tr>
 <tr class="separator:aac59f34362c59a39f550aea5c8bf5584"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -123,10 +122,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>testuje dzialanie matrycy LED poprzez wyswietlanie 4 poziomow jasnosci </p>
+<p>tests LED matrix, try to show 4 brightness levels </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of matrix structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -150,10 +149,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>testuje dzialanie przekaznika dla wszystkich godzin oraz wypisuje godzine na rejestrze X0 </p>
+<p>tests the relay's all hours operations </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">r</td><td>wskaznik na przekaznik </td></tr>
+    <tr><td class="paramname">r</td><td>pointer of relay structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -177,10 +176,10 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>testuje dzialanie przekaznika dla wszystkich minut oraz wypisuje minuty na rejestrze X0 </p>
+<p>tests the ralay's all minutes operations </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">r</td><td>wskaznik na przekaznik </td></tr>
+    <tr><td class="paramname">r</td><td>pointer of relay structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -203,11 +202,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>testuje dzialanie rejestru Y </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>wskaznik na licznik potrzebny do iterowania </td></tr>
+    <tr><td class="paramname">i</td><td>pointer of external iterator </td></tr>
   </table>
   </dd>
 </dl>

@@ -102,66 +102,66 @@ Functions</h2></td></tr>
 <tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
 <tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec43762dc86e029b395d4e5819192c2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aec43762dc86e029b395d4e5819192c2d">ISR</a> (TIMER0_COMPA_vect)</td></tr>
-<tr class="memdesc:aec43762dc86e029b395d4e5819192c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">timer pracy matrycy LED, konieczna optymalizacja  <a href="#aec43762dc86e029b395d4e5819192c2d">More...</a><br /></td></tr>
+<tr class="memdesc:aec43762dc86e029b395d4e5819192c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">CTC timer0 overflow, refreshing matrix, required hard optimisation.  <a href="#aec43762dc86e029b395d4e5819192c2d">More...</a><br /></td></tr>
 <tr class="separator:aec43762dc86e029b395d4e5819192c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5686c229bdef50123688ab6cb1404230"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a5686c229bdef50123688ab6cb1404230">ISR</a> (TIMER2_COMPA_vect)</td></tr>
-<tr class="memdesc:a5686c229bdef50123688ab6cb1404230"><td class="mdescLeft">&#160;</td><td class="mdescRight">przerwanie timera w trybie CTC, odniesieni czasowe 1 MS  <a href="#a5686c229bdef50123688ab6cb1404230">More...</a><br /></td></tr>
+<tr class="memdesc:a5686c229bdef50123688ab6cb1404230"><td class="mdescLeft">&#160;</td><td class="mdescRight">CTC timer2 overflow with 1ms period, internal time.  <a href="#a5686c229bdef50123688ab6cb1404230">More...</a><br /></td></tr>
 <tr class="separator:a5686c229bdef50123688ab6cb1404230"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05c2e5b588ced1cd7312f5b0edc5b295"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a05c2e5b588ced1cd7312f5b0edc5b295">ISR</a> (ADC_vect)</td></tr>
-<tr class="memdesc:a05c2e5b588ced1cd7312f5b0edc5b295"><td class="mdescLeft">&#160;</td><td class="mdescRight">przerwanie zakonczenia pomiaru ADC, odczytanie zawartosci ADC  <a href="#a05c2e5b588ced1cd7312f5b0edc5b295">More...</a><br /></td></tr>
+<tr class="memdesc:a05c2e5b588ced1cd7312f5b0edc5b295"><td class="mdescLeft">&#160;</td><td class="mdescRight">end of ADC measurement overflow, reading ADC value  <a href="#a05c2e5b588ced1cd7312f5b0edc5b295">More...</a><br /></td></tr>
 <tr class="separator:a05c2e5b588ced1cd7312f5b0edc5b295"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe6035149a64d5f448fbda08e9d1b67f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#afe6035149a64d5f448fbda08e9d1b67f">ISR</a> (PCINT1_vect)</td></tr>
-<tr class="memdesc:afe6035149a64d5f448fbda08e9d1b67f"><td class="mdescLeft">&#160;</td><td class="mdescRight">przerwanie sygnalu SQW z timera DS3231, ustawienie flagi nowego czasu  <a href="#afe6035149a64d5f448fbda08e9d1b67f">More...</a><br /></td></tr>
+<tr class="memdesc:afe6035149a64d5f448fbda08e9d1b67f"><td class="mdescLeft">&#160;</td><td class="mdescRight">SQW signal from DS3231 overflow, set new time flag.  <a href="#afe6035149a64d5f448fbda08e9d1b67f">More...</a><br /></td></tr>
 <tr class="separator:afe6035149a64d5f448fbda08e9d1b67f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c4665742c6b6eb1f0bb9dde41f7cba3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a9c4665742c6b6eb1f0bb9dde41f7cba3">ISR</a> (PCINT2_vect)</td></tr>
-<tr class="memdesc:a9c4665742c6b6eb1f0bb9dde41f7cba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">przerwanie stanu Bluetooth, inicjalizacja UART gdy uruchomiono Bluetooth  <a href="#a9c4665742c6b6eb1f0bb9dde41f7cba3">More...</a><br /></td></tr>
+<tr class="memdesc:a9c4665742c6b6eb1f0bb9dde41f7cba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">switch on bluetooth overflow, init UART after turning on module  <a href="#a9c4665742c6b6eb1f0bb9dde41f7cba3">More...</a><br /></td></tr>
 <tr class="separator:a9c4665742c6b6eb1f0bb9dde41f7cba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:ad2484459f8c5c396fb747bfc8f08e902"><td class="memItemLeft" align="right" valign="top">volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ad2484459f8c5c396fb747bfc8f08e902">ui16Ms</a> = 0</td></tr>
-<tr class="memdesc:ad2484459f8c5c396fb747bfc8f08e902"><td class="mdescLeft">&#160;</td><td class="mdescRight">podstawa odniesienia czasu w milisekundach, [0 - 1000]  <a href="#ad2484459f8c5c396fb747bfc8f08e902">More...</a><br /></td></tr>
+<tr class="memdesc:ad2484459f8c5c396fb747bfc8f08e902"><td class="mdescLeft">&#160;</td><td class="mdescRight">internal time in milliseconds, [0 - 1000]  <a href="#ad2484459f8c5c396fb747bfc8f08e902">More...</a><br /></td></tr>
 <tr class="separator:ad2484459f8c5c396fb747bfc8f08e902"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4b9d02057e067f0cd57275bf6175e793"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a4b9d02057e067f0cd57275bf6175e793">uiSeconds</a></td></tr>
-<tr class="memdesc:a4b9d02057e067f0cd57275bf6175e793"><td class="mdescLeft">&#160;</td><td class="mdescRight">podstawa odniesienia czasu w sekundach, w kooperacji z ui16Ms  <a href="#a4b9d02057e067f0cd57275bf6175e793">More...</a><br /></td></tr>
+<tr class="memdesc:a4b9d02057e067f0cd57275bf6175e793"><td class="mdescLeft">&#160;</td><td class="mdescRight">internal time in seconds, cooperate with ui16Ms  <a href="#a4b9d02057e067f0cd57275bf6175e793">More...</a><br /></td></tr>
 <tr class="separator:a4b9d02057e067f0cd57275bf6175e793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ff31aad5f13cb20fb336233d59b7416"><td class="memItemLeft" align="right" valign="top">volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0ff31aad5f13cb20fb336233d59b7416">matrix</a></td></tr>
-<tr class="memdesc:a0ff31aad5f13cb20fb336233d59b7416"><td class="mdescLeft">&#160;</td><td class="mdescRight">matryca LED  <a href="#a0ff31aad5f13cb20fb336233d59b7416">More...</a><br /></td></tr>
+<tr class="memdesc:a0ff31aad5f13cb20fb336233d59b7416"><td class="mdescLeft">&#160;</td><td class="mdescRight">LED matrix struct.  <a href="#a0ff31aad5f13cb20fb336233d59b7416">More...</a><br /></td></tr>
 <tr class="separator:a0ff31aad5f13cb20fb336233d59b7416"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac09b287f34287072e12729fb4b7b567b"><td class="memItemLeft" align="right" valign="top">volatile <a class="el" href="struct_relay.html">Relay</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a></td></tr>
-<tr class="memdesc:ac09b287f34287072e12729fb4b7b567b"><td class="mdescLeft">&#160;</td><td class="mdescRight">przekaznik  <a href="#ac09b287f34287072e12729fb4b7b567b">More...</a><br /></td></tr>
+<tr class="memdesc:ac09b287f34287072e12729fb4b7b567b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_relay.html" title="glowna struktura przekaznika ">Relay</a> struct.  <a href="#ac09b287f34287072e12729fb4b7b567b">More...</a><br /></td></tr>
 <tr class="separator:ac09b287f34287072e12729fb4b7b567b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1232e2b90ff16fbded16cedf690cb98"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac1232e2b90ff16fbded16cedf690cb98">bNewTime</a> = false</td></tr>
-<tr class="memdesc:ac1232e2b90ff16fbded16cedf690cb98"><td class="mdescLeft">&#160;</td><td class="mdescRight">floaga nowej sekundy, na podstawie przerwania SQW od DS3231  <a href="#ac1232e2b90ff16fbded16cedf690cb98">More...</a><br /></td></tr>
+<tr class="memdesc:ac1232e2b90ff16fbded16cedf690cb98"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag of new second, setting by DS3231 SQW overflow  <a href="#ac1232e2b90ff16fbded16cedf690cb98">More...</a><br /></td></tr>
 <tr class="separator:ac1232e2b90ff16fbded16cedf690cb98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67e62f04b80d7896d29bf0e47fe526de"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a67e62f04b80d7896d29bf0e47fe526de">bNewRoundRefresh</a> = false</td></tr>
-<tr class="memdesc:a67e62f04b80d7896d29bf0e47fe526de"><td class="mdescLeft">&#160;</td><td class="mdescRight">flaga nowego taktu odswiezenia bufora obrotowego dla czasu  <a href="#a67e62f04b80d7896d29bf0e47fe526de">More...</a><br /></td></tr>
+<tr class="memdesc:a67e62f04b80d7896d29bf0e47fe526de"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag of refresh round buffer position  <a href="#a67e62f04b80d7896d29bf0e47fe526de">More...</a><br /></td></tr>
 <tr class="separator:a67e62f04b80d7896d29bf0e47fe526de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60000f668af7252298f451d8b690d36d"><td class="memItemLeft" align="right" valign="top">volatile <a class="el" href="struct_a_d_c_voltage_data.html">ADCVoltageData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a60000f668af7252298f451d8b690d36d">adc</a></td></tr>
-<tr class="memdesc:a60000f668af7252298f451d8b690d36d"><td class="mdescLeft">&#160;</td><td class="mdescRight">dane ADC o jasnosci  <a href="#a60000f668af7252298f451d8b690d36d">More...</a><br /></td></tr>
+<tr class="memdesc:a60000f668af7252298f451d8b690d36d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ADC data about brightness.  <a href="#a60000f668af7252298f451d8b690d36d">More...</a><br /></td></tr>
 <tr class="separator:a60000f668af7252298f451d8b690d36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86fa15702b48a39597a23c011ad4c4b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_time_date.html">TimeDate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a86fa15702b48a39597a23c011ad4c4b6">RTCTime</a></td></tr>
-<tr class="memdesc:a86fa15702b48a39597a23c011ad4c4b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">czas pobierany z RTC  <a href="#a86fa15702b48a39597a23c011ad4c4b6">More...</a><br /></td></tr>
+<tr class="memdesc:a86fa15702b48a39597a23c011ad4c4b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">time from RTC  <a href="#a86fa15702b48a39597a23c011ad4c4b6">More...</a><br /></td></tr>
 <tr class="separator:a86fa15702b48a39597a23c011ad4c4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0984960e327a1697d00daef98055b22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_time_date.html">TimeDate</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af0984960e327a1697d00daef98055b22">actTime</a></td></tr>
 <tr class="separator:af0984960e327a1697d00daef98055b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41a2f7e61adfd52c7ee2f74c633e20a5"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a41a2f7e61adfd52c7ee2f74c633e20a5">uivModifyY</a></td></tr>
-<tr class="memdesc:a41a2f7e61adfd52c7ee2f74c633e20a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">flaga zmiany poziomu Y  <a href="#a41a2f7e61adfd52c7ee2f74c633e20a5">More...</a><br /></td></tr>
+<tr class="memdesc:a41a2f7e61adfd52c7ee2f74c633e20a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag of new Y level of matrix  <a href="#a41a2f7e61adfd52c7ee2f74c633e20a5">More...</a><br /></td></tr>
 <tr class="separator:a41a2f7e61adfd52c7ee2f74c633e20a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac237d1edada7773121c98af0b7ce1456"><td class="memItemLeft" align="right" valign="top">volatile int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac237d1edada7773121c98af0b7ce1456">iCountToTimer</a></td></tr>
-<tr class="memdesc:ac237d1edada7773121c98af0b7ce1456"><td class="mdescLeft">&#160;</td><td class="mdescRight">okresla ilosc powtorzen wyswietlania tekstu na matrycy  <a href="#ac237d1edada7773121c98af0b7ce1456">More...</a><br /></td></tr>
+<tr class="memdesc:ac237d1edada7773121c98af0b7ce1456"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of repetition of text on matrix  <a href="#ac237d1edada7773121c98af0b7ce1456">More...</a><br /></td></tr>
 <tr class="separator:ac237d1edada7773121c98af0b7ce1456"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2e3f0621e4544f3709a44b476c6af17"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae2e3f0621e4544f3709a44b476c6af17">bEnableDecrement</a></td></tr>
-<tr class="memdesc:ae2e3f0621e4544f3709a44b476c6af17"><td class="mdescLeft">&#160;</td><td class="mdescRight">flaga zezwolenia na dekrementacje czyszczonej pozycji w trybie czyszczenia  <a href="#ae2e3f0621e4544f3709a44b476c6af17">More...</a><br /></td></tr>
+<tr class="memdesc:ae2e3f0621e4544f3709a44b476c6af17"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag of decrement cleaning position on clearing mode  <a href="#ae2e3f0621e4544f3709a44b476c6af17">More...</a><br /></td></tr>
 <tr class="separator:ae2e3f0621e4544f3709a44b476c6af17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
-<dl class="section rcs"><dt>Modified</dt><dd>2018-04-09 </dd></dl>
+<dl class="section rcs"><dt>Modified</dt><dd>2018-04-15 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2017-11-04 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.91</dd></dl>
-<p>Plik glowny projektu </p><dl class="section see"><dt>See also</dt><dd>info.txt </dd></dl>
+<p>Project main file </p><dl class="section see"><dt>See also</dt><dd>info.txt </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="aec43762dc86e029b395d4e5819192c2d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aec43762dc86e029b395d4e5819192c2d">&#9670;&nbsp;</a></span>ISR() <span class="overload">[1/5]</span></h2>
@@ -179,7 +179,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>timer pracy matrycy LED, konieczna optymalizacja </p>
+<p>CTC timer0 overflow, refreshing matrix, required hard optimisation. </p>
 
 </div>
 </div>
@@ -199,7 +199,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>przerwanie timera w trybie CTC, odniesieni czasowe 1 MS </p>
+<p>CTC timer2 overflow with 1ms period, internal time. </p>
 
 </div>
 </div>
@@ -219,7 +219,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>przerwanie zakonczenia pomiaru ADC, odczytanie zawartosci ADC </p>
+<p>end of ADC measurement overflow, reading ADC value </p>
 
 </div>
 </div>
@@ -239,7 +239,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>przerwanie sygnalu SQW z timera DS3231, ustawienie flagi nowego czasu </p>
+<p>SQW signal from DS3231 overflow, set new time flag. </p>
 
 </div>
 </div>
@@ -259,7 +259,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>przerwanie stanu Bluetooth, inicjalizacja UART gdy uruchomiono Bluetooth </p>
+<p>switch on bluetooth overflow, init UART after turning on module </p>
 
 </div>
 </div>
@@ -293,7 +293,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>czas wyswietlany na matrycy </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="matrix__seq_8h.html#a4e1b5b094a06c8e6579e8fdaeeb08d34" title="wczytuje godzine do bufora matrycy w oparciu o alfabet, efekt powolnej zmiany cyfr (RoundBuffer) ...">LoadTimeToMatrix</a> </dd></dl>
+<p>actual time displaying on matrix </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="matrix__seq_8h.html#a4e1b5b094a06c8e6579e8fdaeeb08d34" title="load hour to matrix buffer from alphabet, roundbuffer effect on chars ">LoadTimeToMatrix</a> </dd></dl>
 
 </div>
 </div>
@@ -309,7 +309,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>dane ADC o jasnosci </p>
+<p>ADC data about brightness. </p>
 
 </div>
 </div>
@@ -325,7 +325,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>flaga zezwolenia na dekrementacje czyszczonej pozycji w trybie czyszczenia </p>
+<p>flag of decrement cleaning position on clearing mode </p>
 
 </div>
 </div>
@@ -341,7 +341,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>flaga nowego taktu odswiezenia bufora obrotowego dla czasu </p>
+<p>flag of refresh round buffer position </p>
 
 </div>
 </div>
@@ -357,7 +357,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>floaga nowej sekundy, na podstawie przerwania SQW od DS3231 </p>
+<p>flag of new second, setting by DS3231 SQW overflow </p>
 
 </div>
 </div>
@@ -373,7 +373,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>okresla ilosc powtorzen wyswietlania tekstu na matrycy </p>
+<p>number of repetition of text on matrix </p>
 
 </div>
 </div>
@@ -389,7 +389,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>matryca LED </p>
+<p>LED matrix struct. </p>
 
 </div>
 </div>
@@ -405,7 +405,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>przekaznik </p>
+<p><a class="el" href="struct_relay.html" title="glowna struktura przekaznika ">Relay</a> struct. </p>
 
 </div>
 </div>
@@ -421,7 +421,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>czas pobierany z RTC </p>
+<p>time from RTC </p>
 
 </div>
 </div>
@@ -437,7 +437,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>podstawa odniesienia czasu w milisekundach, [0 - 1000] </p>
+<p>internal time in milliseconds, [0 - 1000] </p>
 
 </div>
 </div>
@@ -453,7 +453,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>podstawa odniesienia czasu w sekundach, w kooperacji z ui16Ms </p>
+<p>internal time in seconds, cooperate with ui16Ms </p>
 
 </div>
 </div>
@@ -469,7 +469,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>flaga zmiany poziomu Y </p>
+<p>flag of new Y level of matrix </p>
 
 </div>
 </div>

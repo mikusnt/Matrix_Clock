@@ -5,7 +5,7 @@ var matrix__seq_8c =
     [ "LoadADCToMatrix", "matrix__seq_8c.html#aa5b50763624560eca352e19444fb7d59", null ],
     [ "LoadNumberToMatrix", "matrix__seq_8c.html#a1d1d03b99f56933e3c67f95c223603af", null ],
     [ "LoadTextToMatrix", "matrix__seq_8c.html#af96ba8f2c553e3f4d033b5d99d40cbc7", null ],
-    [ "LoadTimeToMatrix", "matrix__seq_8c.html#a4e1b5b094a06c8e6579e8fdaeeb08d34", null ],
+    [ "LoadTimeToMatrix", "matrix__seq_8c.html#a812b4414381487daf9cf5091094b4459", null ],
     [ "SecondsBinary", "matrix__seq_8c.html#a9c6e28e22ff5b9f740112dfd08559a2d", null ],
     [ "SetRelayModeToMatrix", "matrix__seq_8c.html#aed88225bd9bb4cb0621af63bfcc1e974", null ],
     [ "SetSeqParams", "matrix__seq_8c.html#a0b3b48b77f6a158f7b6c3d8064347b3d", null ],

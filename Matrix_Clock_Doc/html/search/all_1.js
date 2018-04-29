@@ -22,5 +22,5 @@ var searchData=
   ['alphabet_5fyx',['ALPHABET_YX',['../alphabet_8h.html#ace6e750f3ee271a8fc035afe83719cc1',1,'alphabet.h']]],
   ['animations_5fsize',['ANIMATIONS_SIZE',['../alphabet_8h.html#a2b5ec5993009da858ebcf9a88521bc46',1,'alphabet.h']]],
   ['animations_5fyx',['ANIMATIONS_YX',['../alphabet_8h.html#a88b388b7e952ad0566080b082610f8b9',1,'alphabet.h']]],
-  ['animationssign',['AnimationsSign',['../alphabet_8h.html#a86d8505804add660394a650f3b8a18eb',1,'alphabet.h']]]
+  ['animationscode',['AnimationsCode',['../alphabet_8h.html#ae4e319bc926a87d353727bf6c0280d08',1,'alphabet.h']]]
 ];

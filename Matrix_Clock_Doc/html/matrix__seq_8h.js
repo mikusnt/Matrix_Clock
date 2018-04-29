@@ -8,6 +8,7 @@ var matrix__seq_8h =
       [ "SeqTimer", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeea065c8c1ecbc02ee56e23f9f89b768c2d", null ],
       [ "SeqADC", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeea9fb31295b8ac87d9d39dcb5a4bd70675", null ],
       [ "SeqText", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeeaa850c0750851b9f1453e1cf84c730069", null ],
+      [ "SeqTextDebug", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeeaff2c4ab0dce553589087b9de1d07166c", null ],
       [ "SeqRelayNumber", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeeabe52f4a1dae78ee99e89d1add0044bc9", null ],
       [ "SeqEmpty", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeea34173e5037ca034dd12eb665d71725c2", null ]
     ] ],

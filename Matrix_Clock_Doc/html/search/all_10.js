@@ -1,6 +1,7 @@
 var searchData=
 [
   ['readadctoadcdata',['ReadADCToADCData',['../other__devices_8h.html#a13f3eec91fdb282a685b46373db29e1a',1,'other_devices.h']]],
+  ['readme_2emd',['readme.md',['../readme_8md.html',1,'']]],
   ['refreshbufferflag',['RefreshBufferFlag',['../diode__matrix_8h.html#afb47ff3cb70c99d953e54b4cd338ba38',1,'diode_matrix.h']]],
   ['register_2ec',['register.c',['../register_8c.html',1,'']]],
   ['register_2eh',['register.h',['../register_8h.html',1,'']]],
