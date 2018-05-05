@@ -118,7 +118,7 @@ void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE]) {
  *  @param		m poiner of DiodeMatrix structure
  *  @param		actual time to load to matrix buffer, approaches to real time
  *  @param		real time*/
-void LoadTimeToMatrix(volatile DiodeMatrix *m, volatile Relay *r, TimeDate *actual, TimeDate *real) {
+void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *actual, TimeDate *real) {
 	m->uitBufferX[SEC_SIGN_POS] = (real->uiSeconds % 2) == 0 ? 0x24 : 0x00;
 	for (int8_t i = 3; i >= 0; i--) {
 		// when signs are the same
@@ -144,7 +144,6 @@ void LoadTimeToMatrix(volatile DiodeMatrix *m, volatile Relay *r, TimeDate *actu
 	}
 
 	SecondsBinary(m, real->uiSeconds);
-	SetRelayModeToMatrix(m, r);
 	//LoadADCToMatrix(m, adcValue, brightness);
 
 	m->uiEndBufferPosition = SEC_END_POS + 1;
@@ -203,4 +202,15 @@ void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *re
 	}
 	uart_putc('\n');
 } // END void SetSeqParams
+
+/*! @param 		m poiner of DiodeMatrix structure
+ *  @param		y_pos y position in matrix buffer
+ *  @param		state (logic) of point in matrix buffer*/
+inline void SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch state) {
+	if (state == ON) {
+		m->uitBufferX[25] |= (1 << y_pos);
+	} else {
+		m->uitBufferX[25] &= ~(1 << y_pos);
+	}
+} // END inline void SetStatePoint
 

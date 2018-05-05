@@ -158,8 +158,11 @@ int main (void) {
 						bNewTime = false;
 					}
 
+					// loading time and devices state to matrix
 					if (bNewRoundRefresh){
-						LoadTimeToMatrix(&matrix, &relay, &actTime, &RTCTime);
+						LoadTimeToMatrix(&matrix, &actTime, &RTCTime);
+						SetStatePoint(&matrix, 6, relay.eState);
+						SetStatePoint(&matrix, 0, BLUETOOTH_IS_ON());
 						bNewRoundRefresh = false;
 					}
 				} break;
