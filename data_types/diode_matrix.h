@@ -6,8 +6,8 @@
  * $Created: 2017-11-04 $
  * @version 1.0
  *
- * Used uC pins: 0<br>
- * Header file containing logic structure of LED Matrix to display data.
+ * Uzyte piny procesora: 0<br>
+ * Plik naglowkowy obslugujacy logiczna strukture macierzy LED sluzacej do wyswietlania danych.
  * @see		register.h
  */
 
@@ -18,60 +18,59 @@
 
 /*
  *
- *		Macros
+ *		Makroinstrukcje
  *
  */
 
-//! Y size (vertical)
+//! rozmiar Y (pionowy)
 #define MATRIX_Y_SIZE 8
-//! X size (horizontal)
+//! rozmiar X (poziomy)
 #define MATRIX_X_SIZE 32
-//! X size of hardware matrix buffer
+//! rozmiar X (poziomy) bufora po ktorym algorytm porusza sie aby wyswietlic fragment
 #define BUFFER_X_SIZE 32 * 8
-//! max number of brightness
+//! maksymalna liczbowa jasnosc
 #define MAX_MATRIX_BRIGHTNESS 19
-//! max brightness in gamma correction table
-//! @see gamma_o
+//! maksymalna jesnosc wedlug korekcji gamma z tablicy gamma_o
 #define MAX_GAMMA_BRIGHTNESS 4
-//! time period to increment moving adress of buffer
+//! czas w ms po ktorym nastepuje przesuniecie poczatkowego adresu bufora
 #define INC_POS_MS 100
 
-//! orange gamma correction
 extern const uint8_t gamma_o[MAX_GAMMA_BRIGHTNESS+1];
 
 /*
  *
- *		Main data types
+ *		Glowny typ danych
  *
  */
 
-//! main structure of LED Matrix
+//! glowna struktura macierzy LED
 typedef struct {
-	//! buffer of LED state, one byte for all Y positions (vertical)
+	//! bufor jasnosci poszczegolnych diod matrycy LED, zmieniac manualnie
 	uint8_t uitBufferX[BUFFER_X_SIZE];
-	//! actual bright level of matrix, modify by function
+	//! aktualna wartosc jasnosci, zmieniana przez funkcje
 	//! @see IncrementBrightness
 	uint8_t uiBrightCount;
-	//! actual Y position (vertical), modify by function
+	//! aktualna pozycja Y, zmieniana przez funkcje
 	//! @see IncrementY
 	uint8_t uiActY;
-	//! buffer of LED state in actual Y position
+	//! bufor aktualnego dzialania LED
 	uint8_t uitBufferFlag[MATRIX_X_SIZE];
-	//! actual matrix buffer start adress, modify by function
+	//! aktualna pozycja wyswietlania danych z bufora, zmieniana przez funkcje
 	//! @see IncrementBufferPosition
 	int16_t i16BufferPosition;
-	//! matrix buffer end address, modify manually
+	//! indeks konca pozycji wyswietlania danych z bufora, zmieniac manualnie
 	uint8_t uiEndBufferPosition;
-	//! mode of displaying, modify manually
-	//! true - display clear matrix, increment start address to end buffer position
-	//! false - display first part of buffer and increment address to see end part of buffer
+	//! tryb wyswietlania, zmieniany manualnie
+	//! true - wyswietlenie pustej matrycy, pojawienie sie zawartosci bufora i wyjscie
+	//! calego mufora z matrycy
+	//! false - wyswietlenie zawartosci bufora i przejscie do konca
 	bool bIsMoving;
 	uint8_t uitRoundBufferYX[2][5];
-	//! position of right to left clearing line, set by
+	//! pozycja oczyszczania bufora, ustawiana przez
 	//! @see 	RunSlowClearedPos
 	//! @see 	DecrementTo0SlowClear
 	uint8_t uiSlowClearedPos;
-	//! brightness of matrix, modify manually
+	//! jasnosc calej matrycy
 	uint8_t uiBrightness;
 } DiodeMatrix;
 

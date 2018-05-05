@@ -2,7 +2,7 @@
  * @file tests.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-15 $
+ * $Modified: 2018-04-015 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *

@@ -2,12 +2,13 @@
  * @file alphabet.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-29 $
+ * $Modified: 2018-04-10 $
  * $Created: 2017-11-04 $
  * @version 2.0
  *
- * Used uC pins: 0<br>
- * Header file containing byte alphabet of chars in PROGMEM. Not comapible with v1.0.
+ * Uzyte piny procesora: 0<br>
+ * Plik naglowkowy przechowujacy dane na temat potrzebnych liter alfabetu, tekstow z wykorzystaniem
+ * pamieci EEPROM. Niekompatybilny z wersja 1.0
  * @see DiodeMatrix
  */
 
