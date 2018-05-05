@@ -9,7 +9,9 @@ Connected to:
 * DS3231 timer by I2C
 * HC-06 bluetooth module by RS232
 * photoresistor to brightness measurement
-# Math calculations
+
+# Timers Math calculations
+
 ## Main timer (matrix refresh)
 8bit Timer0  
 Mode: CTC  
@@ -27,4 +29,4 @@ Freq: 1kHz
 Period: 1ms  
 uC period to overflow: 20 000 000 / 1 000 = 20 000  
 Prescaler: 256  
-OCR: 78  
+OCR: 78 
