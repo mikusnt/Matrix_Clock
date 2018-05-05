@@ -2,7 +2,15 @@
  * @file matrix_seq.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
+<<<<<<< Updated upstream
  * $Modified: 2018-04-29 $
+=======
+<<<<<<< Updated upstream
+ * $Modified: 2018-04-04 $
+=======
+ * $Modified: 2018-05-05 $
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -63,20 +71,6 @@ typedef enum {
 //! actual sequence displaying by device
 //! @see SetSeqParams
 extern ActualSeq eActualSeq;
-
-/*
- *
- * 		Internal functions
- *
- */
-// laduje do bufora matrycy sekundy w binarnym kodzie BCD
-//static inline void SecondsBinary(volatile DiodeMatrix *m, volatile uint8_t seconds, uint8_t brightness)
-// laduje do bufora matrycy wybrany znak ASCII
-//static uint8_t InsertCharToMatrix(volatile DiodeMatrix *m, char sign, uint8_t position, uint8_t brightness)
-// laduje do bufora obrotowego matrycy wskazany znak na odpowiedniej pozycji
-//static void InsertCharToRoundBuffer(volatile DiodeMatrix *m, char sign, uint8_t y_pos, uint8_t brightness)
-// laduje do bufora matrycy informacje o wartosci ADC w postaci kropek na pozycji 7
-//void LoadADCToMatrix(volatile DiodeMatrix *m, uint16_t adcValue, uint8_t brightness)
 
 /*
  *

@@ -2,9 +2,9 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-15 $
+ * $Modified: 2018-05-05 $
  * $Created: 2017-11-04 $
- * @version 0.91
+ * @version 0.93
  *
  * Project main file
  * @see info.txt
