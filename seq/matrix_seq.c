@@ -119,7 +119,7 @@ void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE]) {
  *  @param		actual time to load to matrix buffer, approaches to real time
  *  @param		real time*/
 void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *actual, TimeDate *real) {
-	m->uitBufferX[SEC_SIGN_POS] = (real->uiSeconds % 2) == 0 ? 0x24 : 0x00;
+	m->uitBufferX[SEC_SIGN_POS] = (real->uiSecond % 2) == 0 ? 0x24 : 0x00;
 	for (int8_t i = 3; i >= 0; i--) {
 		// when signs are the same
 		if ((actual->uitSingleTime[i] == real->uitSingleTime[i]) && (actual->uiSingleProgress[i] < MAX_PROGRESS))
@@ -136,14 +136,14 @@ void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *actual, TimeDate *real)
 		// load right sign
 		} else if (actual->uiSingleProgress[i] == MAX_PROGRESS){
 			actual->uitSingleTime[i] = real->uitSingleTime[i];
-			LoadToGroupTime(actual);
+			LoadToDecimalTime(actual);
 			InsertCharToMatrix(m, actual->uitSingleTime[i] + DIGIT_ASCII, uitHMPos[i]);
 			// block next insertion when inserted
 			actual->uiSingleProgress[i] = MAX_PROGRESS + 1;
 		}
 	}
 
-	SecondsBinary(m, real->uiSeconds);
+	SecondsBinary(m, real->uiSecond);
 	//LoadADCToMatrix(m, adcValue, brightness);
 
 	m->uiEndBufferPosition = SEC_END_POS + 1;
@@ -208,9 +208,9 @@ void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *re
  *  @param		state (logic) of point in matrix buffer*/
 inline void SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch state) {
 	if (state == ON) {
-		m->uitBufferX[25] |= (1 << y_pos);
+		m->uitBufferX[26] |= (1 << y_pos);
 	} else {
-		m->uitBufferX[25] &= ~(1 << y_pos);
+		m->uitBufferX[26] &= ~(1 << y_pos);
 	}
 } // END inline void SetStatePoint
 

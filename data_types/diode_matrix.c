@@ -8,8 +8,8 @@
 
 const uint8_t gamma_o[MAX_GAMMA_BRIGHTNESS+1] = {0, 2, 4, 10, 19};
 
-/*! @param			m adres struktury macierzy LED
- *  @param			isMoving sposob wyswietlania*/
+/*! @param			m pointer of DiodeMatrix structure
+ *  @param			isMoving new mode of displaying*/
 void SetMoving(volatile DiodeMatrix *m, bool isMoving) {
 	m->bIsMoving = isMoving;
 	if (isMoving)
@@ -18,9 +18,9 @@ void SetMoving(volatile DiodeMatrix *m, bool isMoving) {
 		m->i16BufferPosition = 0;
 } // END void SetMoving
 
-/*! @param			m adres struktury macierzy LED
- *  @param			y_pos wspolrzedna y
- *  @param 			value piksela*/
+/*! @param			m pointer of DiodeMatrix structure
+ *  @param			y_pos y position in matrix buffer
+ *  @param 			value of pixels*/
 void SetYBuffer(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch value) {
 	register uint16_t i;
 	for (i = 0; i < BUFFER_X_SIZE; i++) {
@@ -29,7 +29,7 @@ void SetYBuffer(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch value) {
 	}
 } // END void SetYBuffer
 
-/*! @param			m adres struktury macierzy LED*/
+/*! @param			m pointer of DiodeMatrix structure*/
 void ClearBuffer(volatile DiodeMatrix *m) {
 	register uint16_t i;
 	for (i = 0; i < BUFFER_X_SIZE; i++)
@@ -37,15 +37,15 @@ void ClearBuffer(volatile DiodeMatrix *m) {
 	m->i16BufferPosition = 0;
 } // END void ClearBuffer
 
-/*! @param 			m adres struktury macierzy LED
- *  @param			y_round wspolrzedna y dla bufora obrotowego
- *  @param			x_buffer wspolrzedna poczatkowa x bufora matrycy*/
-void CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round, uint8_t x_buffer) {
-	uint8_t y0_round_mask = 0xFF << y_round;
+/*! @param 			m pointer of DiodeMatrix structure
+ *  @param			y_round_pos y start position in round buffer
+ *  @param			x_buffer_pos x start position in matrix buffer*/
+void CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round_pos, uint8_t x_buffer_pos) {
+	uint8_t y0_round_mask = 0xFF << y_round_pos;
 	uint8_t y1_round_mask = ~y0_round_mask;
 	for (uint8_t j = 0; j < 5; j++) {
-		m->uitBufferX[x_buffer + j] = 0;
-		m->uitBufferX[x_buffer + j] |= (m->uitRoundBufferYX[0][j] & y0_round_mask) >> y_round;
-		m->uitBufferX[x_buffer + j] |= (m->uitRoundBufferYX[1][j] & y1_round_mask) << (8 - y_round);
+		m->uitBufferX[x_buffer_pos + j] = 0;
+		m->uitBufferX[x_buffer_pos + j] |= (m->uitRoundBufferYX[0][j] & y0_round_mask) >> y_round_pos;
+		m->uitBufferX[x_buffer_pos + j] |= (m->uitRoundBufferYX[1][j] & y1_round_mask) << (8 - y_round_pos);
 	}
 } // END void CopyFromRoundToBuffer

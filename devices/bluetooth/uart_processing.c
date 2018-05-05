@@ -126,7 +126,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 							&& (second < 60)) {
 						DS3231_SetDate(day, month, year);
 						DS3231_SetTime(hour, minute, second);
-						DS3231_GetDate(&time->uiDays, &time->uiMonths, &time->uiYears);
+						DS3231_GetDate(&time->uiDay, &time->uiMonth, &time->uiYear);
 					} else
 						uiEndCode = ERROR_PARAMS;
 			} break;

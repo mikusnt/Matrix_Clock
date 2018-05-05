@@ -96,8 +96,8 @@ int main (void) {
 	RelayStartClicking(&relay, 0, RelayDataNumber);
 
 	wdt_enable(WDTO_120MS);
-	DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
-	DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
+	DS3231_GetTime(&RTCTime.uiHour, &RTCTime.uiMinute, &RTCTime.uiSecond);
+	DS3231_GetDate(&RTCTime.uiDay, &RTCTime.uiMonth, &RTCTime.uiYear);
 	LoadToSingleTime(&RTCTime);
 
 	sei();
@@ -128,32 +128,32 @@ int main (void) {
 				// Timer mode
 				case SeqTimer: {
 					if (bNewTime) {
-						DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
+						DS3231_GetTime(&RTCTime.uiHour, &RTCTime.uiMinute, &RTCTime.uiSecond);
 						LoadToSingleTime(&RTCTime);
 
-						if ((RTCTime.uiSeconds % 10) == 0) {
-							sprintf(ctTextBuffer, "%02d-%02d-2%03d %02d:%02d:%02d\n", RTCTime.uiDays,
-								RTCTime.uiMonths, RTCTime.uiYears, RTCTime.uiHours,
-								RTCTime.uiMinutes, RTCTime.uiSeconds);
+						if ((RTCTime.uiSecond % 10) == 0) {
+							sprintf(ctTextBuffer, "%02d-%02d-2%03d %02d:%02d:%02d\n", RTCTime.uiDay,
+								RTCTime.uiMonth, RTCTime.uiYear, RTCTime.uiHour,
+								RTCTime.uiMinute, RTCTime.uiSecond);
 							uart_puts(ctTextBuffer);
 						}
 						// display dane every 5 minutes on 10 second
-						if ((RTCTime.uiSeconds == 10) && ((RTCTime.uiMinutes % 5) == 1)) {
-							sprintf(ctTextBuffer, "%02d-%02d-2%03d", RTCTime.uiDays, RTCTime.uiMonths, RTCTime.uiYears);
+						if ((RTCTime.uiSecond == 10) && ((RTCTime.uiMinute % 5) == 1)) {
+							sprintf(ctTextBuffer, "%02d-%02d-2%03d", RTCTime.uiDay, RTCTime.uiMonth, RTCTime.uiYear);
 							eActualSeq = SeqText;
 							RunSlowClearedPos(&matrix);
 						}
 
 						// activate relay and read date every hour
-						if (RTCTime.uiSeconds == 0) {
+						if (RTCTime.uiSecond == 0) {
 							ResetProgress(&actTime);
-							if (RTCTime.uiMinutes == 0) {
-								RelayStartClicking(&relay, RTCTime.uiHours, RelayDataHours);
-								DS3231_GetDate(&RTCTime.uiDays, &RTCTime.uiMonths, &RTCTime.uiYears);
+							if (RTCTime.uiMinute == 0) {
+								RelayStartClicking(&relay, RTCTime.uiHour, RelayDataHours);
+								DS3231_GetDate(&RTCTime.uiDay, &RTCTime.uiMonth, &RTCTime.uiYear);
 							}
 							else
-								if ((RTCTime.uiMinutes % 15) == 0)
-									RelayStartClicking(&relay, RTCTime.uiMinutes, RelayDataMinutes);
+								if ((RTCTime.uiMinute % 15) == 0)
+									RelayStartClicking(&relay, RTCTime.uiMinute, RelayDataMinutes);
 						}
 						bNewTime = false;
 					}
@@ -169,9 +169,9 @@ int main (void) {
 				case SeqADC: {
 					// write ADC number to matrix and UART
 					if (bNewTime) {
-						DS3231_GetTime(&RTCTime.uiHours, &RTCTime.uiMinutes, &RTCTime.uiSeconds);
+						DS3231_GetTime(&RTCTime.uiHour, &RTCTime.uiMinute, &RTCTime.uiSecond);
 						LoadNumberToMatrix(&matrix, adc.ui16PhotoAvg);
-						if ((RTCTime.uiSeconds % 10) == 0) {
+						if ((RTCTime.uiSecond % 10) == 0) {
 							uart_puts_p(PSTR("Brightness: "));
 							ctTextBuffer[4] = '\n';
 							uart_puts(ctTextBuffer);
@@ -216,7 +216,7 @@ ISR(TIMER2_COMPA_vect) {
 	// zmiana w pozycji bufora i powrot do SeqTimer w przypadku wyswietlania tekstu
 	// increasing buffer position and rename seq to SeqTimer when active is SeqText and iCountToTimer == 0
 	if ((ui16Ms % INC_POS_MS) == 0)
-		if (IncrementBufferPosition(&matrix)) {
+		if (IncrementBufferStart(&matrix)) {
 			if ((eActualSeq == SeqText) && (matrix.uiSlowClearedPos == 0) && ((--iCountToTimer) == 0) ) {
 				eActualSeq = SeqTimer;
 				SetSeqParams(&matrix, &actTime, &relay);

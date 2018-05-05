@@ -2,12 +2,12 @@
  * @file date_time.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-02 $
+ * $Modified: 2018-05-05 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
- * Uzyte piny procesora: 0<br>
- * Plik naglowkowy zawierajacy obsluge czasu i daty
+ * Used uC pins: 0<br>
+ * Header file containing date and time structure.
  */
 
 #ifndef DEVICES_DATE_TIME_H_
@@ -17,108 +17,93 @@
 
 /*
  *
- *		Makroinstrukcje
+ *		Macros
  *
  */
 
-//! czas dekrementacji cyfry czasu o 1 liczony w milisekundach [ms]
+//! time of decrement time digit in milliseconds
 #define TIME_DECREMENT_MS 100
-
+//! max value of progress between displaying time and actual RTC time
 #define MAX_PROGRESS 8
 
 
 /*
  *
- *		Glowne typy danych
+ *		Main data types
  *
  */
 
-//! polozenie poszczegolnych wartosci czasu w tablicy
+//!position of time digit in single digit mode
 /*! @see Time*/
 typedef enum {
-	TimeH10Pos = 0,		//!< cyfra dziesiatek godziny
-	TimeH0Pos,     		//!< cyfra jednosci godziny
-	TimeM10Pos,   		//!< cyfra dziesiatek minuty
-	TimeM0Pos,     		//!< jednosci minuty
-	TimeS10Pos,    		//!< cyfra dziesiatek sekundy
-	TimeS0Pos      		//!< jednosci sekundy
+	TimeH10Pos = 0,		//!< digit of tens of hour
+	TimeH0Pos,     		//!< digit of ones of hour
+	TimeM10Pos,   		//!< digit of tens of minute
+	TimeM0Pos,     		//!< digit of ones of minute
+	TimeS10Pos,    		//!< digit of tens of second
+	TimeS0Pos      		//!< digit of ones of second
 } SingleTimePos;
 
-//! glowna struktura czasu
+//! main time structure
 typedef struct {
-	//! godzina dziesietnie
-	uint8_t uiHours;
-	//! minuty dziesietnie
-	uint8_t uiMinutes;
-	//! sekundy dziesietnie
-	uint8_t uiSeconds;
-	//! tablica poszczegolnych cyfr czasu
+	//! decimal hour
+	uint8_t uiHour;
+	//! decimal minute
+	uint8_t uiMinute;
+	//! decimal second
+	uint8_t uiSecond;
+	//! table of single digit time
 	/*! @see SingleTimePos*/
 	uint8_t uitSingleTime[6];
+	//! table of progress between displaying time and actual RTC time
 	uint8_t uiSingleProgress[6];
-
-	//! dni miesiaca dziesietnie
-	uint8_t uiDays;
-	//! miesiace dziesietnie
-	uint8_t uiMonths;
-	//! trzycyfrowy rok (bez tysiecy)
-	uint8_t uiYears;
+	//! decimal day
+	uint8_t uiDay;
+	//! decimal month
+	uint8_t uiMonth;
+	//! three digit year (hundreds, tens, ones)
+	uint8_t uiYear;
 } TimeDate;
-/*
-//! glowna struktura daty
-typedef struct {
-	//! dni miesiaca dziesietnie
-	uint8_t uiDays;
-	//! miesiace dziesietnie
-	uint8_t uiMonths;
-	//! trzycyfrowy rok (bez tysiecy)
-	uint8_t uiYears;
-} Date;
-*/
+
 /*
  *
- *		Deklaracje funkcji
+ *		Declaration of functions
  *
  */
 
-//! inicjalizacja struktury
+//! initialization of time structure
 inline void TimeInit(TimeDate *t);
-//! rozbija dwucyfrowe skladniki czasu na jednocyfrowe
+//! unpack decimal time to one digit time
 inline void LoadToSingleTime(TimeDate *t);
-extern void IncreaseProgress(TimeDate *from, TimeDate *to);
+//! reset table of progress to 0
 extern void ResetProgress(TimeDate *time);
-
-// pakuje czas z pojedynczych cyfr na liczby
-extern void LoadToGroupTime(TimeDate *t);
-
-// aktualizuje czas w buforze na podstawie oryginalnego
-//extern void TryTimeUpdateMS(Time *edit_from, Time *to, bool bWithSlowDecrement);
+//! pack one digit time to decimal time
+extern void LoadToDecimalTime(TimeDate *t);
 
 /*
  *
- *		Funkcje inline
+ *		Inline functions
  *
  */
-/*! w tym ladowanie najpotrzebniejszych zmiennych
- * @param 		t adres struktury czasu*/
+
+/*! @param 		t pointer of time structure*/
 inline void TimeInit(TimeDate *t) {
 	for (int i = TimeH10Pos; i <= TimeS0Pos; i++) {
 		t->uitSingleTime[i] = 0;
 		t->uiSingleProgress[i] = 0;
 	}
-}
+} // END inline void TimeInit
 
-/*!
- * @param 		t adres struktury czasu*/
+/*! @param 		t pointer of time structure*/
 inline void LoadToSingleTime(TimeDate *t) {
-	t->uitSingleTime[TimeH10Pos] = t->uiHours / 10;
-	t->uitSingleTime[TimeH0Pos] = t->uiHours % 10;
+	t->uitSingleTime[TimeH10Pos] = t->uiHour / 10;
+	t->uitSingleTime[TimeH0Pos] = t->uiHour % 10;
 
-	t->uitSingleTime[TimeM10Pos] = t->uiMinutes / 10;
-	t->uitSingleTime[TimeM0Pos] = t->uiMinutes % 10;
+	t->uitSingleTime[TimeM10Pos] = t->uiMinute / 10;
+	t->uitSingleTime[TimeM0Pos] = t->uiMinute % 10;
 
-	t->uitSingleTime[TimeS10Pos] = t->uiSeconds / 10;
-	t->uitSingleTime[TimeS0Pos] = t->uiSeconds % 10;
+	t->uitSingleTime[TimeS10Pos] = t->uiSecond / 10;
+	t->uitSingleTime[TimeS0Pos] = t->uiSecond % 10;
 } // END inline void LoadToSingleTime
 
 
