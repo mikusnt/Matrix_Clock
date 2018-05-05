@@ -116,7 +116,7 @@ inline void ReadADCToADCData(volatile ADCVoltageData *a, volatile uint8_t *brigh
 		// gdy zakonczono pomiary fotorezystora
 		a->ui16PhotoAvg = a->ui16PhotoSum / ADC_READ_COUNT;
 		a->ui16PhotoSum = 0;
-		HystData hystData = {800, 20, gamma_o[2], gamma_o[4], a->ui16PhotoAvg, bright};
+		HystData hystData = {800, 20, gamma_o[1], gamma_o[3], a->ui16PhotoAvg, bright};
 		Hysteresis(&hystData);
 	}
 } // END inline void ReadADCToADCData

@@ -2,7 +2,7 @@
  * @file matrix_seq.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-04 $
+ * $Modified: 2018-04-29 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -27,8 +27,10 @@
 
 //! size of text buffer plus 1 to end of char table
 #define TEXT_BUFFER_SIZE ((BUFFER_X_SIZE / 4) + 1)
-//! position x of colon in matrix buffer
+//! x position of colon in matrix buffer
 #define SEC_SIGN_POS 12
+//! x position of state points
+#define STATE_POS 25
 //! end position of binary seconds counter block in matrix buffer
 #define SEC_END_POS 31
 //! reduction from ASCII to number
@@ -84,10 +86,13 @@ extern ActualSeq eActualSeq;
 //! load text to matrix buffer from alphabet
 extern void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE]);
 //! load hour to matrix buffer from alphabet, roundbuffer effect on chars
-extern void LoadTimeToMatrix(volatile DiodeMatrix *m, volatile Relay *r, TimeDate *from, TimeDate *to);
+extern void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to);
 //! load one 5 digit integer to matrix buffer
 extern void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number);
 //! set parametrs when sequence is changed
 extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *relay);
+//! set one device state point to matrix buffer
+extern void SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch state);
+
 
 #endif /* MATRIX_SEQUENCES_H_ */
