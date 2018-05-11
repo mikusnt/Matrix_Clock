@@ -2,11 +2,12 @@
  * @file tests.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2 gru 2017 $
- * $Created: 2 gru 2017 $
- * @version 0.1
- * Testy poszczegolnych funkcji urzadzenia.
- * Ka¿dy test powinien byc uruchomiony w petli glownej po inicjalizacji skladowych testowych.
+ * $Modified: 2018-04-15 $
+ * $Created: 2017-11-04 $
+ * @version 1.0
+ *
+ * Simple tests of some basic functions.
+ * Test should be run in main function (infinite loop).
  */
 #ifndef TESTS_H_
 #define TESTS_H_
@@ -19,13 +20,14 @@
 #include "data_types/diode_matrix.h"
 #include "devices/register.h"
 
-//! testuje dzialanie przekaznika dla wszystkich godzin oraz wypisuje godzine na rejestrze X0
+//! tests the relay's all hours operations
 extern void Test_Relay_Hours(volatile Relay *r);
-//! testuje dzialanie przekaznika dla wszystkich minut oraz wypisuje minuty na rejestrze X0
+//! tests the ralay's all minutes operations
 extern void Test_Relay_Minutes(volatile Relay *r);
-//! testuje dzialanie rejestru Y
+//! tests Y shift register operations
+//! @see SendRegisterY
 extern void Test_Y(uint8_t *i);
-//! testuje dzialanie matrycy LED poprzez wyswietlanie 4 poziomow jasnosci
+//! tests LED matrix, try to show 4 brightness levels
 extern void Test_MatrixBuffer(volatile DiodeMatrix *m);
 
 #endif /* TESTS_H_ */

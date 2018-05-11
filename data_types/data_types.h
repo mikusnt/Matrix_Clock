@@ -2,48 +2,48 @@
  * @file data_types.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-03-29 $
+ * $Modified: 2018-05-05 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
- * Plik naglowkowy zawierajacy uniwersalne makra i typy danych.
+ * Header file containing universal macros and data types.
  */
 
 #ifndef DATA_TYPES_H_
 #define DATA_TYPES_H_
 
-#include "../group_includes.h"
+#include <util/delay.h>
+#include <stdlib.h>
+#include <avr/wdt.h>
 
-/* Format zmiennych:
- * 		1. skrot typu
- * 		2. nazwa
- * 		3. parametr opcjonalny:
- * 			_e - edycja // domyslny przy wskaznikach
+/* Variables name format:
+ * 		1. type shortcut
+ * 		2. name
+ * 		3. pointer optional parameters:
+ * 			_e - edit // default in pointers
  * 			_s - set
- *
- *
- *
  */
+
 /*
  *
- *		Makroinstrukcje
+ *		Macros
  *
  */
 
-//! opoznienie wyrazane w sekundach
+//! uC delay in seconds
 #define D_S(x) _delay_ms(x*1000)
-//! opoznienie wyrazane w milisekundach [ms]
+//! uC delay in milliseconds
 #define D_MS(x) _delay_ms(x)
-//! opoznienie wyrazanie w mikrosekundach [us]
+//! uC delay in microseconds
 #define D_US(x) _delay_us(x)
 
 /*
  *
- *		Uniwersalne yypy danych
+ *		Universal data types
  *
  */
 
-//! osiem jednobitowych flag, natychmiastowy dostep do dowolnego bitu
+//! 8 one bit flags, direct access into bits
 /*! @see ByteFlag*/
 typedef struct {
 	uint8_t b0 : 1; 	//!< bit 0
@@ -56,51 +56,48 @@ typedef struct {
 	uint8_t b7 : 1;		//!< bit 7
 } Flag;
 
-//! umozliwia odnoszenie sie do calego bajtu jak i poszczegolnych bitow
+//! union between one byte and bit flags
 typedef union {
-	//! bajt danych
-	uint8_t value;
-	Flag flag;
+	uint8_t value;		//!< data byte
+	Flag flag;			//!< bit flag
 } ByteFlag;
 
-//! informacja o dzialaniu urzadzenia
+//! information about device state
 typedef enum {
-	OFF = 0, 			//!< wylaczony
-	ON = 1				//!< wlaczony
+	OFF = 0, 			//!< deactivated
+	ON = 1				//!< activated
 } BinarySwitch;
 
-//! informacja o stanie logicznym
+//! information about logic state
 typedef enum {
-	LOW = 0, 			//!< stan niski
-	HIGH = 1			//!< stan wysoki
+	LOW = 0, 			//!< slow state
+	HIGH = 1			//!< high state
 } LogicState;
 
-//! dodatkowa tablica do wyswietlania danych rejestru jako debugger (jedna pozycja to jedna dioda)
-extern uint8_t tabl[];
-
-//! laduje byte do tabl, wykorzystywana jako debugger
-inline void LoadToBuffer(uint8_t byte) {
-	uint8_t i;
-	for (i = 0; i < 8; i++) {
-		tabl[i] = (byte % 2) ? 1 : 0;
-		byte >>= 1;
-	}
-}
-
-//! parametry wejsciowe funkcji Histereza
+//! arguments of hystheresis
 typedef struct {
-	uint16_t ui16Threshold;	//!< wartosc liczby gdy zmiana stanu wytjsciowego
-	uint8_t uiDelta;		//!< poziom histerezy
-	uint8_t uiMinValue;		//!< minimalna wartosc wyjsciowa
-	uint8_t uiMaxValue;		//!< maksymalna wartosc wyjsciowa
-	uint16_t ui16Value;		//!< na jej podstawie generowane jest wyjscie, uiThreshold to prog dla tej liczby
-	uint8_t *uiOutValue;	//!< wyprowadzony za zewnatrz wynik histerezy, przyjmuje wartosci uiMinValue i uiMaxValue
+	uint16_t ui16Threshold;	//!< center point value
+	uint8_t uiDelta;		//!< delta
+	uint8_t uiMinValue;		//!< minimum output value
+	uint8_t uiMaxValue;		//!< maximum output value
+	uint16_t ui16Value;		//!< input value
+	volatile uint8_t *uiOutValue_s;	//!< output value
 } HystData;
 
+/*! @param			sHistData input parameters and output*/
 inline void Hysteresis(HystData *sHistData) {
 	if (sHistData->ui16Value < (sHistData->ui16Threshold - sHistData->uiDelta))
-		*(sHistData->uiOutValue) = sHistData->uiMinValue;
+		*(sHistData->uiOutValue_s) = sHistData->uiMinValue;
 	if (sHistData->ui16Value > (sHistData->ui16Threshold + sHistData->uiDelta))
-			*(sHistData->uiOutValue) = sHistData->uiMaxValue;
-}
+			*(sHistData->uiOutValue_s) = sHistData->uiMaxValue;
+} // END inline void Hysteresis
+
+//! reset uC
+inline void Reset_UC() {
+	while(1){
+		wdt_enable(WDTO_15MS);
+		while(1);
+	}
+} // END inline void Reset_UC
+
 #endif /* DATA_TYPES_H_ */

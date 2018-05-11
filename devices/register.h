@@ -2,7 +2,7 @@
  * @file register.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-03-29 $
+ * $Modified: 2018-04-02 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -175,7 +175,7 @@ extern void RegistersInit();
 //! wysyla pojedynczy bit do rejestru Y
 inline void SendRegisterY(volatile BinarySwitch eB, bool bWithLoad);
 //! wysyla tablice bitow do rejestow X0 - X3
-inline void SendRegistersX(volatile uint8_t uitBuffer[32], bool bWithLoad);
+inline void SendRegistersX(volatile uint8_t uitLineBuffer[32], bool bWithLoad);
 //! oczyszcza rejestry X0 - X3 poprzez wyslanie zer
 inline void ClearRegistersX(bool bWithLoad);
 //! wysyla tablice bitow do rejestru X0
@@ -220,20 +220,19 @@ inline void SendRegisterY(volatile BinarySwitch eB, bool bWithLoad) {
 	if (bWithLoad) LATCH_01();
 } // END inline void SendRegisterY
 
-/*! @param		uitBuffer tablica bitow danych szeregowych dla rejestrow X0 - X3
- *  @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie
- *  @param		bWithData decyzja o tym czy wysylac dane z uitBuffer czy same zera*/
-inline void SendRegistersX(volatile uint8_t uitBuffer[32], bool bWithLoad) {
+/*! @param		uitLineBuffer tablica bitow danych szeregowych dla rejestrow X0 - X3
+ *  @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie*/
+inline void SendRegistersX(volatile uint8_t uitLineBuffer[32], bool bWithLoad) {
 	register int8_t i;
 	// 8 bitow do 4 rejestrow, od tylu ze wzgledu na przesuwnosc rejestru, pierwsze bity beda osatnimi
 	for (i = 0; i < 8; i++) {
-		if (uitBuffer[i]) X0_DATA_HIGH();
+		if (uitLineBuffer[0 + i]) X0_DATA_HIGH();
 			else X0_DATA_LOW();
-		if (uitBuffer[i + 8]) X1_DATA_HIGH();
+		if (uitLineBuffer[8 + i]) X1_DATA_HIGH();
 			else X1_DATA_LOW();
-		if (uitBuffer[i + 16]) X2_DATA_HIGH();
+		if (uitLineBuffer[16 + i]) X2_DATA_HIGH();
 			else X2_DATA_LOW();
-		if (uitBuffer[i + 24]) X3_DATA_HIGH();
+		if (uitLineBuffer[24 + i]) X3_DATA_HIGH();
 			else X3_DATA_LOW();
 		X_CLK_01();
 	}

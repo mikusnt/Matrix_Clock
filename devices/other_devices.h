@@ -2,7 +2,7 @@
  * @file other_devices.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-30-29 $
+ * $Modified: 2018-04-02 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
@@ -67,10 +67,6 @@ typedef struct {
 	uint16_t ui16PhotoSum;
 	//! srednia wartosc ADC da fotorezystora
 	uint16_t ui16PhotoAvg;
-	//! aktualna wartosc jasnosci matrycy
-	uint8_t uiActBright;
-	//! flaga nowej wartosci jasnosci, ustawiana przez ReadADCToADCData
-	bool bNewBright;
 } ADCVoltageData;
 
 /*
@@ -88,9 +84,10 @@ extern void ADCInit(volatile ADCVoltageData *a);
 //! uruchomienie odczytu ADC
 inline void ADCStart();
 //! zaladowanie odczytanych danych do struktury ADC
-inline void ReadADCToADCData(volatile ADCVoltageData *a);
+inline void ReadADCToADCData(volatile ADCVoltageData *a, volatile uint8_t *bright);
 //! inicjalizacja przyciskow
 extern void PCINTInit();
+extern void PowerReductionInit();
 
 
 /*
@@ -107,8 +104,9 @@ inline void ADCStart() {
 
 /*! jest wykonywany jako obsluga przerwania pomiaru ADC
  * @param 		a adres struktury przetwornika ADC
+ * @param		bright adres jasnosci wynikowej
  * @see ADCStart()*/
-inline void ReadADCToADCData(volatile ADCVoltageData *a) {
+inline void ReadADCToADCData(volatile ADCVoltageData *a, volatile uint8_t *bright) {
 	// dodawanie skladnikow sumy
 	a->ui16PhotoSum += ADC;
 
@@ -118,13 +116,8 @@ inline void ReadADCToADCData(volatile ADCVoltageData *a) {
 		// gdy zakonczono pomiary fotorezystora
 		a->ui16PhotoAvg = a->ui16PhotoSum / ADC_READ_COUNT;
 		a->ui16PhotoSum = 0;
-		uint8_t out = a->uiActBright;
-		HystData hystData = {800, 20, gamma_o[1], gamma_o[3], a->ui16PhotoAvg, &out};
+		HystData hystData = {800, 20, gamma_o[1], gamma_o[3], a->ui16PhotoAvg, bright};
 		Hysteresis(&hystData);
-		if (a->uiActBright != out) {
-			a->uiActBright = out;
-			a->bNewBright = true;
-		}
 	}
 } // END inline void ReadADCToADCData
 

@@ -2,12 +2,20 @@
  * @file matrix_seq.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-03-29 $
+<<<<<<< Updated upstream
+ * $Modified: 2018-04-29 $
+=======
+<<<<<<< Updated upstream
+ * $Modified: 2018-04-04 $
+=======
+ * $Modified: 2018-05-05 $
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
  * $Created: 2017-11-04 $
  * @version 1.0
  *
- * Uzyte piny procesora: 0<br>
- * Plik naglowkowy zawierajacy metody wypelniania matrycy LED danymi.
+ * Used uC pins: 0<br>
+ * Header file containing functions to fill LED matrix buffer.
  * @see DiodeMatrix
  * @see alphabet.h
  */
@@ -25,70 +33,60 @@
 #include "alphabet.h"
 
 
-//! rozmiar bufora znakowego, 32 znaki i \0
-#define TEXT_BUFFER_SIZE 33
-
-//! pozycja dwukropka w buforze matrycy
+//! size of text buffer plus 1 to end of char table
+#define TEXT_BUFFER_SIZE ((BUFFER_X_SIZE / 4) + 1)
+//! x position of colon in matrix buffer
 #define SEC_SIGN_POS 12
-//! ostania pozycja bloku binarnego sekundkina w buforze matrycy
+//! x position of state points
+#define STATE_POS 25
+//! end position of binary seconds counter block in matrix buffer
 #define SEC_END_POS 31
-//! przejscie z liczby na liczbe z wg ASCII
+//! reduction from ASCII to number
 #define DIGIT_ASCII 48
 
 
-//! pozycje godzin i minut bloku binarnego sekundkina w buforze matrycy
+//! position of hour and minute digit in binary seconds counter in matrix buffer
 extern uint8_t uitHMPos[4];
-//! uniwersalny bufor danych tekstowych
+//! universal data buffer
 //! @see uart_processing.h
 extern char ctTextBuffer[TEXT_BUFFER_SIZE];
 
-//! mozliwe sekwencje pracy urzadzenia
+//! device's sequences of work
 typedef enum {
 	SeqTimer = 't',
 	SeqADC = 'a',
 	SeqText = 'e',
+	SeqTextDebug = 'd',
 	SeqRelayNumber = 'n',
 	SeqEmpty = 'c'
 } ActualSeq;
 
-//! dodatkowe zadania, ktore obsluguje urzadzenie
+//! device's fimple tasks
 typedef enum {
 	TaskSetPix = 'p',
-	TaskRelay = 'r'
+	TaskRelayNumber = 'r',
+	TaskRelayMode = 'm'
 } DeviceTask;
 
-//! ektualnie aktywna sekwencja
+//! actual sequence displaying by device
 //! @see SetSeqParams
 extern ActualSeq eActualSeq;
 
 /*
  *
- * 		Funkcje wewnetrzne
+ *		External functions
  *
  */
-// laduje do bufora matrycy sekundy w binarnym kodzie BCD
-//static inline void SecondsBinary(volatile DiodeMatrix *m, volatile uint8_t seconds, uint8_t brightness)
-// laduje do bufora matrycy wybrany znak ASCII
-//static uint8_t InsertCharToMatrix(volatile DiodeMatrix *m, char sign, uint8_t position, uint8_t brightness)
-// laduje do bufora obrotowego matrycy wskazany znak na odpowiedniej pozycji
-//static void InsertCharToRoundBuffer(volatile DiodeMatrix *m, char sign, uint8_t y_pos, uint8_t brightness)
-// laduje do bufora matrycy informacje o wartosci ADC w postaci kropek na pozycji 7
-//void LoadADCToMatrix(volatile DiodeMatrix *m, uint16_t adcValue, uint8_t brightness)
+//! load text to matrix buffer from alphabet
+extern void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE]);
+//! load hour to matrix buffer from alphabet, roundbuffer effect on chars
+extern void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to);
+//! load one 5 digit integer to matrix buffer
+extern void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number);
+//! set parametrs when sequence is changed
+extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *relay);
+//! set one device state point to matrix buffer
+extern void SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch state);
 
-/*
- *
- *		Funkcje zewnetrzne
- *
- */
-//! wczytuje dany tekst do buf0ra matrycy w oparciu o alfabet
-extern void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE], uint8_t brightness);
-//! wczytuje godzine do bufora matrycy w oparciu o alfabet, efekt powolnej zmiany cyfr (RoundBuffer)
-extern void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to, uint8_t brightness);
-//! wczytuje date w formacie dd/mm/rrrr do bufora matrycy
-extern void LoadDateToMatrix(volatile DiodeMatrix *m, TimeDate *time, uint8_t brightness);
-//! wczytuje liczbe calkowita w formacie 5 cyfr do bufora matrycy
-extern void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number, uint8_t brightness);
-//! ustawia potrzebne parametry w przypadku zmiany sekwencji
-extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *relay, uint8_t brightness);
 
 #endif /* MATRIX_SEQUENCES_H_ */

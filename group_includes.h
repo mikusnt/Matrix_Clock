@@ -2,13 +2,12 @@
  * @file group_includes.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2017-11-26 $
+ * $Modified: 2018-04-02 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
- * Uzyte piny procesora: 0<br>
- * Plik naglowkowy zawierajacy najczesciej uzywane include aby skrocic zapis w
- * innych plikach naglowkowych
+ * Used uC pins: 0<br>
+ * Header file containing the most common libraries in project/
  */
 
 #ifndef GROUP_INCLUDES_H_
@@ -24,6 +23,7 @@
 #include <avr/pgmspace.h>
 #include <avr/wdt.h>
 #include <avr/cpufunc.h>
+#include <avr/eeprom.h>
 #include "data_types/data_types.h"
 
 

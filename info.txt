@@ -9,10 +9,10 @@ Tryb: CTC
 Odœwie¿anie matrycy: 60Hz
 Iloœc Y poziomów matrycy: 8
 Iloœc poziomów jasnoœci: 20
-Iloœc taktów do wyzwolenia: 20 000 000 / 60 / 8 / 20 = 2084
+Iloœc taktów do wyzwolenia: 20 000 000 / 100 / 8 / 20 = 1250
 Timer sprzêtowy: 8 bitowy Timer0
 Preskaler: 64
-OCR: 33
+OCR: 20
 
 Obliczenia konfiguracyjne timera podstawy czasu:
 Tryb: CTC
@@ -21,5 +21,3 @@ Iloœc taktów do wyzwolenia: 20 000 000 / 1 0000 = 20 000
 Timer sprzêtowy: 8 bitowy Timer2
 Preskaler: 256
 OCR: 78
-
-Info na temat ladowania li-ion:

@@ -1,0 +1,28 @@
+var other__devices_8h =
+[
+    [ "ADCVoltageData", "struct_a_d_c_voltage_data.html", "struct_a_d_c_voltage_data" ],
+    [ "ADC_ADR_IS", "other__devices_8h.html#a0e5b42275c76fc3869de5212bdcb7b0e", null ],
+    [ "ADC_BAT", "other__devices_8h.html#a7e10f3eb0c323a3a6e0686e31c142965", null ],
+    [ "ADC_PHOTO", "other__devices_8h.html#af3779220f71d53e6dd81b8f1ddc25ba0", null ],
+    [ "ADC_PHOTO_ADR", "other__devices_8h.html#a2ece1145fa7d8f15afce20734f22c1b1", null ],
+    [ "ADC_READ_COUNT", "other__devices_8h.html#ae9cdde9797d4ed7185ae9d13d7514d78", null ],
+    [ "ADMUX_MASK", "other__devices_8h.html#a6b302cdb74baab13cf62df3b92b8a6e4", null ],
+    [ "BLUETOOTH_ADDR", "other__devices_8h.html#acfb0263dffab16ec335955aa686dde42", null ],
+    [ "BLUETOOTH_DDR", "other__devices_8h.html#a6370d9b9f5f12f26eeb57ed60cb26c88", null ],
+    [ "BLUETOOTH_IS_ON", "other__devices_8h.html#a74a1bbc40b1d3ba66ac0209d4fcf37e5", null ],
+    [ "BLUETOOTH_PIN", "other__devices_8h.html#a062f94cc5279ab4e7bf450232898ca3f", null ],
+    [ "BLUETOOTH_PORT", "other__devices_8h.html#ab692bdcbb025f8eeb01298116c6b9277", null ],
+    [ "PHOTO_TO_BATTERY_RATIO", "other__devices_8h.html#ad052129b57c0ea27ed930bf544b840c0", null ],
+    [ "SQW_ADDR", "other__devices_8h.html#a8612914f68eb9de82ef3df62505c33ca", null ],
+    [ "SQW_DDR", "other__devices_8h.html#a06a23a4aa336e44cfb4c4f1f1aea0bd9", null ],
+    [ "SQW_IS_HIGH", "other__devices_8h.html#a649ea2bf2e2ffc6769b2bd877d02c1ed", null ],
+    [ "SQW_PIN", "other__devices_8h.html#a871347c5959098ce664234d8e081e29f", null ],
+    [ "SQW_PORT", "other__devices_8h.html#a8165c462bbe28004e1d8dd6a93c7a35c", null ],
+    [ "ADCInit", "other__devices_8h.html#a3cc2b8612c7a074d162b9c8fc115d8a7", null ],
+    [ "ADCStart", "other__devices_8h.html#a585fbc00b99ebf45a362e92aea115160", null ],
+    [ "PCINTInit", "other__devices_8h.html#adc28239638e2bf39f17f3d9a3937d812", null ],
+    [ "PowerReductionInit", "other__devices_8h.html#af30095538e3b46ee645e718f91e5f42b", null ],
+    [ "ReadADCToADCData", "other__devices_8h.html#a13f3eec91fdb282a685b46373db29e1a", null ],
+    [ "Timer0Init", "other__devices_8h.html#aba017025ab450fd915cb22f19c6ff87b", null ],
+    [ "Timer2Init", "other__devices_8h.html#a8df3b0bec1a50af5a7014dc8ac6fb438", null ]
+];
