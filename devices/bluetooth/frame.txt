@@ -15,9 +15,7 @@ Rename sequence:
 Tasks:
   	tp9999$					control one pixel (Y {1}, X {2}, state {1})
   	tr999$					relay coding number
-  	tr9$					relay one click, number is mode
-  	tr_9$					relay fast clicking for limited time in seconds	
-  	  f	
+  	tr9999$					relay, number of clicks {3}, mode {1}
   	tm9$					relay state, 0 - off, 1 - on
   	d99_99_999 99_99_99$	set new date and time (day {2}, month {2}, year {3}, hour {2}, minute {2}, second {2})
   	   -  -      :  :	

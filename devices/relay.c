@@ -17,8 +17,8 @@ static void RelayReset(volatile Relay *r) {
 	r->ui16ActTimeMS = 0;
 	r->uiByteInfo = 0;
 	r->uiByteLength = 0;
-	r->uiStartTimeMS = 0;
-	r->uiStartLength = 0;
+	r->ui16StartTimeMS = 0;
+	r->ui16StartLength = 0;
 	r->bWithData = false;
 }
 /*! change hardware relay state
@@ -85,20 +85,20 @@ void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType
 				} else {
 					relay->uiByteInfo = RoundByte(uiByteInfo, &relay->uiByteLength);
 				}
-				relay->uiStartLength = RELAY_HIGH_START_H_COUNT;
-				relay->uiStartTimeMS = RELAY_HIGH_START_MS;
+				relay->ui16StartLength = RELAY_HIGH_START_H_COUNT;
+				relay->ui16StartTimeMS = RELAY_HIGH_START_MS;
 			} break;
 			case RelayDataMinutes: {
 				while (uiByteInfo >= 60) uiByteInfo -= 60;
 				if (uiByteInfo > 0)
 					relay->uiByteInfo = RoundByte(uiByteInfo / 15, &relay->uiByteLength);
-				relay->uiStartLength = RELAY_HIGH_START_M_COUNT;
-				relay->uiStartTimeMS = RELAY_HIGH_START_MS;
+				relay->ui16StartLength = RELAY_HIGH_START_M_COUNT;
+				relay->ui16StartTimeMS = RELAY_HIGH_START_MS;
 			} break;
 			case RelayDataNumber: {
 				relay->uiByteInfo = RoundByte(uiByteInfo, &relay->uiByteLength);
-				relay->uiStartLength = RELAY_HIGH_START_N_COUNT;
-				relay->uiStartTimeMS = RELAY_HIGH_START_MS_NUMBER;
+				relay->ui16StartLength = RELAY_HIGH_START_N_COUNT;
+				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_NUMBER;
 			}
 		}
 
@@ -117,11 +117,11 @@ void RelayTryClickMS(volatile Relay *relay) {
 	if (relay->uiByteLength){
 		if (!(--relay->ui16ActTimeMS)) {
 			// when start sequence
-			if (relay->uiStartLength) {
+			if (relay->ui16StartLength) {
 					RELAY_CH();
-					relay->ui16ActTimeMS = relay->uiStartTimeMS;
+					relay->ui16ActTimeMS = relay->ui16StartTimeMS;
 				// rename to pause
-				if (--relay->uiStartLength == 0) {
+				if (--relay->ui16StartLength == 0) {
 					RelaySW(LOW);
 					relay->ui16ActTimeMS = RELAY_LOW_START_MS;
 				}
@@ -169,27 +169,26 @@ void SetRelayState(volatile Relay *relay, BinarySwitch eState) {
 
 //! @param		relay pointer of relay structure
 //! @param		type of click
-void RelayOneClick(volatile Relay *relay, RelayClickType type) {
+//! @param		number of clicks
+void RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number) {
 	if (relay->eState == ON) {
 		RelayReset(relay);
 
 		relay->ui16ActTimeMS = 1;
+		relay->ui16StartLength = number * 2;
 		relay->uiByteLength = 1;
 		switch (type) {
 			case RelayClickStartFast: {
-				relay->uiStartTimeMS = RELAY_HIGH_START_MS_NUMBER;
-				relay->uiStartLength = 2;
+				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_NUMBER;
 			} break;
 			case RelayClickStart: {
-				relay->uiStartTimeMS = RELAY_HIGH_START_MS;
-				relay->uiStartLength = 2;
+				relay->ui16StartTimeMS = RELAY_HIGH_START_MS;
 			} break;
 			case RelayClickFast: {
-				relay->bWithData = true;
+				relay->ui16StartTimeMS = RELAY_SHORT_HIGH_TIME;
 			} break;
 			case RelayClickSlow: {
-				relay->uiByteInfo = 1;
-				relay->bWithData = true;
+				relay->ui16StartTimeMS = RELAY_LONG_HIGH_TIME;
 			} break;
 			default: {
 				RelayReset(relay);
@@ -198,16 +197,3 @@ void RelayOneClick(volatile Relay *relay, RelayClickType type) {
 		RelayTryClickMS(relay);
 	}
 } // END void RelayOneClick
-
-//! @param		relay pointer of relay structure
-void RelayFastClicking(volatile Relay *relay, uint16_t ms) {
-	if (relay->eState == ON) {
-		RelayReset(relay);
-
-		relay->ui16ActTimeMS = 1;
-		relay->uiByteLength = 1;
-		relay->uiStartTimeMS = RELAY_HIGH_START_MS_NUMBER;
-		relay->uiStartLength = ms / RELAY_HIGH_START_MS_NUMBER;
-		RelayTryClickMS(relay);
-	}
-} // END void RelayFastClicking

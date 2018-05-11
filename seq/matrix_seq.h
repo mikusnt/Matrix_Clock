@@ -50,6 +50,7 @@ typedef enum {
 	SeqText = 'e',
 	SeqTextDebug = 'd',
 	SeqRelayNumber = 'n',
+	SeqBomb = 'b',
 	SeqEmpty = 'c'
 } ActualSeq;
 
@@ -76,7 +77,7 @@ extern void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *
 //! load one 5 digit integer to matrix buffer
 extern void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number);
 //! set parametrs when sequence is changed
-extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *relay);
+extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, TimeDate *RTCTime, volatile Relay *relay);
 //! set one device state point to matrix buffer
 extern void SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch state);
 

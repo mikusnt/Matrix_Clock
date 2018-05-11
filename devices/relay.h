@@ -104,9 +104,9 @@ typedef struct {
 	//! length of binary info
 	uint8_t uiByteLength;
 	//! length of start info
-	uint16_t uiStartLength;
+	uint16_t ui16StartLength;
 	//! time to change relay state in start sequence
-	uint8_t uiStartTimeMS;
+	uint16_t ui16StartTimeMS;
 	//! state of relay, modify by
 	//! @see SetRelayState
 	BinarySwitch eState;
@@ -129,7 +129,5 @@ extern void RelayTryClickMS(volatile Relay *relay);
 //! rename relay state
 extern void SetRelayState(volatile Relay *relay, BinarySwitch eState);
 //! single click after reset relay structure
-extern void RelayOneClick(volatile Relay *relay, RelayClickType type);
-//! loud clicking for limited time
-extern void RelayFastClicking(volatile Relay *relay, uint16_t ms);
+void RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number);
 #endif /* DEVICES_RELAY_H_ */

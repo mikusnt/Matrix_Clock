@@ -79,7 +79,9 @@ inline void LoadToSingleTime(TimeDate *t);
 extern void ResetProgress(TimeDate *time);
 //! pack one digit time to decimal time
 extern void LoadToDecimalTime(TimeDate *t);
-
+//! one second decrement time when time greater than 0
+extern void TryDecrementTime(TimeDate *t);
+extern void CopyDateTime(TimeDate *from, TimeDate *to);
 /*
  *
  *		Inline functions
@@ -92,6 +94,7 @@ inline void TimeInit(TimeDate *t) {
 		t->uitSingleTime[i] = 0;
 		t->uiSingleProgress[i] = 0;
 	}
+	LoadToDecimalTime(t);
 } // END inline void TimeInit
 
 /*! @param 		t pointer of time structure*/

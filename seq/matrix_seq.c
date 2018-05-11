@@ -158,8 +158,9 @@ void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number) {
 
 /*! @param		m poiner of DiodeMatrix structure
  *  @param		actTime pointer of actual time structure
+ *  @param		RTCTime pointer of real time structure
  *  @param		relay pointer of relay structure*/
-void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *relay) {
+void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, TimeDate *RTCTime, volatile Relay *relay) {
 	ClearBuffer(m);
 	uart_puts_p(PSTR("Seq: "));
 
@@ -193,6 +194,14 @@ void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, volatile Relay *re
 			RelayStartClicking(relay, ctTextBuffer[0], RelayDataNumber);
 			LoadNumberToMatrix(m, ctTextBuffer[0]);
 			SetMoving(m, false);
+		} break;
+		case SeqBomb: {
+			LoadTextToMatrix(m, "00 00");
+			TimeInit(actTime);
+			actTime->uiMinute = ctTextBuffer[1];
+			LoadToSingleTime(actTime);
+			SetMoving(m, false);
+			uart_puts_p(PSTR("Bomb"));
 
 		} break;
 		case SeqEmpty: {

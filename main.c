@@ -40,6 +40,8 @@ volatile DiodeMatrix matrix;
 volatile Relay relay;
 //! flag of new second, setting by DS3231 SQW overflow
 volatile bool bNewTime = false;
+volatile bool bHalfTime = false;
+volatile bool bQuaterTime = false;
 //! flag of refresh round buffer position
 volatile bool bNewRoundRefresh = false;
 //! ADC data about brightness
@@ -93,7 +95,7 @@ int main (void) {
 	I2C_Init();
 
 	DS3231_Init();
-	SetSeqParams(&matrix, &actTime, &relay);
+	SetSeqParams(&matrix, &actTime, &RTCTime, &relay);
 	RelayStartClicking(&relay, 0, RelayDataNumber);
 
 	wdt_enable(WDTO_120MS);
@@ -116,7 +118,7 @@ int main (void) {
 		// clearing buffer, change seq to eActualSeq after decrement to 0
 		if (bEnableDecrement) {
 			if (DecrementTo0SlowClear(&matrix)) {
-				SetSeqParams(&matrix, &actTime, &relay);
+				SetSeqParams(&matrix, &actTime, &RTCTime, &relay);
 				iCountToTimer = 2;
 
 			}
@@ -167,6 +169,45 @@ int main (void) {
 						bNewRoundRefresh = false;
 					}
 				} break;
+				case SeqBomb: {
+					if (bNewTime) {
+						TryDecrementTime(&actTime);
+						sprintf(ctTextBuffer, "%02d:%02d\n", actTime.uiMinute, actTime.uiSecond);
+						uart_puts(ctTextBuffer);
+						ctTextBuffer[5] = 0;
+						if (actTime.uiSecond % 2) ctTextBuffer[2] = ' ';
+						else ctTextBuffer[2] = 0x80;
+						LoadTextToMatrix(&matrix, ctTextBuffer);
+
+						// clicking in specific period
+						if (((actTime.uiSecond % 10) == 0) && (actTime.uiMinute > 0)) {
+							RelayClicking(&relay, RelayClickStartFast, 1);
+						}
+						if (((actTime.uiSecond % 2) == 0) && (actTime.uiMinute == 0) && (actTime.uiSecond > 30)) {
+							RelayClicking(&relay, RelayClickStartFast, 1);
+						}
+						if ((actTime.uiMinute == 0) && (actTime.uiSecond <= 30) && (actTime.uiSecond > 10)) {
+							RelayClicking(&relay, RelayClickStartFast, 1);
+						}
+						if ((actTime.uiMinute == 0) && (actTime.uiSecond <= 10)) {
+							RelayClicking(&relay, RelayClickStartFast, 1);
+						}
+						bNewTime = false;
+					// half of second
+					} else if (bHalfTime) {
+						if ((actTime.uiMinute == 0) && (actTime.uiSecond <= 10)) {
+							RelayClicking(&relay, RelayClickStartFast, 1);
+						}
+						bHalfTime = false;
+					// quater of second
+					} else if (bQuaterTime) {
+						if ((actTime.uiMinute == 0) && (actTime.uiSecond <= 5)) {
+							RelayClicking(&relay, RelayClickStartFast, 1);
+						}
+						bQuaterTime = false;
+					}
+
+				} break;
 				case SeqADC: {
 					// write ADC number to matrix and UART
 					if (bNewTime) {
@@ -206,10 +247,13 @@ ISR(TIMER0_COMPA_vect) {
 //! CTC timer2 overflow with 1ms period, internal time
 ISR(TIMER2_COMPA_vect) {
 	RelayTryClickMS(&relay);
-	if (++ui16Ms >= 1000) {
-		ui16Ms = 0;
+	// reset to 0 in PCINT1_vect
+	if (++ui16Ms == 1) {
 		if (++uiSeconds >= 60)
 			uiSeconds = 0;
+	}
+	if ((ui16Ms == 250) || (ui16Ms == 750)) {
+		bQuaterTime = true;
 	}
 	// setting flag of refresh round buffer
 	if ((ui16Ms % TIME_DECREMENT_MS) == 0)
@@ -219,7 +263,7 @@ ISR(TIMER2_COMPA_vect) {
 		if (IncrementBufferStart(&matrix)) {
 			if ((eActualSeq == SeqText) && (matrix.uiSlowClearedPos == 0) && ((--iCountToTimer) == 0) ) {
 				eActualSeq = SeqTimer;
-				SetSeqParams(&matrix, &actTime, &relay);
+				SetSeqParams(&matrix, &actTime, &RTCTime, &relay);
 			}
 		}
 	if ((ui16Ms % 10) == 7)
@@ -237,7 +281,9 @@ ISR(PCINT1_vect) {
 	ADCStart();
 	if (SQW_IS_HIGH()) {
 		bNewTime = true;
-	}
+		ui16Ms = 0;
+	} else
+		bHalfTime = true;
 } // END ISR(PCINT1_vect)
 
 //! switch on bluetooth interrupt, init UART after turning on module

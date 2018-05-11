@@ -48,7 +48,8 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			case MODIFY_SEQ_CODE: {
 				if ((ctTextBuffer[0] == SeqTimer) || (ctTextBuffer[0] == SeqADC)
 						|| (ctTextBuffer[0] == SeqText) || (ctTextBuffer[0] == SeqRelayNumber)
-						|| (ctTextBuffer[0] == SeqEmpty) || (ctTextBuffer[0] == SeqTextDebug)) {
+						|| (ctTextBuffer[0] == SeqEmpty) || (ctTextBuffer[0] == SeqTextDebug)
+						|| (ctTextBuffer[0] == SeqBomb)) {
 					if ((ctTextBuffer[0] == SeqText) && (ctTextBuffer[1] == 0)) {
 						uiEndCode = ERROR_PARAMS;
 						break;
@@ -65,12 +66,18 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 								break;
 							}
 						}
-					}
-					if (eActualSeq == SeqRelayNumber) {
+					} else if (eActualSeq == SeqRelayNumber) {
 						if ((i < 4) || (RelayThreeToOne(ctTextBuffer) > 255)) {
 							uiEndCode = ERROR_PARAMS;
 							break;
 						}
+					} else if (eActualSeq == SeqBomb) {
+						if (i > 2) {
+							uiEndCode = ERROR_PARAMS;
+							break;
+						}
+						ctTextBuffer[1] = ctTextBuffer[1] - DIGIT_ASCII;
+
 					}
 					RunSlowClearedPos(m);
 				} else
@@ -94,10 +101,8 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 								uart_puts_p(PSTR("Relay disabled "));
 							if ((i == 4) && (RelayThreeToOne(ctTextBuffer) <= 255)) {
 								RelayStartClicking(relay, ctTextBuffer[0], RelayDataNumber);
-							} else if (i == 2) {
-								RelayOneClick(relay, ctTextBuffer[1] - DIGIT_ASCII);
-							} else if (i == 3){
-								RelayFastClicking(relay, (ctTextBuffer[2] - DIGIT_ASCII) * 1000);
+							} else if ((i == 5) && (ctTextBuffer[0] = ctTextBuffer[1]) && (RelayThreeToOne(ctTextBuffer+1) <= 255)){
+								RelayClicking(relay, ctTextBuffer[0] - DIGIT_ASCII, ctTextBuffer[1]);
 							} else {
 								uiEndCode = ERROR_PARAMS;
 							}
