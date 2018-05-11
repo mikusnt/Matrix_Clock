@@ -3,6 +3,8 @@
 //! zamienia znaki ASCII trzech cyfr na liczbe i zapisuje do poczatku bufora jesli
 //! miesci sie na jednym bajcie
 //! @return 		dwubajtowa liczba bedaca wynikiem scalania ASCII
+//! rename ASCII chars last three signs and save to beginning of buffer
+//! @return 		two byte number from ASCII codes
 static inline uint16_t RelayThreeToOne(char buffer[4]) {
 	uint16_t temp  = (buffer[1] - DIGIT_ASCII) * 100;
 	temp += (buffer[2] - DIGIT_ASCII) * 10;
@@ -13,7 +15,7 @@ static inline uint16_t RelayThreeToOne(char buffer[4]) {
 
 
 extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time) {
-	// odczytaj polecenie jesli sa nieodczytane dane
+	// load command when are unreaded data
 	if (UART_FirstEndFlag && IsUnreadData()) {
 		register uint8_t i = 0;
 		uint8_t uiEndCode = GOOD_COMMAND;
@@ -21,7 +23,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 
 		uiCode = uart_getc();
 
-		// zaladuj dane polecenia do bufora
+		// load command parameters to buffer
 		while (IsUnreadData() && (i < TEXT_BUFFER_SIZE)) {
 			if (((ctTextBuffer[i] = uart_getc()) == END_FRAME_CODE)
 				|| (ctTextBuffer[i] == 0)) {
@@ -32,18 +34,16 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			}
 			i++;
 		}
-		// gdy przepelniono bufor odczytu polecenia, pobranie pozostalej zawartosci
-		// z bufora UART
+		// when buffer is full empty read UART buffer
 		if (i >= TEXT_BUFFER_SIZE) {
 			while (uart_getc() != END_FRAME_CODE);
 		}
-		// wyslanie zwrotne polecenia
-		// DEBUG
+		// DEBUG info
 		//uart_putc(uiCode);
 		//uart_puts(ctTextBuffer);
 		//uart_putc(' ');
 
-		// obsluga poszczegolnych komend
+		// realize the commands
 		switch (uiCode) {
 			case MODIFY_SEQ_CODE: {
 				if ((ctTextBuffer[0] == SeqTimer) || (ctTextBuffer[0] == SeqADC)
@@ -56,6 +56,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 					eActualSeq = ctTextBuffer[0];
 					if ((eActualSeq == SeqText) || (eActualSeq == SeqTextDebug)) {
 						// przesuwanie napisu o 1 w lewo
+						// shift buffer to left
 						i = 0;
 						while(ctTextBuffer[i] != 0) {
 							ctTextBuffer[i] = ctTextBuffer[i + 1];
@@ -110,16 +111,16 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			} break;
 			case LOAD_DATE_CODE: {
 					uint8_t day = (ctTextBuffer[0] - DIGIT_ASCII) * 10 + (ctTextBuffer[1] - DIGIT_ASCII);
-					// myslnik
+					// -
 					uint8_t month = (ctTextBuffer[3] - DIGIT_ASCII) * 10 + (ctTextBuffer[4] - DIGIT_ASCII);
-					// myslnik
+					// -
 					uint8_t year = (ctTextBuffer[6] - DIGIT_ASCII) * 100
 							+(ctTextBuffer[7] - DIGIT_ASCII) * 10 + (ctTextBuffer[8] - DIGIT_ASCII);
-					// spacja
+					// space
 					uint8_t hour = (ctTextBuffer[10] - DIGIT_ASCII) * 10 + (ctTextBuffer[11] - DIGIT_ASCII);
-					// dwukropek
+					// :
 					uint8_t minute = (ctTextBuffer[13] - DIGIT_ASCII) * 10 + (ctTextBuffer[14] - DIGIT_ASCII);
-					// dwukropek
+					// :
 					uint8_t second = (ctTextBuffer[16] - DIGIT_ASCII) * 10 + (ctTextBuffer[17] - DIGIT_ASCII);
 
 					if ((i >= 18) && (day <= 31) && (month <= 12) && (year < 200) && (hour < 24) && (minute < 60)
@@ -139,7 +140,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 				uart_puts_p(PSTR("Hey! "));
 			} break;
 			case VERSION_CODE: {
-				uart_puts_p(PSTR("Matrix Clock PixBit v0.92 by MiSt "));
+				uart_puts_p(VERSION_TEXT);
 			} break;
 			case RESET_CODE: {
 				uart_puts_p(PSTR("Reset ok\n"));
@@ -149,7 +150,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			} break;
 
 		}
-		// wyslanie zwrotne kodu wykonania
+		// sending response code
 		switch(uiEndCode) {
 			case GOOD_COMMAND: { uart_puts_p(PSTR("ok")); } break;
 			case ERROR_COMMAND: { uart_puts_p(PSTR("undefined command"));} break;

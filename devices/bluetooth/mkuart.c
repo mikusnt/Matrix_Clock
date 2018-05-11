@@ -24,34 +24,34 @@ volatile bool UART_FirstEndFlag;
 
 
 
-/*! konfiguruje odpowiednie rejestry
- *  @param		baud predkosc transmisji*/
+/*! configure registers
+ *  @param		baud speed of transmission*/
 void USART_Init( uint16_t baud ) {
-	/* Ustawienie prêdkoœci */
+	/* set baud */
 	UBRR0H = (uint8_t)(baud>>8);
 	UBRR0L = (uint8_t)baud;
-	/* Za³¹czenie nadajnika I odbiornika */
+	/* turn on transmitter and receiver */
 	UCSR0B = (1<<RXEN0)|(1<<TXEN0);
-	/* Ustawienie format ramki: 8bitów danych, 1 bit stopu */
+	/* set frame format: 8bits of data, 1 stop bit*/
 	UCSR0C = (3<<UCSZ00);
 
-	// jeœli korzystamy z interefejsu RS485
+	// when using RS485
 	#ifdef UART_DE_PORT
-		// inicjalizujemy liniê steruj¹c¹ nadajnikiem
+		// init control line of transmitter
 		UART_DE_DIR |= UART_DE_BIT;
 		UART_DE_ODBIERANIE();
 	#endif
 
-	// jeœli korzystamy z interefejsu RS485
+	// when using RS485 RS485
 	#ifdef UART_DE_PORT
-		// jeœli korzystamy z interefejsu RS485 za³¹czamy dodatkowe przerwanie TXCIE
+		// unlock TXCIE interrupt
 		UCSR0B |= (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0)|(1<<TXCIE0);
 	#else
 		// jeœli nie  korzystamy z interefejsu RS485
 		UCSRB |= (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0);
 	#endif
 
-	// resetowanie buforow
+	// reseting the buffers
 	for (uint8_t i = 0; i < UART_RX_BUF_SIZE; i++)
 		UART_RxBuf[i] = 0;
 	for (uint8_t i = 0; i < UART_TX_BUF_SIZE; i++)
@@ -60,107 +60,95 @@ void USART_Init( uint16_t baud ) {
 	UART_RxHead = UART_RxTail = UART_TxHead = UART_TxTail = 0;
 } // END void USART_Init
 
-/*! @return 		wartosc przechowana w buforze cyklicznym, gdy brak danych 0 */
+/*! @return 		value in buffer, 0 when empty buffer */
 char uart_getc() {
     // sprawdzamy czy indeksy s¹ równe
     if (!IsUnreadData()) {
     	return 0;
     }
 
-    // obliczamy i zapamiêtujemy nowy indeks „ogona wê¿a” (mo¿e siê zrównaæ z g³ow¹)
+    // increment new tail intex
     UART_RxTail = (UART_RxTail + 1) & UART_RX_BUF_MASK;
-    // zwracamy bajt pobrany z bufora  jako rezultat funkcji
+    // return byte from new tail position
     return UART_RxBuf[UART_RxTail];
 } // END char uart_getc
 
 
-/*! @param 		data znak, ktory ma zostac wyslany*/
+/*! @param 		data byte to send*/
 void uart_putc( char data ) {
 	uint8_t tmp_head;
 
     tmp_head  = (UART_TxHead + 1) & UART_TX_BUF_MASK;
 
-          // pêtla oczekuje je¿eli brak miejsca w buforze cyklicznym na kolejne znaki
+    // wait when write buffer is full
     while ( tmp_head == UART_TxTail ){}
 
     UART_TxBuf[tmp_head] = data;
     UART_TxHead = tmp_head;
 
-    // inicjalizujemy przerwanie wystêpuj¹ce, gdy bufor jest pusty, dziêki
-    // czemu w dalszej czêœci wysy³aniem danych zajmie siê ju¿ procedura
-    // obs³ugi przerwania
+    // init empty buffer interrupt to sending data
     UCSR0B |= (1<<UDRIE0);
 } // END void uart_putc
 
-/*! @param 		s adres tablicy znakowej*/
-void uart_puts(char *s)		// wysy³a ³añcuch z pamiêci RAM na UART
-{
+/*! @param 		s byte of table pointer*/
+void uart_puts(char *s)	{
   register char c;
-  while ((c = *s++)) uart_putc(c);			// dopóki nie napotkasz 0 wysy³aj znak
+  while ((c = *s++)) uart_putc(c);			// send when c not empty
 } // END void uart_puts
 
-/*! @param 		progmem_s adres tablicy znakowej z pamieci programu*/
-void uart_puts_p(const char *progmem_s )
-{
+/*! @param 		progmem_s byte of PROGMEM table pointer*/
+void uart_puts_p(const char *progmem_s ) {
     register char c;
     while ( (c = pgm_read_byte(progmem_s++)) )
       uart_putc(c);
 
 }/* uart1_puts_p */
 
-/*! @param 		value liczba ktora ma zostac wyslana
- *  @param 		radix podstawa systemu w jakim liczba ma zostac przeslana*/
-void uart_putint(int value, int radix)	// wysy³a na port szeregowy liczbe jako tekst o okreslonej podstawie
-{
-	char string[UART_TX_BUF_SIZE + 1];			// bufor na wynik funkcji itoa
-	itoa(value, string, radix);		// konwersja value na ASCII
-	uart_puts(string);			// wyœlij string na port szeregowy
+/*! @param 		value number to send
+ *  @param 		radix base numeral system of value*/
+void uart_putint(int value, int radix) {
+	char string[UART_TX_BUF_SIZE + 1];	// temp buffer
+	itoa(value, string, radix);
+	uart_puts(string);
 } // END void uart_putint
 
-/*! procedura obs³ugi przerwania Tx Complete, gdy zostanie opó¿niony UDR
- *  kompilacja gdy u¿ywamy RS485*/
+/*!  Tx Complete interrupt, when UDR delayed
+ *  compile when RS485 enabled*/
 #ifdef UART_DE_PORT
 ISR( USART_TX_vect ) {
-  UART_DE_PORT &= ~UART_DE_BIT;	// zablokuj nadajnik RS485
+  UART_DE_PORT &= ~UART_DE_BIT;	// block RS485 transmitter
 }
 #endif
 
-//! przerwanie nadawcze pobierajace dane z bufora cyklicznego
+//! transmitting interrupt, read and send data from cyclic write buffer
 ISR( USART_UDRE_vect)  {
-    // sprawdzamy czy indeksy s¹ ró¿ne
     if ( UART_TxHead != UART_TxTail ) {
-    	// obliczamy i zapamiêtujemy nowy indeks ogona wê¿a (mo¿e siê zrównaæ z g³ow¹)
     	UART_TxTail = (UART_TxTail + 1) & UART_TX_BUF_MASK;
-    	// zwracamy bajt pobrany z bufora  jako rezultat funkcji
+    	// write byte to hardware buffer
     	UDR0 = UART_TxBuf[UART_TxTail];
     } else {
-	// zerujemy flagê przerwania wystêpuj¹cego gdy bufor pusty
+    // clear interrupt flag when empty buffer
 	UCSR0B &= ~(1<<UDRIE0);
     }
-} // END ISR
+} // END ISR( USART_UDRE_vect)
 
-//! przerwanie odbiorcze zapisujace dane do bufora cyklicznego
+//! receiving interrupt, write data to cyclic read buffer
 ISR( USART_RX_vect ) {
     uint8_t tmp_head;
     char data;
 
-    data = UDR0; //pobieramy natychmiast bajt danych z bufora sprzêtowego
+    data = UDR0; // read byte from hardware buffer
     if (data == END_FRAME_CODE)
     	UART_FirstEndFlag = true;
-    // obliczamy nowy indeks „g³owy wê¿a”
     tmp_head = ( UART_RxHead + 1) & UART_RX_BUF_MASK;
 
-    // sprawdzamy, czy w¹¿ nie zacznie zjadaæ w³asnego ogona
+    // overflow buffer test, when cyclic read buffer is full
     if ( tmp_head == UART_RxTail ) {
-    	// tutaj mo¿emy w jakiœ wygodny dla nas sposób obs³u¿yæ  b³¹d spowodowany
-    	// prób¹ nadpisania danych w buforze, mog³oby dojœæ do sytuacji gdzie
-    	// nasz w¹¿ zacz¹³by zjadaæ w³asny ogon
-    	// oznaczenie bajtu przed poczatkiem jako koniec
     	UART_RxBuf[UART_RxHead] = END_FRAME_CODE;
     	uart_putc(END_FRAME_CODE);
     } else {
-    	UART_RxHead = tmp_head; 		// zapamiêtujemy nowy indeks
-    	UART_RxBuf[tmp_head] = data; 	// wpisujemy odebrany bajt do bufora
+    	UART_RxHead = tmp_head;
+    	UART_RxBuf[tmp_head] = data;
     }
-} // END ISR
+} // END ISR( USART_RX_vect )
 
