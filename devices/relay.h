@@ -86,7 +86,13 @@ typedef enum {
 	RelayDataNumber    //!< RelayDataNumber
 } RelayDataType;
 
-
+//! type of relay one click time
+typedef enum {
+	RelayClickStartFast = 0,
+	RelayClickStart,
+	RelayClickFast,
+	RelayClickSlow
+} RelayClickType;
 
 //! main relay structure
 typedef struct {
@@ -98,14 +104,14 @@ typedef struct {
 	//! length of binary info
 	uint8_t uiByteLength;
 	//! length of start info
-	uint8_t uiStartLength;
-	//! input data type
-	RelayDataType dataType;
+	uint16_t uiStartLength;
 	//! time to change relay state in start sequence
 	uint8_t uiStartTimeMS;
 	//! state of relay, modify by
 	//! @see SetRelayState
 	BinarySwitch eState;
+	//! flag of enable data information after start
+	bool bWithData;
 } Relay;
 
 /*
@@ -122,5 +128,8 @@ extern void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayD
 extern void RelayTryClickMS(volatile Relay *relay);
 //! rename relay state
 extern void SetRelayState(volatile Relay *relay, BinarySwitch eState);
-
+//! single click after reset relay structure
+extern void RelayOneClick(volatile Relay *relay, RelayClickType type);
+//! loud clicking for limited time
+extern void RelayFastClicking(volatile Relay *relay, uint16_t ms);
 #endif /* DEVICES_RELAY_H_ */

@@ -90,13 +90,17 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 								uiEndCode = ERROR_PARAMS;
 						} break;
 						case TaskRelayNumber: {
-							if ((i >= 4) && (RelayThreeToOne(ctTextBuffer) <= 255)) {
+							if (relay->eState == OFF)
+								uart_puts_p(PSTR("Relay disabled "));
+							if ((i == 4) && (RelayThreeToOne(ctTextBuffer) <= 255)) {
 								RelayStartClicking(relay, ctTextBuffer[0], RelayDataNumber);
-								if (relay->eState == OFF) {
-									uart_puts_p(PSTR("Relay disabled "));
-								}
-							} else
+							} else if (i == 2) {
+								RelayOneClick(relay, ctTextBuffer[1] - DIGIT_ASCII);
+							} else if (i == 3){
+								RelayFastClicking(relay, (ctTextBuffer[2] - DIGIT_ASCII) * 1000);
+							} else {
 								uiEndCode = ERROR_PARAMS;
+							}
 						} break;
 						case TaskRelayMode: {
 							uint8_t mode = ctTextBuffer[1] - DIGIT_ASCII;

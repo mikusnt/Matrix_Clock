@@ -3,6 +3,7 @@ Legend:
 	9 - one digit, required const length
 	"" - char table, required non-zero length
 	{} - number of digit of variable
+	_ - any char
 
 Rename sequence:
 	st$ 					Timer 
@@ -14,9 +15,12 @@ Rename sequence:
 Tasks:
   	tp9999$					control one pixel (Y {1}, X {2}, state {1})
   	tr999$					relay coding number
+  	tr9$					relay one click, number is mode
+  	tr_9$					relay fast clicking for limited time in seconds	
+  	  f	
   	tm9$					relay state, 0 - off, 1 - on
-  	d99-99-999 99:99:99$	set new date and time (day {2}, month {2}, year {3}, hour {2}, minute {2}, second {2})
-  	
+  	d99_99_999 99_99_99$	set new date and time (day {2}, month {2}, year {3}, hour {2}, minute {2}, second {2})
+  	   -  -      :  :	
  Extras:
  	q$						communication test 
  	v$						version of software

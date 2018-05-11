@@ -19,6 +19,7 @@ static void RelayReset(volatile Relay *r) {
 	r->uiByteLength = 0;
 	r->uiStartTimeMS = 0;
 	r->uiStartLength = 0;
+	r->bWithData = false;
 }
 /*! change hardware relay state
  * @param 		eB logic state of relay*/
@@ -70,8 +71,9 @@ void RelayInit(volatile Relay *r) {
  * @param 		dataType type of byte*/
 void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType dataType) {
 	if (relay->eState == ON) {
-		relay->dataType = dataType;
+
 		// load data to structure
+		relay->bWithData = true;
 		switch(dataType) {
 			case RelayDataHours: {
 				while (uiByteInfo > 12) uiByteInfo -= 12;
@@ -123,8 +125,8 @@ void RelayTryClickMS(volatile Relay *relay) {
 					RelaySW(LOW);
 					relay->ui16ActTimeMS = RELAY_LOW_START_MS;
 				}
-			// when dat asequence
-			} else {
+			// when data sequence
+			} else if (relay->bWithData){
 				// when high state init low (next bit)
 				if (RELAY_IS_ON()) {
 					if(relay->uiByteInfo % 2) {
@@ -145,7 +147,10 @@ void RelayTryClickMS(volatile Relay *relay) {
 				RELAY_CH();
 			}
 		}
-	} else RelaySW(OFF);
+	} else {
+		RelaySW(OFF);
+		relay->bWithData = false;
+	}
 } // END void RelayTryClickMS
 
 /*! change relay state and save state to eeprom
@@ -160,4 +165,49 @@ void SetRelayState(volatile Relay *relay, BinarySwitch eState) {
 			RelayReset(relay);
 		}
 	}
-}
+} // END void SetRelayState
+
+//! @param		relay pointer of relay structure
+//! @param		type of click
+void RelayOneClick(volatile Relay *relay, RelayClickType type) {
+	if (relay->eState == ON) {
+		RelayReset(relay);
+
+		relay->ui16ActTimeMS = 1;
+		relay->uiByteLength = 1;
+		switch (type) {
+			case RelayClickStartFast: {
+				relay->uiStartTimeMS = RELAY_HIGH_START_MS_NUMBER;
+				relay->uiStartLength = 2;
+			} break;
+			case RelayClickStart: {
+				relay->uiStartTimeMS = RELAY_HIGH_START_MS;
+				relay->uiStartLength = 2;
+			} break;
+			case RelayClickFast: {
+				relay->bWithData = true;
+			} break;
+			case RelayClickSlow: {
+				relay->uiByteInfo = 1;
+				relay->bWithData = true;
+			} break;
+			default: {
+				RelayReset(relay);
+			}
+		}
+		RelayTryClickMS(relay);
+	}
+} // END void RelayOneClick
+
+//! @param		relay pointer of relay structure
+void RelayFastClicking(volatile Relay *relay, uint16_t ms) {
+	if (relay->eState == ON) {
+		RelayReset(relay);
+
+		relay->ui16ActTimeMS = 1;
+		relay->uiByteLength = 1;
+		relay->uiStartTimeMS = RELAY_HIGH_START_MS_NUMBER;
+		relay->uiStartLength = ms / RELAY_HIGH_START_MS_NUMBER;
+		RelayTryClickMS(relay);
+	}
+} // END void RelayFastClicking
