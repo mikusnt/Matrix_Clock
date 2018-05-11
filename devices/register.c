@@ -7,7 +7,7 @@
 #include "register.h"
 
 
-/*! konfiguracja rejestrow IO do pracy rejestrow 74HC595*/
+/*! initialize IO registers to work which 74HC595*/
 void RegistersInit() {
 	Y_DATA_DDR |= Y_DATA_ADDR;
 	Y_CLK_DATA_DDR |= Y_CLK_DATA_ADDR;

@@ -2,12 +2,13 @@
  * @file register.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-02 $
+ * $Modified: 2018-05-05 $
  * $Created: 2017-11-04 $
  * @version 1.0
  *
- * Uzyte piny procesora: 9<br>
- * Obsluga 5 rejestrow matrycy LED. <br> <span class="rowny">
+ * Used uC pins: 9<br>
+ * Header file containing 5 LED matrix shift registers. <br> <span class="rowny">
+ * Model of register: serial in (1 bit), parallel out(8 bit) 74HC595
  * ___|X0_____________________|X1____________________|X2_____________________|X3____________________		<br>
  * ___|0__1__2__3__4__5__6__7_|0__1__2__3__4__5__6__7|0__1__2__3__4__5__6__7_|0__1__2__3__4__5__6__7		<br>
  * ____0__1__2__3__4__5__6__7__8__9_10_11_12_13_14_15_16_17_18_19_20_21_22_23_24_25_26_27_28_29_30_31		<br>
@@ -20,10 +21,11 @@
  * __6|																										<br>
  * __7|																										<br>
  * </span>																											<br>
- * Wybrane cechy:<br>
- * 		- osobne szeregowe wejscia danych dla kazdego rejestru<br>
- * 		- wspolny sygnal zegarowy dla wejscia szeregowego dla rejestrow X, osobny dla Y<br>
+ * Features:<br>
+ * 		- different serial data input to all register <br>
+ * 		- same serial clock signal ro X register, different to Y <br>
  * 		- wspolny sygnal zegarowy dla zatrzasku wyjscia rownoneglego dla rejestrow X i Y<br>
+ * 		- same parallel data
  * 		- rejestr Y posiada sterowanie stanem wyjscia rownoleglego, mozna przejsc na stan wysokiej
  * 	      impedancji, co jest wykorzystywane w wylaczeniu calej matrycy, niestety efekt duchow<br>
  * 	      nalezalo obejsc poprzez zaladowanie zer dla X0-X4, dopiero pozniej mozna przelaczyc Y
@@ -38,7 +40,7 @@
 
 /*
  *
- *		Makroinstrukcje IO
+ *		IO macros
  *
  */
 
@@ -46,172 +48,169 @@
 /*
  *		X0
  */
-//! rejestr kierunku wejscia danych dla rejestru X0
+//! direction register of serial data input X0
 #define X0_DATA_DDR DDRC
-//! rejestr stanu wejscia danych dla rejestru X0
+//! state register of serial data input X0
 #define X0_DATA_PORT PORTC
-//! adres wejscia danych dla rejestru X0
+//! address of serial data input X0
 #define X0_DATA_ADDR (1 << PC0)
-//! ustawia wartosc wejscia danych dla rejestru X0 na HIGH
+//! set high state to serial data input X0
 #define X0_DATA_HIGH() X0_DATA_PORT |= X0_DATA_ADDR
-//! ustawia wartosc wejscia danych dla rejestru X0 na LOW
+//! set low state to serial data input X0
 #define X0_DATA_LOW() X0_DATA_PORT &= ~X0_DATA_ADDR
 
 
 /*
  *		X1
  */
-//! rejestr kierunku wejscia danych dla rejestru X1
+//! direction register of serial data input X1
 #define X1_DATA_DDR DDRB
-//! rejestr stanu wejscia danych dla rejestru X1
+//! state register of serial data input X1
 #define X1_DATA_PORT PORTB
-//! adres wejscia danych dla arejestru X1
+//! address of serial data input X1
 #define X1_DATA_ADDR (1 << PB5)
-//! ustawia wartosc wejscia danych dla rejestru X1 na HIGH
+//! set high state to serial data input X1
 #define X1_DATA_HIGH() X1_DATA_PORT |= X1_DATA_ADDR
-//! ustawia wartosc wejscia danych dla rejestru X1 na LOW
+//! set low state to serial data input X1
 #define X1_DATA_LOW() X1_DATA_PORT &= ~X1_DATA_ADDR
 
 
 /*
  * 		X2
  */
-//! rejestr kierunku wejscia danych dla rejestru X2
+//! direction register of serial data input X2
 #define X2_DATA_DDR DDRB
-//! rejestr stanu wejscia danych dla rejestru X2
+//! state register of serial data input X2
 #define X2_DATA_PORT PORTB
-//! adres wejscia danych dla arejestru X2
+//! address of serial data input X2
 #define X2_DATA_ADDR (1 << PB4)
-//! ustawia warosc wejscia danych dla rejestru X2 na HIGH
+//! set high state to serial data input X2
 #define X2_DATA_HIGH() X2_DATA_PORT |= X2_DATA_ADDR
-//! ustawia wartosc wejscia danych dla rejestru X2 na LOW
+//! set low state to serial data input X2
 #define X2_DATA_LOW() X2_DATA_PORT &= ~X2_DATA_ADDR
 
 /*
  *		X3
  */
-//! rejestr kierunku wejscia danych dla rejestru X2
+//! direction register of serial data input X3
 #define X3_DATA_DDR DDRB
-//! rejestr stanu wejscia danych dla rejestru X2
+//! state register of serial data input X3
 #define X3_DATA_PORT PORTB
-//! adres wejscia danych dla rejestru X3
+//! address of serial data input X3
 #define X3_DATA_ADDR (1 << PB1)
-//! ustawia wartosc wejscia danych dla rejestru X3 na HIGH
+//! set high state to serial data input X3
 #define X3_DATA_HIGH() X3_DATA_PORT |= X3_DATA_ADDR
-//! ustawia wartosc wejscia danych dla rejestru X3 na LOW
+//! set low state to serial data input X3
 #define X3_DATA_LOW() X3_DATA_PORT &= ~X3_DATA_ADDR
-
-/*
- *		X_CLK_DATA
- */
-//! rejestr kierunku zegara wejscia szeregowego dla rejestrow X
-#define X_CLK_DATA_DDR DDRB
-//! rejestr stanu zegara wejscia szeregowego dla rejestrow X
-#define X_CLK_DATA_PORT PORTB
-//! adres zegara wejscia szeregowego dla rejestrow X
-#define X_CLK_DATA_ADDR (1 << PB3)
 
 /*
  *		Y
  */
-//! rejestr kierunku zegara wejscia szeregowego dla rejestru Y
+//! direction register of serial data input Y
 #define Y_DATA_DDR DDRD
-//! rejestr stanu zegara wejscia szeregowego dla rejestru Y
+//! state register of serial data input Y
 #define Y_DATA_PORT PORTD
-//! adres wejscia danych dla rejestru Y
+//! address of serial data input Y
 #define Y_DATA_ADDR (1 << PD4)
-//! ustawia wartosc wejscia danych dla rejestru Y na HIGH
+//! set high state to serial data input Y
 #define Y_DATA_HIGH() Y_DATA_PORT |= Y_DATA_ADDR
-//! ustawia wartosc wejscia danych dla rejestru Y na LOW
+//! set low state to serial data input Y
 #define Y_DATA_LOW() Y_DATA_PORT &= ~Y_DATA_ADDR
+
+/*
+ *		X_CLK_DATA
+ */
+//! direction register of clk of X group serial data inputs
+#define X_CLK_DATA_DDR DDRB
+//! state register of clk of X group serial data inputs
+#define X_CLK_DATA_PORT PORTB
+//! address of clk of X group serial data inputs
+#define X_CLK_DATA_ADDR (1 << PB3)
+
 
 /*
  *		Y_CLK_DATA
  */
-//! rejestr kierunku zegara wejscia danych dla rejestru Y
+//! direction register of clk of Y serial data input Y
 #define Y_CLK_DATA_DDR DDRD
-//! rejestr stanu zegara wejscia danych dla rejestru Y
+//! state register of clk of Y serial data input
 #define Y_CLK_DATA_PORT PORTD
-//! adres zegara wejscia danych dla rejestru Y
+//! state register of clk of Y serial data input
 #define Y_CLK_DATA_ADDR (1 << PD2)
 
 
 /*
- *		Y_RESET
+ *		Y_RESET, not used
  */
-//! rejestr kierunku zegara wejscia szeregowego dla rejestru Y
+//! direction register of reset Y register
 #define Y_RESET_DDR DDRD
-//! rejestr stanu zegara wejscia szeregowego dla rejestru Y
+//! state register of reset Y register
 #define Y_RESET_PORT PORTD
-//! adres wejscia danych dla rejestru Y
+//! address of reset Y register
 #define Y_RESET_ADDR (1 << PD3)
-//! ustawia wartosc wejscia danych dla rejestru Y na HIGH
+//! set ON Y register
 #define Y_ON() Y_RESET_PORT &= ~Y_RESET_ADDR
-//! ustawia wartosc wejscia danych dla rejestru Y na LOW
+//! set OFF Y register
 #define Y_OFF() Y_RESET_PORT |= Y_RESET_ADDR
+
 /*
  *		LATCH
  */
-//! rejestr kierunku zegara wejscia szeregowego dla rejestru Y
+//! direction register of parallel output enable of all registers
 #define LATCH_DDR DDRB
-//! rejestr stanu zegara wejscia szeregowego dla rejestru Y
+//! state register of parallel output enable of all registers
 #define LATCH_PORT PORTB
-//! adres zatrzasku wyjscia rowloleglego dla wszystkich rejestrow
+//! address of parallel output enable of all registers
 #define LATCH_ADDR (1 << PB2)
-//! ustawia wartosc zatrzasku wyjscia rownoleglego dla wszystkich rejestrow na HIGH
+//! set high state of parallel output enable of all registers
 #define LATCH_HIGH() LATCH_PORT |= LATCH_ADDR
-//! ustawia wartosc zatrzasku wyjscia rownloleglego dla wszystkich rejestrow na LOW
+//! set low state of parallel output enable of all registers
 #define LATCH_LOW() LATCH_PORT &= ~LATCH_ADDR
 
 
 /*
  *
- *		Deklaracje funkcji
+ *		Declaration of functions
  *
  */
-
-//! inicjalizacja rejestrow
+//! initialize registers
 extern void RegistersInit();
-//! wysyla pojedynczy bit do rejestru Y
+//! send one bit to Y register
 inline void SendRegisterY(volatile BinarySwitch eB, bool bWithLoad);
-//! wysyla tablice bitow do rejestow X0 - X3
+//! send byte table to X0 - X3 registers
 inline void SendRegistersX(volatile uint8_t uitLineBuffer[32], bool bWithLoad);
-//! oczyszcza rejestry X0 - X3 poprzez wyslanie zer
+//! send zeros to X0 - X3 registers
 inline void ClearRegistersX(bool bWithLoad);
-//! wysyla tablice bitow do rejestru X0
+//! send byte table only to X0 register
 inline void SendRegisterX(volatile uint8_t uitBuffer[8], bool bWithLoad);
 
 /*
  *
- * 		Definicje funkcji inline
+ * 		Definitions of inline functions
  *
  */
 
+//! to load new byte to Y register
 inline void Y_CLK_01() {
 	Y_CLK_DATA_PORT &= ~Y_CLK_DATA_ADDR;
 	Y_CLK_DATA_PORT |= Y_CLK_DATA_ADDR;
 }
 
+//! to load new bytes to X registers
 inline void X_CLK_01() {
 	X_CLK_DATA_PORT &= ~X_CLK_DATA_ADDR;
 	X_CLK_DATA_PORT |= X_CLK_DATA_ADDR;
 
 }
 
+//! to reload parallel output in all registers
 inline void LATCH_01() {
 	LATCH_LOW();
 	LATCH_HIGH();
 }
 
-/*
- @param 		eB wartosc logiczna stanu
-inline void YSw(BinarySwitch eB) {
-	if (eB) Y_SW_PORT |= Y_SW_ADDR;
-	else Y_SW_PORT &= ~Y_SW_ADDR;
-}*/
-
-/*! @param		eB wartosc logiczna przesylana do rejestru
- *  @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie*/
+/*! @param		eB new logic value
+ *  @param		bWithLoad enable to reload parallel output*/
 inline void SendRegisterY(volatile BinarySwitch eB, bool bWithLoad) {
 	if (eB) Y_DATA_HIGH();
 	else Y_DATA_LOW();
@@ -220,11 +219,11 @@ inline void SendRegisterY(volatile BinarySwitch eB, bool bWithLoad) {
 	if (bWithLoad) LATCH_01();
 } // END inline void SendRegisterY
 
-/*! @param		uitLineBuffer tablica bitow danych szeregowych dla rejestrow X0 - X3
- *  @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie*/
+/*! @param		uitLineBuffer logic bytes of registers state
+ *  @param		bWithLoad enable to reload parallel output*/
 inline void SendRegistersX(volatile uint8_t uitLineBuffer[32], bool bWithLoad) {
-	register int8_t i;
-	// 8 bitow do 4 rejestrow, od tylu ze wzgledu na przesuwnosc rejestru, pierwsze bity beda osatnimi
+	register int8_t i; // required fast operations
+
 	for (i = 0; i < 8; i++) {
 		if (uitLineBuffer[0 + i]) X0_DATA_HIGH();
 			else X0_DATA_LOW();
@@ -239,9 +238,8 @@ inline void SendRegistersX(volatile uint8_t uitLineBuffer[32], bool bWithLoad) {
 	if (bWithLoad) LATCH_01();
 } // END inline void SendRegistersX
 
-/*! @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie*/
+/*! @param		bWithLoad enable to reload parallel output*/
 inline void ClearRegistersX(bool bWithLoad) {
-	// 8 bitow do 4 rejestrow, od tylu ze wzgledu na przesuwnosc rejestru, pierwsze bity beda osatnimi
 	register uint8_t i;
 	X0_DATA_LOW();
 	X1_DATA_LOW();
@@ -253,8 +251,8 @@ inline void ClearRegistersX(bool bWithLoad) {
 	if (bWithLoad) LATCH_01();
 } // END inline void SendRegistersX
 
-/*!  @param		uitBuffer tablica bitow danych szeregowych dla rejestru X0
- *   @param		bWithLoad decyzja o zaladowaniu zawartosci rejestru na jego wyjscie*/
+/*!  @param		uitBuffer logic bytes of X0 state
+ *   @param		bWithLoad enable to reload parallel output*/
 inline void SendRegisterX(volatile uint8_t uitBuffer[8], bool bWithLoad) {
 	register int8_t i;
 	for (i = 0; i < 8; i++) {
