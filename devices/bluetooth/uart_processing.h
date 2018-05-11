@@ -32,7 +32,7 @@
 //! frame header code of version of app
 #define VERSION_CODE 'v'
 //! output text of version of app
-#define VERSION_TEXT PSTR("Matrix Clock PixBit v0.93 by MiSt ")
+#define VERSION_TEXT PSTR("Matrix Clock PixBit v0.94 by MiSt ")
 //! frame header code of reset device
 #define RESET_CODE 'r'
 //! code of good recognize the frame

@@ -2,12 +2,12 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-05-05 $
+ * $Modified: 2018-05-11 $
  * $Created: 2017-11-04 $
- * @version 0.93
+ * @version 0.94
  *
  * Project main file
- * @see info.txt
+ * @see readme.md
  */
 
 #include "group_includes.h"
