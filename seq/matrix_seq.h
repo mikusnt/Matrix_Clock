@@ -2,15 +2,7 @@
  * @file matrix_seq.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
-<<<<<<< Updated upstream
- * $Modified: 2018-04-29 $
-=======
-<<<<<<< Updated upstream
- * $Modified: 2018-04-04 $
-=======
  * $Modified: 2018-05-05 $
->>>>>>> Stashed changes
->>>>>>> Stashed changes
  * $Created: 2017-11-04 $
  * @version 1.0
  *

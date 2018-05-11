@@ -1,23 +1,23 @@
-Plik okresla mozliwe ramki danych przesylane przez bluetooth
-Legenda:
-	9 - cyfra, nalezy zawsze uzupelnic, chocby zerem
-	"" - ciag znakow dowolnej dlugosci wiekszej od 0
-	{} - w nawiasie ilosc cyfr przypadajaca na liczbe
+Data frames processing by bluetooth
+Legend:
+	9 - one digit, required const length
+	"" - char table, required non-zero length
+	{} - number of digit of variable
 
-Przelaczanie sekwencji:
+Rename sequence:
 	st$ 					Timer 
- 	sa$						odczyt ADC
- 	se""$					wyswietlanie tekstu
- 	sn999$					wyswietlenie liczby i przekaznika
- 	sc$						wyczyszczenie matrycy, oczekiwanie
+ 	sa$						read ADC
+ 	se""$					text display
+ 	sn999$					number and relay display
+ 	sc$						clear matrix, waiting
 
-Zadania:
-  	tp9999$					zapalenie konkretnego piksela (Y {1}, X {2}, dzialanie {1})
-  	tr999$					przekaznik kodujacy liczbe
-  	tm9$					zalaczanie, odlaczanie przekaznika
-  	d99-99-999 99:99:99$	ustawienie nowej daty i czasu (dzien {2}, miesiac {2}, rok {3}, godzina {2}, minuta {2}, sekunda {2})
+Tasks:
+  	tp9999$					control one pixel (Y {1}, X {2}, state {1})
+  	tr999$					relay coding number
+  	tm9$					relay state, 0 - off, 1 - on
+  	d99-99-999 99:99:99$	set new date and time (day {2}, month {2}, year {3}, hour {2}, minute {2}, second {2})
   	
- Dodatkowe:
- 	q$						test komunikacji jesli odpowiedz rowna "Hey! ok" to test pomyslny
- 	v$						wersja oprogramowania
- 	r$						reset urzadzenia
+ Extras:
+ 	q$						communication test 
+ 	v$						version of software
+ 	r$						device reset

@@ -72,7 +72,7 @@ extern volatile bool UART_FirstEndFlag;
  */
 //! initialize UART
 void USART_Init( uint16_t baud );
-//! checks if they is unreaded data
+//! checks unreaded data
 inline bool IsUnreadData();
 //! read one byte from cyclic read buffer
 char uart_getc();
