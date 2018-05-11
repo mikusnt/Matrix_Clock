@@ -19,9 +19,9 @@
 #include "../group_includes.h"
 #include "../data_types/diode_matrix.h"
 #include "../data_types/date_time.h"
-#include "../devices/other_devices.h"
 #include "../devices/relay.h"
 #include "../devices/bluetooth/mkuart.h"
+#include "../devices/some_devices.h"
 #include "alphabet.h"
 
 

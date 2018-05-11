@@ -13,12 +13,12 @@
 #define TESTS_H_
 
 #include "group_includes.h"
-#include "devices/other_devices.h"
 #include "devices/relay.h"
 #include "devices/ds3231.h"
 #include "data_types/date_time.h"
 #include "data_types/diode_matrix.h"
 #include "devices/register.h"
+#include "devices/some_devices.h"
 
 //! tests the relay's all hours operations
 extern void Test_Relay_Hours(volatile Relay *r);

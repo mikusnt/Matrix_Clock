@@ -11,13 +11,13 @@
  */
 
 #include "group_includes.h"
-#include "devices/other_devices.h"
 #include "devices/relay.h"
 #include "devices/ds3231.h"
 #include "devices/register.h"
 #include "devices/bluetooth/uart_processing.h"
 #include "data_types/date_time.h"
 #include "data_types/diode_matrix.h"
+#include "devices/some_devices.h"
 #include "seq/matrix_seq.h"
 
 #include "tests.h"
@@ -80,6 +80,7 @@ int main (void) {
 	 *
 	 */
 
+	PowerReductionInit();
 	RegistersInit();
 	DiodeMatrixInit(&matrix);
 	RelayInit(&relay);
@@ -226,13 +227,13 @@ ISR(TIMER2_COMPA_vect) {
 		bEnableDecrement = true;
 } // END ISR(TIMER2_COMPA_vect)
 
-//! end of ADC measurement overflow, reading ADC value
+//! end of ADC measurement interrupt, reading ADC value
 ISR(ADC_vect) {
 	ReadADCToADCData(&adc, &matrix.uiBrightness);
 }
 
 
-//! SQW signal from DS3231 overflow, set new time flag
+//! SQW signal from DS3231 interrupt, set new time flag
 ISR(PCINT1_vect) {
 	ADCStart();
 	if (SQW_IS_HIGH()) {
@@ -240,7 +241,7 @@ ISR(PCINT1_vect) {
 	}
 } // END ISR(PCINT1_vect)
 
-//! switch on bluetooth overflow, init UART after turning on module
+//! switch on bluetooth interrupt, init UART after turning on module
 ISR(PCINT2_vect) {
 	if (BLUETOOTH_IS_ON()) {
 		USART_Init(__UBRR);
