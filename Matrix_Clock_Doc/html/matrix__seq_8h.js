@@ -3,6 +3,7 @@ var matrix__seq_8h =
     [ "DIGIT_ASCII", "matrix__seq_8h.html#af5025f57ab8321df7b0b551a46bffe00", null ],
     [ "SEC_END_POS", "matrix__seq_8h.html#a9ea497c3deecfe0c67b48213eca90f03", null ],
     [ "SEC_SIGN_POS", "matrix__seq_8h.html#a14471172dfd2c0b8b24a9d86cdc5c122", null ],
+    [ "STATE_POS", "matrix__seq_8h.html#ab8a960f4f32844be47f7fb5800247689", null ],
     [ "TEXT_BUFFER_SIZE", "matrix__seq_8h.html#a9f31e20d2d4901e0ec1412ecabde8c3a", null ],
     [ "ActualSeq", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eee", [
       [ "SeqTimer", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeea065c8c1ecbc02ee56e23f9f89b768c2d", null ],
@@ -19,8 +20,9 @@ var matrix__seq_8h =
     ] ],
     [ "LoadNumberToMatrix", "matrix__seq_8h.html#a1d1d03b99f56933e3c67f95c223603af", null ],
     [ "LoadTextToMatrix", "matrix__seq_8h.html#af96ba8f2c553e3f4d033b5d99d40cbc7", null ],
-    [ "LoadTimeToMatrix", "matrix__seq_8h.html#a4e1b5b094a06c8e6579e8fdaeeb08d34", null ],
+    [ "LoadTimeToMatrix", "matrix__seq_8h.html#aa7fd4f51220b42bcdec93b2b70e2a05f", null ],
     [ "SetSeqParams", "matrix__seq_8h.html#a0b3b48b77f6a158f7b6c3d8064347b3d", null ],
+    [ "SetStatePoint", "matrix__seq_8h.html#a971ae91252054b0980045f938c3bb1af", null ],
     [ "ctTextBuffer", "matrix__seq_8h.html#a42fdf0b401b08840abc478f0f18318fb", null ],
     [ "eActualSeq", "matrix__seq_8h.html#a3d1609ddf310f48e66f73e1b30bd62a9", null ],
     [ "uitHMPos", "matrix__seq_8h.html#a0eb9ec130b170111e7ed5f07851cf85c", null ]

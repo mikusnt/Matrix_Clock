@@ -91,9 +91,9 @@ $(document).ready(function(){initNavTree('matrix__seq_8h.html','');});
 <div class="textblock"><code>#include &quot;<a class="el" href="group__includes_8h.html">../group_includes.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="diode__matrix_8h.html">../data_types/diode_matrix.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="date__time_8h.html">../data_types/date_time.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="other__devices_8h.html">../devices/other_devices.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="relay_8h.html">../devices/relay.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="mkuart_8h.html">../devices/bluetooth/mkuart.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="some__devices_8h.html">../devices/some_devices.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="alphabet_8h.html">alphabet.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -102,8 +102,11 @@ Macros</h2></td></tr>
 <tr class="memdesc:a9f31e20d2d4901e0ec1412ecabde8c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">size of text buffer plus 1 to end of char table  <a href="#a9f31e20d2d4901e0ec1412ecabde8c3a">More...</a><br /></td></tr>
 <tr class="separator:a9f31e20d2d4901e0ec1412ecabde8c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14471172dfd2c0b8b24a9d86cdc5c122"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#a14471172dfd2c0b8b24a9d86cdc5c122">SEC_SIGN_POS</a>&#160;&#160;&#160;12</td></tr>
-<tr class="memdesc:a14471172dfd2c0b8b24a9d86cdc5c122"><td class="mdescLeft">&#160;</td><td class="mdescRight">position x of colon in matrix buffer  <a href="#a14471172dfd2c0b8b24a9d86cdc5c122">More...</a><br /></td></tr>
+<tr class="memdesc:a14471172dfd2c0b8b24a9d86cdc5c122"><td class="mdescLeft">&#160;</td><td class="mdescRight">x position of colon in matrix buffer  <a href="#a14471172dfd2c0b8b24a9d86cdc5c122">More...</a><br /></td></tr>
 <tr class="separator:a14471172dfd2c0b8b24a9d86cdc5c122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8a960f4f32844be47f7fb5800247689"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#ab8a960f4f32844be47f7fb5800247689">STATE_POS</a>&#160;&#160;&#160;25</td></tr>
+<tr class="memdesc:ab8a960f4f32844be47f7fb5800247689"><td class="mdescLeft">&#160;</td><td class="mdescRight">x position of state points  <a href="#ab8a960f4f32844be47f7fb5800247689">More...</a><br /></td></tr>
+<tr class="separator:ab8a960f4f32844be47f7fb5800247689"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ea497c3deecfe0c67b48213eca90f03"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#a9ea497c3deecfe0c67b48213eca90f03">SEC_END_POS</a>&#160;&#160;&#160;31</td></tr>
 <tr class="memdesc:a9ea497c3deecfe0c67b48213eca90f03"><td class="mdescLeft">&#160;</td><td class="mdescRight">end position of binary seconds counter block in matrix buffer  <a href="#a9ea497c3deecfe0c67b48213eca90f03">More...</a><br /></td></tr>
 <tr class="separator:a9ea497c3deecfe0c67b48213eca90f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,15 +140,18 @@ Functions</h2></td></tr>
 <tr class="memitem:af96ba8f2c553e3f4d033b5d99d40cbc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#af96ba8f2c553e3f4d033b5d99d40cbc7">LoadTextToMatrix</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, char text[<a class="el" href="matrix__seq_8h.html#a9f31e20d2d4901e0ec1412ecabde8c3a">TEXT_BUFFER_SIZE</a>])</td></tr>
 <tr class="memdesc:af96ba8f2c553e3f4d033b5d99d40cbc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">load text to matrix buffer from alphabet  <a href="#af96ba8f2c553e3f4d033b5d99d40cbc7">More...</a><br /></td></tr>
 <tr class="separator:af96ba8f2c553e3f4d033b5d99d40cbc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e1b5b094a06c8e6579e8fdaeeb08d34"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#a4e1b5b094a06c8e6579e8fdaeeb08d34">LoadTimeToMatrix</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, volatile <a class="el" href="struct_relay.html">Relay</a> *r, <a class="el" href="struct_time_date.html">TimeDate</a> *from, <a class="el" href="struct_time_date.html">TimeDate</a> *to)</td></tr>
-<tr class="memdesc:a4e1b5b094a06c8e6579e8fdaeeb08d34"><td class="mdescLeft">&#160;</td><td class="mdescRight">load hour to matrix buffer from alphabet, roundbuffer effect on chars  <a href="#a4e1b5b094a06c8e6579e8fdaeeb08d34">More...</a><br /></td></tr>
-<tr class="separator:a4e1b5b094a06c8e6579e8fdaeeb08d34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7fd4f51220b42bcdec93b2b70e2a05f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#aa7fd4f51220b42bcdec93b2b70e2a05f">LoadTimeToMatrix</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, <a class="el" href="struct_time_date.html">TimeDate</a> *from, <a class="el" href="struct_time_date.html">TimeDate</a> *to)</td></tr>
+<tr class="memdesc:aa7fd4f51220b42bcdec93b2b70e2a05f"><td class="mdescLeft">&#160;</td><td class="mdescRight">load hour to matrix buffer from alphabet, roundbuffer effect on chars  <a href="#aa7fd4f51220b42bcdec93b2b70e2a05f">More...</a><br /></td></tr>
+<tr class="separator:aa7fd4f51220b42bcdec93b2b70e2a05f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d1d03b99f56933e3c67f95c223603af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#a1d1d03b99f56933e3c67f95c223603af">LoadNumberToMatrix</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, uint16_t number)</td></tr>
 <tr class="memdesc:a1d1d03b99f56933e3c67f95c223603af"><td class="mdescLeft">&#160;</td><td class="mdescRight">load one 5 digit integer to matrix buffer  <a href="#a1d1d03b99f56933e3c67f95c223603af">More...</a><br /></td></tr>
 <tr class="separator:a1d1d03b99f56933e3c67f95c223603af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b3b48b77f6a158f7b6c3d8064347b3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#a0b3b48b77f6a158f7b6c3d8064347b3d">SetSeqParams</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, <a class="el" href="struct_time_date.html">TimeDate</a> *<a class="el" href="main_8c.html#af0984960e327a1697d00daef98055b22">actTime</a>, volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>)</td></tr>
 <tr class="memdesc:a0b3b48b77f6a158f7b6c3d8064347b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">set parametrs when sequence is changed  <a href="#a0b3b48b77f6a158f7b6c3d8064347b3d">More...</a><br /></td></tr>
 <tr class="separator:a0b3b48b77f6a158f7b6c3d8064347b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a971ae91252054b0980045f938c3bb1af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#a971ae91252054b0980045f938c3bb1af">SetStatePoint</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, uint8_t y_pos, <a class="el" href="data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244">BinarySwitch</a> state)</td></tr>
+<tr class="memdesc:a971ae91252054b0980045f938c3bb1af"><td class="mdescLeft">&#160;</td><td class="mdescRight">set one device state point to matrix buffer  <a href="#a971ae91252054b0980045f938c3bb1af">More...</a><br /></td></tr>
+<tr class="separator:a971ae91252054b0980045f938c3bb1af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -160,11 +166,11 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
-<dl class="section rcs"><dt>Modified</dt><dd>2018-04-04 </dd></dl>
+<dl class="section rcs"><dt>Modified</dt><dd>2018-05-05 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2017-11-04 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.0</dd></dl>
 <p>Used uC pins: 0<br />
- Header file containing functions to fill LED matrix buffer. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_diode_matrix.html" title="glowna struktura macierzy LED ">DiodeMatrix</a> </dd>
+ Header file containing functions to fill LED matrix buffer. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> </dd>
 <dd>
 <a class="el" href="alphabet_8h.html">alphabet.h</a> </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -212,7 +218,23 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>position x of colon in matrix buffer </p>
+<p>x position of colon in matrix buffer </p>
+
+</div>
+</div>
+<a id="ab8a960f4f32844be47f7fb5800247689"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8a960f4f32844be47f7fb5800247689">&#9670;&nbsp;</a></span>STATE_POS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STATE_POS&#160;&#160;&#160;25</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>x position of state points </p>
 
 </div>
 </div>
@@ -308,7 +330,7 @@ Variables</h2></td></tr>
 <p>load one 5 digit integer to matrix buffer </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>poiner of <a class="el" href="struct_diode_matrix.html" title="glowna struktura macierzy LED ">DiodeMatrix</a> structure </td></tr>
+    <tr><td class="paramname">m</td><td>poiner of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
     <tr><td class="paramname">number</td><td>to load </td></tr>
   </table>
   </dd>
@@ -345,7 +367,7 @@ Variables</h2></td></tr>
 <p>load text to matrix buffer from alphabet </p>
 <p>load all of the signs parameters from text, aoad signs to next buffer position </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>poiner of <a class="el" href="struct_diode_matrix.html" title="glowna struktura macierzy LED ">DiodeMatrix</a> structure </td></tr>
+    <tr><td class="paramname">m</td><td>poiner of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
     <tr><td class="paramname">text</td><td>to load to buffer </td></tr>
   </table>
   </dd>
@@ -353,8 +375,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a4e1b5b094a06c8e6579e8fdaeeb08d34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e1b5b094a06c8e6579e8fdaeeb08d34">&#9670;&nbsp;</a></span>LoadTimeToMatrix()</h2>
+<a id="aa7fd4f51220b42bcdec93b2b70e2a05f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7fd4f51220b42bcdec93b2b70e2a05f">&#9670;&nbsp;</a></span>LoadTimeToMatrix()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -364,12 +386,6 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype">volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *&#160;</td>
           <td class="paramname"><em>m</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">volatile <a class="el" href="struct_relay.html">Relay</a> *&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -394,7 +410,7 @@ Variables</h2></td></tr>
 <p>load hour to matrix buffer from alphabet, roundbuffer effect on chars </p>
 <p>when two structures of time are not the same, load old one to matrix buffer uses round buffer to gradual transition between two signs </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>poiner of <a class="el" href="struct_diode_matrix.html" title="glowna struktura macierzy LED ">DiodeMatrix</a> structure </td></tr>
+    <tr><td class="paramname">m</td><td>poiner of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
     <tr><td class="paramname">actual</td><td>time to load to matrix buffer, approaches to real time </td></tr>
     <tr><td class="paramname">real</td><td>time </td></tr>
   </table>
@@ -438,9 +454,61 @@ Variables</h2></td></tr>
 <p>set parametrs when sequence is changed </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>poiner of <a class="el" href="struct_diode_matrix.html" title="glowna struktura macierzy LED ">DiodeMatrix</a> structure </td></tr>
+    <tr><td class="paramname">m</td><td>poiner of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
     <tr><td class="paramname">actTime</td><td>pointer of actual time structure </td></tr>
     <tr><td class="paramname">relay</td><td>pointer of relay structure </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a971ae91252054b0980045f938c3bb1af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a971ae91252054b0980045f938c3bb1af">&#9670;&nbsp;</a></span>SetStatePoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SetStatePoint </td>
+          <td>(</td>
+          <td class="paramtype">volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>y_pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244">BinarySwitch</a>&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>set one device state point to matrix buffer </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>poiner of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
+    <tr><td class="paramname">y_pos</td><td>y position in matrix buffer </td></tr>
+    <tr><td class="paramname">state</td><td>(logic) of point in matrix buffer </td></tr>
   </table>
   </dd>
 </dl>

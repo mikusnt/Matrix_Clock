@@ -73,7 +73,7 @@ static uint8_t I2C_ReadRegister(uint8_t deviceAddr, uint8_t registerAddr, uint8_
  *
  */
 
-/*! @return 		1 gdy powodzenie, 0 gdy niepowodzenie*/
+/*! @return 		1 when success, 0 otherwise*/
 uint8_t DS3231_Init(void){
     uint8_t byte;
     if (I2C_ReadRegister(DS3231, CONTROL_0_REGISTER, &byte)) {
@@ -90,10 +90,10 @@ uint8_t DS3231_Init(void){
     return 0;
 } // END void DS3231_init
 
-/*! @param 			hour_s wskaznik pobieranych godzin
- *  @param			minute_s wskaznik pobieranych minut
- *  @param			second_s wskaznik pobieranych sekund
- *  @return 		1 gdy powodzenie, 0 gdy niepowodzenie*/
+/*! @param 			hour_s pointer of hour
+ *  @param			minute_s pointer of minte
+ *  @param			second_s pointer of second
+ *  @return 		1 when success, 0 otherwise*/
 uint8_t DS3231_GetTime(uint8_t *hour_s, uint8_t *minute_s, uint8_t *second_s)
 {
 	uint8_t temp_hour, temp_minute, temp_second;
@@ -106,12 +106,12 @@ uint8_t DS3231_GetTime(uint8_t *hour_s, uint8_t *minute_s, uint8_t *second_s)
 		temp_minute = bcd2dec(temp_minute);
 		temp_second = bcd2dec(temp_second);
 
-		if (temp_hour & 0x40) // gdy tryb am/pm
-			temp_hour &= HOURS_12_MASK; // tryb 12 godzinny
-		else temp_hour &= HOURS_24_MASK; // tryb 24 godzinny, wykorzystywane 6 bitow
+		if (temp_hour & 0x40) // when mode am/pm
+			temp_hour &= HOURS_12_MASK; // 12 hours mode
+		else temp_hour &= HOURS_24_MASK; // 24 hours mode, uses six bit
 		temp_hour = bcd2dec(temp_hour);
 
-		// kontrola poprawnosci wartosci
+		// control values
 		if ((temp_hour < 24) && (temp_minute < 60) && (temp_second < 60)) {
 			*hour_s = temp_hour;
 			*minute_s = temp_minute;
@@ -123,10 +123,10 @@ uint8_t DS3231_GetTime(uint8_t *hour_s, uint8_t *minute_s, uint8_t *second_s)
 
 } // END void DS3231_GetTime
 
-/*! @param 			month_s wskaznik pobieranego miesiaca
- *  @param			day_s wskaznik pobieranego dnia miesiaca
- *  @param			year_s wskaznik pobieranego roku
- *  @return 		1 gdy powodzenie, 0 gdy niepowodzenie*/
+/*! @param			day_s pointer of day
+ *  @param 			month_s pointer of month
+ *  @param			year_s wpointer of year
+ *  @return 		1 when success, 0 otherwise*/
 uint8_t DS3231_GetDate(uint8_t *day_s, uint8_t *month_s, uint8_t *year_s)
 {
 	if (I2C_ReadRegister(DS3231,MONTHS_REGISTER, month_s)
@@ -136,7 +136,7 @@ uint8_t DS3231_GetDate(uint8_t *day_s, uint8_t *month_s, uint8_t *year_s)
 		if (*month_s & CENTURY_MASK) {
 			*year_s += 100;
 		}
-		*month_s = bcd2dec(*month_s & MONTH_MASK);		// pozbycie sie wieku na 7 bicie, 6 i 5 pusty
+		*month_s = bcd2dec(*month_s & MONTH_MASK);		// clear centumy mask
 		*day_s = bcd2dec(*day_s);
 
 		return 1;
@@ -145,12 +145,12 @@ uint8_t DS3231_GetDate(uint8_t *day_s, uint8_t *month_s, uint8_t *year_s)
 
 } // END void DS3231_GetDate
 
-/*! @param  		hour ustawiana godzina dziesietna
- *  @param			minute ustawiana minuta dziesietna
- *  @param			second ustawiana sekunda dziesietna
- *  @return 		1 gdy powodzenie, 0 gdy niepowodzenie*/
+/*! @param  		hour to set
+ *  @param			minute to set
+ *  @param			second to set
+ *  @return 		1 when success, 0 otherwise*/
 uint8_t  DS3231_SetTime(uint8_t hour, uint8_t minute, uint8_t second) {
-	// test poprawnosci
+	// control values
 	if ((hour > 23) || (minute > 59) || (second > 59)) return 0;
 
 	if (I2C_WriteRegister(DS3231,HOURS_REGISTER, dec2bcd(hour) & HOURS_24_MASK)
@@ -160,13 +160,13 @@ uint8_t  DS3231_SetTime(uint8_t hour, uint8_t minute, uint8_t second) {
 	return 0;
 } // END void  DS3231_SetTime
 
-/*! @param  		day ustawiany dzien miesiaca dziesietnie
- *  @param			month ustawiany miesiac dziesietnie
- *  @param			year ustawiany rok dziesietnie
- *  @return 		1 gdy powodzenie, 0 gdy niepowodzenie*/
+/*! @param  		day to set
+ *  @param			month to set
+ *  @param			year to set
+ *  @return 		1 when success, 0 otherwise*/
 uint8_t  DS3231_SetDate(uint8_t day, uint8_t month, uint8_t year) {
 	if ((day > 31) || (month > 12) || (year > 199)) return 0;
-	// ustawienie bitu kolejnego wieku
+	// set century bit
 	dec2bcd(month);
 	if (year > 99) {
 		year -= 100;
@@ -180,20 +180,17 @@ uint8_t  DS3231_SetDate(uint8_t day, uint8_t month, uint8_t year) {
 } // END void  DS3231_SetDate
 
 void DS3231_Test() {
-	/*  Test poprawnej pracy RTC, resetuje WATCHDoga  */
+	/*  resets WATCHDog  */
 	uint8_t hour, min, sec, nhour, nmin, nsec;
 	uint8_t count = 10; // maksymalna ilosc powtorzen
 	DS3231_GetTime(&hour, &min, &sec);
 	D_MS(1200);
 	DS3231_GetTime(&nhour, &nmin, &nsec);
 
-
-	/*  Jeœli RTC nie pracuje to wgraj now¹ godzinê, jeœli nie pracuje po wgraniu nowego czasu to daj sygna³ awaryjny  */
 	while ((sec == nsec) && (count--)) {
-		wdt_disable();
 		wdt_enable(WDTO_2S);
 		DS3231_Init();
-		//DS3231_SetTime(12, 0, 0);
+		DS3231_SetTime(12, 0, 0);
 		DS3231_GetTime(&hour, &min, &sec);
 		D_MS(1200);
 		DS3231_GetTime(&nhour, &nmin, &nsec);
@@ -201,7 +198,6 @@ void DS3231_Test() {
 	}
 	wdt_disable();
 	if (!count) {
-		wdt_enable(WDTO_15MS);
-		D_MS(50);
+		Reset_UC();
 	}
 }

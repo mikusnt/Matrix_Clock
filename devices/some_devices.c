@@ -57,6 +57,6 @@ void PCINTInit() {
 	PCMSK2 |= (1 << PCINT23); // Bluetooth
 } // END void PCINTInit()
 
-void PowerReductionInit() {
+void PowerReduction() {
 	PRR |= (1 << PRTIM1); // turn off Timer1
 }

@@ -83,7 +83,7 @@ inline void ReadADCToADCData(volatile ADCVoltageData *a, volatile uint8_t *brigh
 //! Initialize PCINT interrupt
 extern void PCINTInit();
 //! Power reduction
-extern void PowerReductionInit();
+extern void PowerReduction();
 
 
 /*
@@ -98,7 +98,7 @@ inline void ADCStart() {
 }
 
 /*!@param 		a pointer of ADC structure
- * @param		bright output brightness
+ * @param		bright_s output brightness
  * @see ADCStart()*/
 inline void ReadADCToADCData(volatile ADCVoltageData *a, volatile uint8_t *bright_s) {
 	// new part of sum

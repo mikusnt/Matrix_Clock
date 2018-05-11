@@ -5,5 +5,5 @@ var struct_hyst_data =
     [ "uiDelta", "struct_hyst_data.html#a8e890a2aaab1e1fbecb17c629289387f", null ],
     [ "uiMaxValue", "struct_hyst_data.html#a74ffbbad198219ae95dff3020507e691", null ],
     [ "uiMinValue", "struct_hyst_data.html#a9e59a7423023ec8f0a03ff57711f7f8a", null ],
-    [ "uiOutValue", "struct_hyst_data.html#af945211bbdb8a6298b5e5ecfac320608", null ]
+    [ "uiOutValue_s", "struct_hyst_data.html#a3b37b3cc87a31c5239da1bc003a67e01", null ]
 ];

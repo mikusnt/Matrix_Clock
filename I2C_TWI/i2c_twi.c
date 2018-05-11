@@ -25,7 +25,7 @@ static inline void I2C_CleanError() {
 
 /*
  *
- *		Funkcje z pliku h
+ *		External functions
  *
  */
 
@@ -38,9 +38,9 @@ void I2C_Init() {
 		prescaler++;
 	}
 	I2C_Error = 0;
-	TWCR = (1 << TWEA) | (1 << TWEN); // uruchomienie interfejsu
-	TWSR = (TWSR & ((1 << TWPS1) | (1 << TWPS0))) | prescaler; // konfiguracja preskalera
-	TWBR = bitrate; // ustawienie bitrate
+	TWCR = (1 << TWEA) | (1 << TWEN); // run interface
+	TWSR = (TWSR & ((1 << TWPS1) | (1 << TWPS0))) | prescaler; // prescaler
+	TWBR = bitrate; // bitrate
 }
 
 void I2C_Start(uint8_t StartMode) {
@@ -49,7 +49,7 @@ void I2C_Start(uint8_t StartMode) {
 	else Status = TW_START;
 	TWCR = (1<<TWINT)|(1<<TWEN)|(1<<TWSTA);
 	I2C_WaitForComplete();
-	if (TW_STATUS != Status) { // obs³uga b³êdu
+	if (TW_STATUS != Status) { // error handling
 		I2C_SetError(I2C_STARTError);
 	} else {
 		I2C_CleanError();
@@ -74,7 +74,7 @@ void I2C_Write(uint8_t byte) {
 	TWDR = byte;
 	TWCR = (1<<TWINT)|(1<<TWEN);
 	I2C_WaitForComplete();
-	if(TW_STATUS != TW_MT_DATA_ACK) { // obs³uga b³êdu
+	if(TW_STATUS != TW_MT_DATA_ACK) { // error handling
 		I2C_SetError(I2C_NoACK);
 	} else {
 		I2C_CleanError();
@@ -88,7 +88,7 @@ void I2C_WriteAdr(uint8_t adr) {
 	TWDR =  adr;
 	TWCR = (1 << TWINT) | (1<< TWEN);
 	I2C_WaitForComplete();
-	if (TW_STATUS != Status) { // obs³uga b³êdu
+	if (TW_STATUS != Status) { // error handling
 		I2C_SetError(I2C_NoNACK);
 	} else {
 		I2C_CleanError();
@@ -98,7 +98,7 @@ void I2C_WriteAdr(uint8_t adr) {
 uint8_t I2C_Read(uint8_t ack) {
 	TWCR = (1<<TWINT)|(ack<<TWEA)|(1<<TWEN);
 	I2C_WaitForComplete();
-	if (ack) { // obs³uba b³êdu
+	if (ack) { // error handling
 		if (TW_STATUS != TW_MR_DATA_ACK) { I2C_SetError(I2C_NoACK); return 0; }
 	} else {
 		if (TW_STATUS != TW_MR_DATA_NACK) { I2C_SetError(I2C_NoNACK); return 0; }

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['tabl',['tabl',['../data__types_8h.html#a4b69ecebb395939fef97b08d5698a74c',1,'data_types.h']]],
   ['taskrelaymode',['TaskRelayMode',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a0765b7834fdbf3c5bb3cf038fc79ffc1',1,'matrix_seq.h']]],
   ['taskrelaynumber',['TaskRelayNumber',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a1a7477d6691d5ed2a3dffd0fbf8c0adf',1,'matrix_seq.h']]],
   ['tasksetpix',['TaskSetPix',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a91e058bcff2914a008cddc5a193311ae',1,'matrix_seq.h']]],
@@ -20,8 +19,8 @@ var searchData=
   ['timeinit',['TimeInit',['../date__time_8h.html#adb7b0840a9c20d5f4d6bab7517d62343',1,'date_time.h']]],
   ['timem0pos',['TimeM0Pos',['../date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a8c69ca5d18d37c5b2984f25f8f71535b',1,'date_time.h']]],
   ['timem10pos',['TimeM10Pos',['../date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a0c3b32416e86bab2f864400128afe7e6',1,'date_time.h']]],
-  ['timer0init',['Timer0Init',['../other__devices_8c.html#aba017025ab450fd915cb22f19c6ff87b',1,'Timer0Init():&#160;other_devices.c'],['../other__devices_8h.html#aba017025ab450fd915cb22f19c6ff87b',1,'Timer0Init():&#160;other_devices.c']]],
-  ['timer2init',['Timer2Init',['../other__devices_8c.html#a8df3b0bec1a50af5a7014dc8ac6fb438',1,'Timer2Init():&#160;other_devices.c'],['../other__devices_8h.html#a8df3b0bec1a50af5a7014dc8ac6fb438',1,'Timer2Init():&#160;other_devices.c']]],
+  ['timer0init',['Timer0Init',['../some__devices_8c.html#aba017025ab450fd915cb22f19c6ff87b',1,'Timer0Init():&#160;some_devices.c'],['../some__devices_8h.html#aba017025ab450fd915cb22f19c6ff87b',1,'Timer0Init():&#160;some_devices.c']]],
+  ['timer2init',['Timer2Init',['../some__devices_8c.html#a8df3b0bec1a50af5a7014dc8ac6fb438',1,'Timer2Init():&#160;some_devices.c'],['../some__devices_8h.html#a8df3b0bec1a50af5a7014dc8ac6fb438',1,'Timer2Init():&#160;some_devices.c']]],
   ['times0pos',['TimeS0Pos',['../date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a69634ead87cfc59b7111c6d4f6010a54',1,'date_time.h']]],
   ['times10pos',['TimeS10Pos',['../date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a4f42897f730076204802f1331ba8e8b1',1,'date_time.h']]],
   ['translatetoalphabet',['TranslateToAlphabet',['../alphabet_8c.html#ad63e779db7ad39e4913a31cdb891fa8d',1,'alphabet.c']]],

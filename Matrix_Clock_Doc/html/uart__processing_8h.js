@@ -11,5 +11,6 @@ var uart__processing_8h =
     [ "RESET_CODE", "uart__processing_8h.html#a29b114b6b70277b6e0215f975c842d33", null ],
     [ "SPECTRUM_CODE", "uart__processing_8h.html#a3979a1c01bb30d8e7727f20cbcb457e5", null ],
     [ "VERSION_CODE", "uart__processing_8h.html#a27f0e9d965d44228e76473c63a74e26f", null ],
+    [ "VERSION_TEXT", "uart__processing_8h.html#a2e1c964667c1b62c2adf564132cd4d7f", null ],
     [ "TryLoadCommand", "uart__processing_8h.html#a4aca2a05fc03c7a03622aca9c4a3d0ce", null ]
 ];

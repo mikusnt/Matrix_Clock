@@ -15,7 +15,5 @@ var data__types_8h =
       [ "HIGH", "data__types_8h.html#a615b17ff17d94ac492d586943e5302aca0c3a1dacf94061154b3ee354359c5893", null ]
     ] ],
     [ "Hysteresis", "data__types_8h.html#a43a1bb9a8712450c6e4539dfe48cfe72", null ],
-    [ "LoadToBuffer", "data__types_8h.html#acbae0000b6ba6d9498eec92a3a4193bf", null ],
-    [ "Reset_UC", "data__types_8h.html#a9892d8bfe2e78ef4a97a1b0bd022551b", null ],
-    [ "tabl", "data__types_8h.html#a4b69ecebb395939fef97b08d5698a74c", null ]
+    [ "Reset_UC", "data__types_8h.html#a9892d8bfe2e78ef4a97a1b0bd022551b", null ]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['readadctoadcdata',['ReadADCToADCData',['../other__devices_8h.html#a13f3eec91fdb282a685b46373db29e1a',1,'other_devices.h']]],
+  ['readadctoadcdata',['ReadADCToADCData',['../some__devices_8h.html#af759822269409f7102b2123e3a294eb8',1,'some_devices.h']]],
   ['readme_2emd',['readme.md',['../readme_8md.html',1,'']]],
   ['refreshbufferflag',['RefreshBufferFlag',['../diode__matrix_8h.html#afb47ff3cb70c99d953e54b4cd338ba38',1,'diode_matrix.h']]],
   ['register_2ec',['register.c',['../register_8c.html',1,'']]],
@@ -40,7 +40,7 @@ var searchData=
   ['rep_5fstart',['REP_START',['../i2c__twi_8h.html#a9bacece2c20a7319735a4973390fb096',1,'i2c_twi.h']]],
   ['reset_5fcode',['RESET_CODE',['../uart__processing_8h.html#a29b114b6b70277b6e0215f975c842d33',1,'uart_processing.h']]],
   ['reset_5fuc',['Reset_UC',['../data__types_8h.html#a9892d8bfe2e78ef4a97a1b0bd022551b',1,'data_types.h']]],
-  ['resetprogress',['ResetProgress',['../date__time_8c.html#a26e7a692d8d2c78f0b57d20c6ffec692',1,'ResetProgress(TimeDate *time):&#160;date_time.c'],['../date__time_8h.html#a26e7a692d8d2c78f0b57d20c6ffec692',1,'ResetProgress(TimeDate *time):&#160;date_time.c']]],
+  ['resetprogress',['ResetProgress',['../date__time_8c.html#abbc6010874bc1a71bde86a58a4f71139',1,'ResetProgress(TimeDate *t):&#160;date_time.c'],['../date__time_8h.html#a26e7a692d8d2c78f0b57d20c6ffec692',1,'ResetProgress(TimeDate *time):&#160;date_time.c']]],
   ['returnyvalue',['ReturnYValue',['../diode__matrix_8h.html#aac0b3fff4050cc226a59a0ea29c54b4e',1,'diode_matrix.h']]],
   ['roundbyte',['RoundByte',['../relay_8c.html#a6b31b9ac6986dd228db20d6cb14702e6',1,'relay.c']]],
   ['rs1',['RS1',['../ds3231_8h.html#aee48b563b7ff09121325a0ba4c21c6d3',1,'ds3231.h']]],

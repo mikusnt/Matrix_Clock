@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('struct_diode_matrix.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>glowna struktura macierzy LED  
+<p>main structure of LED Matrix  
  <a href="struct_diode_matrix.html#details">More...</a></p>
 
 <p><code>#include &lt;diode_matrix.h&gt;</code></p>
@@ -94,19 +94,19 @@ $(document).ready(function(){initNavTree('struct_diode_matrix.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a31dbd903aab3ff31162ee3c83ca27ffb"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#a31dbd903aab3ff31162ee3c83ca27ffb">uitBufferX</a> [<a class="el" href="diode__matrix_8h.html#a73e92c4c2b0d21cc03685a7394c8a0b8">BUFFER_X_SIZE</a>]</td></tr>
-<tr class="memdesc:a31dbd903aab3ff31162ee3c83ca27ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">bufor jasnosci poszczegolnych diod matrycy LED, zmieniac manualnie  <a href="#a31dbd903aab3ff31162ee3c83ca27ffb">More...</a><br /></td></tr>
+<tr class="memdesc:a31dbd903aab3ff31162ee3c83ca27ffb"><td class="mdescLeft">&#160;</td><td class="mdescRight">buffer of LED state, one byte for all Y positions (vertical)  <a href="#a31dbd903aab3ff31162ee3c83ca27ffb">More...</a><br /></td></tr>
 <tr class="separator:a31dbd903aab3ff31162ee3c83ca27ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91967b9662bddb76d553d8a1c111d620"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#a91967b9662bddb76d553d8a1c111d620">uiBrightCount</a></td></tr>
 <tr class="separator:a91967b9662bddb76d553d8a1c111d620"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c1346f4f510a379d3b8f1ad67d03d11"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#a5c1346f4f510a379d3b8f1ad67d03d11">uiActY</a></td></tr>
 <tr class="separator:a5c1346f4f510a379d3b8f1ad67d03d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a126c823eb3a4889f117fd3d0968edf0e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#a126c823eb3a4889f117fd3d0968edf0e">uitBufferFlag</a> [<a class="el" href="diode__matrix_8h.html#a8968a13b4d9c558ff1715c07fa7d4614">MATRIX_X_SIZE</a>]</td></tr>
-<tr class="memdesc:a126c823eb3a4889f117fd3d0968edf0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">bufor aktualnego dzialania LED  <a href="#a126c823eb3a4889f117fd3d0968edf0e">More...</a><br /></td></tr>
+<tr class="memdesc:a126c823eb3a4889f117fd3d0968edf0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">buffer of LED state in actual Y position  <a href="#a126c823eb3a4889f117fd3d0968edf0e">More...</a><br /></td></tr>
 <tr class="separator:a126c823eb3a4889f117fd3d0968edf0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53e16bfeef1350df41a21ffa4083a782"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#a53e16bfeef1350df41a21ffa4083a782">i16BufferPosition</a></td></tr>
 <tr class="separator:a53e16bfeef1350df41a21ffa4083a782"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac303a4830cf7f0b550bfd7b390681353"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#ac303a4830cf7f0b550bfd7b390681353">uiEndBufferPosition</a></td></tr>
-<tr class="memdesc:ac303a4830cf7f0b550bfd7b390681353"><td class="mdescLeft">&#160;</td><td class="mdescRight">indeks konca pozycji wyswietlania danych z bufora, zmieniac manualnie  <a href="#ac303a4830cf7f0b550bfd7b390681353">More...</a><br /></td></tr>
+<tr class="memdesc:ac303a4830cf7f0b550bfd7b390681353"><td class="mdescLeft">&#160;</td><td class="mdescRight">matrix buffer end address, modify manually  <a href="#ac303a4830cf7f0b550bfd7b390681353">More...</a><br /></td></tr>
 <tr class="separator:ac303a4830cf7f0b550bfd7b390681353"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8b3e8405ff773f1e60121e5a864006d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#ae8b3e8405ff773f1e60121e5a864006d">bIsMoving</a></td></tr>
 <tr class="separator:ae8b3e8405ff773f1e60121e5a864006d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -115,11 +115,11 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a7a0c45f6c7f7fa1fa247cd85f0cef499"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#a7a0c45f6c7f7fa1fa247cd85f0cef499">uiSlowClearedPos</a></td></tr>
 <tr class="separator:a7a0c45f6c7f7fa1fa247cd85f0cef499"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0b0993324965a8a0f268ab7dce90e82"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#ab0b0993324965a8a0f268ab7dce90e82">uiBrightness</a></td></tr>
-<tr class="memdesc:ab0b0993324965a8a0f268ab7dce90e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">jasnosc calej matrycy  <a href="#ab0b0993324965a8a0f268ab7dce90e82">More...</a><br /></td></tr>
+<tr class="memdesc:ab0b0993324965a8a0f268ab7dce90e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">brightness of matrix, modify manually  <a href="#ab0b0993324965a8a0f268ab7dce90e82">More...</a><br /></td></tr>
 <tr class="separator:ab0b0993324965a8a0f268ab7dce90e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>glowna struktura macierzy LED </p>
+<div class="textblock"><p>main structure of LED Matrix </p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="ae8b3e8405ff773f1e60121e5a864006d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8b3e8405ff773f1e60121e5a864006d">&#9670;&nbsp;</a></span>bIsMoving</h2>
@@ -132,7 +132,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>tryb wyswietlania, zmieniany manualnie true - wyswietlenie pustej matrycy, pojawienie sie zawartosci bufora i wyjscie calego mufora z matrycy false - wyswietlenie zawartosci bufora i przejscie do konca </p>
+<p>mode of displaying, modify manually true - display clear matrix, increment start address to end buffer position false - display first part of buffer and increment address to see end part of buffer </p>
 
 </div>
 </div>
@@ -147,7 +147,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>aktualna pozycja wyswietlania danych z bufora, zmieniana przez funkcje </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="diode__matrix_8h.html#a12bd75bf151f956660b968af60f7c6cb" title="zwieksza aktualna pozycje wyswietlania danych z bufora o 1, gdy wartosc osiagnie koncowa to reset do ...">IncrementBufferPosition</a> </dd></dl>
+<p>actual matrix buffer start adress, modify by function </p><dl class="section see"><dt>See also</dt><dd>IncrementBufferPosition </dd></dl>
 
 </div>
 </div>
@@ -162,7 +162,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>aktualna pozycja Y, zmieniana przez funkcje </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="diode__matrix_8h.html#a238b4dcd1193977bde0efbdb0bfed736" title="zwieksza o 1 aktualna wspolrzedna Y ">IncrementY</a> </dd></dl>
+<p>actual Y position (vertical), modify by function </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="diode__matrix_8h.html#a238b4dcd1193977bde0efbdb0bfed736" title="increment Y position ">IncrementY</a> </dd></dl>
 
 </div>
 </div>
@@ -177,7 +177,7 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>aktualna wartosc jasnosci, zmieniana przez funkcje </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="diode__matrix_8h.html#a69188be4fa98b982383104b1d110759c" title="zwieksza o 1 aktualna jasnosc matrycy ">IncrementBrightness</a> </dd></dl>
+<p>actual bright level of matrix, modify by function </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="diode__matrix_8h.html#a69188be4fa98b982383104b1d110759c" title="increment actual matrix brightness ">IncrementBrightness</a> </dd></dl>
 
 </div>
 </div>
@@ -193,7 +193,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>jasnosc calej matrycy </p>
+<p>brightness of matrix, modify manually </p>
 
 </div>
 </div>
@@ -209,7 +209,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>indeks konca pozycji wyswietlania danych z bufora, zmieniac manualnie </p>
+<p>matrix buffer end address, modify manually </p>
 
 </div>
 </div>
@@ -224,9 +224,9 @@ Data Fields</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>pozycja oczyszczania bufora, ustawiana przez </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="diode__matrix_8h.html#a1edf23bab792b67285433d90face7109" title="ustawia pozycje oczyszczania bufora na koniec zapisanego bufora ">RunSlowClearedPos</a> </dd>
+<p>position of right to left clearing line, set by </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="diode__matrix_8h.html#a1edf23bab792b67285433d90face7109" title="set right to left clearing line to matrix buffer end address ">RunSlowClearedPos</a> </dd>
 <dd>
-<a class="el" href="diode__matrix_8h.html#a9645b39049a92b3293a4a482668b8be4" title="zmniejsza pozycje oczyszczania bufora o 1 ">DecrementTo0SlowClear</a> </dd></dl>
+<a class="el" href="diode__matrix_8h.html#a9645b39049a92b3293a4a482668b8be4" title="decrement right to left clearing line ">DecrementTo0SlowClear</a> </dd></dl>
 
 </div>
 </div>
@@ -242,7 +242,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>bufor aktualnego dzialania LED </p>
+<p>buffer of LED state in actual Y position </p>
 
 </div>
 </div>
@@ -258,7 +258,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>bufor jasnosci poszczegolnych diod matrycy LED, zmieniac manualnie </p>
+<p>buffer of LED state, one byte for all Y positions (vertical) </p>
 
 </div>
 </div>

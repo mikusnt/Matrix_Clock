@@ -93,33 +93,33 @@ $(document).ready(function(){initNavTree('relay_8h.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_relay.html">Relay</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">glowna struktura przekaznika  <a href="struct_relay.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">main relay structure  <a href="struct_relay.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a5b2af471b342922fe06bd8e6eadd452a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#a5b2af471b342922fe06bd8e6eadd452a">RELAY_DDR</a>&#160;&#160;&#160;DDRC</td></tr>
-<tr class="memdesc:a5b2af471b342922fe06bd8e6eadd452a"><td class="mdescLeft">&#160;</td><td class="mdescRight">rejestr kierunku przekaznika  <a href="#a5b2af471b342922fe06bd8e6eadd452a">More...</a><br /></td></tr>
+<tr class="memdesc:a5b2af471b342922fe06bd8e6eadd452a"><td class="mdescLeft">&#160;</td><td class="mdescRight">direction register of relay  <a href="#a5b2af471b342922fe06bd8e6eadd452a">More...</a><br /></td></tr>
 <tr class="separator:a5b2af471b342922fe06bd8e6eadd452a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5184e003d6bc3dbe879b7e023cf9bdd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#ad5184e003d6bc3dbe879b7e023cf9bdd">RELAY_PORT</a>&#160;&#160;&#160;PORTC</td></tr>
-<tr class="memdesc:ad5184e003d6bc3dbe879b7e023cf9bdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">rejestr stanu przekaznika  <a href="#ad5184e003d6bc3dbe879b7e023cf9bdd">More...</a><br /></td></tr>
+<tr class="memdesc:ad5184e003d6bc3dbe879b7e023cf9bdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">state register of relay  <a href="#ad5184e003d6bc3dbe879b7e023cf9bdd">More...</a><br /></td></tr>
 <tr class="separator:ad5184e003d6bc3dbe879b7e023cf9bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a723cc603b711e23c42065113ec9e2384"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#a723cc603b711e23c42065113ec9e2384">RELAY_ADDR</a>&#160;&#160;&#160;(1 &lt;&lt; PC3)</td></tr>
-<tr class="memdesc:a723cc603b711e23c42065113ec9e2384"><td class="mdescLeft">&#160;</td><td class="mdescRight">adres przekaznika  <a href="#a723cc603b711e23c42065113ec9e2384">More...</a><br /></td></tr>
+<tr class="memdesc:a723cc603b711e23c42065113ec9e2384"><td class="mdescLeft">&#160;</td><td class="mdescRight">relay address  <a href="#a723cc603b711e23c42065113ec9e2384">More...</a><br /></td></tr>
 <tr class="separator:a723cc603b711e23c42065113ec9e2384"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e5ce4bd573f20399f3f377512b8121f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#a0e5ce4bd573f20399f3f377512b8121f">RELAY_CH</a>()&#160;&#160;&#160;<a class="el" href="relay_8h.html#ad5184e003d6bc3dbe879b7e023cf9bdd">RELAY_PORT</a> ^= <a class="el" href="relay_8h.html#a723cc603b711e23c42065113ec9e2384">RELAY_ADDR</a></td></tr>
-<tr class="memdesc:a0e5ce4bd573f20399f3f377512b8121f"><td class="mdescLeft">&#160;</td><td class="mdescRight">zmienia stan przekaznika na przeciwny  <a href="#a0e5ce4bd573f20399f3f377512b8121f">More...</a><br /></td></tr>
+<tr class="memdesc:a0e5ce4bd573f20399f3f377512b8121f"><td class="mdescLeft">&#160;</td><td class="mdescRight">reverse relay state  <a href="#a0e5ce4bd573f20399f3f377512b8121f">More...</a><br /></td></tr>
 <tr class="separator:a0e5ce4bd573f20399f3f377512b8121f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c41eb83ca894bb606de55658cdcc328"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#a9c41eb83ca894bb606de55658cdcc328">RELAY_IS_ON</a>()&#160;&#160;&#160;(<a class="el" href="relay_8h.html#ad5184e003d6bc3dbe879b7e023cf9bdd">RELAY_PORT</a> &amp; <a class="el" href="relay_8h.html#a723cc603b711e23c42065113ec9e2384">RELAY_ADDR</a>)</td></tr>
-<tr class="memdesc:a9c41eb83ca894bb606de55658cdcc328"><td class="mdescLeft">&#160;</td><td class="mdescRight">sprawdza czy zlacze przekaznika aktywne  <a href="#a9c41eb83ca894bb606de55658cdcc328">More...</a><br /></td></tr>
+<tr class="memdesc:a9c41eb83ca894bb606de55658cdcc328"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks relay state  <a href="#a9c41eb83ca894bb606de55658cdcc328">More...</a><br /></td></tr>
 <tr class="separator:a9c41eb83ca894bb606de55658cdcc328"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b2ba7bff13dbfdf21a18e681d8e3a1e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#a9b2ba7bff13dbfdf21a18e681d8e3a1e">RELAY_MUL_SUM</a>&#160;&#160;&#160;10</td></tr>
 <tr class="separator:a9b2ba7bff13dbfdf21a18e681d8e3a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac654e5f97ae38ec656d7c4cacf78a395"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#ac654e5f97ae38ec656d7c4cacf78a395">RELAY_INTERVAL_MS</a>&#160;&#160;&#160;1500</td></tr>
-<tr class="memdesc:ac654e5f97ae38ec656d7c4cacf78a395"><td class="mdescLeft">&#160;</td><td class="mdescRight">czas jednego taktu przekaznika liczony w ms  <a href="#ac654e5f97ae38ec656d7c4cacf78a395">More...</a><br /></td></tr>
+<tr class="memdesc:ac654e5f97ae38ec656d7c4cacf78a395"><td class="mdescLeft">&#160;</td><td class="mdescRight">one relay period time in ms  <a href="#ac654e5f97ae38ec656d7c4cacf78a395">More...</a><br /></td></tr>
 <tr class="separator:ac654e5f97ae38ec656d7c4cacf78a395"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae417a089da02fd7925922ec621c7f7c2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#ae417a089da02fd7925922ec621c7f7c2">RELAY_STATE_MS</a>&#160;&#160;&#160;(<a class="el" href="relay_8h.html#ac654e5f97ae38ec656d7c4cacf78a395">RELAY_INTERVAL_MS</a> / <a class="el" href="relay_8h.html#a9b2ba7bff13dbfdf21a18e681d8e3a1e">RELAY_MUL_SUM</a>)</td></tr>
-<tr class="memdesc:ae417a089da02fd7925922ec621c7f7c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">czas czesci taktu przekaznika liczony w ms  <a href="#ae417a089da02fd7925922ec621c7f7c2">More...</a><br /></td></tr>
+<tr class="memdesc:ae417a089da02fd7925922ec621c7f7c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">part of one relay period in ms  <a href="#ae417a089da02fd7925922ec621c7f7c2">More...</a><br /></td></tr>
 <tr class="separator:ae417a089da02fd7925922ec621c7f7c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22ac4beb00c0bbc366742bc41719f9b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#a22ac4beb00c0bbc366742bc41719f9b7">RELAY_LONG_HIGH_TIME</a>&#160;&#160;&#160;<a class="el" href="relay_8h.html#ae417a089da02fd7925922ec621c7f7c2">RELAY_STATE_MS</a> * 5</td></tr>
 <tr class="separator:a22ac4beb00c0bbc366742bc41719f9b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,20 +130,22 @@ Macros</h2></td></tr>
 <tr class="memitem:acbafc2389bb7a6fef89f312b0045f14d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#acbafc2389bb7a6fef89f312b0045f14d">RELAY_SHORT_LOW_TIME</a>&#160;&#160;&#160;<a class="el" href="relay_8h.html#ae417a089da02fd7925922ec621c7f7c2">RELAY_STATE_MS</a> * 9</td></tr>
 <tr class="separator:acbafc2389bb7a6fef89f312b0045f14d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a841f9b827978db09c261561e736a1249"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#a841f9b827978db09c261561e736a1249">RELAY_HIGH_START_MS</a>&#160;&#160;&#160;75</td></tr>
+<tr class="memdesc:a841f9b827978db09c261561e736a1249"><td class="mdescLeft">&#160;</td><td class="mdescRight">period to rename start sequence when minute or hour mode in ms  <a href="#a841f9b827978db09c261561e736a1249">More...</a><br /></td></tr>
 <tr class="separator:a841f9b827978db09c261561e736a1249"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff62933b1b59d2a061173e4db91c8f45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#aff62933b1b59d2a061173e4db91c8f45">RELAY_HIGH_START_MS_NUMBER</a>&#160;&#160;&#160;35</td></tr>
-<tr class="memdesc:aff62933b1b59d2a061173e4db91c8f45"><td class="mdescLeft">&#160;</td><td class="mdescRight">czas dla zmiany sekwencji testwej gdy aktualnie stan wysoki liczony w ms dla liczby  <a href="#aff62933b1b59d2a061173e4db91c8f45">More...</a><br /></td></tr>
+<tr class="memdesc:aff62933b1b59d2a061173e4db91c8f45"><td class="mdescLeft">&#160;</td><td class="mdescRight">period to rename start sequence when numbers mode  <a href="#aff62933b1b59d2a061173e4db91c8f45">More...</a><br /></td></tr>
 <tr class="separator:aff62933b1b59d2a061173e4db91c8f45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b5d4d294fe1c2fae5899f17220bc93f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#a5b5d4d294fe1c2fae5899f17220bc93f">RELAY_HIGH_START_H_COUNT</a>&#160;&#160;&#160;12</td></tr>
+<tr class="memdesc:a5b5d4d294fe1c2fae5899f17220bc93f"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of change relay state of start sequence when hours mode, should be even number  <a href="#a5b5d4d294fe1c2fae5899f17220bc93f">More...</a><br /></td></tr>
 <tr class="separator:a5b5d4d294fe1c2fae5899f17220bc93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad54630f9109fa1f2322dec005400fac4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#ad54630f9109fa1f2322dec005400fac4">RELAY_HIGH_START_M_COUNT</a>&#160;&#160;&#160;8</td></tr>
-<tr class="memdesc:ad54630f9109fa1f2322dec005400fac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie minut  <a href="#ad54630f9109fa1f2322dec005400fac4">More...</a><br /></td></tr>
+<tr class="memdesc:ad54630f9109fa1f2322dec005400fac4"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of change relay state of start sequence when minutes mode, should be even number  <a href="#ad54630f9109fa1f2322dec005400fac4">More...</a><br /></td></tr>
 <tr class="separator:ad54630f9109fa1f2322dec005400fac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a555cd21c4825bb501477083f7b290ba3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#a555cd21c4825bb501477083f7b290ba3">RELAY_HIGH_START_N_COUNT</a>&#160;&#160;&#160;12</td></tr>
-<tr class="memdesc:a555cd21c4825bb501477083f7b290ba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie liczb  <a href="#a555cd21c4825bb501477083f7b290ba3">More...</a><br /></td></tr>
+<tr class="memdesc:a555cd21c4825bb501477083f7b290ba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of change relay state of start sequence when numbers mode, should be even number  <a href="#a555cd21c4825bb501477083f7b290ba3">More...</a><br /></td></tr>
 <tr class="separator:a555cd21c4825bb501477083f7b290ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61c8f6bdb26faaa3d1aade1b42e40d38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#a61c8f6bdb26faaa3d1aade1b42e40d38">RELAY_LOW_START_MS</a>&#160;&#160;&#160;1500</td></tr>
-<tr class="memdesc:a61c8f6bdb26faaa3d1aade1b42e40d38"><td class="mdescLeft">&#160;</td><td class="mdescRight">sumaryczny czas przerwy miedzy sekwencja startu w stanie wysokim a wlasciwym kodowaniem czasu liczony w ms  <a href="#a61c8f6bdb26faaa3d1aade1b42e40d38">More...</a><br /></td></tr>
+<tr class="memdesc:a61c8f6bdb26faaa3d1aade1b42e40d38"><td class="mdescLeft">&#160;</td><td class="mdescRight">time of pause between start sequqnce and number code  <a href="#a61c8f6bdb26faaa3d1aade1b42e40d38">More...</a><br /></td></tr>
 <tr class="separator:a61c8f6bdb26faaa3d1aade1b42e40d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -151,33 +153,33 @@ Enumerations</h2></td></tr>
 <tr class="memitem:a72da5ed5620d716227a28a590c29be3d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#a72da5ed5620d716227a28a590c29be3d">RelayDataType</a> { <a class="el" href="relay_8h.html#a72da5ed5620d716227a28a590c29be3da038c11bc88bdb19d0ae510a764271b59">RelayDataHours</a> = 0, 
 <a class="el" href="relay_8h.html#a72da5ed5620d716227a28a590c29be3dad7c25ff857ab5952f0502dfd52098321">RelayDataMinutes</a>, 
 <a class="el" href="relay_8h.html#a72da5ed5620d716227a28a590c29be3da35e10b360346b842d42cd71ca4132162">RelayDataNumber</a>
- }<tr class="memdesc:a72da5ed5620d716227a28a590c29be3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">rodzaje typow danych wprowadzanych to przekaznika  <a href="relay_8h.html#a72da5ed5620d716227a28a590c29be3d">More...</a><br /></td></tr>
+ }<tr class="memdesc:a72da5ed5620d716227a28a590c29be3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">type of data sending to relay structure  <a href="relay_8h.html#a72da5ed5620d716227a28a590c29be3d">More...</a><br /></td></tr>
 </td></tr>
 <tr class="separator:a72da5ed5620d716227a28a590c29be3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:affcc0607926e8e696a4ac26cdb00b950"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#affcc0607926e8e696a4ac26cdb00b950">RelayInit</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *r)</td></tr>
-<tr class="memdesc:affcc0607926e8e696a4ac26cdb00b950"><td class="mdescLeft">&#160;</td><td class="mdescRight">inicjalizacja przekaznika  <a href="#affcc0607926e8e696a4ac26cdb00b950">More...</a><br /></td></tr>
+<tr class="memdesc:affcc0607926e8e696a4ac26cdb00b950"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize relay and load relay state from eeprom  <a href="#affcc0607926e8e696a4ac26cdb00b950">More...</a><br /></td></tr>
 <tr class="separator:affcc0607926e8e696a4ac26cdb00b950"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6f1144ad32f22176c38912ccde370e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#ae6f1144ad32f22176c38912ccde370e6">RelayStartClicking</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>, uint8_t uiByteInfo, <a class="el" href="relay_8h.html#a72da5ed5620d716227a28a590c29be3d">RelayDataType</a> dataType)</td></tr>
-<tr class="memdesc:ae6f1144ad32f22176c38912ccde370e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">zaladowanie potrzebnych danych do klikania w strukturze  <a href="#ae6f1144ad32f22176c38912ccde370e6">More...</a><br /></td></tr>
+<tr class="memdesc:ae6f1144ad32f22176c38912ccde370e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">load required data to clicking in structure  <a href="#ae6f1144ad32f22176c38912ccde370e6">More...</a><br /></td></tr>
 <tr class="separator:ae6f1144ad32f22176c38912ccde370e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af03ba0687ec1d4734e06be708c95a43f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#af03ba0687ec1d4734e06be708c95a43f">RelayTryClickMS</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>)</td></tr>
-<tr class="memdesc:af03ba0687ec1d4734e06be708c95a43f"><td class="mdescLeft">&#160;</td><td class="mdescRight">proba klikania wg danych struktury, wyzwalana co ms  <a href="#af03ba0687ec1d4734e06be708c95a43f">More...</a><br /></td></tr>
+<tr class="memdesc:af03ba0687ec1d4734e06be708c95a43f"><td class="mdescLeft">&#160;</td><td class="mdescRight">try to click bysed by data structure, called by 1 ms  <a href="#af03ba0687ec1d4734e06be708c95a43f">More...</a><br /></td></tr>
 <tr class="separator:af03ba0687ec1d4734e06be708c95a43f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7cfe7b4a3c8859802408f187ffe61f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8h.html#ad7cfe7b4a3c8859802408f187ffe61f2">SetRelayState</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>, <a class="el" href="data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244">BinarySwitch</a> eState)</td></tr>
-<tr class="memdesc:ad7cfe7b4a3c8859802408f187ffe61f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">zmiana stanu pracy przekaznika  <a href="#ad7cfe7b4a3c8859802408f187ffe61f2">More...</a><br /></td></tr>
+<tr class="memdesc:ad7cfe7b4a3c8859802408f187ffe61f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">rename relay state  <a href="#ad7cfe7b4a3c8859802408f187ffe61f2">More...</a><br /></td></tr>
 <tr class="separator:ad7cfe7b4a3c8859802408f187ffe61f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
-<dl class="section rcs"><dt>Modified</dt><dd>2018-04-04 </dd></dl>
+<dl class="section rcs"><dt>Modified</dt><dd>2018-05-05 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2017-11-04 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.0</dd></dl>
-<p>Uzyte piny procesora: 1<br />
- Plik naglowkowy obslugujacy przekaznik akustycznie przekazujacy dane binarne z wstapna sekwencja startu. Bit 1 jest reprezentowany przez pewna proporcje stanu wysokiego do niskiego. Bit 0 posiada inna proporcje. Przed sygnalem wlasciwym nadawana jest sekwencja startu - drganie przekaznika i przerwa. </p>
+<p>Used uC pins: 1<br />
+ Header file containing relay, which signals binary data which start sequence. Bit 1 jest reprezentowany przez pewna proporcje stanu wysokiego do niskiego. Bit 1 represents by high and low state proportion. Bit 0 represents by other proportion. After binary data is start sequence, relay vibration and pause. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a723cc603b711e23c42065113ec9e2384"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a723cc603b711e23c42065113ec9e2384">&#9670;&nbsp;</a></span>RELAY_ADDR</h2>
@@ -191,7 +193,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>adres przekaznika </p>
+<p>relay address </p>
 
 </div>
 </div>
@@ -210,7 +212,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>zmienia stan przekaznika na przeciwny </p>
+<p>reverse relay state </p>
 
 </div>
 </div>
@@ -226,7 +228,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>rejestr kierunku przekaznika </p>
+<p>direction register of relay </p>
 
 </div>
 </div>
@@ -241,7 +243,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie godzin, najlepiej wartosc parzysta aby ostatni stan wysoki nie zostal wygaszony przez przerwe </p>
+
+<p>number of change relay state of start sequence when hours mode, should be even number </p>
 
 </div>
 </div>
@@ -257,7 +260,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie minut </p>
+<p>number of change relay state of start sequence when minutes mode, should be even number </p>
 
 </div>
 </div>
@@ -272,7 +275,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>czas dla zmiany sekwencji startowej gdy aktualnie stan wysoki liczony w ms dla minuty i godziny (drganie pzekaznika) </p>
+
+<p>period to rename start sequence when minute or hour mode in ms </p>
 
 </div>
 </div>
@@ -288,7 +292,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>czas dla zmiany sekwencji testwej gdy aktualnie stan wysoki liczony w ms dla liczby </p>
+<p>period to rename start sequence when numbers mode </p>
 
 </div>
 </div>
@@ -304,7 +308,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>ilosc zmian stanu przekaznika gdy aktualnie stan wysoki w trybie liczb </p>
+<p>number of change relay state of start sequence when numbers mode, should be even number </p>
 
 </div>
 </div>
@@ -320,7 +324,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>czas jednego taktu przekaznika liczony w ms </p>
+<p>one relay period time in ms </p>
 
 </div>
 </div>
@@ -339,7 +343,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>sprawdza czy zlacze przekaznika aktywne </p>
+<p>checks relay state </p>
 
 </div>
 </div>
@@ -383,7 +387,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>sumaryczny czas przerwy miedzy sekwencja startu w stanie wysokim a wlasciwym kodowaniem czasu liczony w ms </p>
+<p>time of pause between start sequqnce and number code </p>
 
 </div>
 </div>
@@ -398,7 +402,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>suma mnoznikow LOW i HIGH, mnozniki zawarte </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="relay_8h.html#a22ac4beb00c0bbc366742bc41719f9b7">RELAY_LONG_HIGH_TIME</a> </dd>
+<p>sum of time multipliers </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="relay_8h.html#a22ac4beb00c0bbc366742bc41719f9b7">RELAY_LONG_HIGH_TIME</a> </dd>
 <dd>
 <a class="el" href="relay_8h.html#ad2c384bf04d39e6f2c4cd37a00e441a7">RELAY_LONG_LOW_TIME</a> </dd></dl>
 
@@ -416,7 +420,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>rejestr stanu przekaznika </p>
+<p>state register of relay </p>
 
 </div>
 </div>
@@ -460,7 +464,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>czas czesci taktu przekaznika liczony w ms </p>
+<p>part of one relay period in ms </p>
 
 </div>
 </div>
@@ -477,11 +481,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>rodzaje typow danych wprowadzanych to przekaznika </p>
+<p>type of data sending to relay structure </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a72da5ed5620d716227a28a590c29be3da038c11bc88bdb19d0ae510a764271b59"></a>RelayDataHours&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a72da5ed5620d716227a28a590c29be3dad7c25ff857ab5952f0502dfd52098321"></a>RelayDataMinutes&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a72da5ed5620d716227a28a590c29be3da35e10b360346b842d42cd71ca4132162"></a>RelayDataNumber&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a72da5ed5620d716227a28a590c29be3da038c11bc88bdb19d0ae510a764271b59"></a>RelayDataHours&#160;</td><td class="fielddoc"><p>RelayDataHours. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a72da5ed5620d716227a28a590c29be3dad7c25ff857ab5952f0502dfd52098321"></a>RelayDataMinutes&#160;</td><td class="fielddoc"><p>RelayDataMinutes. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a72da5ed5620d716227a28a590c29be3da35e10b360346b842d42cd71ca4132162"></a>RelayDataNumber&#160;</td><td class="fielddoc"><p>RelayDataNumber. </p>
+</td></tr>
 </table>
 
 </div>
@@ -503,8 +510,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>inicjalizacja przekaznika </p>
-<p>konfiguruje adres przekaznika na wyjscie </p>
+<p>initialize relay and load relay state from eeprom </p>
+<p>configure relay addess to out </p>
 
 </div>
 </div>
@@ -540,12 +547,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>zaladowanie potrzebnych danych do klikania w strukturze </p>
+<p>load required data to clicking in structure </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">relay</td><td>adres struktury przekaznika </td></tr>
-    <tr><td class="paramname">uiByteInfo</td><td>bajt, ktory ma byc przekazany za pomoca impulsow przekaznika </td></tr>
-    <tr><td class="paramname">dataType</td><td>typ danych wejsciowych </td></tr>
+    <tr><td class="paramname">relay</td><td>pointer of relay structure </td></tr>
+    <tr><td class="paramname">uiByteInfo</td><td>data byte to click </td></tr>
+    <tr><td class="paramname">dataType</td><td>type of byte </td></tr>
   </table>
   </dd>
 </dl>
@@ -568,14 +575,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>proba klikania wg danych struktury, wyzwalana co ms </p>
-<p>obsluguje przekazywanie informacji w uiByteInfo, sprawdzajac czy uplynal wymagany czas stanu przekaznika, przechodzac do obslugi nastepnego tak dlugo, az nie skoncza sie dane </p><dl class="params"><dt>Parameters</dt><dd>
+<p>try to click bysed by data structure, called by 1 ms </p>
+<p>realize clicking relay from uiByteInfo when time was decrement to 0 while uiByteLength is not empty </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">relay</td><td>adres struktury przekaznika </td></tr>
+    <tr><td class="paramname">relay</td><td>pointer of relay structure </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="relay_8c.html#ae6f1144ad32f22176c38912ccde370e6" title="zaladowanie potrzebnych danych do klikania w strukturze ">RelayStartClicking()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="relay_8c.html#ae6f1144ad32f22176c38912ccde370e6" title="load required data to clicking in structure ">RelayStartClicking()</a> </dd></dl>
 
 </div>
 </div>
@@ -605,11 +612,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>zmiana stanu pracy przekaznika </p>
-<p>zmienia stan pracy przekaznika jedsi stan wejsciowy jest inny niz ten przekaznika </p><dl class="params"><dt>Parameters</dt><dd>
+<p>rename relay state </p>
+<p>change relay state and save state to eeprom </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">relay</td><td>adres struktury przekaznika </td></tr>
-    <tr><td class="paramname">eState</td><td>nowy stan pracy przekaznika </td></tr>
+    <tr><td class="paramname">relay</td><td>pointer of relay structure </td></tr>
+    <tr><td class="paramname">eState</td><td>new relay state </td></tr>
   </table>
   </dd>
 </dl>

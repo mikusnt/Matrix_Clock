@@ -92,7 +92,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a6c60b11c0fa6fd898d1f30327b959e05"><td class="memItemLeft" align="right" valign="top">static uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8c.html#a6c60b11c0fa6fd898d1f30327b959e05">RelayThreeToOne</a> (char buffer[4])</td></tr>
 <tr class="separator:a6c60b11c0fa6fd898d1f30327b959e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4aca2a05fc03c7a03622aca9c4a3d0ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8c.html#a4aca2a05fc03c7a03622aca9c4a3d0ce">TryLoadCommand</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>, <a class="el" href="struct_time_date.html">TimeDate</a> *time)</td></tr>
-<tr class="memdesc:a4aca2a05fc03c7a03622aca9c4a3d0ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">proba zaladowania i obsluzenia pojedynczej komendy wraz z danymi  <a href="#a4aca2a05fc03c7a03622aca9c4a3d0ce">More...</a><br /></td></tr>
+<tr class="memdesc:a4aca2a05fc03c7a03622aca9c4a3d0ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">trying load and perform command which parameters  <a href="#a4aca2a05fc03c7a03622aca9c4a3d0ce">More...</a><br /></td></tr>
 <tr class="separator:a4aca2a05fc03c7a03622aca9c4a3d0ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -119,7 +119,9 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>zamienia znaki ASCII trzech cyfr na liczbe i zapisuje do poczatku bufora jesli miesci sie na jednym bajcie </p><dl class="section return"><dt>Returns</dt><dd>dwubajtowa liczba bedaca wynikiem scalania ASCII </dd></dl>
+<p>zamienia znaki ASCII trzech cyfr na liczbe i zapisuje do poczatku bufora jesli miesci sie na jednym bajcie </p><dl class="section return"><dt>Returns</dt><dd>dwubajtowa liczba bedaca wynikiem scalania ASCII rename ASCII chars last three signs and save to beginning of buffer </dd>
+<dd>
+two byte number from ASCII codes </dd></dl>
 
 </div>
 </div>
@@ -155,7 +157,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>proba zaladowania i obsluzenia pojedynczej komendy wraz z danymi </p>
+<p>trying load and perform command which parameters </p>
 
 </div>
 </div>

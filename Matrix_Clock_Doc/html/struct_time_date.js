@@ -1,11 +1,11 @@
 var struct_time_date =
 [
-    [ "uiDays", "struct_time_date.html#a42a43843e4fcf7ebc74afa4163076cc1", null ],
-    [ "uiHours", "struct_time_date.html#aeca3eb8eecca8f6ea553e01269a315f2", null ],
-    [ "uiMinutes", "struct_time_date.html#ab46dd67f81f53c8fc235d8668397dae1", null ],
-    [ "uiMonths", "struct_time_date.html#a3d99ddcb24ddf36faf7d32a394b040c3", null ],
-    [ "uiSeconds", "struct_time_date.html#a439439a1f13cfa40d953e44fb4e3bd83", null ],
+    [ "uiDay", "struct_time_date.html#a94661b6fb4a67577f5ab9de0a3030e94", null ],
+    [ "uiHour", "struct_time_date.html#a4dfc72b6f435cd5c6e370f340b32fc52", null ],
+    [ "uiMinute", "struct_time_date.html#a06f411539d40b076543b038ebe4f813d", null ],
+    [ "uiMonth", "struct_time_date.html#a38b628e8da5d34aa83e69f51023a7c6e", null ],
+    [ "uiSecond", "struct_time_date.html#ace6d3fa818f63abc0850de38d1878be8", null ],
     [ "uiSingleProgress", "struct_time_date.html#a2400f9e0c78b4160a1944e920f8172a1", null ],
     [ "uitSingleTime", "struct_time_date.html#a0e7d3783a024ea65990510885e8c4ee5", null ],
-    [ "uiYears", "struct_time_date.html#a8bc3a930f62ec6548425a13bd24fd57b", null ]
+    [ "uiYear", "struct_time_date.html#ab236e1d5a63f3af1223aecf7a2425c77", null ]
 ];

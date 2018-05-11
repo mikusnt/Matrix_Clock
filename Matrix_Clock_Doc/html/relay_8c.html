@@ -97,16 +97,16 @@ Functions</h2></td></tr>
 <tr class="memitem:a6b31b9ac6986dd228db20d6cb14702e6"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8c.html#a6b31b9ac6986dd228db20d6cb14702e6">RoundByte</a> (uint8_t byte, volatile uint8_t *uiByteLength_s)</td></tr>
 <tr class="separator:a6b31b9ac6986dd228db20d6cb14702e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affcc0607926e8e696a4ac26cdb00b950"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8c.html#affcc0607926e8e696a4ac26cdb00b950">RelayInit</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *r)</td></tr>
-<tr class="memdesc:affcc0607926e8e696a4ac26cdb00b950"><td class="mdescLeft">&#160;</td><td class="mdescRight">inicjalizacja przekaznika  <a href="#affcc0607926e8e696a4ac26cdb00b950">More...</a><br /></td></tr>
+<tr class="memdesc:affcc0607926e8e696a4ac26cdb00b950"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize relay and load relay state from eeprom  <a href="#affcc0607926e8e696a4ac26cdb00b950">More...</a><br /></td></tr>
 <tr class="separator:affcc0607926e8e696a4ac26cdb00b950"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6f1144ad32f22176c38912ccde370e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8c.html#ae6f1144ad32f22176c38912ccde370e6">RelayStartClicking</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>, uint8_t uiByteInfo, <a class="el" href="relay_8h.html#a72da5ed5620d716227a28a590c29be3d">RelayDataType</a> dataType)</td></tr>
-<tr class="memdesc:ae6f1144ad32f22176c38912ccde370e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">zaladowanie potrzebnych danych do klikania w strukturze  <a href="#ae6f1144ad32f22176c38912ccde370e6">More...</a><br /></td></tr>
+<tr class="memdesc:ae6f1144ad32f22176c38912ccde370e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">load required data to clicking in structure  <a href="#ae6f1144ad32f22176c38912ccde370e6">More...</a><br /></td></tr>
 <tr class="separator:ae6f1144ad32f22176c38912ccde370e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af03ba0687ec1d4734e06be708c95a43f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8c.html#af03ba0687ec1d4734e06be708c95a43f">RelayTryClickMS</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>)</td></tr>
-<tr class="memdesc:af03ba0687ec1d4734e06be708c95a43f"><td class="mdescLeft">&#160;</td><td class="mdescRight">proba klikania wg danych struktury, wyzwalana co ms  <a href="#af03ba0687ec1d4734e06be708c95a43f">More...</a><br /></td></tr>
+<tr class="memdesc:af03ba0687ec1d4734e06be708c95a43f"><td class="mdescLeft">&#160;</td><td class="mdescRight">try to click bysed by data structure, called by 1 ms  <a href="#af03ba0687ec1d4734e06be708c95a43f">More...</a><br /></td></tr>
 <tr class="separator:af03ba0687ec1d4734e06be708c95a43f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7cfe7b4a3c8859802408f187ffe61f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8c.html#ad7cfe7b4a3c8859802408f187ffe61f2">SetRelayState</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>, <a class="el" href="data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244">BinarySwitch</a> eState)</td></tr>
-<tr class="memdesc:ad7cfe7b4a3c8859802408f187ffe61f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">zmiana stanu pracy przekaznika  <a href="#ad7cfe7b4a3c8859802408f187ffe61f2">More...</a><br /></td></tr>
+<tr class="memdesc:ad7cfe7b4a3c8859802408f187ffe61f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">rename relay state  <a href="#ad7cfe7b4a3c8859802408f187ffe61f2">More...</a><br /></td></tr>
 <tr class="separator:ad7cfe7b4a3c8859802408f187ffe61f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -135,8 +135,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>inicjalizacja przekaznika </p>
-<p>konfiguruje adres przekaznika na wyjscie </p>
+<p>initialize relay and load relay state from eeprom </p>
+<p>configure relay addess to out </p>
 
 </div>
 </div>
@@ -198,12 +198,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>zaladowanie potrzebnych danych do klikania w strukturze </p>
+<p>load required data to clicking in structure </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">relay</td><td>adres struktury przekaznika </td></tr>
-    <tr><td class="paramname">uiByteInfo</td><td>bajt, ktory ma byc przekazany za pomoca impulsow przekaznika </td></tr>
-    <tr><td class="paramname">dataType</td><td>typ danych wejsciowych </td></tr>
+    <tr><td class="paramname">relay</td><td>pointer of relay structure </td></tr>
+    <tr><td class="paramname">uiByteInfo</td><td>data byte to click </td></tr>
+    <tr><td class="paramname">dataType</td><td>type of byte </td></tr>
   </table>
   </dd>
 </dl>
@@ -233,9 +233,9 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>steruje wyjsciem cyfrowym przekaznika </p><dl class="params"><dt>Parameters</dt><dd>
+<p>change hardware relay state </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">eB</td><td>wartosc logiczna dzialania przekaznika </td></tr>
+    <tr><td class="paramname">eB</td><td>logic state of relay </td></tr>
   </table>
   </dd>
 </dl>
@@ -258,14 +258,14 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>proba klikania wg danych struktury, wyzwalana co ms </p>
-<p>obsluguje przekazywanie informacji w uiByteInfo, sprawdzajac czy uplynal wymagany czas stanu przekaznika, przechodzac do obslugi nastepnego tak dlugo, az nie skoncza sie dane </p><dl class="params"><dt>Parameters</dt><dd>
+<p>try to click bysed by data structure, called by 1 ms </p>
+<p>realize clicking relay from uiByteInfo when time was decrement to 0 while uiByteLength is not empty </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">relay</td><td>adres struktury przekaznika </td></tr>
+    <tr><td class="paramname">relay</td><td>pointer of relay structure </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="relay_8c.html#ae6f1144ad32f22176c38912ccde370e6" title="zaladowanie potrzebnych danych do klikania w strukturze ">RelayStartClicking()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="relay_8c.html#ae6f1144ad32f22176c38912ccde370e6" title="load required data to clicking in structure ">RelayStartClicking()</a> </dd></dl>
 
 </div>
 </div>
@@ -302,14 +302,14 @@ Variables</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>zamienia kolejnosc bitow w bajcie na przeciwna </p><dl class="params"><dt>Parameters</dt><dd>
+<p>zamienia kolejnosc bitow w bajcie na przeciwna rounding bit order to opposite </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">byte</td><td>bajt, ktorego bity zostaja zamienione </td></tr>
-    <tr><td class="paramname">uiByteLength_s</td><td>adres wygenerowanej dlugosci pierwszego argumentu </td></tr>
+    <tr><td class="paramname">byte</td><td>to round </td></tr>
+    <tr><td class="paramname">uiByteLength_s</td><td>length of rounded byte </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>bajt, ktory ma zamieniona kolejnosc bitow </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>byte after rounded </dd></dl>
 
 </div>
 </div>
@@ -339,11 +339,11 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>zmiana stanu pracy przekaznika </p>
-<p>zmienia stan pracy przekaznika jedsi stan wejsciowy jest inny niz ten przekaznika </p><dl class="params"><dt>Parameters</dt><dd>
+<p>rename relay state </p>
+<p>change relay state and save state to eeprom </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">relay</td><td>adres struktury przekaznika </td></tr>
-    <tr><td class="paramname">eState</td><td>nowy stan pracy przekaznika </td></tr>
+    <tr><td class="paramname">relay</td><td>pointer of relay structure </td></tr>
+    <tr><td class="paramname">eState</td><td>new relay state </td></tr>
   </table>
   </dd>
 </dl>

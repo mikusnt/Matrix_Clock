@@ -98,22 +98,22 @@ Functions</h2></td></tr>
 <tr class="memitem:a5f15d5dfe9bd14ded8c9e06c2a1db587"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds3231_8c.html#a5f15d5dfe9bd14ded8c9e06c2a1db587">I2C_ReadRegister</a> (uint8_t deviceAddr, uint8_t registerAddr, uint8_t *data_s)</td></tr>
 <tr class="separator:a5f15d5dfe9bd14ded8c9e06c2a1db587"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a458d57f34b21bedee7ff427d2f9eaf90"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds3231_8c.html#a458d57f34b21bedee7ff427d2f9eaf90">DS3231_Init</a> (void)</td></tr>
-<tr class="memdesc:a458d57f34b21bedee7ff427d2f9eaf90"><td class="mdescLeft">&#160;</td><td class="mdescRight">inicjalizacja zegara, wybudzenie  <a href="#a458d57f34b21bedee7ff427d2f9eaf90">More...</a><br /></td></tr>
+<tr class="memdesc:a458d57f34b21bedee7ff427d2f9eaf90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize timer, wake up.  <a href="#a458d57f34b21bedee7ff427d2f9eaf90">More...</a><br /></td></tr>
 <tr class="separator:a458d57f34b21bedee7ff427d2f9eaf90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85e65d747a50497c47f5b4fd22f5a1f2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds3231_8c.html#a85e65d747a50497c47f5b4fd22f5a1f2">DS3231_GetTime</a> (uint8_t *hour_s, uint8_t *minute_s, uint8_t *second_s)</td></tr>
-<tr class="memdesc:a85e65d747a50497c47f5b4fd22f5a1f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">pobranie czasu w formacie dziesietnym  <a href="#a85e65d747a50497c47f5b4fd22f5a1f2">More...</a><br /></td></tr>
+<tr class="memdesc:a85e65d747a50497c47f5b4fd22f5a1f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">read decimal time from RTC  <a href="#a85e65d747a50497c47f5b4fd22f5a1f2">More...</a><br /></td></tr>
 <tr class="separator:a85e65d747a50497c47f5b4fd22f5a1f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8c5414647c9ee2667588757306e946a"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds3231_8c.html#ab8c5414647c9ee2667588757306e946a">DS3231_GetDate</a> (uint8_t *day_s, uint8_t *month_s, uint8_t *year_s)</td></tr>
-<tr class="memdesc:ab8c5414647c9ee2667588757306e946a"><td class="mdescLeft">&#160;</td><td class="mdescRight">pobranie daty w formacie dziesietnym  <a href="#ab8c5414647c9ee2667588757306e946a">More...</a><br /></td></tr>
+<tr class="memdesc:ab8c5414647c9ee2667588757306e946a"><td class="mdescLeft">&#160;</td><td class="mdescRight">read decimal date from RTC  <a href="#ab8c5414647c9ee2667588757306e946a">More...</a><br /></td></tr>
 <tr class="separator:ab8c5414647c9ee2667588757306e946a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a877e5b7754c6005ca1499ea6c95201d1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds3231_8c.html#a877e5b7754c6005ca1499ea6c95201d1">DS3231_SetTime</a> (uint8_t hour, uint8_t minute, uint8_t second)</td></tr>
-<tr class="memdesc:a877e5b7754c6005ca1499ea6c95201d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">ustawienie czasu w formacie dziesietnym  <a href="#a877e5b7754c6005ca1499ea6c95201d1">More...</a><br /></td></tr>
+<tr class="memdesc:a877e5b7754c6005ca1499ea6c95201d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">write decimal time to RTC  <a href="#a877e5b7754c6005ca1499ea6c95201d1">More...</a><br /></td></tr>
 <tr class="separator:a877e5b7754c6005ca1499ea6c95201d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8f1c969ede3b8f13ee5d6949ce84ded"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds3231_8c.html#aa8f1c969ede3b8f13ee5d6949ce84ded">DS3231_SetDate</a> (uint8_t day, uint8_t month, uint8_t year)</td></tr>
-<tr class="memdesc:aa8f1c969ede3b8f13ee5d6949ce84ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">ustawienie daty w formacie dziesietnym  <a href="#aa8f1c969ede3b8f13ee5d6949ce84ded">More...</a><br /></td></tr>
+<tr class="memdesc:aa8f1c969ede3b8f13ee5d6949ce84ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">write decimal date to RTC  <a href="#aa8f1c969ede3b8f13ee5d6949ce84ded">More...</a><br /></td></tr>
 <tr class="separator:aa8f1c969ede3b8f13ee5d6949ce84ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dc6ce32e3d4f48659aa044120c3e915"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds3231_8c.html#a0dc6ce32e3d4f48659aa044120c3e915">DS3231_Test</a> ()</td></tr>
-<tr class="memdesc:a0dc6ce32e3d4f48659aa044120c3e915"><td class="mdescLeft">&#160;</td><td class="mdescRight">test poprawnej pracy  <a href="#a0dc6ce32e3d4f48659aa044120c3e915">More...</a><br /></td></tr>
+<tr class="memdesc:a0dc6ce32e3d4f48659aa044120c3e915"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTC test.  <a href="#a0dc6ce32e3d4f48659aa044120c3e915">More...</a><br /></td></tr>
 <tr class="separator:a0dc6ce32e3d4f48659aa044120c3e915"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -203,16 +203,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>pobranie daty w formacie dziesietnym </p>
+<p>read decimal date from RTC </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">month_s</td><td>wskaznik pobieranego miesiaca </td></tr>
-    <tr><td class="paramname">day_s</td><td>wskaznik pobieranego dnia miesiaca </td></tr>
-    <tr><td class="paramname">year_s</td><td>wskaznik pobieranego roku </td></tr>
+    <tr><td class="paramname">day_s</td><td>pointer of day </td></tr>
+    <tr><td class="paramname">month_s</td><td>pointer of month </td></tr>
+    <tr><td class="paramname">year_s</td><td>wpointer of year </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 gdy powodzenie, 0 gdy niepowodzenie </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 when success, 0 otherwise </dd></dl>
 
 </div>
 </div>
@@ -248,16 +248,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>pobranie czasu w formacie dziesietnym </p>
+<p>read decimal time from RTC </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">hour_s</td><td>wskaznik pobieranych godzin </td></tr>
-    <tr><td class="paramname">minute_s</td><td>wskaznik pobieranych minut </td></tr>
-    <tr><td class="paramname">second_s</td><td>wskaznik pobieranych sekund </td></tr>
+    <tr><td class="paramname">hour_s</td><td>pointer of hour </td></tr>
+    <tr><td class="paramname">minute_s</td><td>pointer of minte </td></tr>
+    <tr><td class="paramname">second_s</td><td>pointer of second </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 gdy powodzenie, 0 gdy niepowodzenie </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 when success, 0 otherwise </dd></dl>
 
 </div>
 </div>
@@ -277,8 +277,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>inicjalizacja zegara, wybudzenie </p>
-<dl class="section return"><dt>Returns</dt><dd>1 gdy powodzenie, 0 gdy niepowodzenie </dd></dl>
+<p>Initialize timer, wake up. </p>
+<dl class="section return"><dt>Returns</dt><dd>1 when success, 0 otherwise </dd></dl>
 
 </div>
 </div>
@@ -314,16 +314,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>ustawienie daty w formacie dziesietnym </p>
+<p>write decimal date to RTC </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">day</td><td>ustawiany dzien miesiaca dziesietnie </td></tr>
-    <tr><td class="paramname">month</td><td>ustawiany miesiac dziesietnie </td></tr>
-    <tr><td class="paramname">year</td><td>ustawiany rok dziesietnie </td></tr>
+    <tr><td class="paramname">day</td><td>to set </td></tr>
+    <tr><td class="paramname">month</td><td>to set </td></tr>
+    <tr><td class="paramname">year</td><td>to set </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 gdy powodzenie, 0 gdy niepowodzenie </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 when success, 0 otherwise </dd></dl>
 
 </div>
 </div>
@@ -359,16 +359,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>ustawienie czasu w formacie dziesietnym </p>
+<p>write decimal time to RTC </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">hour</td><td>ustawiana godzina dziesietna </td></tr>
-    <tr><td class="paramname">minute</td><td>ustawiana minuta dziesietna </td></tr>
-    <tr><td class="paramname">second</td><td>ustawiana sekunda dziesietna </td></tr>
+    <tr><td class="paramname">hour</td><td>to set </td></tr>
+    <tr><td class="paramname">minute</td><td>to set </td></tr>
+    <tr><td class="paramname">second</td><td>to set </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 gdy powodzenie, 0 gdy niepowodzenie </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 when success, 0 otherwise </dd></dl>
 
 </div>
 </div>
@@ -387,7 +387,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>test poprawnej pracy </p>
+<p>RTC test. </p>
 
 </div>
 </div>

@@ -25,7 +25,7 @@ uint8_t I2C_Error;
 
 
 
-// funkcje
+// functions
 
 void I2C_Init();
 

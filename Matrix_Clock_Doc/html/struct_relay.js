@@ -5,6 +5,6 @@ var struct_relay =
     [ "ui16ActTimeMS", "struct_relay.html#a0df724c592d6a2f8b52ebad04d2e95bc", null ],
     [ "uiByteInfo", "struct_relay.html#a1a4848e5a52b20115150d41f29bd9678", null ],
     [ "uiByteLength", "struct_relay.html#a58e0860379a18558ece34d6596cbf01e", null ],
-    [ "uiHighStartTimeMS", "struct_relay.html#affcbc5b9a8a1c6c55a73ae7a3db35c23", null ],
-    [ "uiStartLength", "struct_relay.html#a43a31ddeffdeef7b26349ea4b371c761", null ]
+    [ "uiStartLength", "struct_relay.html#a43a31ddeffdeef7b26349ea4b371c761", null ],
+    [ "uiStartTimeMS", "struct_relay.html#a8bfb8bfa360be38cf73d32de68f03e38", null ]
 ];

@@ -2,13 +2,12 @@
  * @file ds3231.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-03-31 $
+ * $Modified: 2018-05-11 $
  * $Created: 2017-11-10 $
  * @version 1.0
  *
- * NIETESTOWANY!!!<br>
- * Uzyte piny procesora: 0<br>
- * Plik naglowkowy obslugujacy komunikacje z DS3231 po I2C.
+ * Used uC pins: 0<br>
+ * Header file containing DS3231 communication by I2C interface.
  * @see i2c_twi.h
  */
 
@@ -23,7 +22,7 @@
 
 /*
  *
- * 		Makroinstrukcje
+ * 		Macros
  *
  */
 
@@ -41,7 +40,7 @@
 #define CONTROL_1_REGISTER 0x0F
 #define TEMPERATURE_REGISTER 0x11
 
-//bity sterujace
+//Control bytes
 #define EOSC 7
 #define BBSQW 6
 #define CONV 5
@@ -60,22 +59,22 @@
 
 /*
  *
- * 		Deklaracje funkcji
+ * 		Declaration of functions
  *
  */
 
-//! inicjalizacja zegara, wybudzenie
+//! Initialize timer, wake up
 extern uint8_t DS3231_Init(void);
-//! pobranie czasu w formacie dziesietnym
+//! read decimal time from RTC
 extern uint8_t DS3231_GetTime(uint8_t *hour_s, uint8_t *minute_s, uint8_t *second_s);
-//! pobranie daty w formacie dziesietnym
+//! read decimal date from RTC
 extern uint8_t DS3231_GetDate(uint8_t *day_s, uint8_t *month_s, uint8_t *year_s);
-//! ustawienie czasu w formacie dziesietnym
-extern uint8_t  DS3231_SetTime(uint8_t hour, uint8_t minute, uint8_t second); //time set
-//! ustawienie daty w formacie dziesietnym
-extern uint8_t  DS3231_SetDate(uint8_t day, uint8_t month, uint8_t year);  //set date
-//! test poprawnej pracy
-extern void DS3231_Test(); // test poprawnosci komunikacji/dzialania, resetuja WATCHDoga
+//! write decimal time to RTC
+extern uint8_t  DS3231_SetTime(uint8_t hour, uint8_t minute, uint8_t second);
+//! write decimal date to RTC
+extern uint8_t  DS3231_SetDate(uint8_t day, uint8_t month, uint8_t year);
+//! RTC test
+extern void DS3231_Test();
 
 #endif
 

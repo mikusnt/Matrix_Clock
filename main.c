@@ -80,7 +80,7 @@ int main (void) {
 	 *
 	 */
 
-	PowerReductionInit();
+	PowerReduction();
 	RegistersInit();
 	DiodeMatrixInit(&matrix);
 	RelayInit(&relay);
@@ -214,7 +214,6 @@ ISR(TIMER2_COMPA_vect) {
 	// setting flag of refresh round buffer
 	if ((ui16Ms % TIME_DECREMENT_MS) == 0)
 		bNewRoundRefresh = true;
-	// zmiana w pozycji bufora i powrot do SeqTimer w przypadku wyswietlania tekstu
 	// increasing buffer position and rename seq to SeqTimer when active is SeqText and iCountToTimer == 0
 	if ((ui16Ms % INC_POS_MS) == 0)
 		if (IncrementBufferStart(&matrix)) {

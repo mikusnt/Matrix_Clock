@@ -93,75 +93,72 @@ $(document).ready(function(){initNavTree('diode__matrix_8h.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html">DiodeMatrix</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">glowna struktura macierzy LED  <a href="struct_diode_matrix.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">main structure of LED Matrix  <a href="struct_diode_matrix.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ae4e5aa666434e5a11c1517ce7ff28802"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#ae4e5aa666434e5a11c1517ce7ff28802">MATRIX_Y_SIZE</a>&#160;&#160;&#160;8</td></tr>
-<tr class="memdesc:ae4e5aa666434e5a11c1517ce7ff28802"><td class="mdescLeft">&#160;</td><td class="mdescRight">rozmiar Y (pionowy)  <a href="#ae4e5aa666434e5a11c1517ce7ff28802">More...</a><br /></td></tr>
+<tr class="memdesc:ae4e5aa666434e5a11c1517ce7ff28802"><td class="mdescLeft">&#160;</td><td class="mdescRight">Y size (vertical)  <a href="#ae4e5aa666434e5a11c1517ce7ff28802">More...</a><br /></td></tr>
 <tr class="separator:ae4e5aa666434e5a11c1517ce7ff28802"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8968a13b4d9c558ff1715c07fa7d4614"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a8968a13b4d9c558ff1715c07fa7d4614">MATRIX_X_SIZE</a>&#160;&#160;&#160;32</td></tr>
-<tr class="memdesc:a8968a13b4d9c558ff1715c07fa7d4614"><td class="mdescLeft">&#160;</td><td class="mdescRight">rozmiar X (poziomy)  <a href="#a8968a13b4d9c558ff1715c07fa7d4614">More...</a><br /></td></tr>
+<tr class="memdesc:a8968a13b4d9c558ff1715c07fa7d4614"><td class="mdescLeft">&#160;</td><td class="mdescRight">X size (horizontal)  <a href="#a8968a13b4d9c558ff1715c07fa7d4614">More...</a><br /></td></tr>
 <tr class="separator:a8968a13b4d9c558ff1715c07fa7d4614"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73e92c4c2b0d21cc03685a7394c8a0b8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a73e92c4c2b0d21cc03685a7394c8a0b8">BUFFER_X_SIZE</a>&#160;&#160;&#160;32 * 8</td></tr>
-<tr class="memdesc:a73e92c4c2b0d21cc03685a7394c8a0b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">rozmiar X (poziomy) bufora po ktorym algorytm porusza sie aby wyswietlic fragment  <a href="#a73e92c4c2b0d21cc03685a7394c8a0b8">More...</a><br /></td></tr>
+<tr class="memdesc:a73e92c4c2b0d21cc03685a7394c8a0b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">X size of hardware matrix buffer.  <a href="#a73e92c4c2b0d21cc03685a7394c8a0b8">More...</a><br /></td></tr>
 <tr class="separator:a73e92c4c2b0d21cc03685a7394c8a0b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5e6e37f1b0fcad11ceaa942995e6725"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#af5e6e37f1b0fcad11ceaa942995e6725">MAX_MATRIX_BRIGHTNESS</a>&#160;&#160;&#160;19</td></tr>
-<tr class="memdesc:af5e6e37f1b0fcad11ceaa942995e6725"><td class="mdescLeft">&#160;</td><td class="mdescRight">maksymalna liczbowa jasnosc  <a href="#af5e6e37f1b0fcad11ceaa942995e6725">More...</a><br /></td></tr>
+<tr class="memdesc:af5e6e37f1b0fcad11ceaa942995e6725"><td class="mdescLeft">&#160;</td><td class="mdescRight">max number of brightness  <a href="#af5e6e37f1b0fcad11ceaa942995e6725">More...</a><br /></td></tr>
 <tr class="separator:af5e6e37f1b0fcad11ceaa942995e6725"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade427d0bc10eaa4b528066f157741669"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#ade427d0bc10eaa4b528066f157741669">MAX_GAMMA_BRIGHTNESS</a>&#160;&#160;&#160;4</td></tr>
-<tr class="memdesc:ade427d0bc10eaa4b528066f157741669"><td class="mdescLeft">&#160;</td><td class="mdescRight">maksymalna jesnosc wedlug korekcji gamma z tablicy gamma_o  <a href="#ade427d0bc10eaa4b528066f157741669">More...</a><br /></td></tr>
 <tr class="separator:ade427d0bc10eaa4b528066f157741669"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e576a92cac4db278f4cc392668d34bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a2e576a92cac4db278f4cc392668d34bf">INC_POS_MS</a>&#160;&#160;&#160;100</td></tr>
-<tr class="memdesc:a2e576a92cac4db278f4cc392668d34bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">czas w ms po ktorym nastepuje przesuniecie poczatkowego adresu bufora  <a href="#a2e576a92cac4db278f4cc392668d34bf">More...</a><br /></td></tr>
+<tr class="memdesc:a2e576a92cac4db278f4cc392668d34bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">time period to increment moving adress of buffer  <a href="#a2e576a92cac4db278f4cc392668d34bf">More...</a><br /></td></tr>
 <tr class="separator:a2e576a92cac4db278f4cc392668d34bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a69188be4fa98b982383104b1d110759c"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a69188be4fa98b982383104b1d110759c">IncrementBrightness</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m)</td></tr>
-<tr class="memdesc:a69188be4fa98b982383104b1d110759c"><td class="mdescLeft">&#160;</td><td class="mdescRight">zwieksza o 1 aktualna jasnosc matrycy  <a href="#a69188be4fa98b982383104b1d110759c">More...</a><br /></td></tr>
+<tr class="memdesc:a69188be4fa98b982383104b1d110759c"><td class="mdescLeft">&#160;</td><td class="mdescRight">increment actual matrix brightness  <a href="#a69188be4fa98b982383104b1d110759c">More...</a><br /></td></tr>
 <tr class="separator:a69188be4fa98b982383104b1d110759c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a238b4dcd1193977bde0efbdb0bfed736"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a238b4dcd1193977bde0efbdb0bfed736">IncrementY</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m)</td></tr>
-<tr class="memdesc:a238b4dcd1193977bde0efbdb0bfed736"><td class="mdescLeft">&#160;</td><td class="mdescRight">zwieksza o 1 aktualna wspolrzedna Y  <a href="#a238b4dcd1193977bde0efbdb0bfed736">More...</a><br /></td></tr>
+<tr class="memdesc:a238b4dcd1193977bde0efbdb0bfed736"><td class="mdescLeft">&#160;</td><td class="mdescRight">increment Y position  <a href="#a238b4dcd1193977bde0efbdb0bfed736">More...</a><br /></td></tr>
 <tr class="separator:a238b4dcd1193977bde0efbdb0bfed736"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac0b3fff4050cc226a59a0ea29c54b4e"><td class="memItemLeft" align="right" valign="top">volatile <a class="el" href="data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244">BinarySwitch</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#aac0b3fff4050cc226a59a0ea29c54b4e">ReturnYValue</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m)</td></tr>
-<tr class="memdesc:aac0b3fff4050cc226a59a0ea29c54b4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">zwraca zawartosc rejestru Y na podstawie pozycji Y  <a href="#aac0b3fff4050cc226a59a0ea29c54b4e">More...</a><br /></td></tr>
+<tr class="memdesc:aac0b3fff4050cc226a59a0ea29c54b4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">return serial value to Y register from actual Y position  <a href="#aac0b3fff4050cc226a59a0ea29c54b4e">More...</a><br /></td></tr>
 <tr class="separator:aac0b3fff4050cc226a59a0ea29c54b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa84276337dd265eb40386e4b8204013f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#aa84276337dd265eb40386e4b8204013f">DiodeMatrixInit</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m)</td></tr>
-<tr class="memdesc:aa84276337dd265eb40386e4b8204013f"><td class="mdescLeft">&#160;</td><td class="mdescRight">inicjalizacja struktury  <a href="#aa84276337dd265eb40386e4b8204013f">More...</a><br /></td></tr>
+<tr class="memdesc:aa84276337dd265eb40386e4b8204013f"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize DiodeMNatrix structure  <a href="#aa84276337dd265eb40386e4b8204013f">More...</a><br /></td></tr>
 <tr class="separator:aa84276337dd265eb40386e4b8204013f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb47ff3cb70c99d953e54b4cd338ba38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#afb47ff3cb70c99d953e54b4cd338ba38">RefreshBufferFlag</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m)</td></tr>
-<tr class="memdesc:afb47ff3cb70c99d953e54b4cd338ba38"><td class="mdescLeft">&#160;</td><td class="mdescRight">odswieza tablice dzialania LED dla danej pozycji Y  <a href="#afb47ff3cb70c99d953e54b4cd338ba38">More...</a><br /></td></tr>
+<tr class="memdesc:afb47ff3cb70c99d953e54b4cd338ba38"><td class="mdescLeft">&#160;</td><td class="mdescRight">refresh flag buffer of one Y position from uitBufferX data  <a href="#afb47ff3cb70c99d953e54b4cd338ba38">More...</a><br /></td></tr>
 <tr class="separator:afb47ff3cb70c99d953e54b4cd338ba38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12bd75bf151f956660b968af60f7c6cb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a12bd75bf151f956660b968af60f7c6cb">IncrementBufferPosition</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m)</td></tr>
-<tr class="memdesc:a12bd75bf151f956660b968af60f7c6cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">zwieksza aktualna pozycje wyswietlania danych z bufora o 1, gdy wartosc osiagnie koncowa to reset do 0  <a href="#a12bd75bf151f956660b968af60f7c6cb">More...</a><br /></td></tr>
-<tr class="separator:a12bd75bf151f956660b968af60f7c6cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa947c5658d1655268617f93e727e4b46"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#aa947c5658d1655268617f93e727e4b46">IncrementBufferStart</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m)</td></tr>
+<tr class="memdesc:aa947c5658d1655268617f93e727e4b46"><td class="mdescLeft">&#160;</td><td class="mdescRight">increment actual buffer start address  <a href="#aa947c5658d1655268617f93e727e4b46">More...</a><br /></td></tr>
+<tr class="separator:aa947c5658d1655268617f93e727e4b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47acce13355008d6d98487a9da2d77c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a47acce13355008d6d98487a9da2d77c8">SetMoving</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, bool isMoving)</td></tr>
-<tr class="memdesc:a47acce13355008d6d98487a9da2d77c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">ustawia tryb wyswietlania bufora, resetuje pozycje wyswietlania danych z bufora  <a href="#a47acce13355008d6d98487a9da2d77c8">More...</a><br /></td></tr>
+<tr class="memdesc:a47acce13355008d6d98487a9da2d77c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">set mode of matrix displaying, reset buffer start position to 0  <a href="#a47acce13355008d6d98487a9da2d77c8">More...</a><br /></td></tr>
 <tr class="separator:a47acce13355008d6d98487a9da2d77c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b35e060043b708dd87ebf40b6aa848f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a1b35e060043b708dd87ebf40b6aa848f">SetYBuffer</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, uint8_t y_pos, uint8_t value)</td></tr>
-<tr class="memdesc:a1b35e060043b708dd87ebf40b6aa848f"><td class="mdescLeft">&#160;</td><td class="mdescRight">laduje do calej linijki bufora o danej wysokosci dana wartosc jasnosci  <a href="#a1b35e060043b708dd87ebf40b6aa848f">More...</a><br /></td></tr>
-<tr class="separator:a1b35e060043b708dd87ebf40b6aa848f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf2bee4b1089702b551d8de104ab1062"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#acf2bee4b1089702b551d8de104ab1062">SetYBuffer</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, uint8_t y_pos, <a class="el" href="data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244">BinarySwitch</a> value)</td></tr>
+<tr class="memdesc:acf2bee4b1089702b551d8de104ab1062"><td class="mdescLeft">&#160;</td><td class="mdescRight">load to one y position of matrix buffer logic value  <a href="#acf2bee4b1089702b551d8de104ab1062">More...</a><br /></td></tr>
+<tr class="separator:acf2bee4b1089702b551d8de104ab1062"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22e6598b828d1c1a4f36883cc516c70b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a22e6598b828d1c1a4f36883cc516c70b">ClearBuffer</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m)</td></tr>
-<tr class="memdesc:a22e6598b828d1c1a4f36883cc516c70b"><td class="mdescLeft">&#160;</td><td class="mdescRight">zeruje caly bufor  <a href="#a22e6598b828d1c1a4f36883cc516c70b">More...</a><br /></td></tr>
+<tr class="memdesc:a22e6598b828d1c1a4f36883cc516c70b"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear all parts of matrix buffer  <a href="#a22e6598b828d1c1a4f36883cc516c70b">More...</a><br /></td></tr>
 <tr class="separator:a22e6598b828d1c1a4f36883cc516c70b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a913b0ad33e83a91c03df138c74e0b7a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a913b0ad33e83a91c03df138c74e0b7a0">CopyFromRoundToBuffer</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, uint8_t y_round, uint8_t x_buffer)</td></tr>
-<tr class="memdesc:a913b0ad33e83a91c03df138c74e0b7a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">kopiuje czesc zawartosci bufora obrotowego do bufora matrycy  <a href="#a913b0ad33e83a91c03df138c74e0b7a0">More...</a><br /></td></tr>
-<tr class="separator:a913b0ad33e83a91c03df138c74e0b7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbe4610ba1172db58361947f878cd828"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#afbe4610ba1172db58361947f878cd828">CopyFromRoundToBuffer</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, uint8_t y_round_pos, uint8_t x_buffer_pos)</td></tr>
+<tr class="memdesc:afbe4610ba1172db58361947f878cd828"><td class="mdescLeft">&#160;</td><td class="mdescRight">copy data fragment from round buffer to matrix buffer  <a href="#afbe4610ba1172db58361947f878cd828">More...</a><br /></td></tr>
+<tr class="separator:afbe4610ba1172db58361947f878cd828"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9645b39049a92b3293a4a482668b8be4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a9645b39049a92b3293a4a482668b8be4">DecrementTo0SlowClear</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m)</td></tr>
-<tr class="memdesc:a9645b39049a92b3293a4a482668b8be4"><td class="mdescLeft">&#160;</td><td class="mdescRight">zmniejsza pozycje oczyszczania bufora o 1  <a href="#a9645b39049a92b3293a4a482668b8be4">More...</a><br /></td></tr>
+<tr class="memdesc:a9645b39049a92b3293a4a482668b8be4"><td class="mdescLeft">&#160;</td><td class="mdescRight">decrement right to left clearing line  <a href="#a9645b39049a92b3293a4a482668b8be4">More...</a><br /></td></tr>
 <tr class="separator:a9645b39049a92b3293a4a482668b8be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1edf23bab792b67285433d90face7109"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a1edf23bab792b67285433d90face7109">RunSlowClearedPos</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m)</td></tr>
-<tr class="memdesc:a1edf23bab792b67285433d90face7109"><td class="mdescLeft">&#160;</td><td class="mdescRight">ustawia pozycje oczyszczania bufora na koniec zapisanego bufora  <a href="#a1edf23bab792b67285433d90face7109">More...</a><br /></td></tr>
+<tr class="memdesc:a1edf23bab792b67285433d90face7109"><td class="mdescLeft">&#160;</td><td class="mdescRight">set right to left clearing line to matrix buffer end address  <a href="#a1edf23bab792b67285433d90face7109">More...</a><br /></td></tr>
 <tr class="separator:a1edf23bab792b67285433d90face7109"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e952baec5521af3b1f6de946f48b247"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a4e952baec5521af3b1f6de946f48b247">SetPixelBuffer</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, uint8_t x_pos, uint8_t y_pos, <a class="el" href="data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244">BinarySwitch</a> *state)</td></tr>
-<tr class="memdesc:a4e952baec5521af3b1f6de946f48b247"><td class="mdescLeft">&#160;</td><td class="mdescRight">ustawia wartosc binarna dla danego piksela  <a href="#a4e952baec5521af3b1f6de946f48b247">More...</a><br /></td></tr>
-<tr class="separator:a4e952baec5521af3b1f6de946f48b247"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a950d03a70472a1347f89e91dfe15b872"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="diode__matrix_8h.html#a950d03a70472a1347f89e91dfe15b872">gamma_o</a> [<a class="el" href="diode__matrix_8h.html#ade427d0bc10eaa4b528066f157741669">MAX_GAMMA_BRIGHTNESS</a>+1]</td></tr>
+<tr class="memdesc:a950d03a70472a1347f89e91dfe15b872"><td class="mdescLeft">&#160;</td><td class="mdescRight">orange gamma correction  <a href="#a950d03a70472a1347f89e91dfe15b872">More...</a><br /></td></tr>
 <tr class="separator:a950d03a70472a1347f89e91dfe15b872"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -170,8 +167,8 @@ Variables</h2></td></tr>
 <dl class="section rcs"><dt>Modified</dt><dd>2018-04-02 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2017-11-04 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.0</dd></dl>
-<p>Uzyte piny procesora: 0<br />
- Plik naglowkowy obslugujacy logiczna strukture macierzy LED sluzacej do wyswietlania danych. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="register_8h.html">register.h</a> </dd></dl>
+<p>Used uC pins: 0<br />
+ Header file containing logic structure of LED Matrix to display data. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="register_8h.html">register.h</a> </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a73e92c4c2b0d21cc03685a7394c8a0b8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a73e92c4c2b0d21cc03685a7394c8a0b8">&#9670;&nbsp;</a></span>BUFFER_X_SIZE</h2>
@@ -185,7 +182,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>rozmiar X (poziomy) bufora po ktorym algorytm porusza sie aby wyswietlic fragment </p>
+<p>X size of hardware matrix buffer. </p>
 
 </div>
 </div>
@@ -201,7 +198,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>czas w ms po ktorym nastepuje przesuniecie poczatkowego adresu bufora </p>
+<p>time period to increment moving adress of buffer </p>
 
 </div>
 </div>
@@ -217,7 +214,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>rozmiar X (poziomy) </p>
+<p>X size (horizontal) </p>
 
 </div>
 </div>
@@ -233,7 +230,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>rozmiar Y (pionowy) </p>
+<p>Y size (vertical) </p>
 
 </div>
 </div>
@@ -248,8 +245,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>maksymalna jesnosc wedlug korekcji gamma z tablicy gamma_o </p>
+<p>max brightness in gamma correction table </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="diode__matrix_8h.html#a950d03a70472a1347f89e91dfe15b872" title="orange gamma correction ">gamma_o</a> </dd></dl>
 
 </div>
 </div>
@@ -265,7 +261,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>maksymalna liczbowa jasnosc </p>
+<p>max number of brightness </p>
 
 </div>
 </div>
@@ -286,18 +282,18 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>zeruje caly bufor </p>
+<p>clear all parts of matrix buffer </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a913b0ad33e83a91c03df138c74e0b7a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a913b0ad33e83a91c03df138c74e0b7a0">&#9670;&nbsp;</a></span>CopyFromRoundToBuffer()</h2>
+<a id="afbe4610ba1172db58361947f878cd828"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbe4610ba1172db58361947f878cd828">&#9670;&nbsp;</a></span>CopyFromRoundToBuffer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -312,13 +308,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>y_round</em>, </td>
+          <td class="paramname"><em>y_round_pos</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>x_buffer</em>&#160;</td>
+          <td class="paramname"><em>x_buffer_pos</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -328,12 +324,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>kopiuje czesc zawartosci bufora obrotowego do bufora matrycy </p>
+<p>copy data fragment from round buffer to matrix buffer </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
-    <tr><td class="paramname">y_round</td><td>wspolrzedna y dla bufora obrotowego </td></tr>
-    <tr><td class="paramname">x_buffer</td><td>wspolrzedna poczatkowa x bufora matrycy </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
+    <tr><td class="paramname">y_round_pos</td><td>y start position in round buffer </td></tr>
+    <tr><td class="paramname">x_buffer_pos</td><td>x start position in matrix buffer </td></tr>
   </table>
   </dd>
 </dl>
@@ -364,14 +360,14 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>zmniejsza pozycje oczyszczania bufora o 1 </p>
+<p>decrement right to left clearing line </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true jesli wlasnie osiagnieto poczatek, false w przeciwnym wypadku </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true when decrement to 0, false otherwise </dd></dl>
 
 </div>
 </div>
@@ -399,10 +395,10 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>inicjalizacja struktury </p>
+<p>initialize DiodeMNatrix structure </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -433,19 +429,19 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>zwieksza o 1 aktualna jasnosc matrycy </p>
-<p>zwraca 1 jeœli nast¹pi³ reset jasnoœci i inkrementacja Y, 0 w przeciwnym wypadku czysci flagê modyfikacji </p><dl class="params"><dt>Parameters</dt><dd>
+<p>increment actual matrix brightness </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 jesli doszlo do zwiekszenia wspolrzednej Y, 0 w przeciwnym wypadku </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 when Y matrix position was incremented, 0 otherwise </dd></dl>
 
 </div>
 </div>
-<a id="a12bd75bf151f956660b968af60f7c6cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12bd75bf151f956660b968af60f7c6cb">&#9670;&nbsp;</a></span>IncrementBufferPosition()</h2>
+<a id="aa947c5658d1655268617f93e727e4b46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa947c5658d1655268617f93e727e4b46">&#9670;&nbsp;</a></span>IncrementBufferStart()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -454,7 +450,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool IncrementBufferPosition </td>
+          <td class="memname">bool IncrementBufferStart </td>
           <td>(</td>
           <td class="paramtype">volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *&#160;</td>
           <td class="paramname"><em>m</em></td><td>)</td>
@@ -468,10 +464,10 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>zwieksza aktualna pozycje wyswietlania danych z bufora o 1, gdy wartosc osiagnie koncowa to reset do 0 </p>
+<p>increment actual buffer start address </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -503,10 +499,10 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>zwieksza o 1 aktualna wspolrzedna Y </p>
+<p>increment Y position </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -537,10 +533,10 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>odswieza tablice dzialania LED dla danej pozycji Y </p>
+<p>refresh flag buffer of one Y position from uitBufferX data </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -571,14 +567,14 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>zwraca zawartosc rejestru Y na podstawie pozycji Y </p>
+<p>return serial value to Y register from actual Y position </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>nowa wartosc szeregowa dla rejestru Y </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>serial value to Y register from actual Y position </dd></dl>
 
 </div>
 </div>
@@ -606,10 +602,10 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>ustawia pozycje oczyszczania bufora na koniec zapisanego bufora </p>
+<p>set right to left clearing line to matrix buffer end address </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
   </table>
   </dd>
 </dl>
@@ -642,69 +638,19 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>ustawia tryb wyswietlania bufora, resetuje pozycje wyswietlania danych z bufora </p>
+<p>set mode of matrix displaying, reset buffer start position to 0 </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">m</td><td>adres struktury macierzy LED </td></tr>
-    <tr><td class="paramname">isMoving</td><td>sposob wyswietlania </td></tr>
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
+    <tr><td class="paramname">isMoving</td><td>new mode of displaying </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a4e952baec5521af3b1f6de946f48b247"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e952baec5521af3b1f6de946f48b247">&#9670;&nbsp;</a></span>SetPixelBuffer()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SetPixelBuffer </td>
-          <td>(</td>
-          <td class="paramtype">volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>x_pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>y_pos</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244">BinarySwitch</a> *&#160;</td>
-          <td class="paramname"><em>state</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>ustawia wartosc binarna dla danego piksela </p>
-
-</div>
-</div>
-<a id="a1b35e060043b708dd87ebf40b6aa848f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b35e060043b708dd87ebf40b6aa848f">&#9670;&nbsp;</a></span>SetYBuffer()</h2>
+<a id="acf2bee4b1089702b551d8de104ab1062"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf2bee4b1089702b551d8de104ab1062">&#9670;&nbsp;</a></span>SetYBuffer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -724,7 +670,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramtype"><a class="el" href="data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244">BinarySwitch</a>&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -735,7 +681,15 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>laduje do calej linijki bufora o danej wysokosci dana wartosc jasnosci </p>
+<p>load to one y position of matrix buffer logic value </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
+    <tr><td class="paramname">y_pos</td><td>y position in matrix buffer </td></tr>
+    <tr><td class="paramname">value</td><td>of pixels </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -751,6 +705,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>orange gamma correction </p>
 
 </div>
 </div>
