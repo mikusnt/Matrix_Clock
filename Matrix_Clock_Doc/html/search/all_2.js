@@ -11,7 +11,6 @@ var searchData=
   ['bbsqw',['BBSQW',['../ds3231_8h.html#aab025dda5b1b276b234f3ef492cfb12e',1,'ds3231.h']]],
   ['bcd2dec',['bcd2dec',['../ds3231_8c.html#aefb9b629ce3970e10c821c3b7a9c385a',1,'ds3231.c']]],
   ['benabledecrement',['bEnableDecrement',['../main_8c.html#ae2e3f0621e4544f3709a44b476c6af17',1,'main.c']]],
-  ['bhalftime',['bHalfTime',['../main_8c.html#a579bfe32677be8152802c9a654638c43',1,'main.c']]],
   ['binaryswitch',['BinarySwitch',['../data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244',1,'data_types.h']]],
   ['bismoving',['bIsMoving',['../struct_diode_matrix.html#ae8b3e8405ff773f1e60121e5a864006d',1,'DiodeMatrix']]],
   ['bluetooth_5faddr',['BLUETOOTH_ADDR',['../some__devices_8h.html#acfb0263dffab16ec335955aa686dde42',1,'some_devices.h']]],
@@ -21,8 +20,6 @@ var searchData=
   ['bluetooth_5fport',['BLUETOOTH_PORT',['../some__devices_8h.html#ab692bdcbb025f8eeb01298116c6b9277',1,'some_devices.h']]],
   ['bnewroundrefresh',['bNewRoundRefresh',['../main_8c.html#a67e62f04b80d7896d29bf0e47fe526de',1,'main.c']]],
   ['bnewtime',['bNewTime',['../main_8c.html#ac1232e2b90ff16fbded16cedf690cb98',1,'main.c']]],
-  ['bquatertime',['bQuaterTime',['../main_8c.html#ae3e2233b50d807af98f759a7623cc7b3',1,'main.c']]],
   ['buffer_5fx_5fsize',['BUFFER_X_SIZE',['../diode__matrix_8h.html#a73e92c4c2b0d21cc03685a7394c8a0b8',1,'diode_matrix.h']]],
-  ['bwithdata',['bWithData',['../struct_relay.html#a9af75c402b1dadddb7159a00c902ebe9',1,'Relay']]],
   ['byteflag',['ByteFlag',['../union_byte_flag.html',1,'']]]
 ];

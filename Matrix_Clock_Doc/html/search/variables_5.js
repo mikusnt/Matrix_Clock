@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gamma_5fo',['gamma_o',['../diode__matrix_8c.html#a950d03a70472a1347f89e91dfe15b872',1,'gamma_o():&#160;diode_matrix.c'],['../diode__matrix_8h.html#a950d03a70472a1347f89e91dfe15b872',1,'gamma_o():&#160;diode_matrix.c']]]
+  ['flag',['flag',['../union_byte_flag.html#ae3243831a40dff0d13e96ce0bbd18f18',1,'ByteFlag']]]
 ];

@@ -23,8 +23,6 @@ var searchData=
   ['timer2init',['Timer2Init',['../some__devices_8c.html#a8df3b0bec1a50af5a7014dc8ac6fb438',1,'Timer2Init():&#160;some_devices.c'],['../some__devices_8h.html#a8df3b0bec1a50af5a7014dc8ac6fb438',1,'Timer2Init():&#160;some_devices.c']]],
   ['times0pos',['TimeS0Pos',['../date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a69634ead87cfc59b7111c6d4f6010a54',1,'date_time.h']]],
   ['times10pos',['TimeS10Pos',['../date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a4f42897f730076204802f1331ba8e8b1',1,'date_time.h']]],
-  ['todo_2emd',['todo.md',['../todo_8md.html',1,'']]],
   ['translatetoalphabet',['TranslateToAlphabet',['../alphabet_8c.html#ad63e779db7ad39e4913a31cdb891fa8d',1,'alphabet.c']]],
-  ['trydecrementtime',['TryDecrementTime',['../date__time_8c.html#a8fd767ea0446fe2d20e629153c348a44',1,'TryDecrementTime(TimeDate *t):&#160;date_time.c'],['../date__time_8h.html#a8fd767ea0446fe2d20e629153c348a44',1,'TryDecrementTime(TimeDate *t):&#160;date_time.c']]],
   ['tryloadcommand',['TryLoadCommand',['../uart__processing_8c.html#a4aca2a05fc03c7a03622aca9c4a3d0ce',1,'TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time):&#160;uart_processing.c'],['../uart__processing_8h.html#a4aca2a05fc03c7a03622aca9c4a3d0ce',1,'TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time):&#160;uart_processing.c']]]
 ];

@@ -109,9 +109,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a1d1d03b99f56933e3c67f95c223603af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8c.html#a1d1d03b99f56933e3c67f95c223603af">LoadNumberToMatrix</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, uint16_t number)</td></tr>
 <tr class="memdesc:a1d1d03b99f56933e3c67f95c223603af"><td class="mdescLeft">&#160;</td><td class="mdescRight">load one 5 digit integer to matrix buffer  <a href="#a1d1d03b99f56933e3c67f95c223603af">More...</a><br /></td></tr>
 <tr class="separator:a1d1d03b99f56933e3c67f95c223603af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b56ede8ef9cc6d1ec98ef5b33e9f53e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8c.html#a9b56ede8ef9cc6d1ec98ef5b33e9f53e">SetSeqParams</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, <a class="el" href="struct_time_date.html">TimeDate</a> *<a class="el" href="main_8c.html#af0984960e327a1697d00daef98055b22">actTime</a>, <a class="el" href="struct_time_date.html">TimeDate</a> *<a class="el" href="main_8c.html#a86fa15702b48a39597a23c011ad4c4b6">RTCTime</a>, volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>)</td></tr>
-<tr class="memdesc:a9b56ede8ef9cc6d1ec98ef5b33e9f53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">set parametrs when sequence is changed  <a href="#a9b56ede8ef9cc6d1ec98ef5b33e9f53e">More...</a><br /></td></tr>
-<tr class="separator:a9b56ede8ef9cc6d1ec98ef5b33e9f53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b3b48b77f6a158f7b6c3d8064347b3d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8c.html#a0b3b48b77f6a158f7b6c3d8064347b3d">SetSeqParams</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, <a class="el" href="struct_time_date.html">TimeDate</a> *<a class="el" href="main_8c.html#af0984960e327a1697d00daef98055b22">actTime</a>, volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>)</td></tr>
+<tr class="memdesc:a0b3b48b77f6a158f7b6c3d8064347b3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">set parametrs when sequence is changed  <a href="#a0b3b48b77f6a158f7b6c3d8064347b3d">More...</a><br /></td></tr>
+<tr class="separator:a0b3b48b77f6a158f7b6c3d8064347b3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a971ae91252054b0980045f938c3bb1af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8c.html#a971ae91252054b0980045f938c3bb1af">SetStatePoint</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, uint8_t y_pos, <a class="el" href="data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244">BinarySwitch</a> state)</td></tr>
 <tr class="memdesc:a971ae91252054b0980045f938c3bb1af"><td class="mdescLeft">&#160;</td><td class="mdescRight">set one device state point to matrix buffer  <a href="#a971ae91252054b0980045f938c3bb1af">More...</a><br /></td></tr>
 <tr class="separator:a971ae91252054b0980045f938c3bb1af"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -471,8 +471,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a9b56ede8ef9cc6d1ec98ef5b33e9f53e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b56ede8ef9cc6d1ec98ef5b33e9f53e">&#9670;&nbsp;</a></span>SetSeqParams()</h2>
+<a id="a0b3b48b77f6a158f7b6c3d8064347b3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b3b48b77f6a158f7b6c3d8064347b3d">&#9670;&nbsp;</a></span>SetSeqParams()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -488,12 +488,6 @@ Variables</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="struct_time_date.html">TimeDate</a> *&#160;</td>
           <td class="paramname"><em>actTime</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_time_date.html">TimeDate</a> *&#160;</td>
-          <td class="paramname"><em>RTCTime</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -514,7 +508,6 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">m</td><td>poiner of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
     <tr><td class="paramname">actTime</td><td>pointer of actual time structure </td></tr>
-    <tr><td class="paramname">RTCTime</td><td>pointer of real time structure </td></tr>
     <tr><td class="paramname">relay</td><td>pointer of relay structure </td></tr>
   </table>
   </dd>
@@ -601,7 +594,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>actual sequence displaying by device </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="matrix__seq_8h.html#a9b56ede8ef9cc6d1ec98ef5b33e9f53e" title="set parametrs when sequence is changed ">SetSeqParams</a> </dd></dl>
+<p>actual sequence displaying by device </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="matrix__seq_8h.html#a0b3b48b77f6a158f7b6c3d8064347b3d" title="set parametrs when sequence is changed ">SetSeqParams</a> </dd></dl>
 
 </div>
 </div>
