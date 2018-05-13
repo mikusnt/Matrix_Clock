@@ -2,9 +2,9 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-05-11 $
+ * $Modified: 2018-05-13 $
  * $Created: 2017-11-04 $
- * @version 0.94
+ * @version 0.95
  *
  * Project main file
  * @see readme.md
@@ -172,26 +172,34 @@ int main (void) {
 				case SeqBomb: {
 					if (bNewTime) {
 						TryDecrementTime(&actTime);
-						sprintf(ctTextBuffer, "%02d:%02d\n", actTime.uiMinute, actTime.uiSecond);
-						uart_puts(ctTextBuffer);
-						ctTextBuffer[5] = 0;
+						sprintf(ctTextBuffer, "%02d:%02d", actTime.uiMinute, actTime.uiSecond);
 						if (actTime.uiSecond % 2) ctTextBuffer[2] = ' ';
 						else ctTextBuffer[2] = 0x80;
 						LoadTextToMatrix(&matrix, ctTextBuffer);
+						if ((actTime.uiSecond ==0) && (actTime.uiMinute == 0)) {
+
+							sprintf(ctTextBuffer, "Boom!!!");
+							eActualSeq = SeqText;
+							RelayClicking(&relay, RelayClickStartFast, 182);
+							RunSlowClearedPos(&matrix);
+							break;
+						}
 
 						// clicking in specific period
-						if (((actTime.uiSecond % 10) == 0) && (actTime.uiMinute > 0)) {
+						if ((((actTime.uiSecond % 30) == 0) && (actTime.uiMinute > 1))
+							|| (((actTime.uiSecond % 10) == 0) && (actTime.uiMinute == 1))
+							|| (((actTime.uiSecond % 2) == 0) && (actTime.uiMinute == 0) && (actTime.uiSecond > 30))
+							|| ((actTime.uiMinute == 0) && (actTime.uiSecond <= 30) && (actTime.uiSecond > 10))
+							|| ((actTime.uiMinute == 0) && (actTime.uiSecond <= 10))) {
+
 							RelayClicking(&relay, RelayClickStartFast, 1);
+							ctTextBuffer[5] = '\n';
+							ctTextBuffer[6] = 0;
+							ctTextBuffer[2] = ':';
+							uart_puts(ctTextBuffer);
+
 						}
-						if (((actTime.uiSecond % 2) == 0) && (actTime.uiMinute == 0) && (actTime.uiSecond > 30)) {
-							RelayClicking(&relay, RelayClickStartFast, 1);
-						}
-						if ((actTime.uiMinute == 0) && (actTime.uiSecond <= 30) && (actTime.uiSecond > 10)) {
-							RelayClicking(&relay, RelayClickStartFast, 1);
-						}
-						if ((actTime.uiMinute == 0) && (actTime.uiSecond <= 10)) {
-							RelayClicking(&relay, RelayClickStartFast, 1);
-						}
+
 						bNewTime = false;
 					// half of second
 					} else if (bHalfTime) {
@@ -248,7 +256,8 @@ ISR(TIMER0_COMPA_vect) {
 ISR(TIMER2_COMPA_vect) {
 	RelayTryClickMS(&relay);
 	// reset to 0 in PCINT1_vect
-	if (++ui16Ms == 1) {
+	if (++ui16Ms == 1000) {
+		ui16Ms = 0;
 		if (++uiSeconds >= 60)
 			uiSeconds = 0;
 	}
@@ -281,7 +290,9 @@ ISR(PCINT1_vect) {
 	ADCStart();
 	if (SQW_IS_HIGH()) {
 		bNewTime = true;
-		ui16Ms = 0;
+		// synchronize local time to external when
+		if (eActualSeq == SeqBomb)
+			ui16Ms = 0;
 	} else
 		bHalfTime = true;
 } // END ISR(PCINT1_vect)

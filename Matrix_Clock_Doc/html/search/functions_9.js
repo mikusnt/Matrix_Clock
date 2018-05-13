@@ -3,6 +3,7 @@ var searchData=
   ['readadctoadcdata',['ReadADCToADCData',['../some__devices_8h.html#af759822269409f7102b2123e3a294eb8',1,'some_devices.h']]],
   ['refreshbufferflag',['RefreshBufferFlag',['../diode__matrix_8h.html#afb47ff3cb70c99d953e54b4cd338ba38',1,'diode_matrix.h']]],
   ['registersinit',['RegistersInit',['../register_8c.html#ace7a27d184ecc91dc7c057b1372c3d9a',1,'RegistersInit():&#160;register.c'],['../register_8h.html#ace7a27d184ecc91dc7c057b1372c3d9a',1,'RegistersInit():&#160;register.c']]],
+  ['relayclicking',['RelayClicking',['../relay_8c.html#a027d76159c34a2873aed58d96dc145db',1,'RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number):&#160;relay.c'],['../relay_8h.html#a027d76159c34a2873aed58d96dc145db',1,'RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number):&#160;relay.c']]],
   ['relayinit',['RelayInit',['../relay_8c.html#affcc0607926e8e696a4ac26cdb00b950',1,'RelayInit(volatile Relay *r):&#160;relay.c'],['../relay_8h.html#affcc0607926e8e696a4ac26cdb00b950',1,'RelayInit(volatile Relay *r):&#160;relay.c']]],
   ['relayreset',['RelayReset',['../relay_8c.html#a4c0643e02611ef14efd57150cf1ac4a9',1,'relay.c']]],
   ['relaystartclicking',['RelayStartClicking',['../relay_8c.html#ae6f1144ad32f22176c38912ccde370e6',1,'RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType dataType):&#160;relay.c'],['../relay_8h.html#ae6f1144ad32f22176c38912ccde370e6',1,'RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType dataType):&#160;relay.c']]],

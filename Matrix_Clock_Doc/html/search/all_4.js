@@ -4,7 +4,6 @@ var searchData=
   ['d_5fs',['D_S',['../data__types_8h.html#a9bcf4c743c6bc9b7a9d9aff862ae272a',1,'data_types.h']]],
   ['d_5fus',['D_US',['../data__types_8h.html#ae55684d409a909414561fe00f29fcd51',1,'data_types.h']]],
   ['data_5ftypes_2eh',['data_types.h',['../data__types_8h.html',1,'']]],
-  ['datatype',['dataType',['../struct_relay.html#a657407cbc6596b8b86fbd99526e9d8bf',1,'Relay']]],
   ['date_5ftime_2ec',['date_time.c',['../date__time_8c.html',1,'']]],
   ['date_5ftime_2eh',['date_time.h',['../date__time_8h.html',1,'']]],
   ['dayofwk_5fregister',['DAYOFWK_REGISTER',['../ds3231_8h.html#a979f4e469cd55f3e4328688ba86d8d89',1,'ds3231.h']]],

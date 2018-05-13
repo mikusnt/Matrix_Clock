@@ -1,5 +1,6 @@
 var relay_8c =
 [
+    [ "RelayClicking", "relay_8c.html#a027d76159c34a2873aed58d96dc145db", null ],
     [ "RelayInit", "relay_8c.html#affcc0607926e8e696a4ac26cdb00b950", null ],
     [ "RelayReset", "relay_8c.html#a4c0643e02611ef14efd57150cf1ac4a9", null ],
     [ "RelayStartClicking", "relay_8c.html#ae6f1144ad32f22176c38912ccde370e6", null ],

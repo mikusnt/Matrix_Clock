@@ -7,6 +7,7 @@ var searchData=
   ['control_5f0_5fregister',['CONTROL_0_REGISTER',['../ds3231_8h.html#a6e5a857abe92442e9f78e54a55fc93b5',1,'ds3231.h']]],
   ['control_5f1_5fregister',['CONTROL_1_REGISTER',['../ds3231_8h.html#a3df097ba0f0e63219fd2552e9df04cc0',1,'ds3231.h']]],
   ['conv',['CONV',['../ds3231_8h.html#a0538377e68aa283fbad42f747bb6dd82',1,'ds3231.h']]],
+  ['copydatetime',['CopyDateTime',['../date__time_8c.html#adbc4925650f333499f5f13ae176f7599',1,'CopyDateTime(TimeDate *from, TimeDate *to):&#160;date_time.c'],['../date__time_8h.html#adbc4925650f333499f5f13ae176f7599',1,'CopyDateTime(TimeDate *from, TimeDate *to):&#160;date_time.c']]],
   ['copyfromroundtobuffer',['CopyFromRoundToBuffer',['../diode__matrix_8c.html#afbe4610ba1172db58361947f878cd828',1,'CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round_pos, uint8_t x_buffer_pos):&#160;diode_matrix.c'],['../diode__matrix_8h.html#afbe4610ba1172db58361947f878cd828',1,'CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round_pos, uint8_t x_buffer_pos):&#160;diode_matrix.c']]],
   ['cttextbuffer',['ctTextBuffer',['../matrix__seq_8c.html#a42fdf0b401b08840abc478f0f18318fb',1,'ctTextBuffer():&#160;matrix_seq.c'],['../matrix__seq_8h.html#a42fdf0b401b08840abc478f0f18318fb',1,'ctTextBuffer():&#160;matrix_seq.c']]]
 ];

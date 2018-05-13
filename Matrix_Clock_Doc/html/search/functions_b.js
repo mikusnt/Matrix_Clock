@@ -8,5 +8,6 @@ var searchData=
   ['timer0init',['Timer0Init',['../some__devices_8c.html#aba017025ab450fd915cb22f19c6ff87b',1,'Timer0Init():&#160;some_devices.c'],['../some__devices_8h.html#aba017025ab450fd915cb22f19c6ff87b',1,'Timer0Init():&#160;some_devices.c']]],
   ['timer2init',['Timer2Init',['../some__devices_8c.html#a8df3b0bec1a50af5a7014dc8ac6fb438',1,'Timer2Init():&#160;some_devices.c'],['../some__devices_8h.html#a8df3b0bec1a50af5a7014dc8ac6fb438',1,'Timer2Init():&#160;some_devices.c']]],
   ['translatetoalphabet',['TranslateToAlphabet',['../alphabet_8c.html#ad63e779db7ad39e4913a31cdb891fa8d',1,'alphabet.c']]],
+  ['trydecrementtime',['TryDecrementTime',['../date__time_8c.html#a8fd767ea0446fe2d20e629153c348a44',1,'TryDecrementTime(TimeDate *t):&#160;date_time.c'],['../date__time_8h.html#a8fd767ea0446fe2d20e629153c348a44',1,'TryDecrementTime(TimeDate *t):&#160;date_time.c']]],
   ['tryloadcommand',['TryLoadCommand',['../uart__processing_8c.html#a4aca2a05fc03c7a03622aca9c4a3d0ce',1,'TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time):&#160;uart_processing.c'],['../uart__processing_8h.html#a4aca2a05fc03c7a03622aca9c4a3d0ce',1,'TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time):&#160;uart_processing.c']]]
 ];
