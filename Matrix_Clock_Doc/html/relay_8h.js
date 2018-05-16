@@ -19,11 +19,18 @@ var relay_8h =
     [ "RELAY_SHORT_HIGH_TIME", "relay_8h.html#a1fee4a83a2a8a77b988338bba3332174", null ],
     [ "RELAY_SHORT_LOW_TIME", "relay_8h.html#acbafc2389bb7a6fef89f312b0045f14d", null ],
     [ "RELAY_STATE_MS", "relay_8h.html#ae417a089da02fd7925922ec621c7f7c2", null ],
+    [ "RelayClickType", "relay_8h.html#a833b1ac9b20152ddb9334b3ee67bf746", [
+      [ "RelayClickStartFast", "relay_8h.html#a833b1ac9b20152ddb9334b3ee67bf746afdbab2526fb41530554e54b25f811498", null ],
+      [ "RelayClickStart", "relay_8h.html#a833b1ac9b20152ddb9334b3ee67bf746a1013c97d7c04034b94ee87b6844e4900", null ],
+      [ "RelayClickFast", "relay_8h.html#a833b1ac9b20152ddb9334b3ee67bf746a5f756bc276b1f8e298f9fff76dacb29b", null ],
+      [ "RelayClickSlow", "relay_8h.html#a833b1ac9b20152ddb9334b3ee67bf746acfe72697666121641eab7fe8c5a16705", null ]
+    ] ],
     [ "RelayDataType", "relay_8h.html#a72da5ed5620d716227a28a590c29be3d", [
       [ "RelayDataHours", "relay_8h.html#a72da5ed5620d716227a28a590c29be3da038c11bc88bdb19d0ae510a764271b59", null ],
       [ "RelayDataMinutes", "relay_8h.html#a72da5ed5620d716227a28a590c29be3dad7c25ff857ab5952f0502dfd52098321", null ],
       [ "RelayDataNumber", "relay_8h.html#a72da5ed5620d716227a28a590c29be3da35e10b360346b842d42cd71ca4132162", null ]
     ] ],
+    [ "RelayClicking", "relay_8h.html#a027d76159c34a2873aed58d96dc145db", null ],
     [ "RelayInit", "relay_8h.html#affcc0607926e8e696a4ac26cdb00b950", null ],
     [ "RelayStartClicking", "relay_8h.html#ae6f1144ad32f22176c38912ccde370e6", null ],
     [ "RelayTryClickMS", "relay_8h.html#af03ba0687ec1d4734e06be708c95a43f", null ],

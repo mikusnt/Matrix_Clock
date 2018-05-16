@@ -9,7 +9,10 @@ var searchData=
   ['b6',['b6',['../struct_flag.html#aa455734327e76e0209738bb854f923d1',1,'Flag']]],
   ['b7',['b7',['../struct_flag.html#a72b5ae530cdd469bbba5c0360975645f',1,'Flag']]],
   ['benabledecrement',['bEnableDecrement',['../main_8c.html#ae2e3f0621e4544f3709a44b476c6af17',1,'main.c']]],
+  ['bhalftime',['bHalfTime',['../main_8c.html#a579bfe32677be8152802c9a654638c43',1,'main.c']]],
   ['bismoving',['bIsMoving',['../struct_diode_matrix.html#ae8b3e8405ff773f1e60121e5a864006d',1,'DiodeMatrix']]],
   ['bnewroundrefresh',['bNewRoundRefresh',['../main_8c.html#a67e62f04b80d7896d29bf0e47fe526de',1,'main.c']]],
-  ['bnewtime',['bNewTime',['../main_8c.html#ac1232e2b90ff16fbded16cedf690cb98',1,'main.c']]]
+  ['bnewtime',['bNewTime',['../main_8c.html#ac1232e2b90ff16fbded16cedf690cb98',1,'main.c']]],
+  ['bquatertime',['bQuaterTime',['../main_8c.html#ae3e2233b50d807af98f759a7623cc7b3',1,'main.c']]],
+  ['bwithdata',['bWithData',['../struct_relay.html#a9af75c402b1dadddb7159a00c902ebe9',1,'Relay']]]
 ];

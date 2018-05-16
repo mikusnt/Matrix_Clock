@@ -11,8 +11,10 @@ var date__time_8h =
       [ "TimeS10Pos", "date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a4f42897f730076204802f1331ba8e8b1", null ],
       [ "TimeS0Pos", "date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97a69634ead87cfc59b7111c6d4f6010a54", null ]
     ] ],
+    [ "CopyDateTime", "date__time_8h.html#adbc4925650f333499f5f13ae176f7599", null ],
     [ "LoadToDecimalTime", "date__time_8h.html#a6a8e8cb1f550c6f92bd42c1d9f0ca559", null ],
     [ "LoadToSingleTime", "date__time_8h.html#a283df23ff43249b130f2beff0d604ead", null ],
     [ "ResetProgress", "date__time_8h.html#a26e7a692d8d2c78f0b57d20c6ffec692", null ],
-    [ "TimeInit", "date__time_8h.html#adb7b0840a9c20d5f4d6bab7517d62343", null ]
+    [ "TimeInit", "date__time_8h.html#adb7b0840a9c20d5f4d6bab7517d62343", null ],
+    [ "TryDecrementTime", "date__time_8h.html#a8fd767ea0446fe2d20e629153c348a44", null ]
 ];

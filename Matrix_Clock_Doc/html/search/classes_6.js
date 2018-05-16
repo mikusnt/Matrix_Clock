@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['timedate',['TimeDate',['../struct_time_date.html',1,'']]]
+  ['relay',['Relay',['../struct_relay.html',1,'']]]
 ];

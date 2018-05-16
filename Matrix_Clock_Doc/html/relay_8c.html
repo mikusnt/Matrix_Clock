@@ -108,6 +108,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ad7cfe7b4a3c8859802408f187ffe61f2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8c.html#ad7cfe7b4a3c8859802408f187ffe61f2">SetRelayState</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>, <a class="el" href="data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244">BinarySwitch</a> eState)</td></tr>
 <tr class="memdesc:ad7cfe7b4a3c8859802408f187ffe61f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">rename relay state  <a href="#ad7cfe7b4a3c8859802408f187ffe61f2">More...</a><br /></td></tr>
 <tr class="separator:ad7cfe7b4a3c8859802408f187ffe61f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a027d76159c34a2873aed58d96dc145db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="relay_8c.html#a027d76159c34a2873aed58d96dc145db">RelayClicking</a> (volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>, <a class="el" href="relay_8h.html#a833b1ac9b20152ddb9334b3ee67bf746">RelayClickType</a> type, uint8_t number)</td></tr>
+<tr class="memdesc:a027d76159c34a2873aed58d96dc145db"><td class="mdescLeft">&#160;</td><td class="mdescRight">single click after reset relay structure  <a href="#a027d76159c34a2873aed58d96dc145db">More...</a><br /></td></tr>
+<tr class="separator:a027d76159c34a2873aed58d96dc145db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -119,6 +122,50 @@ Variables</h2></td></tr>
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="relay_8h.html">relay.h</a> </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a027d76159c34a2873aed58d96dc145db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a027d76159c34a2873aed58d96dc145db">&#9670;&nbsp;</a></span>RelayClicking()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RelayClicking </td>
+          <td>(</td>
+          <td class="paramtype">volatile <a class="el" href="struct_relay.html">Relay</a> *&#160;</td>
+          <td class="paramname"><em>relay</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="relay_8h.html#a833b1ac9b20152ddb9334b3ee67bf746">RelayClickType</a>&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>number</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>single click after reset relay structure </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">relay</td><td>pointer of relay structure </td></tr>
+    <tr><td class="paramname">type</td><td>of click </td></tr>
+    <tr><td class="paramname">number</td><td>of clicks </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="affcc0607926e8e696a4ac26cdb00b950"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#affcc0607926e8e696a4ac26cdb00b950">&#9670;&nbsp;</a></span>RelayInit()</h2>
 

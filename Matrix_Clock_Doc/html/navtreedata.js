@@ -2,11 +2,17 @@ var NAVTREE =
 [
   [ "Matrix_Clock", "index.html", [
     [ "Matrix Clock", "md_readme.html", null ],
+    [ "Next Tasks", "md_todo.html", null ],
+    [ "Namespaces", null, [
+      [ "Namespace List", "namespaces.html", "namespaces" ]
+    ] ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", null ],
+        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
@@ -26,9 +32,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"alphabet_8c.html",
-"matrix__seq_8h.html#aa7fd4f51220b42bcdec93b2b70e2a05f",
-"union_byte_flag.html#ae3243831a40dff0d13e96ce0bbd18f18"
+"_a_s_c_i_i___char_8java.html",
+"ds3231_8h.html#ab8f0cb87315228f87caa373c576c6e5b",
+"relay_8c.html#ad7cfe7b4a3c8859802408f187ffe61f2"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
