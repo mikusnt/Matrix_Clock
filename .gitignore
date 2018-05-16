@@ -57,3 +57,6 @@ Debug
 
 # Temp Eagle Files
 *.[sb]*[0-9]
+/Alphabet_Generator/nbproject/private/
+/Alphabet_Generator/build/
+/Alphabet_Generator/dist/
