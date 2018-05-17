@@ -5,6 +5,7 @@
  */
 package alphabet_generator;
 
+import java.awt.Color;
 import java.awt.Label;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -31,6 +32,7 @@ public class Main_Frame extends javax.swing.JFrame {
     private ASCII_List lista;
     private int selectedRow;
     private String filename = "alphabet.csv";
+    private boolean [][] checkEnable;
     /**
      * Creates new form Main_Frame
      */
@@ -42,6 +44,14 @@ public class Main_Frame extends javax.swing.JFrame {
             { jCheck_20, jCheck_21, jCheck_22, jCheck_23, jCheck_24, jCheck_25, jCheck_26, jCheck_27 },
             { jCheck_30, jCheck_31, jCheck_32, jCheck_33, jCheck_34, jCheck_35, jCheck_36, jCheck_37 },
             { jCheck_40, jCheck_41, jCheck_42, jCheck_43, jCheck_44, jCheck_45, jCheck_46, jCheck_47 }
+        };
+        this.checkEnable = new boolean[][] {
+            { false, false, false, false, false },
+            { false, false, true, false, false },
+            { false, true, true, false, false },
+            { false, true, true, true, false },
+            { true, true, true, true, false },
+            { true, true, true, true, true }
         };
 
         for(int i = 0; i < 5; i++) {
@@ -80,7 +90,21 @@ public class Main_Frame extends javax.swing.JFrame {
         refreshList();
 
     }
+    
+    private void setCheckBoxColor() {
+        if (jTableMain.getRowCount() > 0) {
+            for(int i = 0; i < 5; i++) {     
+                for(int j = 0; j < 8; j++) {
+                    if (checkEnable[lista.get(selectedRow).getLength()][i] == true) {
+                        checkBoxes[i][j].setBackground(new Color(240, 240, 240));
+                    } else 
+                        checkBoxes[i][j].setBackground(Color.LIGHT_GRAY);
 
+                }
+            }
+        }
+    }
+    
     private void loadASCII_List() {
         DefaultTableModel model = (DefaultTableModel)this.jTableMain.getModel();
         deleteAllRows(model);
@@ -91,6 +115,7 @@ public class Main_Frame extends javax.swing.JFrame {
             row.add(item.getSign());
             row.add(item.getDescription());
             row.add(item.getModifiedDots());
+            row.add(item.getLength());
             model.addRow(row);
         }
     }
@@ -102,7 +127,8 @@ public class Main_Frame extends javax.swing.JFrame {
         model.setValueAt(item.getId(), index, 0);
         model.setValueAt(String.valueOf(item.getSign()), index, 1);
         model.setValueAt(item.getDescription(), index, 2);
-        model.setValueAt(item.getModifiedDots(), index, 3);       
+        model.setValueAt(item.getModifiedDots(), index, 3);    
+        model.setValueAt(item.getLength(), index, 4);
     }
     public static void deleteAllRows(final DefaultTableModel model) {
         for( int i = model.getRowCount() - 1; i >= 0; i-- ) {
@@ -117,6 +143,7 @@ public class Main_Frame extends javax.swing.JFrame {
             lista.get(id).setCodes(bytes);
             loadASCII_ListElement(id);
         }
+        setCheckBoxColor();
     }
     private void generateNumbers() {
         for(int i = 0; i < 5; i++) {
@@ -162,6 +189,7 @@ public class Main_Frame extends javax.swing.JFrame {
                 copy >>= 1;
             }  
         }
+        setCheckBoxColor();
         numbersToText();
     }
     /**
@@ -234,14 +262,14 @@ public class Main_Frame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Znak", "Opis", "Kropki"
+                "ID", "Znak", "Opis", "Kropki", "Długość"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, true, false
+                true, true, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -274,6 +302,9 @@ public class Main_Frame extends javax.swing.JFrame {
             jTableMain.getColumnModel().getColumn(3).setMinWidth(50);
             jTableMain.getColumnModel().getColumn(3).setPreferredWidth(50);
             jTableMain.getColumnModel().getColumn(3).setMaxWidth(50);
+            jTableMain.getColumnModel().getColumn(4).setMinWidth(50);
+            jTableMain.getColumnModel().getColumn(4).setPreferredWidth(50);
+            jTableMain.getColumnModel().getColumn(4).setMaxWidth(50);
         }
 
         jCheck_06.addActionListener(new java.awt.event.ActionListener() {
@@ -488,8 +519,8 @@ public class Main_Frame extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -573,14 +604,23 @@ public class Main_Frame extends javax.swing.JFrame {
         if (jTableMain.getRowCount() > 0) {
             if (lista.get(selectedRow).getSign() != ((String)jTableMain.getValueAt(selectedRow, 1)).charAt(0)) {
                 System.out.println("different chars");
+                lista.get(selectedRow).setSign(((String)jTableMain.getValueAt(selectedRow, 1)).charAt(0));
             }
-            if (lista.get(selectedRow).getDescription() != jTableMain.getValueAt(selectedRow, 2)) {
+            if (lista.get(selectedRow).getDescription() != (String)jTableMain.getValueAt(selectedRow, 2)) {
                 System.out.println("different description");
+                lista.get(selectedRow).setDescription((String)jTableMain.getValueAt(selectedRow, 2));
             }
             if (lista.get(selectedRow).getId() != (int)jTableMain.getValueAt(selectedRow, 0)) {
                 int newId = (int)jTableMain.getValueAt(selectedRow, 0);
-                if (lista.isIdInList(newId)) {
-                    System.out.println("Id " + newId + " is in the list");
+                try {
+                    if (lista.isIdInList(newId)) {
+                        //System.out.println("Id " + newId + " is in the list");
+                        throw new IllegalAccessException("Id " + newId + " is in the list");
+                    }
+                    ASCII_Char newChar = lista.get(selectedRow). 
+                    lista.get(selectedRow).setId(newId);
+                } catch (IllegalAccessException e) {
+                    System.out.println(e.toString());
                 }
             }
         }

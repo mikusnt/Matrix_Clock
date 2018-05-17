@@ -31,6 +31,7 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
     private String description;
     private int id;
     private int modifiedDots;
+    private int length;
     
     public ASCII_Char(int id) {
         this.id = id;
@@ -42,7 +43,7 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
         setCodes(codes);    
     }
     
-    private void calculateModifiedDots() {
+    private void calculateDotsLength() {
         modifiedDots = 0;
         for (int i = 0; i < CODES_LENGTH; i++) {
             int copy = codes[i];
@@ -53,6 +54,17 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
                 copy >>= 1;
             }
         }
+        if (codes[0] > 0) {
+            if (codes[4] > 0)
+                length = 5;
+            else length = 4;
+        } else if (codes[1] > 0) {
+            if (codes[3] > 0)
+                length = 3;
+            else length = 2;
+        } else if (codes[2] > 0) 
+            length = 1;
+        else length = 0;
     }
 
     public void setBit(int codeId, int bitId, boolean bitValue) throws ArrayIndexOutOfBoundsException {
@@ -63,7 +75,7 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
         } else {
             codes[codeId] &= ~(1 << bitId);
         }
-        calculateModifiedDots();
+        calculateDotsLength();
     }
     
     public String toCSVLine() {
@@ -125,7 +137,7 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
         if (codes.length == CODES_LENGTH)
             this.codes = codes;
         else throw new ArrayIndexOutOfBoundsException("Wrong number of array named codes: " + codes.length + " required: "+CODES_LENGTH);
-        calculateModifiedDots();
+        calculateDotsLength();
     }
 
     /**
@@ -161,6 +173,13 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
      */
     public int getModifiedDots() {
         return modifiedDots;
+    }
+
+    /**
+     * @return the length
+     */
+    public int getLength() {
+        return length;
     }
     
     
