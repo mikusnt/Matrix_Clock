@@ -166,4 +166,19 @@ public class ASCII_List implements Iterable<ASCII_Char>{
         }
         return id + 1;
     }
+    
+    public void renameItemId(int index, int newId) {
+        if (list.get(index).getId() != newId) {
+            try {
+                if (isIdInList(newId)) 
+                    throw new IllegalAccessException("Id " + newId + " is in the list");
+                ASCII_Char copy = new ASCII_Char(list.get(index), newId);
+                list.remove(index);
+                tryAdd(copy);
+            } catch (IllegalAccessException e) {
+                System.out.println(e.toString());
+            }
+        }
+        
+    }
 }

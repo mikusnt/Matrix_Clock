@@ -14,6 +14,8 @@ import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -29,7 +31,7 @@ public class Main_Frame extends javax.swing.JFrame {
     private JCheckBox[][] checkBoxes;
     private JLabel[] labels;
     private int bytes[];
-    private ASCII_List lista;
+    private ASCII_List list;
     private int selectedRow;
     private String filename = "alphabet.csv";
     private boolean [][] checkEnable;
@@ -86,7 +88,7 @@ public class Main_Frame extends javax.swing.JFrame {
         jTableMain.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 
-        lista = ASCII_List.readFromCSV(filename);
+        list = ASCII_List.readFromCSV(filename);
         refreshList();
 
     }
@@ -95,7 +97,7 @@ public class Main_Frame extends javax.swing.JFrame {
         if (jTableMain.getRowCount() > 0) {
             for(int i = 0; i < 5; i++) {     
                 for(int j = 0; j < 8; j++) {
-                    if (checkEnable[lista.get(selectedRow).getLength()][i] == true) {
+                    if (checkEnable[list.get(selectedRow).getLength()][i] == true) {
                         checkBoxes[i][j].setBackground(new Color(240, 240, 240));
                     } else 
                         checkBoxes[i][j].setBackground(Color.LIGHT_GRAY);
@@ -109,7 +111,7 @@ public class Main_Frame extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel)this.jTableMain.getModel();
         deleteAllRows(model);
         
-        for (ASCII_Char item : lista) {
+        for (ASCII_Char item : list) {
             Vector row = new Vector();
             row.add(item.getId());
             row.add(item.getSign());
@@ -121,7 +123,7 @@ public class Main_Frame extends javax.swing.JFrame {
     }
     
     private void loadASCII_ListElement(int index) {
-        ASCII_Char item = lista.get(index);
+        ASCII_Char item = list.get(index);
         DefaultTableModel model = (DefaultTableModel)this.jTableMain.getModel();
         
         model.setValueAt(item.getId(), index, 0);
@@ -140,7 +142,7 @@ public class Main_Frame extends javax.swing.JFrame {
         numbersToText();
         if (jTableMain.getRowCount()>0) {
             int id = jTableMain.getSelectedRow();
-            lista.get(id).setCodes(bytes);
+            list.get(id).setCodes(bytes);
             loadASCII_ListElement(id);
         }
         setCheckBoxColor();
@@ -171,7 +173,7 @@ public class Main_Frame extends javax.swing.JFrame {
     }
     
     private void refreshList() {
-        lista.saveToFile(filename);
+        list.saveToFile(filename);
         loadASCII_List();
         if (jTableMain.getRowCount() > 0) {
             jTableMain.setRowSelectionInterval(selectedRow, selectedRow);
@@ -181,7 +183,7 @@ public class Main_Frame extends javax.swing.JFrame {
     
     private void openSelectedItem() {
         int id = jTableMain.getSelectedRow();
-        bytes = lista.get(id).getCodes();
+        bytes = list.get(id).getCodes();
         for(int i = 0; i < 5; i++) {
             int copy = bytes[i];
             for(int j = 0; j < 8; j++) {
@@ -578,9 +580,9 @@ public class Main_Frame extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         selectedRow = jTableMain.getSelectedRow();
-        int newId = lista.getNextEmptyId(jTableMain.getSelectedRow());
+        int newId = list.getNextEmptyId(jTableMain.getSelectedRow());
         try {
-            lista.tryAdd(new ASCII_Char(newId));
+            list.tryAdd(new ASCII_Char(newId));
         } catch (IllegalAccessException e) {
             System.out.println(e.toString());
         }
@@ -588,41 +590,35 @@ public class Main_Frame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        lista.remove(jTableMain.getSelectedRow());
+        list.remove(jTableMain.getSelectedRow());
         refreshList();
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        lista.saveToFile(filename);
+        list.saveToFile(filename);
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        lista.saveToFile(filename);
+        list.saveToFile(filename);
     }//GEN-LAST:event_formWindowClosing
 
     private void jTableMainPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTableMainPropertyChange
         if (jTableMain.getRowCount() > 0) {
-            if (lista.get(selectedRow).getSign() != ((String)jTableMain.getValueAt(selectedRow, 1)).charAt(0)) {
+            if (list.get(selectedRow).getSign() != ((String)jTableMain.getValueAt(selectedRow, 1)).charAt(0)) {
                 System.out.println("different chars");
-                lista.get(selectedRow).setSign(((String)jTableMain.getValueAt(selectedRow, 1)).charAt(0));
+                list.get(selectedRow).setSign(((String)jTableMain.getValueAt(selectedRow, 1)).charAt(0));
             }
-            if (lista.get(selectedRow).getDescription() != (String)jTableMain.getValueAt(selectedRow, 2)) {
+            if (list.get(selectedRow).getDescription() != (String)jTableMain.getValueAt(selectedRow, 2)) {
                 System.out.println("different description");
-                lista.get(selectedRow).setDescription((String)jTableMain.getValueAt(selectedRow, 2));
+                list.get(selectedRow).setDescription((String)jTableMain.getValueAt(selectedRow, 2));
             }
-            if (lista.get(selectedRow).getId() != (int)jTableMain.getValueAt(selectedRow, 0)) {
+            if (list.get(selectedRow).getId() != (int)jTableMain.getValueAt(selectedRow, 0)) {
                 int newId = (int)jTableMain.getValueAt(selectedRow, 0);
-                try {
-                    if (lista.isIdInList(newId)) {
-                        //System.out.println("Id " + newId + " is in the list");
-                        throw new IllegalAccessException("Id " + newId + " is in the list");
-                    }
-                    ASCII_Char newChar = lista.get(selectedRow). 
-                    lista.get(selectedRow).setId(newId);
-                } catch (IllegalAccessException e) {
-                    System.out.println(e.toString());
-                }
+                list.renameItemId(selectedRow, newId);
+                refreshList();
             }
+                
+
         }
     }//GEN-LAST:event_jTableMainPropertyChange
 

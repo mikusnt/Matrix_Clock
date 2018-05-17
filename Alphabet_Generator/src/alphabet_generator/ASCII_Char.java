@@ -23,7 +23,7 @@ import java.util.Comparator;
  *
  * @author MS-1
  */
-public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char> {
+public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char>, Cloneable {
     private static final int CODES_LENGTH = 5;
     public static final String SEP = ";";
     private char sign;
@@ -35,14 +35,23 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
     
     public ASCII_Char(int id) {
         this.id = id;
-        this.description = "empty";
         this.sign = '?';
     }
     public ASCII_Char(int id, int[] codes) {
         this(id);
         setCodes(codes);    
     }
-    
+    public ASCII_Char(ASCII_Char original) {
+        this.sign = original.getSign();
+        this.codes = original.getCodes().clone();
+        this.description = original.getDescription();
+        this.id = original.getId();
+        calculateDotsLength();
+    }
+    public ASCII_Char(ASCII_Char original, int newId) {
+        this(original);
+        this.id = newId;
+    }
     private void calculateDotsLength() {
         modifiedDots = 0;
         for (int i = 0; i < CODES_LENGTH; i++) {
@@ -83,10 +92,10 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
         return String.valueOf(id) + SEP + String.valueOf(sign) + SEP + description + SEP + Arrays.toString(codes).replace(" ", "").replace("[", "").replace("]", "").replace(",", SEP) + "\n";
     }
     public static ASCII_Char fromCSVLine(String line) {
-        ASCII_Char out = new ASCII_Char(0);
+        
         String[] tokens = line.split(ASCII_Char.SEP);
         try {
-            out.setId(Integer.parseInt(tokens[0]));
+            ASCII_Char out = new ASCII_Char(Integer.parseInt(tokens[0]));
             out.setSign(tokens[1].charAt(0));
             out.setDescription(tokens[2]);
             int[] bytes = new int[CODES_LENGTH];
@@ -94,10 +103,11 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
                 bytes[i] = Integer.parseInt(tokens[3+i]);
             }
             out.setCodes(bytes);
+            return out;
         } catch (NumberFormatException e) {
             System.out.println("Error in parsing " + line + " to ASCII_Char object");
         }
-        return out;
+        return null;
     }
     
     @Override
@@ -162,13 +172,6 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
     }
 
     /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
      * @return the modifiedDots
      */
     public int getModifiedDots() {
@@ -182,5 +185,8 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
         return length;
     }
     
-    
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }
