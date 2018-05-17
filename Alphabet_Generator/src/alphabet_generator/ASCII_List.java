@@ -16,6 +16,15 @@
  */
 package alphabet_generator;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -23,6 +32,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -41,11 +52,16 @@ public class ASCII_List implements Iterable<ASCII_Char>{
     private int getLastId() {
         return list.get(list.size()-1).getId();
     }
-    public void tryAdd(ASCII_Char e) throws IllegalAccessException {
+    public boolean isIdInList(int newId) {
         for (ASCII_Char item : list) {
-            if (e.getId() == item.getId())
-                throw new IllegalAccessException("Id " + e.getId() + " is in the list");
+            if (newId == item.getId())
+                return true;
         }
+        return false;
+    }
+    public void tryAdd(ASCII_Char e) throws IllegalAccessException {
+        if (isIdInList(e.getId()))
+                throw new IllegalAccessException("Id " + e.getId() + " is in the list");
         if (list.isEmpty())
             list.add(e);
         int firstId = getFirstId();
@@ -72,17 +88,21 @@ public class ASCII_List implements Iterable<ASCII_Char>{
         if (list.size() > 0)
             list.remove(0);
     }
-    public void remove(int id) {
-        if (list.get(id).getId() == getLastId()) {
-            removeLast();
-        } else if (list.get(id).getId() == getFirstId()) {
-            removeFirst();
-            
-        } else {
-            list.set(id, new ASCII_Char(id));
+    public void remove(int index) {
+        if (list.size() > 0) {
+            if (list.get(index).getId() == getLastId()) {
+                removeLast();
+            } else if (list.get(index).getId() == getFirstId()) {
+                removeFirst();
+
+            } else {
+                list.set(index, new ASCII_Char(list.get(index).getId()));
+            }
         }
     }
-    
+    public ASCII_Char get(int index) {
+        return list.get(index);
+    }
     public String toCSVLine(int id) {
         if (id < list.size())
             return list.get(id).toCSVLine();
@@ -98,7 +118,7 @@ public class ASCII_List implements Iterable<ASCII_Char>{
     public String toString() {
         String out = "";
         for (ASCII_Char item : list) {
-            out += item.toCSVLine() + "\n";
+            out += item.toCSVLine();
         }
         return out;
     }
@@ -106,5 +126,44 @@ public class ASCII_List implements Iterable<ASCII_Char>{
     @Override
     public Iterator<ASCII_Char> iterator() {
         return list.iterator();
+    }
+    
+    public void saveToFile(String filename){
+        File f = new File(filename);
+        try (PrintWriter file = new PrintWriter(f)) {
+            file.print(this.toString());
+        } catch (Exception e) {
+            System.out.println(filename + " not found");       
+        }
+    }
+    
+    public static ASCII_List readFromCSV(String filename) {
+        ASCII_List newList = new ASCII_List();
+        try {
+            FileReader reader = new FileReader(filename);
+            try (BufferedReader file = new BufferedReader(reader)) {
+                String str;
+                while ((str = file.readLine()) != null) {
+                    newList.tryAdd(ASCII_Char.fromCSVLine(str));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(filename + " IO exception");
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ASCII_List.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return newList;
+    }
+    
+    public int getNextEmptyId(int index) {
+        if (list.isEmpty())
+            return 0;
+        int id = list.get(index).getId();
+        for(int i = index + 1; i < list.size(); i++) {
+            if (list.get(i).getId() > (id + 1))
+                return id + 1;
+            id = list.get(i).getId();
+        }
+        return id + 1;
     }
 }

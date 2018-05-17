@@ -5,11 +5,19 @@
  */
 package alphabet_generator;
 
+import java.awt.Label;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Vector;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,7 +26,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Main_Frame extends javax.swing.JFrame {
     private JCheckBox[][] checkBoxes;
-    private byte numbers[];
+    private JLabel[] labels;
+    private int bytes[];
+    private ASCII_List lista;
+    private int selectedRow;
+    private String filename = "alphabet.csv";
     /**
      * Creates new form Main_Frame
      */
@@ -31,45 +43,66 @@ public class Main_Frame extends javax.swing.JFrame {
             { jCheck_30, jCheck_31, jCheck_32, jCheck_33, jCheck_34, jCheck_35, jCheck_36, jCheck_37 },
             { jCheck_40, jCheck_41, jCheck_42, jCheck_43, jCheck_44, jCheck_45, jCheck_46, jCheck_47 }
         };
+
         for(int i = 0; i < 5; i++) {
             for(int j = 0; j < 8; j++) {
-                checkBoxes[i][j].addItemListener(new ItemListener() {
+                checkBoxes[i][j].addMouseListener(new MouseListener() {
                     @Override
-                    public void itemStateChanged(ItemEvent e) {
+                    public void mouseClicked(MouseEvent e) {
                         checkboxClick();
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
                     }
                 });
             }
         }
-        this.numbers = new byte[5];
-        checkboxClick();
         
+        this.bytes = new int[5];
+        checkboxClick();
+        jTableMain.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        ASCII_Char first = new ASCII_Char(0, new byte[]{0, 2, 5, 7, 8});
-        ASCII_Char second = new ASCII_Char(3, new byte[]{0, 2, 5, 7, 8});
-        ASCII_Char third = new ASCII_Char(-10, new byte[]{0, 2, 5, 7, 8});
-        ASCII_List lista = new ASCII_List();
-        try {
-            lista.tryAdd(first);
-            lista.tryAdd(second);
-            lista.tryAdd(third);
-        } catch (IllegalAccessException e) {
-            System.out.println(e.toString());
-        }
-        loadASCII_List(lista);
+
+        lista = ASCII_List.readFromCSV(filename);
+        refreshList();
+
     }
 
-    private void loadASCII_List(ASCII_List list) {
+    private void loadASCII_List() {
         DefaultTableModel model = (DefaultTableModel)this.jTableMain.getModel();
         deleteAllRows(model);
         
-        for (ASCII_Char item : list) {
+        for (ASCII_Char item : lista) {
             Vector row = new Vector();
             row.add(item.getId());
             row.add(item.getSign());
             row.add(item.getDescription());
+            row.add(item.getModifiedDots());
             model.addRow(row);
         }
+    }
+    
+    private void loadASCII_ListElement(int index) {
+        ASCII_Char item = lista.get(index);
+        DefaultTableModel model = (DefaultTableModel)this.jTableMain.getModel();
+        
+        model.setValueAt(item.getId(), index, 0);
+        model.setValueAt(String.valueOf(item.getSign()), index, 1);
+        model.setValueAt(item.getDescription(), index, 2);
+        model.setValueAt(item.getModifiedDots(), index, 3);       
     }
     public static void deleteAllRows(final DefaultTableModel model) {
         for( int i = model.getRowCount() - 1; i >= 0; i-- ) {
@@ -79,21 +112,27 @@ public class Main_Frame extends javax.swing.JFrame {
     private void checkboxClick() {
         generateNumbers();
         numbersToText();
+        if (jTableMain.getRowCount()>0) {
+            int id = jTableMain.getSelectedRow();
+            lista.get(id).setCodes(bytes);
+            loadASCII_ListElement(id);
+        }
     }
     private void generateNumbers() {
         for(int i = 0; i < 5; i++) {
-            numbers[i] = 0;
+            bytes[i] = 0;
             for (int j = 0; j < 8; j++) {
                 if (checkBoxes[i][j].isSelected())
-                    numbers[i] += (1 << j);
+                    bytes[i] += (1 << j);
             }
         }
     }
     private void numbersToText() {
         String str = "";
-        for(int i = 0; i < 5; i++)
-            str += numbers[i] + " ";
-        jNumbers.setText(str);
+        for(int i = 0; i < 5; i++) {
+            str += String.format("%3d", bytes[i])+" ";
+        }
+        jLabelNumbers.setText(str);
     }
     
     private void clearCheckBoxes() {
@@ -102,6 +141,28 @@ public class Main_Frame extends javax.swing.JFrame {
                 checkBoxes[i][j].setSelected(false);
             }
         }
+    }
+    
+    private void refreshList() {
+        lista.saveToFile(filename);
+        loadASCII_List();
+        if (jTableMain.getRowCount() > 0) {
+            jTableMain.setRowSelectionInterval(selectedRow, selectedRow);
+            openSelectedItem();
+        }
+    }
+    
+    private void openSelectedItem() {
+        int id = jTableMain.getSelectedRow();
+        bytes = lista.get(id).getCodes();
+        for(int i = 0; i < 5; i++) {
+            int copy = bytes[i];
+            for(int j = 0; j < 8; j++) {
+                checkBoxes[i][j].setSelected((copy % 2) == 1);
+                copy >>= 1;
+            }  
+        }
+        numbersToText();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,28 +216,50 @@ public class Main_Frame extends javax.swing.JFrame {
         jCheck_45 = new javax.swing.JCheckBox();
         jCheck_46 = new javax.swing.JCheckBox();
         jCheck_47 = new javax.swing.JCheckBox();
-        jNumbers = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabelNumbers = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jTableMain.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Znak", "Opis"
+                "ID", "Znak", "Opis", "Kropki"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableMain.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMainMouseClicked(evt);
+            }
+        });
+        jTableMain.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTableMainPropertyChange(evt);
             }
         });
         jScrollPane1.setViewportView(jTableMain);
@@ -188,9 +271,10 @@ public class Main_Frame extends javax.swing.JFrame {
             jTableMain.getColumnModel().getColumn(1).setPreferredWidth(50);
             jTableMain.getColumnModel().getColumn(1).setMaxWidth(50);
             jTableMain.getColumnModel().getColumn(2).setResizable(false);
+            jTableMain.getColumnModel().getColumn(3).setMinWidth(50);
+            jTableMain.getColumnModel().getColumn(3).setPreferredWidth(50);
+            jTableMain.getColumnModel().getColumn(3).setMaxWidth(50);
         }
-
-        jCheck_00.setLabel("");
 
         jCheck_06.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -361,8 +445,6 @@ public class Main_Frame extends javax.swing.JFrame {
                     .addComponent(jCheck_47)))
         );
 
-        jNumbers.setEditable(false);
-
         jButton1.setLabel("Wyczyść");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -371,10 +453,29 @@ public class Main_Frame extends javax.swing.JFrame {
         });
 
         jButton2.setText("Dodaj");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Usuń");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
-        jButton4.setText("Zatwierdź");
+        jLabelNumbers.setFont(new java.awt.Font("Courier New", 1, 9)); // NOI18N
+        jLabelNumbers.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabelNumbers.setText("jLabel5");
+
+        jButton4.setLabel("Zapisz do pliku");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -386,32 +487,31 @@ public class Main_Frame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addGap(39, 39, 39)
                         .addComponent(jButton2))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jCheckPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jNumbers))
-                    .addComponent(jButton1))
-                .addContainerGap(133, Short.MAX_VALUE))
+                        .addComponent(jLabelNumbers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jCheckPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jNumbers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelNumbers)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -424,13 +524,67 @@ public class Main_Frame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        if (JOptionPane.showConfirmDialog(
+        this,
+        "Czy na pewno?",
+        "Pytanie - czyszczenie okna",
+        JOptionPane.YES_NO_OPTION) == 0) {
+            clearCheckBoxes();
+            checkboxClick();
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jTableMainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMainMouseClicked
+        selectedRow = jTableMain.getSelectedRow();
+        loadASCII_ListElement(selectedRow);
+        openSelectedItem();
+    }//GEN-LAST:event_jTableMainMouseClicked
+
     private void jCheck_06ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheck_06ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheck_06ActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        clearCheckBoxes();
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        selectedRow = jTableMain.getSelectedRow();
+        int newId = lista.getNextEmptyId(jTableMain.getSelectedRow());
+        try {
+            lista.tryAdd(new ASCII_Char(newId));
+        } catch (IllegalAccessException e) {
+            System.out.println(e.toString());
+        }
+        refreshList();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        lista.remove(jTableMain.getSelectedRow());
+        refreshList();
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        lista.saveToFile(filename);
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        lista.saveToFile(filename);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jTableMainPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTableMainPropertyChange
+        if (jTableMain.getRowCount() > 0) {
+            if (lista.get(selectedRow).getSign() != ((String)jTableMain.getValueAt(selectedRow, 1)).charAt(0)) {
+                System.out.println("different chars");
+            }
+            if (lista.get(selectedRow).getDescription() != jTableMain.getValueAt(selectedRow, 2)) {
+                System.out.println("different description");
+            }
+            if (lista.get(selectedRow).getId() != (int)jTableMain.getValueAt(selectedRow, 0)) {
+                int newId = (int)jTableMain.getValueAt(selectedRow, 0);
+                if (lista.isIdInList(newId)) {
+                    System.out.println("Id " + newId + " is in the list");
+                }
+            }
+        }
+    }//GEN-LAST:event_jTableMainPropertyChange
 
     /**
      * @param args the command line arguments
@@ -472,22 +626,6 @@ public class Main_Frame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCB_13;
-    private javax.swing.JCheckBox jCB_14;
-    private javax.swing.JCheckBox jCB_23;
-    private javax.swing.JCheckBox jCB_24;
-    private javax.swing.JCheckBox jCB_3;
-    private javax.swing.JCheckBox jCB_33;
-    private javax.swing.JCheckBox jCB_34;
-    private javax.swing.JCheckBox jCB_4;
-    private javax.swing.JCheckBox jCB_43;
-    private javax.swing.JCheckBox jCB_44;
-    private javax.swing.JCheckBox jCB_53;
-    private javax.swing.JCheckBox jCB_54;
-    private javax.swing.JCheckBox jCB_63;
-    private javax.swing.JCheckBox jCB_64;
-    private javax.swing.JCheckBox jCB_73;
-    private javax.swing.JCheckBox jCB_74;
     private javax.swing.JPanel jCheckPanel;
     private javax.swing.JCheckBox jCheck_00;
     private javax.swing.JCheckBox jCheck_01;
@@ -529,9 +667,7 @@ public class Main_Frame extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheck_45;
     private javax.swing.JCheckBox jCheck_46;
     private javax.swing.JCheckBox jCheck_47;
-    private javax.swing.JTextField jNumbers;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel jLabelNumbers;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMain;
     // End of variables declaration//GEN-END:variables

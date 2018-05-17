@@ -25,19 +25,34 @@ import java.util.Comparator;
  */
 public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char> {
     private static final int CODES_LENGTH = 5;
+    public static final String SEP = ";";
     private char sign;
-    private byte[] codes = new byte[CODES_LENGTH];
+    private int[] codes = new int[CODES_LENGTH];
     private String description;
     private int id;
+    private int modifiedDots;
     
     public ASCII_Char(int id) {
         this.id = id;
         this.description = "empty";
         this.sign = '?';
     }
-    public ASCII_Char(int id, byte[] codes) {
+    public ASCII_Char(int id, int[] codes) {
         this(id);
         setCodes(codes);    
+    }
+    
+    private void calculateModifiedDots() {
+        modifiedDots = 0;
+        for (int i = 0; i < CODES_LENGTH; i++) {
+            int copy = codes[i];
+            for (int j = 0; j < 8; j++) {
+                if ((copy % 2) == 1) {
+                    modifiedDots++;
+                }
+                copy >>= 1;
+            }
+        }
     }
 
     public void setBit(int codeId, int bitId, boolean bitValue) throws ArrayIndexOutOfBoundsException {
@@ -48,12 +63,31 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
         } else {
             codes[codeId] &= ~(1 << bitId);
         }
+        calculateModifiedDots();
     }
     
     public String toCSVLine() {
-        String sep = ";";
-        return String.valueOf(id) + sep + String.valueOf(sign) + sep + description + sep + Arrays.toString(codes).replace(" ", "").replace("[", "").replace("]", "").replace(",", sep);
+
+        return String.valueOf(id) + SEP + String.valueOf(sign) + SEP + description + SEP + Arrays.toString(codes).replace(" ", "").replace("[", "").replace("]", "").replace(",", SEP) + "\n";
     }
+    public static ASCII_Char fromCSVLine(String line) {
+        ASCII_Char out = new ASCII_Char(0);
+        String[] tokens = line.split(ASCII_Char.SEP);
+        try {
+            out.setId(Integer.parseInt(tokens[0]));
+            out.setSign(tokens[1].charAt(0));
+            out.setDescription(tokens[2]);
+            int[] bytes = new int[CODES_LENGTH];
+            for (int i = 0; i < CODES_LENGTH; i++) {
+                bytes[i] = Integer.parseInt(tokens[3+i]);
+            }
+            out.setCodes(bytes);
+        } catch (NumberFormatException e) {
+            System.out.println("Error in parsing " + line + " to ASCII_Char object");
+        }
+        return out;
+    }
+    
     @Override
     public int compareTo(ASCII_Char e) {
         return id - e.getId();
@@ -80,17 +114,18 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
     /**
      * @return the codes
      */
-    public byte[] getCodes() {
+    public int[] getCodes() {
         return codes;
     }
 
     /**
      * @param codes the codes to set
      */
-    public final void setCodes(byte[] codes) {
+    public final void setCodes(int[] codes) {
         if (codes.length == CODES_LENGTH)
             this.codes = codes;
         else throw new ArrayIndexOutOfBoundsException("Wrong number of array named codes: " + codes.length + " required: "+CODES_LENGTH);
+        calculateModifiedDots();
     }
 
     /**
@@ -119,6 +154,13 @@ public class ASCII_Char implements Comparator<ASCII_Char>, Comparable<ASCII_Char
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * @return the modifiedDots
+     */
+    public int getModifiedDots() {
+        return modifiedDots;
     }
     
     
