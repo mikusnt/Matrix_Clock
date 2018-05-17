@@ -57,3 +57,11 @@ Debug
 
 # Temp Eagle Files
 *.[sb]*[0-9]
+
+# Netbeans Java
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
