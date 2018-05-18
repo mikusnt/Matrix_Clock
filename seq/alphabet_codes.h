@@ -1,10 +1,10 @@
-/*
+/*!
  * @file alphabet_codes.h
- * @author 		Mikolaj Stankowiak <br>
+ * @author		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-05-18 $
+ *
  * $Created: 2018-05-18 $
- * @version 0.1
+ * Header file containing byte pixels table (Alphabet) of chars and chars byte length in PROGMEM.
  */
 #ifndef SEQ_ALPHABET_CODES_H_
 #define SEQ_ALPHABET_CODES_H_

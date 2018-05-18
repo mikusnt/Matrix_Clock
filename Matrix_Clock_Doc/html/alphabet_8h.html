@@ -89,12 +89,10 @@ $(document).ready(function(){initNavTree('alphabet_8h.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="group__includes_8h.html">../group_includes.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="alphabet__codes_8h.html">alphabet_codes.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a6572f1706059832f94025fa12c6c45ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alphabet_8h.html#a6572f1706059832f94025fa12c6c45ed">ALPHABET_SIZE</a>&#160;&#160;&#160;91</td></tr>
-<tr class="memdesc:a6572f1706059832f94025fa12c6c45ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of chars in alphabet table  <a href="#a6572f1706059832f94025fa12c6c45ed">More...</a><br /></td></tr>
-<tr class="separator:a6572f1706059832f94025fa12c6c45ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b5ec5993009da858ebcf9a88521bc46"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alphabet_8h.html#a2b5ec5993009da858ebcf9a88521bc46">ANIMATIONS_SIZE</a>&#160;&#160;&#160;7</td></tr>
 <tr class="memdesc:a2b5ec5993009da858ebcf9a88521bc46"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of signs in animation table  <a href="#a2b5ec5993009da858ebcf9a88521bc46">More...</a><br /></td></tr>
 <tr class="separator:a2b5ec5993009da858ebcf9a88521bc46"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,18 +147,20 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:aae61d4150b7abf2ff1114742f3002ecd"><td class="memItemLeft" align="right" valign="top">const uint8_t uiAlphabet [<a class="el" href="alphabet_8h.html#a6572f1706059832f94025fa12c6c45ed">ALPHABET_SIZE</a>][5]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alphabet_8h.html#aae61d4150b7abf2ff1114742f3002ecd">PROGMEM</a></td></tr>
-<tr class="memdesc:aae61d4150b7abf2ff1114742f3002ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">all alphabet chars and special chars  <a href="#aae61d4150b7abf2ff1114742f3002ecd">More...</a><br /></td></tr>
+<tr class="memitem:aae61d4150b7abf2ff1114742f3002ecd"><td class="memItemLeft" align="right" valign="top">const uint8_t uiAnimations [<a class="el" href="alphabet_8h.html#a2b5ec5993009da858ebcf9a88521bc46">ANIMATIONS_SIZE</a>][7]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alphabet_8h.html#aae61d4150b7abf2ff1114742f3002ecd">PROGMEM</a></td></tr>
+<tr class="memdesc:aae61d4150b7abf2ff1114742f3002ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">animation table of Mario i Pacman  <a href="#aae61d4150b7abf2ff1114742f3002ecd">More...</a><br /></td></tr>
 <tr class="separator:aae61d4150b7abf2ff1114742f3002ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
-<dl class="section rcs"><dt>Modified</dt><dd>2018-04-29 </dd></dl>
+<dl class="section rcs"><dt>Modified</dt><dd>2018-05-18 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2017-11-04 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>2.0</dd></dl>
 <p>Used uC pins: 0<br />
- Header file containing byte alphabet of chars in PROGMEM. Not comapible with v1.0. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> </dd></dl>
+ Header file containing byte pixels table (Alphabet) operations. Not comapible with v1.0. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> </dd>
+<dd>
+<a class="el" href="alphabet__codes_8h.html">alphabet_codes.h</a> </dd></dl>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a95cbeb34399a28549299f84514ab5597"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a95cbeb34399a28549299f84514ab5597">&#9670;&nbsp;</a></span>AL_LENGTH</h2>
@@ -186,22 +186,6 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>vertical length </dd></dl>
-
-</div>
-</div>
-<a id="a6572f1706059832f94025fa12c6c45ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6572f1706059832f94025fa12c6c45ed">&#9670;&nbsp;</a></span>ALPHABET_SIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define ALPHABET_SIZE&#160;&#160;&#160;91</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>number of chars in alphabet table </p>
 
 </div>
 </div>
@@ -566,9 +550,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>all alphabet chars and special chars </p>
-<p>animation table of Mario i Pacman</p>
-<p>vertical length of uiAlphabet chars</p>
+<p>animation table of Mario i Pacman </p>
 <p>first coorinate in number of cha [0..ALPHABET_SIZE], second is char vertical length [0..4], all chars format is 5x8 </p>
 
 </div>

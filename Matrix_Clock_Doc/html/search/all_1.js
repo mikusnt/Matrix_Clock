@@ -16,15 +16,11 @@ var searchData=
   ['al_5flength',['AL_LENGTH',['../alphabet_8h.html#a95cbeb34399a28549299f84514ab5597',1,'alphabet.h']]],
   ['alphabet_2ec',['alphabet.c',['../alphabet_8c.html',1,'']]],
   ['alphabet_2eh',['alphabet.h',['../alphabet_8h.html',1,'']]],
-  ['alphabet_5fgenerator',['Alphabet_Generator',['../classalphabet__generator_1_1_alphabet___generator.html',1,'Alphabet_Generator'],['../namespacealphabet__generator.html',1,'alphabet_generator']]],
-  ['alphabet_5fgenerator_2ejava',['Alphabet_Generator.java',['../_alphabet___generator_8java.html',1,'']]],
-  ['alphabet_5fsize',['ALPHABET_SIZE',['../alphabet_8h.html#a6572f1706059832f94025fa12c6c45ed',1,'alphabet.h']]],
+  ['alphabet_5fcodes_2ec',['alphabet_codes.c',['../alphabet__codes_8c.html',1,'']]],
+  ['alphabet_5fcodes_2eh',['alphabet_codes.h',['../alphabet__codes_8h.html',1,'']]],
+  ['alphabet_5fsize',['ALPHABET_SIZE',['../alphabet__codes_8h.html#a6572f1706059832f94025fa12c6c45ed',1,'alphabet_codes.h']]],
   ['alphabet_5fyx',['ALPHABET_YX',['../alphabet_8h.html#ace6e750f3ee271a8fc035afe83719cc1',1,'alphabet.h']]],
   ['animations_5fsize',['ANIMATIONS_SIZE',['../alphabet_8h.html#a2b5ec5993009da858ebcf9a88521bc46',1,'alphabet.h']]],
   ['animations_5fyx',['ANIMATIONS_YX',['../alphabet_8h.html#a88b388b7e952ad0566080b082610f8b9',1,'alphabet.h']]],
-  ['animationscode',['AnimationsCode',['../alphabet_8h.html#ae4e319bc926a87d353727bf6c0280d08',1,'alphabet.h']]],
-  ['ascii_5fchar',['ASCII_Char',['../classalphabet__generator_1_1_a_s_c_i_i___char.html',1,'ASCII_Char'],['../classalphabet__generator_1_1_a_s_c_i_i___char.html#a271b377fbd032765a0e4b1d83ba00a34',1,'alphabet_generator.ASCII_Char.ASCII_Char(int id)'],['../classalphabet__generator_1_1_a_s_c_i_i___char.html#a4b0c9304f34d6853cce961d746a29c43',1,'alphabet_generator.ASCII_Char.ASCII_Char(int id, byte[] codes)']]],
-  ['ascii_5fchar_2ejava',['ASCII_Char.java',['../_a_s_c_i_i___char_8java.html',1,'']]],
-  ['ascii_5flist',['ASCII_List',['../classalphabet__generator_1_1_a_s_c_i_i___list.html',1,'ASCII_List'],['../classalphabet__generator_1_1_a_s_c_i_i___list.html#aad5aad29e805df115d3e2ba3f357828a',1,'alphabet_generator.ASCII_List.ASCII_List()']]],
-  ['ascii_5flist_2ejava',['ASCII_List.java',['../_a_s_c_i_i___list_8java.html',1,'']]]
+  ['animationscode',['AnimationsCode',['../alphabet_8h.html#ae4e319bc926a87d353727bf6c0280d08',1,'alphabet.h']]]
 ];

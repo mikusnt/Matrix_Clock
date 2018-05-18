@@ -1,7 +1,6 @@
 var alphabet_8h =
 [
     [ "AL_LENGTH", "alphabet_8h.html#a95cbeb34399a28549299f84514ab5597", null ],
-    [ "ALPHABET_SIZE", "alphabet_8h.html#a6572f1706059832f94025fa12c6c45ed", null ],
     [ "ALPHABET_YX", "alphabet_8h.html#ace6e750f3ee271a8fc035afe83719cc1", null ],
     [ "ANIMATIONS_SIZE", "alphabet_8h.html#a2b5ec5993009da858ebcf9a88521bc46", null ],
     [ "ANIMATIONS_YX", "alphabet_8h.html#a88b388b7e952ad0566080b082610f8b9", null ],

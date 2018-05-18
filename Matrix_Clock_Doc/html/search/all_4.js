@@ -10,8 +10,6 @@ var searchData=
   ['days_5fregister',['DAYS_REGISTER',['../ds3231_8h.html#a4f81b66793bade90a9d8376fedd35a0c',1,'ds3231.h']]],
   ['dec2bcd',['dec2bcd',['../ds3231_8c.html#ad6f3dab74c04b5853d4ba71a3c140964',1,'ds3231.c']]],
   ['decrementto0slowclear',['DecrementTo0SlowClear',['../diode__matrix_8h.html#a9645b39049a92b3293a4a482668b8be4',1,'diode_matrix.h']]],
-  ['deleteallrows',['deleteAllRows',['../classalphabet__generator_1_1_main___frame.html#abf494a2bd74172d9159a3dbac4f2c0f1',1,'alphabet_generator::Main_Frame']]],
-  ['description',['description',['../classalphabet__generator_1_1_a_s_c_i_i___char.html#a76d2b0133d83c43dfd8a19286ac55325',1,'alphabet_generator::ASCII_Char']]],
   ['device_5ftask_5fcode',['DEVICE_TASK_CODE',['../uart__processing_8h.html#a0dc246742d3f2e5cca9e858b992936a3',1,'uart_processing.h']]],
   ['devicetask',['DeviceTask',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4',1,'matrix_seq.h']]],
   ['digit_5fascii',['DIGIT_ASCII',['../matrix__seq_8h.html#af5025f57ab8321df7b0b551a46bffe00',1,'matrix_seq.h']]],

@@ -2,13 +2,14 @@
  * @file alphabet.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-29 $
+ * $Modified: 2018-05-18 $
  * $Created: 2017-11-04 $
  * @version 2.0
  *
  * Used uC pins: 0<br>
- * Header file containing byte alphabet of chars in PROGMEM. Not comapible with v1.0.
+ * Header file containing byte pixels table (Alphabet) operations. Not comapible with v1.0.
  * @see DiodeMatrix
+ * @see alphabet_codes.h
  */
 
 #ifndef ALPHABET_H_

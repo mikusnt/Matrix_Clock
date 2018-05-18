@@ -1,6 +1,5 @@
 var annotated_dup =
 [
-    [ "alphabet_generator", "namespacealphabet__generator.html", "namespacealphabet__generator" ],
     [ "ADCVoltageData", "struct_a_d_c_voltage_data.html", "struct_a_d_c_voltage_data" ],
     [ "ByteFlag", "union_byte_flag.html", "union_byte_flag" ],
     [ "DiodeMatrix", "struct_diode_matrix.html", "struct_diode_matrix" ],
