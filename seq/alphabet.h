@@ -15,6 +15,7 @@
 #define ALPHABET_H_
 
 #include "../group_includes.h"
+#include "alphabet_codes.h"
 
 /*
  *
@@ -22,8 +23,6 @@
  *
  */
 
-//! number of chars in alphabet table
-#define ALPHABET_SIZE 91
 //! number of signs in animation table
 #define ANIMATIONS_SIZE 7
 //! max text length in text buffer
@@ -64,10 +63,7 @@ typedef enum {
  * 		Tables in PROGMEM
  *
  */
-//! all alphabet chars and special chars
-extern const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM;
-//! vertical length of uiAlphabet chars
-extern const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM;
+
 //! animation table of Mario i Pacman
 extern const uint8_t uiAnimations[ANIMATIONS_SIZE][7] PROGMEM;
 
