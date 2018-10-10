@@ -147,8 +147,9 @@ int main (void) {
 							RunSlowClearedPos(&matrix);
 						}
 
-						// activate relay and read date every hour
+						// activate relay and read date every hour, synchronize ui16Ms with RTC
 						if (RTCTime.uiSecond == 0) {
+							ui16Ms = 0;
 							ResetProgress(&actTime);
 							if (RTCTime.uiMinute == 0) {
 								RelayStartClicking(&relay, RTCTime.uiHour, RelayDataHours);
@@ -191,6 +192,14 @@ int main (void) {
 						}
 						if ((actTime.uiMinute == 0) && (actTime.uiSecond <= 10)) {
 							RelayClicking(&relay, RelayClickStartFast, 1);
+						}
+
+						if ((actTime.uiSecond ==0) && (actTime.uiMinute == 0)) {
+							sprintf(ctTextBuffer, "Boom!!!");
+							eActualSeq = SeqText;
+							RelayClicking(&relay, RelayClickStartFast, 200);
+							RunSlowClearedPos(&matrix);
+							break;
 						}
 						bNewTime = false;
 					// half of second
@@ -268,6 +277,7 @@ ISR(TIMER2_COMPA_vect) {
 		}
 	if ((ui16Ms % 10) == 7)
 		bEnableDecrement = true;
+	if (ui16Ms >= 1000) ui16Ms = 0;
 } // END ISR(TIMER2_COMPA_vect)
 
 //! end of ADC measurement interrupt, reading ADC value
@@ -281,7 +291,7 @@ ISR(PCINT1_vect) {
 	ADCStart();
 	if (SQW_IS_HIGH()) {
 		bNewTime = true;
-		ui16Ms = 0;
+		//ui16Ms = 0;
 	} else
 		bHalfTime = true;
 } // END ISR(PCINT1_vect)

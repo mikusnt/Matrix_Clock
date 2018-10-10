@@ -86,14 +86,14 @@ void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType
 					relay->uiByteInfo = RoundByte(uiByteInfo, &relay->uiByteLength);
 				}
 				relay->ui16StartLength = RELAY_HIGH_START_H_COUNT;
-				relay->ui16StartTimeMS = RELAY_HIGH_START_MS;
+				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_HOUR;
 			} break;
 			case RelayDataMinutes: {
 				while (uiByteInfo >= 60) uiByteInfo -= 60;
 				if (uiByteInfo > 0)
 					relay->uiByteInfo = RoundByte(uiByteInfo / 15, &relay->uiByteLength);
 				relay->ui16StartLength = RELAY_HIGH_START_M_COUNT;
-				relay->ui16StartTimeMS = RELAY_HIGH_START_MS;
+				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_MINUTE;
 			} break;
 			case RelayDataNumber: {
 				relay->uiByteInfo = RoundByte(uiByteInfo, &relay->uiByteLength);
@@ -182,7 +182,7 @@ void RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number) {
 				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_NUMBER;
 			} break;
 			case RelayClickStart: {
-				relay->ui16StartTimeMS = RELAY_HIGH_START_MS;
+				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_MINUTE;
 			} break;
 			case RelayClickFast: {
 				relay->ui16StartTimeMS = RELAY_SHORT_HIGH_TIME;

@@ -76,6 +76,8 @@ extern void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE
 extern void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to);
 //! load one 5 digit integer to matrix buffer
 extern void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number);
+//! load number of dots horizontally from right to left
+extern void LoadDotsToMatrix(volatile DiodeMatrix *m, uint8_t number, uint8_t position);
 //! set parametrs when sequence is changed
 extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, TimeDate *RTCTime, volatile Relay *relay);
 //! set one device state point to matrix buffer

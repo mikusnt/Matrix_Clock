@@ -144,6 +144,7 @@ void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *actual, TimeDate *real)
 	}
 
 	SecondsBinary(m, real->uiSecond);
+	//LoadDotsToMatrix(m, real->uiSecond / 2, 7);
 	//LoadADCToMatrix(m, adcValue, brightness);
 
 	m->uiEndBufferPosition = SEC_END_POS + 1;
@@ -155,6 +156,19 @@ void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number) {
 	sprintf(ctTextBuffer, "%04d%c", number, 0);
 	LoadTextToMatrix(m, ctTextBuffer);
 } // END void LoadNumberToMatrix
+
+/*! @param		m poiner of DiodeMatrix structure
+ *  @param		number to load
+ *  @param		position of horizontal line of dots*/
+void LoadDotsToMatrix(volatile DiodeMatrix *m, uint8_t number, uint8_t position) {
+	for (int8_t i = MATRIX_X_SIZE; i >= 0; i--) {
+		if ((number >= (MATRIX_X_SIZE - i)) && (position < MATRIX_Y_SIZE)) {
+			m->uitBufferX[i] |= (1 << position);
+		} else {
+			m->uitBufferX[i] &= ~(1 << position);
+		}
+	}
+} // END void LoadDotsToMatrix
 
 /*! @param		m poiner of DiodeMatrix structure
  *  @param		actTime pointer of actual time structure

@@ -56,13 +56,15 @@
 #define RELAY_SHORT_LOW_TIME RELAY_STATE_MS * 9
 
 
-//! period to rename start sequence when minute or hour mode in ms
-#define RELAY_HIGH_START_MS 75
+//! period to rename start sequence when hour mode in ms
+#define RELAY_HIGH_START_MS_HOUR 100
+//! period to rename start sequence when minute mode in ms
+#define RELAY_HIGH_START_MS_MINUTE 75
 //! period to rename start sequence when numbers mode
 #define RELAY_HIGH_START_MS_NUMBER 35
 
 //! number of change relay state of start sequence when hours mode, should be even number
-#define RELAY_HIGH_START_H_COUNT 12
+#define RELAY_HIGH_START_H_COUNT 8
 
 //! number of change relay state of start sequence when minutes mode, should be even number
 #define RELAY_HIGH_START_M_COUNT 8
