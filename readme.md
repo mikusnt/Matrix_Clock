@@ -16,7 +16,7 @@ Connected to:
 8bit Timer0  
 Mode: CTC  
 Refresh freq: 1kHz  
-Y levels of matrix: 8
+Y levels of matrix: 8  
 Number of brightness level: 20  
 uC period of overflow: 20 000 000 / 100 / 8 / 20 =  1250  
 Prescaler: 64  
@@ -32,8 +32,8 @@ Prescaler: 256
 OCR: 78 
 
 ## Power consumption
-Basic mode: 23mA
-High brightness:45 mA
+Basic mode: 23mA  
+High brightness: 45mA  
 
-Basic Mode + Bluetooth: 41mA
-High brightness + Bluetooth: 63mA
+Basic Mode + Bluetooth: 41mA  
+High brightness + Bluetooth: 63mA  
