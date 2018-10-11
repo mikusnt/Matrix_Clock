@@ -2,9 +2,9 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-05-16 $
+ * $Modified: 2018-10-11 $
  * $Created: 2017-11-04 $
- * @version 0.95
+ * @version 0.952
  *
  * Project main file
  * @see readme.md
@@ -95,6 +95,7 @@ int main (void) {
 	I2C_Init();
 
 	DS3231_Init();
+	//eActualSeq = SeqDeCounter;
 	SetSeqParams(&matrix, &actTime, &RTCTime, &relay);
 	RelayStartClicking(&relay, 0, RelayDataNumber);
 
@@ -197,7 +198,7 @@ int main (void) {
 						if ((actTime.uiSecond ==0) && (actTime.uiMinute == 0)) {
 							sprintf(ctTextBuffer, "Boom!!!");
 							eActualSeq = SeqText;
-							RelayClicking(&relay, RelayClickStartFast, 200);
+							RelayClicking(&relay, RelayClickStartFast, 182);
 							RunSlowClearedPos(&matrix);
 							break;
 						}
@@ -216,6 +217,20 @@ int main (void) {
 						bQuaterTime = false;
 					}
 
+				} break;
+				case SeqDeCounter: {
+					if (bNewTime) {
+						if (actTime.uiSecond == 0) {
+							sprintf(ctTextBuffer, "%3d:%02d:%02d to end\n", actTime.uiDay * 24 + actTime.uiHour,
+									actTime.uiMinute, actTime.uiSecond);
+							uart_puts(ctTextBuffer);
+						}
+						TryDecrementTime(&actTime);
+						LoadDeCounterToMatrix(&matrix, &actTime);
+
+
+						bNewTime = false;
+					}
 				} break;
 				case SeqADC: {
 					// write ADC number to matrix and UART

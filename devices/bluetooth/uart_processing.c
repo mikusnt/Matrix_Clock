@@ -49,7 +49,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 				if ((ctTextBuffer[0] == SeqTimer) || (ctTextBuffer[0] == SeqADC)
 						|| (ctTextBuffer[0] == SeqText) || (ctTextBuffer[0] == SeqRelayNumber)
 						|| (ctTextBuffer[0] == SeqEmpty) || (ctTextBuffer[0] == SeqTextDebug)
-						|| (ctTextBuffer[0] == SeqBomb)) {
+						|| (ctTextBuffer[0] == SeqBomb) || (ctTextBuffer[0] == SeqDeCounter)) {
 					if ((ctTextBuffer[0] == SeqText) && (ctTextBuffer[1] == 0)) {
 						uiEndCode = ERROR_PARAMS;
 						break;
@@ -78,6 +78,21 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 						}
 						ctTextBuffer[1] = ctTextBuffer[1] - DIGIT_ASCII;
 
+					} else if (eActualSeq == SeqDeCounter) {
+						if (i != 7) {
+							uiEndCode = ERROR_PARAMS;
+							break;
+						}
+						// days
+						ctTextBuffer[1] = ((ctTextBuffer[1] - DIGIT_ASCII) * 10) + ctTextBuffer[2] - DIGIT_ASCII;
+						// hours
+						ctTextBuffer[2] = ((ctTextBuffer[3] - DIGIT_ASCII) * 10) + ctTextBuffer[4] - DIGIT_ASCII;
+						// minutes
+						ctTextBuffer[3] = ((ctTextBuffer[5] - DIGIT_ASCII) * 10) + ctTextBuffer[6] - DIGIT_ASCII;
+						if ((ctTextBuffer[1] > 41) || (ctTextBuffer[2] > 23) || (ctTextBuffer[3] > 59)) {
+							uiEndCode = ERROR_PARAMS;
+							break;
+						}
 					}
 					RunSlowClearedPos(m);
 				} else

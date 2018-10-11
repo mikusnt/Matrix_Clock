@@ -2,9 +2,9 @@
  * @file tests.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-15 $
+ * $Modified: 2018-10-11 $
  * $Created: 2017-11-04 $
- * @version 1.0
+ * @version 1.1
  *
  * Simple tests of some basic functions.
  * Test should be run in main function (infinite loop).

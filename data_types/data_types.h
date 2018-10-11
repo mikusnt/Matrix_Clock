@@ -2,7 +2,7 @@
  * @file data_types.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-05-05 $
+ * $Modified: 2018-10-11 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *

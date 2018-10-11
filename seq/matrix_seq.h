@@ -2,9 +2,9 @@
  * @file matrix_seq.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-05-05 $
+ * $Modified: 2018-10-11 $
  * $Created: 2017-11-04 $
- * @version 1.0
+ * @version 1.1
  *
  * Used uC pins: 0<br>
  * Header file containing functions to fill LED matrix buffer.
@@ -51,6 +51,7 @@ typedef enum {
 	SeqTextDebug = 'd',
 	SeqRelayNumber = 'n',
 	SeqBomb = 'b',
+	SeqDeCounter = 'o',
 	SeqEmpty = 'c'
 } ActualSeq;
 
@@ -76,8 +77,8 @@ extern void LoadTextToMatrix(volatile DiodeMatrix *m, char text[TEXT_BUFFER_SIZE
 extern void LoadTimeToMatrix(volatile DiodeMatrix *m, TimeDate *from, TimeDate *to);
 //! load one 5 digit integer to matrix buffer
 extern void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number);
-//! load number of dots horizontally from right to left
-extern void LoadDotsToMatrix(volatile DiodeMatrix *m, uint8_t number, uint8_t position);
+//! load hour, minutes by digit and seconds by dots line to matrix buffer
+extern void LoadDeCounterToMatrix(volatile DiodeMatrix *m, TimeDate *time);
 //! set parametrs when sequence is changed
 extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, TimeDate *RTCTime, volatile Relay *relay);
 //! set one device state point to matrix buffer

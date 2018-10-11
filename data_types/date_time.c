@@ -27,6 +27,15 @@ void TryDecrementTime(TimeDate *t) {
 	} else if (t->uiMinute) {
 		t->uiMinute--;
 		t->uiSecond = 59;
+	} else if (t->uiHour) {
+		t->uiHour--;
+		t->uiMinute = 59;
+		t->uiSecond = 59;
+	} else if (t->uiDay) {
+		t->uiDay--;
+		t->uiHour = 23;;
+		t->uiMinute = 59;
+		t->uiSecond = 59;
 	}
 	LoadToSingleTime(t);
 }

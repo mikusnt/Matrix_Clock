@@ -12,6 +12,7 @@ var matrix__seq_8h =
       [ "SeqTextDebug", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeeaff2c4ab0dce553589087b9de1d07166c", null ],
       [ "SeqRelayNumber", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeeabe52f4a1dae78ee99e89d1add0044bc9", null ],
       [ "SeqBomb", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeea40e39f0567b20811465212bd723cf268", null ],
+      [ "SeqDeCounter", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeead8689738fcc9f02613d36903bc7d3b12", null ],
       [ "SeqEmpty", "matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeea34173e5037ca034dd12eb665d71725c2", null ]
     ] ],
     [ "DeviceTask", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4", [
@@ -19,6 +20,7 @@ var matrix__seq_8h =
       [ "TaskRelayNumber", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a1a7477d6691d5ed2a3dffd0fbf8c0adf", null ],
       [ "TaskRelayMode", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a0765b7834fdbf3c5bb3cf038fc79ffc1", null ]
     ] ],
+    [ "LoadDeCounterToMatrix", "matrix__seq_8h.html#aa4cad8b15d20553a39c4bb92143bec41", null ],
     [ "LoadNumberToMatrix", "matrix__seq_8h.html#a1d1d03b99f56933e3c67f95c223603af", null ],
     [ "LoadTextToMatrix", "matrix__seq_8h.html#af96ba8f2c553e3f4d033b5d99d40cbc7", null ],
     [ "LoadTimeToMatrix", "matrix__seq_8h.html#aa7fd4f51220b42bcdec93b2b70e2a05f", null ],

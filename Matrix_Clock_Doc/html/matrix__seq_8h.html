@@ -124,6 +124,7 @@ Enumerations</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeeabe52f4a1dae78ee99e89d1add0044bc9">SeqRelayNumber</a> = 'n', 
 <a class="el" href="matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeea40e39f0567b20811465212bd723cf268">SeqBomb</a> = 'b', 
+<a class="el" href="matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeead8689738fcc9f02613d36903bc7d3b12">SeqDeCounter</a> = 'o', 
 <a class="el" href="matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeea34173e5037ca034dd12eb665d71725c2">SeqEmpty</a> = 'c'
 <br />
  }<tr class="memdesc:ae57af6b38831304867adeec4166d9eee"><td class="mdescLeft">&#160;</td><td class="mdescRight">device's sequences of work  <a href="matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eee">More...</a><br /></td></tr>
@@ -147,6 +148,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a1d1d03b99f56933e3c67f95c223603af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#a1d1d03b99f56933e3c67f95c223603af">LoadNumberToMatrix</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, uint16_t number)</td></tr>
 <tr class="memdesc:a1d1d03b99f56933e3c67f95c223603af"><td class="mdescLeft">&#160;</td><td class="mdescRight">load one 5 digit integer to matrix buffer  <a href="#a1d1d03b99f56933e3c67f95c223603af">More...</a><br /></td></tr>
 <tr class="separator:a1d1d03b99f56933e3c67f95c223603af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4cad8b15d20553a39c4bb92143bec41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#aa4cad8b15d20553a39c4bb92143bec41">LoadDeCounterToMatrix</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, <a class="el" href="struct_time_date.html">TimeDate</a> *time)</td></tr>
+<tr class="memdesc:aa4cad8b15d20553a39c4bb92143bec41"><td class="mdescLeft">&#160;</td><td class="mdescRight">load hour, minutes by digit and seconds by dots line to matrix buffer  <a href="#aa4cad8b15d20553a39c4bb92143bec41">More...</a><br /></td></tr>
+<tr class="separator:aa4cad8b15d20553a39c4bb92143bec41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b56ede8ef9cc6d1ec98ef5b33e9f53e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8h.html#a9b56ede8ef9cc6d1ec98ef5b33e9f53e">SetSeqParams</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, <a class="el" href="struct_time_date.html">TimeDate</a> *<a class="el" href="main_8c.html#af0984960e327a1697d00daef98055b22">actTime</a>, <a class="el" href="struct_time_date.html">TimeDate</a> *<a class="el" href="main_8c.html#a86fa15702b48a39597a23c011ad4c4b6">RTCTime</a>, volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>)</td></tr>
 <tr class="memdesc:a9b56ede8ef9cc6d1ec98ef5b33e9f53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">set parametrs when sequence is changed  <a href="#a9b56ede8ef9cc6d1ec98ef5b33e9f53e">More...</a><br /></td></tr>
 <tr class="separator:a9b56ede8ef9cc6d1ec98ef5b33e9f53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -167,9 +171,9 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
-<dl class="section rcs"><dt>Modified</dt><dd>2018-05-05 </dd></dl>
+<dl class="section rcs"><dt>Modified</dt><dd>2018-10-11 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2017-11-04 </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>1.0</dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.1</dd></dl>
 <p>Used uC pins: 0<br />
  Header file containing functions to fill LED matrix buffer. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> </dd>
 <dd>
@@ -276,6 +280,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="ae57af6b38831304867adeec4166d9eeeaff2c4ab0dce553589087b9de1d07166c"></a>SeqTextDebug&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ae57af6b38831304867adeec4166d9eeeabe52f4a1dae78ee99e89d1add0044bc9"></a>SeqRelayNumber&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ae57af6b38831304867adeec4166d9eeea40e39f0567b20811465212bd723cf268"></a>SeqBomb&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae57af6b38831304867adeec4166d9eeead8689738fcc9f02613d36903bc7d3b12"></a>SeqDeCounter&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ae57af6b38831304867adeec4166d9eeea34173e5037ca034dd12eb665d71725c2"></a>SeqEmpty&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
@@ -303,6 +308,36 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="aa4cad8b15d20553a39c4bb92143bec41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4cad8b15d20553a39c4bb92143bec41">&#9670;&nbsp;</a></span>LoadDeCounterToMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void LoadDeCounterToMatrix </td>
+          <td>(</td>
+          <td class="paramtype">volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_time_date.html">TimeDate</a> *&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>load hour, minutes by digit and seconds by dots line to matrix buffer </p>
+
+</div>
+</div>
 <a id="a1d1d03b99f56933e3c67f95c223603af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1d1d03b99f56933e3c67f95c223603af">&#9670;&nbsp;</a></span>LoadNumberToMatrix()</h2>
 

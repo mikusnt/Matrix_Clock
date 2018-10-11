@@ -79,7 +79,7 @@ static void InsertCharToRoundBuffer(volatile DiodeMatrix *m, char sign, uint8_t 
 	}
 } // END static void InsertCharToRoundBuffer
 
-/*! load info aboud ADC letel to last Y position in matrix buffer
+/*! load info about ADC letel to last Y position in matrix buffer
  *  @param		m pointer of DiodeMatrix structure
  *  @param		adcValue 10-bit ADC value*/
 void LoadADCToMatrix(volatile DiodeMatrix *m, uint16_t adcValue) {
@@ -90,6 +90,20 @@ void LoadADCToMatrix(volatile DiodeMatrix *m, uint16_t adcValue) {
 			m->uitBufferX[i] |= 1 << 7;
 	}
 } // END void LoadADCToMatrix
+
+/*! load number of dots horizontally from right to left
+ *  @param		m poiner of DiodeMatrix structure
+ *  @param		number to load
+ *  @param		position of horizontal line of dots*/
+static inline void LoadDotsToMatrix(volatile DiodeMatrix *m, uint8_t number, uint8_t position) {
+	for (int8_t i = MATRIX_X_SIZE; i >= 0; i--) {
+		if ((number >= (MATRIX_X_SIZE - i)) && (position < MATRIX_Y_SIZE)) {
+			m->uitBufferX[i] |= (1 << position);
+		} else {
+			m->uitBufferX[i] &= ~(1 << position);
+		}
+	}
+} // END void LoadDotsToMatrix
 
 /*
  *
@@ -157,18 +171,14 @@ void LoadNumberToMatrix(volatile DiodeMatrix *m, uint16_t number) {
 	LoadTextToMatrix(m, ctTextBuffer);
 } // END void LoadNumberToMatrix
 
-/*! @param		m poiner of DiodeMatrix structure
- *  @param		number to load
- *  @param		position of horizontal line of dots*/
-void LoadDotsToMatrix(volatile DiodeMatrix *m, uint8_t number, uint8_t position) {
-	for (int8_t i = MATRIX_X_SIZE; i >= 0; i--) {
-		if ((number >= (MATRIX_X_SIZE - i)) && (position < MATRIX_Y_SIZE)) {
-			m->uitBufferX[i] |= (1 << position);
-		} else {
-			m->uitBufferX[i] &= ~(1 << position);
-		}
-	}
-} // END void LoadDotsToMatrix
+//! load hour, minutes by digit and seconds by dots line to matrix buffer
+void LoadDeCounterToMatrix(volatile DiodeMatrix *m, TimeDate *time) {
+	sprintf(ctTextBuffer, "%03d:%02d%c", (time->uiDay * 24) + time->uiHour, time->uiMinute, 0);
+	if (time->uiSecond % 2) ctTextBuffer[3] = ' ';
+		else ctTextBuffer[3] = 0x80;
+	LoadTextToMatrix(m, ctTextBuffer);
+	LoadDotsToMatrix(m, time->uiSecond / 2, 7);
+} // END void LoadDeCounterToMatrix
 
 /*! @param		m poiner of DiodeMatrix structure
  *  @param		actTime pointer of actual time structure
@@ -217,6 +227,15 @@ void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, TimeDate *RTCTime,
 			SetMoving(m, false);
 			uart_puts_p(PSTR("Bomb"));
 
+		} break;
+		case SeqDeCounter: {
+			LoadTextToMatrix(m, "00 00");
+			TimeInit(actTime);
+			actTime->uiDay = ctTextBuffer[1];
+			actTime->uiHour = ctTextBuffer[2];
+			actTime->uiMinute = ctTextBuffer[3];
+			SetMoving(m, false);
+			uart_puts_p(PSTR("DeCounter"));
 		} break;
 		case SeqEmpty: {
 			SetMoving(m, false);

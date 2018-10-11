@@ -2,9 +2,9 @@
  * @file some_devices.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-02 $
+ * $Modified: 2018-10-11 $
  * $Created: 2017-11-04 $
- * @version 1.0
+ * @version 1.1
  *
  * Used uC pins: 6<br>
  * Header file containing configuration of timers, ADC in single mode to photoresistor brightness lvl.

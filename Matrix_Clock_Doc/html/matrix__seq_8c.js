@@ -3,6 +3,8 @@ var matrix__seq_8c =
     [ "InsertCharToMatrix", "matrix__seq_8c.html#adb8cb4066628f22f85ea36fc6b28eab7", null ],
     [ "InsertCharToRoundBuffer", "matrix__seq_8c.html#ac5adff126ffe397d52f0693ee93d5b07", null ],
     [ "LoadADCToMatrix", "matrix__seq_8c.html#aa5b50763624560eca352e19444fb7d59", null ],
+    [ "LoadDeCounterToMatrix", "matrix__seq_8c.html#aa4cad8b15d20553a39c4bb92143bec41", null ],
+    [ "LoadDotsToMatrix", "matrix__seq_8c.html#ac472667d09999b6d9a1c216849335f73", null ],
     [ "LoadNumberToMatrix", "matrix__seq_8c.html#a1d1d03b99f56933e3c67f95c223603af", null ],
     [ "LoadTextToMatrix", "matrix__seq_8c.html#af96ba8f2c553e3f4d033b5d99d40cbc7", null ],
     [ "LoadTimeToMatrix", "matrix__seq_8c.html#a4c810516fc4ffc9c789b762115a8d9ea", null ],

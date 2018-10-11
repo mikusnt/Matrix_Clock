@@ -2,9 +2,9 @@
  * @file alphabet.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-05-18 $
+ * $Modified: 2018-10-11 $
  * $Created: 2017-11-04 $
- * @version 2.0
+ * @version 2.1
  *
  * Used uC pins: 0<br>
  * Header file containing byte pixels table (Alphabet) operations. Not comapible with v1.0.

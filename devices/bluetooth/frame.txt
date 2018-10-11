@@ -12,6 +12,7 @@ Rename sequence:
  	sn999$					number and relay display
  	sc$						clear matrix, waiting
  	sb9$					decrement time in minutes, relay clicking
+ 	so999999$				decrement time in days {2}, hours {2}, minutes {2} in one view on matrix
 
 Tasks:
   	tp9999$					control one pixel (Y {1}, X {2}, state {1})
