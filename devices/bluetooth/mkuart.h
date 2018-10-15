@@ -43,7 +43,7 @@
 //! mask of read buffer
 #define UART_RX_BUF_MASK ( UART_RX_BUF_SIZE - 1)
 //! size of write buffer
-#define UART_TX_BUF_SIZE 32
+#define UART_TX_BUF_SIZE 64
 //! mask of write buffer
 #define UART_TX_BUF_MASK ( UART_TX_BUF_SIZE - 1)
 

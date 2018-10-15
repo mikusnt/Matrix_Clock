@@ -2,9 +2,9 @@
  * @file relay.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-11 $
+ * $Modified: 2018-10-15 $
  * $Created: 2017-11-04 $
- * @version 11
+ * @version 1.1
  *
  * Used uC pins: 1<br>
  * Header file containing relay, which signals binary data which start sequence.
@@ -114,6 +114,8 @@ typedef struct {
 	BinarySwitch eState;
 	//! flag of enable data information after start
 	bool bWithData;
+	//! type of input data
+	RelayDataType eDataType;
 } Relay;
 
 /*

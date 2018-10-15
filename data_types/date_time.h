@@ -2,7 +2,7 @@
  * @file date_time.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-11 $
+ * $Modified: 2018-10-15 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -65,6 +65,7 @@ typedef struct {
 	uint8_t uiYear;
 } TimeDate;
 
+
 /*
  *
  *		Declaration of functions
@@ -82,6 +83,8 @@ extern void LoadToDecimalTime(TimeDate *t);
 //! one second decrement time when time greater than 0
 extern void TryDecrementTime(TimeDate *t);
 extern void CopyDateTime(TimeDate *from, TimeDate *to);
+extern void WriteDateTimeToEEProm(TimeDate *time);
+extern void ReadDateTimeFromEEProm(TimeDate *time);
 /*
  *
  *		Inline functions

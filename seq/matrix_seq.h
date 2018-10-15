@@ -2,7 +2,7 @@
  * @file matrix_seq.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-11 $
+ * $Modified: 2018-10-15 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -59,7 +59,7 @@ typedef enum {
 typedef enum {
 	TaskSetPix = 'p',
 	TaskRelayNumber = 'r',
-	TaskRelayMode = 'm'
+	TaskRelayMode = 'm',
 } DeviceTask;
 
 //! actual sequence displaying by device
@@ -83,6 +83,8 @@ extern void LoadDeCounterToMatrix(volatile DiodeMatrix *m, TimeDate *time);
 extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, TimeDate *RTCTime, volatile Relay *relay);
 //! set one device state point to matrix buffer
 extern void SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch state);
+//! load time and date to ctTextBuffer
+extern void RTCToTextBuffer(TimeDate * time, char cLast);
 
 
 #endif /* MATRIX_SEQUENCES_H_ */

@@ -6,6 +6,8 @@
 
 #include "date_time.h"
 
+TimeDate EEMEM eeTimeDate;
+uint8_t timeAddr EEMEM = 20;
 
 /*! @param 		t pointer of time structure*/
 void LoadToDecimalTime(TimeDate *t) {
@@ -38,7 +40,7 @@ void TryDecrementTime(TimeDate *t) {
 		t->uiSecond = 59;
 	}
 	LoadToSingleTime(t);
-}
+} // END void TryDecrementTime
 
 void CopyDateTime(TimeDate *from, TimeDate *to) {
 	to->uiHour = from->uiHour;
@@ -52,5 +54,15 @@ void CopyDateTime(TimeDate *from, TimeDate *to) {
 	for (int i = 0; i < 5; i++)
 		to->uiSingleProgress[i] = from->uiSingleProgress[i];
 	LoadToSingleTime(to);
-}
+} // END void CopyDateTime
+
+void WriteDateTimeToEEProm(TimeDate *time) {
+	eeprom_update_block(time, &timeAddr, sizeof(TimeDate));
+	eeprom_busy_wait();
+} // END void WriteDateTimeEEProm
+
+void ReadDateTimeFromEEProm(TimeDate *time) {
+	eeprom_read_block(time, &timeAddr, sizeof(TimeDate));
+	eeprom_busy_wait();
+} // END void ReadDateTimeEEProm
 

@@ -19,9 +19,11 @@ Tasks:
   	tr999$					relay coding number
   	tr9999$					relay, mode {1}, number of clicks {3} 
   	tm9$					relay state, 0 - off, 1 - on
-  	d99_99_999 99_99_99$	set new date and time (day {2}, month {2}, year {3}, hour {2}, minute {2}, second {2})
-  	   -  -      :  :	
+
  Extras:
+   	d99_99_999 99_99_99$	set new date and time (day {2}, month {2}, year {3}, hour {2}, minute {2}, second {2})
+  	   -  -      :  :	
  	q$						communication test 
  	v$						version of software
  	r$						device reset
+ 	m$						last time and date modification

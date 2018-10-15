@@ -19,9 +19,10 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 	if (UART_FirstEndFlag && IsUnreadData()) {
 		register uint8_t i = 0;
 		uint8_t uiEndCode = GOOD_COMMAND;
-		uint8_t uiCode;
+		uint8_t uiCode = ' ';
 
-		uiCode = uart_getc();
+		while (uiCode == ' ')
+			uiCode = uart_getc();
 
 		// load command parameters to buffer
 		while (IsUnreadData() && (i < TEXT_BUFFER_SIZE)) {
@@ -39,9 +40,9 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			while (uart_getc() != END_FRAME_CODE);
 		}
 		// DEBUG info
-		//uart_putc(uiCode);
-		//uart_puts(ctTextBuffer);
-		//uart_putc(' ');
+		/*uart_putc(uiCode);
+		uart_puts(ctTextBuffer);
+		uart_putc(' ');*/
 
 		// realize the commands
 		switch (uiCode) {
@@ -152,6 +153,8 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 						DS3231_SetDate(day, month, year);
 						DS3231_SetTime(hour, minute, second);
 						DS3231_GetDate(&time->uiDay, &time->uiMonth, &time->uiYear);
+						DS3231_GetTime(&time->uiHour, &time->uiMinute, &time->uiSecond);
+						WriteDateTimeToEEProm(time);
 					} else
 						uiEndCode = ERROR_PARAMS;
 			} break;
@@ -171,6 +174,13 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 				m->uiBrightness = 0;
 				D_MS(1);
 				Reset_UC();
+			} break;
+			case MODIFY_DATE_CODE: {
+				uart_puts_p(PSTR("Last modified date:"));
+				TimeDate sTime;
+				ReadDateTimeFromEEProm(&sTime);
+				RTCToTextBuffer(&sTime, 0);
+				uart_puts(ctTextBuffer);
 			} break;
 
 		}

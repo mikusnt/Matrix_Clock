@@ -2,7 +2,7 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-11 $
+ * $Modified: 2018-10-15 $
  * $Created: 2017-11-04 $
  * @version 0.952
  *
@@ -136,12 +136,10 @@ int main (void) {
 						LoadToSingleTime(&RTCTime);
 
 						if ((RTCTime.uiSecond % 10) == 0) {
-							sprintf(ctTextBuffer, "%02d-%02d-2%03d %02d:%02d:%02d\n", RTCTime.uiDay,
-								RTCTime.uiMonth, RTCTime.uiYear, RTCTime.uiHour,
-								RTCTime.uiMinute, RTCTime.uiSecond);
+							RTCToTextBuffer(&RTCTime, '\n');
 							uart_puts(ctTextBuffer);
 						}
-						// display dane every 5 minutes on 10 second
+						// display date every 5 minutes on 10 second
 						if ((RTCTime.uiSecond == 10) && ((RTCTime.uiMinute % 5) == 1)) {
 							sprintf(ctTextBuffer, "%02d-%02d-2%03d", RTCTime.uiDay, RTCTime.uiMonth, RTCTime.uiYear);
 							eActualSeq = SeqText;

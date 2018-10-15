@@ -74,6 +74,7 @@ void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType
 
 		// load data to structure
 		relay->bWithData = true;
+		relay->eDataType = dataType;
 		switch(dataType) {
 			case RelayDataHours: {
 				while (uiByteInfo > 12) uiByteInfo -= 12;
@@ -92,7 +93,7 @@ void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType
 				while (uiByteInfo >= 60) uiByteInfo -= 60;
 				if (uiByteInfo > 0)
 					relay->uiByteInfo = RoundByte(uiByteInfo / 15, &relay->uiByteLength);
-				relay->ui16StartLength = RELAY_HIGH_START_M_COUNT;
+				relay->ui16StartLength = 0;
 				relay->ui16StartTimeMS = RELAY_HIGH_START_MS_MINUTE;
 			} break;
 			case RelayDataNumber: {
@@ -123,7 +124,10 @@ void RelayTryClickMS(volatile Relay *relay) {
 				// rename to pause
 				if (--relay->ui16StartLength == 0) {
 					RelaySW(LOW);
-					relay->ui16ActTimeMS = RELAY_LOW_START_MS;
+					if (relay->eDataType != RelayDataMinutes)
+						relay->ui16ActTimeMS = RELAY_LOW_START_MS;
+					else
+						relay->ui16ActTimeMS = 0;
 				}
 			// when data sequence
 			} else if (relay->bWithData){

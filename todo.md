@@ -6,3 +6,4 @@
 - [ ] full ASCII alphabet table
 - [x] long counter mode with days, hours, minutes, seconds
 - [ ] spectrum analyzer
+- [x] read and write date of time modify

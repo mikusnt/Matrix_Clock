@@ -2,7 +2,7 @@
  * @file uart_processing.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-11 $
+ * $Modified: 2018-10-15 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -32,9 +32,11 @@
 //! frame header code of version of app
 #define VERSION_CODE 'v'
 //! output text of version of app
-#define VERSION_TEXT PSTR("Matrix Clock PixBit v0.95 by MiSt ")
+#define VERSION_TEXT PSTR("Matrix Clock PixBit v0.952 by MiSt, compiled 15-10-2018")
 //! frame header code of reset device
 #define RESET_CODE 'r'
+//! frame header code of last time and date modification
+#define MODIFY_DATE_CODE 'm'
 //! code of good recognize the frame
 #define GOOD_COMMAND 0
 //! code of bad frame header code

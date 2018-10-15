@@ -2,9 +2,9 @@
  * @file diode_matrix.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-04-02 $
+ * $Modified: 2018-10-15 $
  * $Created: 2017-11-04 $
- * @version 1.0
+ * @version 1.1
  *
  * Used uC pins: 0<br>
  * Header file containing logic structure of LED Matrix to display data.
