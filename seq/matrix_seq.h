@@ -83,8 +83,22 @@ extern void LoadDeCounterToMatrix(volatile DiodeMatrix *m, TimeDate *time);
 extern void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, TimeDate *RTCTime, volatile Relay *relay);
 //! set one device state point to matrix buffer
 extern void SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch state);
-//! load time and date to ctTextBuffer
-extern void RTCToTextBuffer(TimeDate * time, char cLast);
 
+/*! load full time and date to ctTextBuffer
+ *  @param		time pointer of time structure
+ *  @param		cLast value of last char*/
+inline void RTCToTextBuffer(TimeDate * time, char cLast) {
+	sprintf(ctTextBuffer, "%02d-%02d-2%03d %02d:%02d:%02d%c", time->uiDay,
+			time->uiMonth, time->uiYear, time->uiHour,
+			time->uiMinute, time->uiSecond, cLast);
+} // END void RTCToTextBuffer
+
+/*! load date and date to ctTextBuffer
+ *  @param		time pointer of time structure
+ *  @param		cLast value of last char*/
+inline void DateToTextBuffer(TimeDate * time, char cLast) {
+	sprintf(ctTextBuffer, "%02d-%02d-2%03d%c", time->uiDay,
+		time->uiMonth, time->uiYear, cLast);
+} // END void DateToTextBuffer
 
 #endif /* MATRIX_SEQUENCES_H_ */

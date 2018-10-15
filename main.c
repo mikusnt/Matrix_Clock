@@ -141,7 +141,7 @@ int main (void) {
 						}
 						// display date every 5 minutes on 10 second
 						if ((RTCTime.uiSecond == 10) && ((RTCTime.uiMinute % 5) == 1)) {
-							sprintf(ctTextBuffer, "%02d-%02d-2%03d", RTCTime.uiDay, RTCTime.uiMonth, RTCTime.uiYear);
+							DateToTextBuffer(&RTCTime, 0);
 							eActualSeq = SeqText;
 							RunSlowClearedPos(&matrix);
 						}

@@ -46,6 +46,12 @@ typedef enum {
 
 //! main time structure
 typedef struct {
+	//! decimal day
+	uint8_t uiDay;
+	//! decimal month
+	uint8_t uiMonth;
+	//! three digit year (hundreds, tens, ones)
+	uint8_t uiYear;
 	//! decimal hour
 	uint8_t uiHour;
 	//! decimal minute
@@ -57,12 +63,6 @@ typedef struct {
 	uint8_t uitSingleTime[6];
 	//! table of progress between displaying time and actual RTC time
 	uint8_t uiSingleProgress[6];
-	//! decimal day
-	uint8_t uiDay;
-	//! decimal month
-	uint8_t uiMonth;
-	//! three digit year (hundreds, tens, ones)
-	uint8_t uiYear;
 } TimeDate;
 
 

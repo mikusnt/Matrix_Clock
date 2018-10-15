@@ -31,7 +31,7 @@
 #define QUESTION_CODE 'q'
 //! frame header code of version of app
 #define VERSION_CODE 'v'
-//! output text of version of app
+//! output text of version of app, to manual update before compile
 #define VERSION_TEXT PSTR("Matrix Clock PixBit v0.952 by MiSt, compiled 15-10-2018")
 //! frame header code of reset device
 #define RESET_CODE 'r'

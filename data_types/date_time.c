@@ -6,8 +6,8 @@
 
 #include "date_time.h"
 
-TimeDate EEMEM eeTimeDate;
-uint8_t timeAddr EEMEM = 20;
+// to manual update before compile, data from m$ by Bluetooth
+TimeDate EEMEM eeTimeDate = {15, 10, 18};
 
 /*! @param 		t pointer of time structure*/
 void LoadToDecimalTime(TimeDate *t) {
@@ -57,12 +57,12 @@ void CopyDateTime(TimeDate *from, TimeDate *to) {
 } // END void CopyDateTime
 
 void WriteDateTimeToEEProm(TimeDate *time) {
-	eeprom_update_block(time, &timeAddr, sizeof(TimeDate));
+	eeprom_update_block(time, &eeTimeDate, sizeof(TimeDate));
 	eeprom_busy_wait();
 } // END void WriteDateTimeEEProm
 
 void ReadDateTimeFromEEProm(TimeDate *time) {
-	eeprom_read_block(time, &timeAddr, sizeof(TimeDate));
+	eeprom_read_block(time, &eeTimeDate, sizeof(TimeDate));
 	eeprom_busy_wait();
 } // END void ReadDateTimeEEProm
 

@@ -176,10 +176,10 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 				Reset_UC();
 			} break;
 			case MODIFY_DATE_CODE: {
-				uart_puts_p(PSTR("Last modified date:"));
+				uart_puts_p(PSTR("Date saved to RTC: "));
 				TimeDate sTime;
 				ReadDateTimeFromEEProm(&sTime);
-				RTCToTextBuffer(&sTime, 0);
+				DateToTextBuffer(&sTime, 0);
 				uart_puts(ctTextBuffer);
 			} break;
 

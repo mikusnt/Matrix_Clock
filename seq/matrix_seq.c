@@ -256,11 +256,4 @@ inline void SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch s
 	}
 } // END inline void SetStatePoint
 
-/*! @param		time pointer of time structure
- * */
-void RTCToTextBuffer(TimeDate * time, char cLast) {
-	sprintf(ctTextBuffer, "%02d-%02d-2%03d %02d:%02d:%02d%c", time->uiDay,
-			time->uiMonth, time->uiYear, time->uiHour,
-			time->uiMinute, time->uiSecond, cLast);
-}
 
