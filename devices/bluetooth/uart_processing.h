@@ -15,6 +15,7 @@
 #include "mkuart.h"
 #include "../../seq/matrix_seq.h"
 #include "../ds3231.h"
+#include "../text_eeprom.h"
 
 // special byte codes
 //! frame header code of rename sequence
@@ -32,7 +33,7 @@
 //! frame header code of version of app
 #define VERSION_CODE 'v'
 //! output text of version of app, to manual update before compile
-#define VERSION_TEXT PSTR("Matrix Clock PixBit v0.952 by MiSt, compiled 15-10-2018")
+#define VERSION_TEXT PSTR("Matrix Clock PixBit v0.952 by MiSt, compiled 16-10-2018")
 //! frame header code of reset device
 #define RESET_CODE 'r'
 //! frame header code of last time and date modification

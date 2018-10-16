@@ -2,7 +2,7 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-15 $
+ * $Modified: 2018-10-16 $
  * $Created: 2017-11-04 $
  * @version 0.952
  *
@@ -18,6 +18,7 @@
 #include "data_types/date_time.h"
 #include "data_types/diode_matrix.h"
 #include "devices/some_devices.h"
+#include "devices/text_eeprom.h"
 #include "seq/matrix_seq.h"
 
 #include "tests.h"
@@ -97,7 +98,8 @@ int main (void) {
 	DS3231_Init();
 	//eActualSeq = SeqDeCounter;
 	SetSeqParams(&matrix, &actTime, &RTCTime, &relay);
-	RelayStartClicking(&relay, 0, RelayDataNumber);
+	//RelayStartClicking(&relay, 12, RelayDataMinutes);
+	RelayClicking(&relay, RelayClickSlow, 2);
 
 	wdt_enable(WDTO_120MS);
 	DS3231_GetTime(&RTCTime.uiHour, &RTCTime.uiMinute, &RTCTime.uiSecond);
@@ -172,7 +174,7 @@ int main (void) {
 				case SeqBomb: {
 					if (bNewTime) {
 						TryDecrementTime(&actTime);
-						sprintf(ctTextBuffer, "%02d:%02d\n", actTime.uiMinute, actTime.uiSecond);
+						snprintf(ctTextBuffer, TEXT_BUFFER_SIZE, "%02d:%02d\n", actTime.uiMinute, actTime.uiSecond);
 						uart_puts(ctTextBuffer);
 						ctTextBuffer[5] = 0;
 						if (actTime.uiSecond % 2) ctTextBuffer[2] = ' ';
@@ -194,7 +196,7 @@ int main (void) {
 						}
 
 						if ((actTime.uiSecond ==0) && (actTime.uiMinute == 0)) {
-							sprintf(ctTextBuffer, "Boom!!!");
+							snprintf(ctTextBuffer, TEXT_BUFFER_SIZE, "Boom!!!");
 							eActualSeq = SeqText;
 							RelayClicking(&relay, RelayClickStartFast, 182);
 							RunSlowClearedPos(&matrix);
@@ -219,7 +221,7 @@ int main (void) {
 				case SeqDeCounter: {
 					if (bNewTime) {
 						if (actTime.uiSecond == 0) {
-							sprintf(ctTextBuffer, "%3d:%02d:%02d to end\n", actTime.uiDay * 24 + actTime.uiHour,
+							snprintf(ctTextBuffer, TEXT_BUFFER_SIZE, "%3d:%02d:%02d to end\n", actTime.uiDay * 24 + actTime.uiHour,
 									actTime.uiMinute, actTime.uiSecond);
 							uart_puts(ctTextBuffer);
 						}

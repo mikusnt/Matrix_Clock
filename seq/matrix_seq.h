@@ -60,6 +60,9 @@ typedef enum {
 	TaskSetPix = 'p',
 	TaskRelayNumber = 'r',
 	TaskRelayMode = 'm',
+	TaskWriteText = 'w',
+	TaskSetText = 's',
+	TaskReadText = 'e'
 } DeviceTask;
 
 //! actual sequence displaying by device
@@ -88,7 +91,7 @@ extern void SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch s
  *  @param		time pointer of time structure
  *  @param		cLast value of last char*/
 inline void RTCToTextBuffer(TimeDate * time, char cLast) {
-	sprintf(ctTextBuffer, "%02d-%02d-2%03d %02d:%02d:%02d%c", time->uiDay,
+	snprintf(ctTextBuffer, TEXT_BUFFER_SIZE, "%02d-%02d-2%03d %02d:%02d:%02d%c", time->uiDay,
 			time->uiMonth, time->uiYear, time->uiHour,
 			time->uiMinute, time->uiSecond, cLast);
 } // END void RTCToTextBuffer
@@ -97,7 +100,7 @@ inline void RTCToTextBuffer(TimeDate * time, char cLast) {
  *  @param		time pointer of time structure
  *  @param		cLast value of last char*/
 inline void DateToTextBuffer(TimeDate * time, char cLast) {
-	sprintf(ctTextBuffer, "%02d-%02d-2%03d%c", time->uiDay,
+	snprintf(ctTextBuffer, TEXT_BUFFER_SIZE, "%02d-%02d-2%03d%c", time->uiDay,
 		time->uiMonth, time->uiYear, cLast);
 } // END void DateToTextBuffer
 

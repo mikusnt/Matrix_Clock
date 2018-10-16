@@ -6,4 +6,5 @@
 - [ ] full ASCII alphabet table
 - [x] long counter mode with days, hours, minutes, seconds
 - [ ] spectrum analyzer
-- [x] read and write date of time modification
+- [x] read and write date of time modification in eeprom
+- [ ] few texts read and write in eeprom, programmable displaying

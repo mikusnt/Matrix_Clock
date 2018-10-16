@@ -130,6 +130,24 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 							} else
 								uiEndCode = ERROR_PARAMS;
 						} break;
+						case TaskWriteText: {
+							uint8_t addr = ctTextBuffer[1] - DIGIT_ASCII;
+							if ((i >= 2) && (addr < TEXT_EEPROM_SIZE)) {
+								WriteTextToEEProm(ctTextBuffer+2, TEXT_BUFFER_SIZE-2, addr);
+							} else
+								uiEndCode = ERROR_PARAMS;
+						} break;
+						case TaskReadText: {
+							uint8_t addr = ctTextBuffer[1] - DIGIT_ASCII;
+							if ((i >= 2) && (addr < TEXT_EEPROM_SIZE)) {
+								ReadTextFromEEProm(ctTextBuffer, TEXT_BUFFER_SIZE, addr);
+								if (ctTextBuffer[0] == 0)
+									uart_puts_p(PSTR("<empty>"));
+								else
+									uart_puts(ctTextBuffer);
+							} else
+								uiEndCode = ERROR_PARAMS;
+						} break;
 						default: { uiEndCode = ERROR_COMMAND; } break;
 
 					}
@@ -186,9 +204,9 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 		}
 		// sending response code
 		switch(uiEndCode) {
-			case GOOD_COMMAND: { uart_puts_p(PSTR("ok")); } break;
-			case ERROR_COMMAND: { uart_puts_p(PSTR("undefined command"));} break;
-			case ERROR_PARAMS: {uart_puts_p(PSTR("incorrect params")); } break;
+			case GOOD_COMMAND: { uart_puts_p(PSTR("<ok>")); } break;
+			case ERROR_COMMAND: { uart_puts_p(PSTR("<undefined command>"));} break;
+			case ERROR_PARAMS: {uart_puts_p(PSTR("<incorrect params>")); } break;
 		}
 		uart_putc('\n');
 	}

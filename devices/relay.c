@@ -3,9 +3,10 @@
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
  * @see relay.h*/
+
 #include "relay.h"
 
-uint8_t eEEMRelayState EEMEM;
+uint8_t eeRelayState EEMEM = 1;
 
 /*
  *
@@ -63,7 +64,7 @@ static inline uint8_t RoundByte(uint8_t byte, volatile uint8_t *uiByteLength_s) 
 void RelayInit(volatile Relay *r) {
 	RELAY_DDR |= RELAY_ADDR;
 	// read state from eeprom
-	r->eState = (eeprom_read_byte(&eEEMRelayState) > 0) ? ON : OFF;
+	r->eState = (eeprom_read_byte(&eeRelayState) > 0) ? ON : OFF;
 }
 
 /*!@param 		relay pointer of relay structure
@@ -164,7 +165,7 @@ void SetRelayState(volatile Relay *relay, BinarySwitch eState) {
 	if (relay->eState != eState) {
 		relay->eState = eState;
 		// save to eeprom
-		eeprom_write_byte(&eEEMRelayState, eState);
+		eeprom_write_byte(&eeRelayState, eState);
 		if (eState == OFF) {
 			RelayReset(relay);
 		}
