@@ -168,12 +168,18 @@ int main (void) {
 							ui16Ms = 0;
 							ResetProgress(&actTime);
 							if (RTCTime.uiMinute == 0) {
-								RelayStartClicking(&relay, RTCTime.uiHour, RelayDataHours);
+								if (relay.eState == RelayBinaryFull)
+									RelayStartClicking(&relay, RTCTime.uiHour, RelayDataHours);
+								else if (relay.eState == RelaySilent)
+									RelayClicking(&relay, RelayClickSlow, 1);
 								DS3231_GetDate(&RTCTime.uiDay, &RTCTime.uiMonth, &RTCTime.uiYear);
 							}
 							else
-								if ((RTCTime.uiMinute % 15) == 0)
-									RelayStartClicking(&relay, RTCTime.uiMinute, RelayDataMinutes);
+								if ((RTCTime.uiMinute % 15) == 0) {
+									if (relay.eState == RelayBinaryFull)
+										RelayStartClicking(&relay, RTCTime.uiMinute, RelayDataMinutes);
+
+								}
 						}
 						bNewTime = false;
 					}
@@ -181,7 +187,8 @@ int main (void) {
 					// loading time and devices state to matrix
 					if (bNewRoundRefresh){
 						LoadTimeToMatrix(&matrix, &actTime, &RTCTime);
-						SetStatePoint(&matrix, 6, relay.eState);
+						SetStatePoint(&matrix, 6, relay.eState > 0);
+						SetStatePoint(&matrix, 5, relay.eState == 2);
 						SetStatePoint(&matrix, 0, BLUETOOTH_IS_ON());
 						bNewRoundRefresh = false;
 					}

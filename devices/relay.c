@@ -64,14 +64,14 @@ static inline uint8_t RoundByte(uint8_t byte, volatile uint8_t *uiByteLength_s) 
 void RelayInit(volatile Relay *r) {
 	RELAY_DDR |= RELAY_ADDR;
 	// read state from eeprom
-	r->eState = (eeprom_read_byte(&eeRelayState) > 0) ? ON : OFF;
+	r->eState = eeprom_read_byte(&eeRelayState);
 }
 
 /*!@param 		relay pointer of relay structure
  * @param 		uiByteInfo data byte to click
  * @param 		dataType type of byte*/
 void RelayStartClicking(volatile Relay *relay, uint8_t uiByteInfo, RelayDataType dataType) {
-	if (relay->eState == ON) {
+	if (relay->eState != RelayOFF) {
 
 		// load data to structure
 		relay->bWithData = true;
@@ -161,12 +161,12 @@ void RelayTryClickMS(volatile Relay *relay) {
 /*! change relay state and save state to eeprom
  *  @param			relay pointer of relay structure
  *  @param 			eState new relay state */
-void SetRelayState(volatile Relay *relay, BinarySwitch eState) {
+void SetRelayState(volatile Relay *relay, RelayMode eState) {
 	if (relay->eState != eState) {
 		relay->eState = eState;
 		// save to eeprom
-		eeprom_write_byte(&eeRelayState, eState);
-		if (eState == OFF) {
+		eeprom_update_byte(&eeRelayState, eState);
+		if (eState == RelayOFF) {
 			RelayReset(relay);
 		}
 	}
@@ -176,7 +176,7 @@ void SetRelayState(volatile Relay *relay, BinarySwitch eState) {
 //! @param		type of click
 //! @param		number of clicks
 void RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number) {
-	if (relay->eState == ON) {
+	if (relay->eState != RelayOFF) {
 		RelayReset(relay);
 
 		relay->ui16ActTimeMS = 1;

@@ -113,7 +113,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 								uiEndCode = ERROR_PARAMS;
 						} break;
 						case TaskRelayNumber: {
-							if (relay->eState == OFF)
+							if (relay->eState == RelayOFF)
 								uart_puts_p(PSTR("Relay disabled "));
 							if ((i == 4) && (RelayThreeToOne(ctTextBuffer) <= 255)) {
 								RelayStartClicking(relay, ctTextBuffer[0], RelayDataNumber);
@@ -125,8 +125,8 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 						} break;
 						case TaskRelayMode: {
 							uint8_t mode = ctTextBuffer[1] - DIGIT_ASCII;
-							if ((i >= 2) && (mode < 2)) {
-								SetRelayState(relay, (mode > 0) ? ON : OFF);
+							if ((i >= 2) && (mode < 3)) {
+								SetRelayState(relay, mode);
 							} else
 								uiEndCode = ERROR_PARAMS;
 						} break;
