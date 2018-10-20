@@ -18,12 +18,17 @@ var matrix__seq_8h =
     [ "DeviceTask", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4", [
       [ "TaskSetPix", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a91e058bcff2914a008cddc5a193311ae", null ],
       [ "TaskRelayNumber", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a1a7477d6691d5ed2a3dffd0fbf8c0adf", null ],
-      [ "TaskRelayMode", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a0765b7834fdbf3c5bb3cf038fc79ffc1", null ]
+      [ "TaskRelayMode", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a0765b7834fdbf3c5bb3cf038fc79ffc1", null ],
+      [ "TaskWriteText", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a6fd7d57df7c191a4c0669b6a0c2a5fca", null ],
+      [ "TaskSetText", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4ad49a4fcf12fd07bcc2972a3a8f06e786", null ],
+      [ "TaskReadText", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a69f2fa0df2601446310fcb178bbe23a9", null ]
     ] ],
+    [ "DateToTextBuffer", "matrix__seq_8h.html#a8a741dacfe0106b0a514f0505d73718c", null ],
     [ "LoadDeCounterToMatrix", "matrix__seq_8h.html#aa4cad8b15d20553a39c4bb92143bec41", null ],
     [ "LoadNumberToMatrix", "matrix__seq_8h.html#a1d1d03b99f56933e3c67f95c223603af", null ],
     [ "LoadTextToMatrix", "matrix__seq_8h.html#af96ba8f2c553e3f4d033b5d99d40cbc7", null ],
     [ "LoadTimeToMatrix", "matrix__seq_8h.html#aa7fd4f51220b42bcdec93b2b70e2a05f", null ],
+    [ "RTCToTextBuffer", "matrix__seq_8h.html#ad1133017827eccad35f8c28c7eae54c1", null ],
     [ "SetSeqParams", "matrix__seq_8h.html#a9b56ede8ef9cc6d1ec98ef5b33e9f53e", null ],
     [ "SetStatePoint", "matrix__seq_8h.html#a971ae91252054b0980045f938c3bb1af", null ],
     [ "ctTextBuffer", "matrix__seq_8h.html#a42fdf0b401b08840abc478f0f18318fb", null ],

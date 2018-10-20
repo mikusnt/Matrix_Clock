@@ -56,6 +56,7 @@ var searchData=
   ['uithmpos',['uitHMPos',['../matrix__seq_8c.html#a0eb9ec130b170111e7ed5f07851cf85c',1,'uitHMPos():&#160;matrix_seq.c'],['../matrix__seq_8h.html#a0eb9ec130b170111e7ed5f07851cf85c',1,'uitHMPos():&#160;matrix_seq.c']]],
   ['uitroundbufferyx',['uitRoundBufferYX',['../struct_diode_matrix.html#a3c2938384753abea81c0a12148df4a5a',1,'DiodeMatrix']]],
   ['uitsingletime',['uitSingleTime',['../struct_time_date.html#a0e7d3783a024ea65990510885e8c4ee5',1,'TimeDate']]],
+  ['uittextviewparams',['uitTextViewParams',['../text__eeprom_8c.html#aa11096ce928ba8c36fdce00c6840383b',1,'uitTextViewParams():&#160;text_eeprom.c'],['../text__eeprom_8h.html#aa11096ce928ba8c36fdce00c6840383b',1,'uitTextViewParams():&#160;text_eeprom.c']]],
   ['uivmodifyy',['uivModifyY',['../main_8c.html#a41a2f7e61adfd52c7ee2f74c633e20a5',1,'main.c']]],
   ['uiyear',['uiYear',['../struct_time_date.html#ab236e1d5a63f3af1223aecf7a2425c77',1,'TimeDate']]],
   ['usart_5finit',['USART_Init',['../mkuart_8c.html#abcab7653206340cd128baaeef20814fa',1,'USART_Init(uint16_t baud):&#160;mkuart.c'],['../mkuart_8h.html#abcab7653206340cd128baaeef20814fa',1,'USART_Init(uint16_t baud):&#160;mkuart.c']]]

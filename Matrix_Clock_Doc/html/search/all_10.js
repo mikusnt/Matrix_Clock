@@ -1,6 +1,7 @@
 var searchData=
 [
   ['readadctoadcdata',['ReadADCToADCData',['../some__devices_8h.html#af759822269409f7102b2123e3a294eb8',1,'some_devices.h']]],
+  ['readdatetimefromeeprom',['ReadDateTimeFromEEProm',['../date__time_8c.html#a8badc77d213044d1d87f3479c3c799ce',1,'ReadDateTimeFromEEProm(TimeDate *time):&#160;date_time.c'],['../date__time_8h.html#a8badc77d213044d1d87f3479c3c799ce',1,'ReadDateTimeFromEEProm(TimeDate *time):&#160;date_time.c']]],
   ['readme_2emd',['readme.md',['../readme_8md.html',1,'']]],
   ['refreshbufferflag',['RefreshBufferFlag',['../diode__matrix_8h.html#afb47ff3cb70c99d953e54b4cd338ba38',1,'diode_matrix.h']]],
   ['register_2ec',['register.c',['../register_8c.html',1,'']]],
@@ -53,5 +54,6 @@ var searchData=
   ['rs1',['RS1',['../ds3231_8h.html#aee48b563b7ff09121325a0ba4c21c6d3',1,'ds3231.h']]],
   ['rs2',['RS2',['../ds3231_8h.html#af134a1920b448555168d4582f0ef49fb',1,'ds3231.h']]],
   ['rtctime',['RTCTime',['../main_8c.html#a86fa15702b48a39597a23c011ad4c4b6',1,'main.c']]],
+  ['rtctotextbuffer',['RTCToTextBuffer',['../matrix__seq_8h.html#ad1133017827eccad35f8c28c7eae54c1',1,'matrix_seq.h']]],
   ['runslowclearedpos',['RunSlowClearedPos',['../diode__matrix_8h.html#a1edf23bab792b67285433d90face7109',1,'diode_matrix.h']]]
 ];

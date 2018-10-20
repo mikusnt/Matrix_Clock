@@ -214,7 +214,8 @@ uint8_t LoadIntSignLength(uint8_t uiIntSign) {
  *  @param		uiStop_s end x coorinate
  *  @param		uiIntSign_s internal char code in uiAlphabet*/
 void LoadSign(char cSign, uint8_t *uiStart_s, uint8_t *uiStop_s, uint8_t *uiIntSign_s) {
-	*uiIntSign_s = TranslateToAlphabet(cSign);
+	//*uiIntSign_s = TranslateToAlphabet(cSign); old
+	*uiIntSign_s = cSign; // new
 	uint8_t uiSize = AL_LENGTH(*uiIntSign_s);
 	*uiStart_s = (5 - uiSize) / 2;
 	*uiStop_s = *uiStart_s + uiSize - 1;

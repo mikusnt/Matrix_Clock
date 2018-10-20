@@ -8,5 +8,7 @@ var dir_07b86ffc266b39efa5bbdc0e9fdb330a =
     [ "relay.c", "relay_8c.html", "relay_8c" ],
     [ "relay.h", "relay_8h.html", "relay_8h" ],
     [ "some_devices.c", "some__devices_8c.html", "some__devices_8c" ],
-    [ "some_devices.h", "some__devices_8h.html", "some__devices_8h" ]
+    [ "some_devices.h", "some__devices_8h.html", "some__devices_8h" ],
+    [ "text_eeprom.c", "text__eeprom_8c.html", "text__eeprom_8c" ],
+    [ "text_eeprom.h", "text__eeprom_8h.html", "text__eeprom_8h" ]
 ];

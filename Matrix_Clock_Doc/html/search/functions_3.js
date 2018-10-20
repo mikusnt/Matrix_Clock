@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['datetotextbuffer',['DateToTextBuffer',['../matrix__seq_8h.html#a8a741dacfe0106b0a514f0505d73718c',1,'matrix_seq.h']]],
   ['dec2bcd',['dec2bcd',['../ds3231_8c.html#ad6f3dab74c04b5853d4ba71a3c140964',1,'ds3231.c']]],
   ['decrementto0slowclear',['DecrementTo0SlowClear',['../diode__matrix_8h.html#a9645b39049a92b3293a4a482668b8be4',1,'diode_matrix.h']]],
   ['diodematrixinit',['DiodeMatrixInit',['../diode__matrix_8h.html#aa84276337dd265eb40386e4b8204013f',1,'diode_matrix.h']]],

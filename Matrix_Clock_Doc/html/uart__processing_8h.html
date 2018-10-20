@@ -90,6 +90,7 @@ $(document).ready(function(){initNavTree('uart__processing_8h.html','');});
 <code>#include &quot;<a class="el" href="mkuart_8h.html">mkuart.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="matrix__seq_8h.html">../../seq/matrix_seq.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ds3231_8h.html">../ds3231.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="text__eeprom_8h.html">../text_eeprom.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -114,12 +115,15 @@ Macros</h2></td></tr>
 <tr class="memitem:a27f0e9d965d44228e76473c63a74e26f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a27f0e9d965d44228e76473c63a74e26f">VERSION_CODE</a>&#160;&#160;&#160;'v'</td></tr>
 <tr class="memdesc:a27f0e9d965d44228e76473c63a74e26f"><td class="mdescLeft">&#160;</td><td class="mdescRight">frame header code of version of app  <a href="#a27f0e9d965d44228e76473c63a74e26f">More...</a><br /></td></tr>
 <tr class="separator:a27f0e9d965d44228e76473c63a74e26f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e1c964667c1b62c2adf564132cd4d7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a2e1c964667c1b62c2adf564132cd4d7f">VERSION_TEXT</a>&#160;&#160;&#160;PSTR(&quot;Matrix Clock PixBit v0.95 by MiSt &quot;)</td></tr>
-<tr class="memdesc:a2e1c964667c1b62c2adf564132cd4d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">output text of version of app  <a href="#a2e1c964667c1b62c2adf564132cd4d7f">More...</a><br /></td></tr>
+<tr class="memitem:a2e1c964667c1b62c2adf564132cd4d7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a2e1c964667c1b62c2adf564132cd4d7f">VERSION_TEXT</a>&#160;&#160;&#160;PSTR(&quot;Matrix Clock PixBit v0.953 by MiSt, compiled 20-10-2018&quot;)</td></tr>
+<tr class="memdesc:a2e1c964667c1b62c2adf564132cd4d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">output text of version of app, to manual update before compile  <a href="#a2e1c964667c1b62c2adf564132cd4d7f">More...</a><br /></td></tr>
 <tr class="separator:a2e1c964667c1b62c2adf564132cd4d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29b114b6b70277b6e0215f975c842d33"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a29b114b6b70277b6e0215f975c842d33">RESET_CODE</a>&#160;&#160;&#160;'r'</td></tr>
 <tr class="memdesc:a29b114b6b70277b6e0215f975c842d33"><td class="mdescLeft">&#160;</td><td class="mdescRight">frame header code of reset device  <a href="#a29b114b6b70277b6e0215f975c842d33">More...</a><br /></td></tr>
 <tr class="separator:a29b114b6b70277b6e0215f975c842d33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06395db20fe92f69b0fc267d4670bd26"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a06395db20fe92f69b0fc267d4670bd26">MODIFY_DATE_CODE</a>&#160;&#160;&#160;'m'</td></tr>
+<tr class="memdesc:a06395db20fe92f69b0fc267d4670bd26"><td class="mdescLeft">&#160;</td><td class="mdescRight">frame header code of last time and date modification  <a href="#a06395db20fe92f69b0fc267d4670bd26">More...</a><br /></td></tr>
+<tr class="separator:a06395db20fe92f69b0fc267d4670bd26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17cef555060c77a5feac0acbae68cce3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a17cef555060c77a5feac0acbae68cce3">GOOD_COMMAND</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a17cef555060c77a5feac0acbae68cce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">code of good recognize the frame  <a href="#a17cef555060c77a5feac0acbae68cce3">More...</a><br /></td></tr>
 <tr class="separator:a17cef555060c77a5feac0acbae68cce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,7 +143,7 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
-<dl class="section rcs"><dt>Modified</dt><dd>2018-10-11 </dd></dl>
+<dl class="section rcs"><dt>Modified</dt><dd>2018-10-20 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2017-11-04 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.1</dd></dl>
 <p>Header file containing processing data from UART buffer. </p>
@@ -221,6 +225,22 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>frame header code of hour, date </p>
+
+</div>
+</div>
+<a id="a06395db20fe92f69b0fc267d4670bd26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06395db20fe92f69b0fc267d4670bd26">&#9670;&nbsp;</a></span>MODIFY_DATE_CODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MODIFY_DATE_CODE&#160;&#160;&#160;'m'</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>frame header code of last time and date modification </p>
 
 </div>
 </div>
@@ -327,12 +347,12 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define VERSION_TEXT&#160;&#160;&#160;PSTR(&quot;Matrix Clock PixBit v0.95 by MiSt &quot;)</td>
+          <td class="memname">#define VERSION_TEXT&#160;&#160;&#160;PSTR(&quot;Matrix Clock PixBit v0.953 by MiSt, compiled 20-10-2018&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>output text of version of app </p>
+<p>output text of version of app, to manual update before compile </p>
 
 </div>
 </div>

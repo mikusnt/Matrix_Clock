@@ -1,6 +1,7 @@
 var searchData=
 [
   ['readadctoadcdata',['ReadADCToADCData',['../some__devices_8h.html#af759822269409f7102b2123e3a294eb8',1,'some_devices.h']]],
+  ['readdatetimefromeeprom',['ReadDateTimeFromEEProm',['../date__time_8c.html#a8badc77d213044d1d87f3479c3c799ce',1,'ReadDateTimeFromEEProm(TimeDate *time):&#160;date_time.c'],['../date__time_8h.html#a8badc77d213044d1d87f3479c3c799ce',1,'ReadDateTimeFromEEProm(TimeDate *time):&#160;date_time.c']]],
   ['refreshbufferflag',['RefreshBufferFlag',['../diode__matrix_8h.html#afb47ff3cb70c99d953e54b4cd338ba38',1,'diode_matrix.h']]],
   ['registersinit',['RegistersInit',['../register_8c.html#ace7a27d184ecc91dc7c057b1372c3d9a',1,'RegistersInit():&#160;register.c'],['../register_8h.html#ace7a27d184ecc91dc7c057b1372c3d9a',1,'RegistersInit():&#160;register.c']]],
   ['relayclicking',['RelayClicking',['../relay_8c.html#a027d76159c34a2873aed58d96dc145db',1,'RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number):&#160;relay.c'],['../relay_8h.html#a027d76159c34a2873aed58d96dc145db',1,'RelayClicking(volatile Relay *relay, RelayClickType type, uint8_t number):&#160;relay.c']]],
@@ -14,5 +15,6 @@ var searchData=
   ['resetprogress',['ResetProgress',['../date__time_8c.html#abbc6010874bc1a71bde86a58a4f71139',1,'ResetProgress(TimeDate *t):&#160;date_time.c'],['../date__time_8h.html#a26e7a692d8d2c78f0b57d20c6ffec692',1,'ResetProgress(TimeDate *time):&#160;date_time.c']]],
   ['returnyvalue',['ReturnYValue',['../diode__matrix_8h.html#aac0b3fff4050cc226a59a0ea29c54b4e',1,'diode_matrix.h']]],
   ['roundbyte',['RoundByte',['../relay_8c.html#a6b31b9ac6986dd228db20d6cb14702e6',1,'relay.c']]],
+  ['rtctotextbuffer',['RTCToTextBuffer',['../matrix__seq_8h.html#ad1133017827eccad35f8c28c7eae54c1',1,'matrix_seq.h']]],
   ['runslowclearedpos',['RunSlowClearedPos',['../diode__matrix_8h.html#a1edf23bab792b67285433d90face7109',1,'diode_matrix.h']]]
 ];

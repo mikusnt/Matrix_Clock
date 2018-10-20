@@ -8,5 +8,5 @@ var relay_8c =
     [ "RelayTryClickMS", "relay_8c.html#af03ba0687ec1d4734e06be708c95a43f", null ],
     [ "RoundByte", "relay_8c.html#a6b31b9ac6986dd228db20d6cb14702e6", null ],
     [ "SetRelayState", "relay_8c.html#ad7cfe7b4a3c8859802408f187ffe61f2", null ],
-    [ "EEMEM", "relay_8c.html#a56b7a5e5ad7073b00dddcf703237a012", null ]
+    [ "EEMEM", "relay_8c.html#acb69f008aef573dee98dd84c9f05ef17", null ]
 ];

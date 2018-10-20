@@ -20,6 +20,7 @@ var searchData=
   ['minutes_5fregister',['MINUTES_REGISTER',['../ds3231_8h.html#ac9893386f3e769e7d903c08ed57fe302',1,'ds3231.h']]],
   ['mkuart_2ec',['mkuart.c',['../mkuart_8c.html',1,'']]],
   ['mkuart_2eh',['mkuart.h',['../mkuart_8h.html',1,'']]],
+  ['modify_5fdate_5fcode',['MODIFY_DATE_CODE',['../uart__processing_8h.html#a06395db20fe92f69b0fc267d4670bd26',1,'uart_processing.h']]],
   ['modify_5fseq_5fcode',['MODIFY_SEQ_CODE',['../uart__processing_8h.html#a5207262d997f43609346404f540915b6',1,'uart_processing.h']]],
   ['month_5fmask',['MONTH_MASK',['../ds3231_8h.html#ae5c75c53799afd1f4169f161fc3f1847',1,'ds3231.h']]],
   ['months_5fregister',['MONTHS_REGISTER',['../ds3231_8h.html#a5bea25ca51243026436f0f7baf84ac7d',1,'ds3231.h']]],

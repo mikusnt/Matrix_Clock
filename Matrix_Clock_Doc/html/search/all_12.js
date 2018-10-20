@@ -1,8 +1,11 @@
 var searchData=
 [
+  ['taskreadtext',['TaskReadText',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a69f2fa0df2601446310fcb178bbe23a9',1,'matrix_seq.h']]],
   ['taskrelaymode',['TaskRelayMode',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a0765b7834fdbf3c5bb3cf038fc79ffc1',1,'matrix_seq.h']]],
   ['taskrelaynumber',['TaskRelayNumber',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a1a7477d6691d5ed2a3dffd0fbf8c0adf',1,'matrix_seq.h']]],
   ['tasksetpix',['TaskSetPix',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a91e058bcff2914a008cddc5a193311ae',1,'matrix_seq.h']]],
+  ['tasksettext',['TaskSetText',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4ad49a4fcf12fd07bcc2972a3a8f06e786',1,'matrix_seq.h']]],
+  ['taskwritetext',['TaskWriteText',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a6fd7d57df7c191a4c0669b6a0c2a5fca',1,'matrix_seq.h']]],
   ['temperature_5fregister',['TEMPERATURE_REGISTER',['../ds3231_8h.html#a4c4954f4eaa324d87b28ee5f3d1b57db',1,'ds3231.h']]],
   ['test_5fmatrixbuffer',['Test_MatrixBuffer',['../tests_8c.html#aac59f34362c59a39f550aea5c8bf5584',1,'Test_MatrixBuffer(volatile DiodeMatrix *m):&#160;tests.c'],['../tests_8h.html#aac59f34362c59a39f550aea5c8bf5584',1,'Test_MatrixBuffer(volatile DiodeMatrix *m):&#160;tests.c']]],
   ['test_5frelay_5fhours',['Test_Relay_Hours',['../tests_8c.html#a2d32d220a2f80e9f4a2b1d4994624d10',1,'Test_Relay_Hours(volatile Relay *r):&#160;tests.c'],['../tests_8h.html#a2d32d220a2f80e9f4a2b1d4994624d10',1,'Test_Relay_Hours(volatile Relay *r):&#160;tests.c']]],
@@ -11,7 +14,11 @@ var searchData=
   ['tests_2ec',['tests.c',['../tests_8c.html',1,'']]],
   ['tests_2eh',['tests.h',['../tests_8h.html',1,'']]],
   ['text_5fbuffer_5fsize',['TEXT_BUFFER_SIZE',['../matrix__seq_8h.html#a9f31e20d2d4901e0ec1412ecabde8c3a',1,'matrix_seq.h']]],
+  ['text_5feeprom_2ec',['text_eeprom.c',['../text__eeprom_8c.html',1,'']]],
+  ['text_5feeprom_2eh',['text_eeprom.h',['../text__eeprom_8h.html',1,'']]],
+  ['text_5feeprom_5fsize',['TEXT_EEPROM_SIZE',['../text__eeprom_8h.html#afe5d124329bc2a6a50f165bed0fb9324',1,'text_eeprom.h']]],
   ['text_5fnumber',['TEXT_NUMBER',['../alphabet_8h.html#aa286ae1b2e6c7692574826b616701649',1,'alphabet.h']]],
+  ['texteeprominit',['TextEEPromInit',['../text__eeprom_8c.html#ab6558dcb7df0ef3078544a3a2a1a0a03',1,'TextEEPromInit():&#160;text_eeprom.c'],['../text__eeprom_8h.html#ab6558dcb7df0ef3078544a3a2a1a0a03',1,'TextEEPromInit():&#160;text_eeprom.c']]],
   ['time_5fdecrement_5fms',['TIME_DECREMENT_MS',['../date__time_8h.html#a42a0dfc06e7a0a1f00e0e002daf2b903',1,'date_time.h']]],
   ['timedate',['TimeDate',['../struct_time_date.html',1,'']]],
   ['timeh0pos',['TimeH0Pos',['../date__time_8h.html#a1e7190c4c97c0365c7706601794ffd97ab0401d97013236632e1e58f522570687',1,'date_time.h']]],

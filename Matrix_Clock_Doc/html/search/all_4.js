@@ -6,6 +6,7 @@ var searchData=
   ['data_5ftypes_2eh',['data_types.h',['../data__types_8h.html',1,'']]],
   ['date_5ftime_2ec',['date_time.c',['../date__time_8c.html',1,'']]],
   ['date_5ftime_2eh',['date_time.h',['../date__time_8h.html',1,'']]],
+  ['datetotextbuffer',['DateToTextBuffer',['../matrix__seq_8h.html#a8a741dacfe0106b0a514f0505d73718c',1,'matrix_seq.h']]],
   ['dayofwk_5fregister',['DAYOFWK_REGISTER',['../ds3231_8h.html#a979f4e469cd55f3e4328688ba86d8d89',1,'ds3231.h']]],
   ['days_5fregister',['DAYS_REGISTER',['../ds3231_8h.html#a4f81b66793bade90a9d8376fedd35a0c',1,'ds3231.h']]],
   ['dec2bcd',['dec2bcd',['../ds3231_8c.html#ad6f3dab74c04b5853d4ba71a3c140964',1,'ds3231.c']]],

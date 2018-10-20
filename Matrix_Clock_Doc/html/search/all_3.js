@@ -9,5 +9,6 @@ var searchData=
   ['conv',['CONV',['../ds3231_8h.html#a0538377e68aa283fbad42f747bb6dd82',1,'ds3231.h']]],
   ['copydatetime',['CopyDateTime',['../date__time_8c.html#adbc4925650f333499f5f13ae176f7599',1,'CopyDateTime(TimeDate *from, TimeDate *to):&#160;date_time.c'],['../date__time_8h.html#adbc4925650f333499f5f13ae176f7599',1,'CopyDateTime(TimeDate *from, TimeDate *to):&#160;date_time.c']]],
   ['copyfromroundtobuffer',['CopyFromRoundToBuffer',['../diode__matrix_8c.html#afbe4610ba1172db58361947f878cd828',1,'CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round_pos, uint8_t x_buffer_pos):&#160;diode_matrix.c'],['../diode__matrix_8h.html#afbe4610ba1172db58361947f878cd828',1,'CopyFromRoundToBuffer(volatile DiodeMatrix *m, uint8_t y_round_pos, uint8_t x_buffer_pos):&#160;diode_matrix.c']]],
-  ['cttextbuffer',['ctTextBuffer',['../matrix__seq_8c.html#a42fdf0b401b08840abc478f0f18318fb',1,'ctTextBuffer():&#160;matrix_seq.c'],['../matrix__seq_8h.html#a42fdf0b401b08840abc478f0f18318fb',1,'ctTextBuffer():&#160;matrix_seq.c']]]
+  ['cttextbuffer',['ctTextBuffer',['../matrix__seq_8c.html#a42fdf0b401b08840abc478f0f18318fb',1,'ctTextBuffer():&#160;matrix_seq.c'],['../matrix__seq_8h.html#a42fdf0b401b08840abc478f0f18318fb',1,'ctTextBuffer():&#160;matrix_seq.c']]],
+  ['cttextview',['ctTextView',['../text__eeprom_8c.html#acd9769f6acd6201bc63c70acd30becb1',1,'ctTextView():&#160;text_eeprom.c'],['../text__eeprom_8h.html#acd9769f6acd6201bc63c70acd30becb1',1,'ctTextView():&#160;text_eeprom.c']]]
 ];

@@ -14,7 +14,9 @@ var date__time_8h =
     [ "CopyDateTime", "date__time_8h.html#adbc4925650f333499f5f13ae176f7599", null ],
     [ "LoadToDecimalTime", "date__time_8h.html#a6a8e8cb1f550c6f92bd42c1d9f0ca559", null ],
     [ "LoadToSingleTime", "date__time_8h.html#a283df23ff43249b130f2beff0d604ead", null ],
+    [ "ReadDateTimeFromEEProm", "date__time_8h.html#a8badc77d213044d1d87f3479c3c799ce", null ],
     [ "ResetProgress", "date__time_8h.html#a26e7a692d8d2c78f0b57d20c6ffec692", null ],
     [ "TimeInit", "date__time_8h.html#adb7b0840a9c20d5f4d6bab7517d62343", null ],
-    [ "TryDecrementTime", "date__time_8h.html#a8fd767ea0446fe2d20e629153c348a44", null ]
+    [ "TryDecrementTime", "date__time_8h.html#a8fd767ea0446fe2d20e629153c348a44", null ],
+    [ "WriteDateTimeToEEProm", "date__time_8h.html#a6a11f53d862fe361d9812a8702856e39", null ]
 ];
