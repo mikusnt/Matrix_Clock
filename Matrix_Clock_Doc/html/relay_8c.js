@@ -7,6 +7,6 @@ var relay_8c =
     [ "RelaySW", "relay_8c.html#ad1779d1446e13ad909b96732f34df5d0", null ],
     [ "RelayTryClickMS", "relay_8c.html#af03ba0687ec1d4734e06be708c95a43f", null ],
     [ "RoundByte", "relay_8c.html#a6b31b9ac6986dd228db20d6cb14702e6", null ],
-    [ "SetRelayState", "relay_8c.html#ad7cfe7b4a3c8859802408f187ffe61f2", null ],
+    [ "SetRelayState", "relay_8c.html#a992a1ed06fc20a493acb6a700947a0c7", null ],
     [ "EEMEM", "relay_8c.html#acb69f008aef573dee98dd84c9f05ef17", null ]
 ];

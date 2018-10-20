@@ -36,17 +36,6 @@ static inline void SecondsBinary(volatile DiodeMatrix *m, volatile uint8_t secon
 	}
 } // END static inline void SecondsBinary
 
-/*! load LED point of relay mode to one diode of matrix buffer
- *  @param		m pointer of DiodeMatrix buffer
- *  @param		r pointer of Relay structure*/
-static inline void SetRelayModeToMatrix(volatile DiodeMatrix *m, volatile Relay *r) {
-	if (r->eState == ON) {
-		m->uitBufferX[0] &= 0x7F;
-	} else {
-		m->uitBufferX[0] |= 0x80;
-	}
-} // END static inline void RelayMode
-
 /*! load one ASCII sign to matrix buffer
  *  @param		m pointer of DiodeMatrix structure
  *  @param		sign to load

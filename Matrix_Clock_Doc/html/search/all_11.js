@@ -16,8 +16,7 @@ var searchData=
   ['seqtextdebug',['SeqTextDebug',['../matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeeaff2c4ab0dce553589087b9de1d07166c',1,'matrix_seq.h']]],
   ['seqtimer',['SeqTimer',['../matrix__seq_8h.html#ae57af6b38831304867adeec4166d9eeea065c8c1ecbc02ee56e23f9f89b768c2d',1,'matrix_seq.h']]],
   ['setmoving',['SetMoving',['../diode__matrix_8c.html#a47acce13355008d6d98487a9da2d77c8',1,'SetMoving(volatile DiodeMatrix *m, bool isMoving):&#160;diode_matrix.c'],['../diode__matrix_8h.html#a47acce13355008d6d98487a9da2d77c8',1,'SetMoving(volatile DiodeMatrix *m, bool isMoving):&#160;diode_matrix.c']]],
-  ['setrelaymodetomatrix',['SetRelayModeToMatrix',['../matrix__seq_8c.html#aed88225bd9bb4cb0621af63bfcc1e974',1,'matrix_seq.c']]],
-  ['setrelaystate',['SetRelayState',['../relay_8c.html#ad7cfe7b4a3c8859802408f187ffe61f2',1,'SetRelayState(volatile Relay *relay, BinarySwitch eState):&#160;relay.c'],['../relay_8h.html#ad7cfe7b4a3c8859802408f187ffe61f2',1,'SetRelayState(volatile Relay *relay, BinarySwitch eState):&#160;relay.c']]],
+  ['setrelaystate',['SetRelayState',['../relay_8c.html#a992a1ed06fc20a493acb6a700947a0c7',1,'SetRelayState(volatile Relay *relay, RelayMode eState):&#160;relay.c'],['../relay_8h.html#a992a1ed06fc20a493acb6a700947a0c7',1,'SetRelayState(volatile Relay *relay, RelayMode eState):&#160;relay.c']]],
   ['setseqparams',['SetSeqParams',['../matrix__seq_8c.html#a9b56ede8ef9cc6d1ec98ef5b33e9f53e',1,'SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, TimeDate *RTCTime, volatile Relay *relay):&#160;matrix_seq.c'],['../matrix__seq_8h.html#a9b56ede8ef9cc6d1ec98ef5b33e9f53e',1,'SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, TimeDate *RTCTime, volatile Relay *relay):&#160;matrix_seq.c']]],
   ['setstatepoint',['SetStatePoint',['../matrix__seq_8c.html#a971ae91252054b0980045f938c3bb1af',1,'SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch state):&#160;matrix_seq.c'],['../matrix__seq_8h.html#a971ae91252054b0980045f938c3bb1af',1,'SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch state):&#160;matrix_seq.c']]],
   ['setybuffer',['SetYBuffer',['../diode__matrix_8c.html#acf2bee4b1089702b551d8de104ab1062',1,'SetYBuffer(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch value):&#160;diode_matrix.c'],['../diode__matrix_8h.html#acf2bee4b1089702b551d8de104ab1062',1,'SetYBuffer(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch value):&#160;diode_matrix.c']]],
@@ -31,5 +30,11 @@ var searchData=
   ['sqw_5fpin',['SQW_PIN',['../some__devices_8h.html#a871347c5959098ce664234d8e081e29f',1,'some_devices.h']]],
   ['sqw_5fport',['SQW_PORT',['../some__devices_8h.html#a8165c462bbe28004e1d8dd6a93c7a35c',1,'some_devices.h']]],
   ['start',['START',['../i2c__twi_8h.html#a3018c7600b7bb9866400596a56a57af7',1,'i2c_twi.h']]],
-  ['state_5fpos',['STATE_POS',['../matrix__seq_8h.html#ab8a960f4f32844be47f7fb5800247689',1,'matrix_seq.h']]]
+  ['state_5fpos',['STATE_POS',['../matrix__seq_8h.html#ab8a960f4f32844be47f7fb5800247689',1,'matrix_seq.h']]],
+  ['string_5f1',['string_1',['../alphabet_8c.html#a45c2a708858d8d47e40ed3ad43671829',1,'string_1():&#160;alphabet.c'],['../alphabet_8h.html#a45c2a708858d8d47e40ed3ad43671829',1,'string_1():&#160;alphabet.c']]],
+  ['string_5f2',['string_2',['../alphabet_8c.html#add008b2fedf440c5995336c03cb2e75a',1,'string_2():&#160;alphabet.c'],['../alphabet_8h.html#add008b2fedf440c5995336c03cb2e75a',1,'string_2():&#160;alphabet.c']]],
+  ['string_5f3',['string_3',['../alphabet_8c.html#ab4445e45da2575db91d41e18094cab5e',1,'string_3():&#160;alphabet.c'],['../alphabet_8h.html#ab4445e45da2575db91d41e18094cab5e',1,'string_3():&#160;alphabet.c']]],
+  ['string_5f4',['string_4',['../alphabet_8c.html#a4767f83a9bdc584536600b9e87543c47',1,'string_4():&#160;alphabet.c'],['../alphabet_8h.html#a4767f83a9bdc584536600b9e87543c47',1,'string_4():&#160;alphabet.c']]],
+  ['string_5f5',['string_5',['../alphabet_8c.html#aa226f5f38b5cace47946796cd2a92987',1,'string_5():&#160;alphabet.c'],['../alphabet_8h.html#aa226f5f38b5cace47946796cd2a92987',1,'string_5():&#160;alphabet.c']]],
+  ['string_5ftable',['string_table',['../alphabet_8c.html#aca5f22e5d43bce4df77a51d3dab2c3e3',1,'string_table():&#160;alphabet.c'],['../alphabet_8h.html#aab6fd6a409d5fcd5f492fd033856d3d9',1,'string_table():&#160;alphabet.c']]]
 ];

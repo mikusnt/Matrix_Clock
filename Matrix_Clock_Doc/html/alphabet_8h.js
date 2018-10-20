@@ -20,5 +20,11 @@ var alphabet_8h =
     [ "LoadIntSignLength", "alphabet_8h.html#afa4c7fe92d184cb31da35713daa9e39b", null ],
     [ "LoadSign", "alphabet_8h.html#a1e0d9925248c5e2be9a4f4ca09c72d19", null ],
     [ "LoadText", "alphabet_8h.html#a56896e66b278b9cd39bf462857bd8583", null ],
-    [ "PROGMEM", "alphabet_8h.html#aae61d4150b7abf2ff1114742f3002ecd", null ]
+    [ "PROGMEM", "alphabet_8h.html#a9c6cc763a9b7ec58e65d734a25300665", null ],
+    [ "string_1", "alphabet_8h.html#a45c2a708858d8d47e40ed3ad43671829", null ],
+    [ "string_2", "alphabet_8h.html#add008b2fedf440c5995336c03cb2e75a", null ],
+    [ "string_3", "alphabet_8h.html#ab4445e45da2575db91d41e18094cab5e", null ],
+    [ "string_4", "alphabet_8h.html#a4767f83a9bdc584536600b9e87543c47", null ],
+    [ "string_5", "alphabet_8h.html#aa226f5f38b5cace47946796cd2a92987", null ],
+    [ "string_table", "alphabet_8h.html#aab6fd6a409d5fcd5f492fd033856d3d9", null ]
 ];

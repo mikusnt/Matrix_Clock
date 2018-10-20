@@ -84,12 +84,12 @@ extern void LoadSign(char cSign, uint8_t *uiStart_s, uint8_t *uiStop_s, uint8_t 
 extern uint8_t LoadAnimationsByte(AnimationsCode eSign, uint8_t uiByteNr);
 
 
-extern const char string_1[MAX_TEXT_SIZE] PROGMEM;
-extern const char string_2[MAX_TEXT_SIZE] PROGMEM;
-extern const char string_3[MAX_TEXT_SIZE] PROGMEM;
-extern const char string_4[MAX_TEXT_SIZE] PROGMEM;
-extern const char string_5[MAX_TEXT_SIZE] PROGMEM;
-extern PGM_P const string_table[TEXT_NUMBER] PROGMEM;
+extern const char PROGMEM string_1[MAX_TEXT_SIZE];
+extern const char PROGMEM string_2[MAX_TEXT_SIZE];
+extern const char PROGMEM string_3[MAX_TEXT_SIZE];
+extern const char PROGMEM string_4[MAX_TEXT_SIZE];
+extern const char PROGMEM string_5[MAX_TEXT_SIZE];
+extern PGM_P const PROGMEM string_table[TEXT_NUMBER];
 
 //! load text from PROGMEM to buffer
 extern void LoadText(char buffer[], uint8_t uiTextNr );

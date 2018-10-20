@@ -92,8 +92,6 @@ $(document).ready(function(){initNavTree('matrix__seq_8c.html','');});
 Functions</h2></td></tr>
 <tr class="memitem:a9c6e28e22ff5b9f740112dfd08559a2d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8c.html#a9c6e28e22ff5b9f740112dfd08559a2d">SecondsBinary</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, volatile uint8_t seconds)</td></tr>
 <tr class="separator:a9c6e28e22ff5b9f740112dfd08559a2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed88225bd9bb4cb0621af63bfcc1e974"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8c.html#aed88225bd9bb4cb0621af63bfcc1e974">SetRelayModeToMatrix</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, volatile <a class="el" href="struct_relay.html">Relay</a> *r)</td></tr>
-<tr class="separator:aed88225bd9bb4cb0621af63bfcc1e974"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb8cb4066628f22f85ea36fc6b28eab7"><td class="memItemLeft" align="right" valign="top">static uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8c.html#adb8cb4066628f22f85ea36fc6b28eab7">InsertCharToMatrix</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, char sign, uint16_t x_pos)</td></tr>
 <tr class="separator:adb8cb4066628f22f85ea36fc6b28eab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5adff126ffe397d52f0693ee93d5b07"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix__seq_8c.html#ac5adff126ffe397d52f0693ee93d5b07">InsertCharToRoundBuffer</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, char sign, uint8_t y_pos)</td></tr>
@@ -507,49 +505,6 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> structure </td></tr>
     <tr><td class="paramname">seconds</td><td>to load </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aed88225bd9bb4cb0621af63bfcc1e974"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed88225bd9bb4cb0621af63bfcc1e974">&#9670;&nbsp;</a></span>SetRelayModeToMatrix()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void SetRelayModeToMatrix </td>
-          <td>(</td>
-          <td class="paramtype">volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *&#160;</td>
-          <td class="paramname"><em>m</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">volatile <a class="el" href="struct_relay.html">Relay</a> *&#160;</td>
-          <td class="paramname"><em>r</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>load LED point of relay mode to one diode of matrix buffer </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">m</td><td>pointer of <a class="el" href="struct_diode_matrix.html" title="main structure of LED Matrix ">DiodeMatrix</a> buffer </td></tr>
-    <tr><td class="paramname">r</td><td>pointer of <a class="el" href="struct_relay.html" title="main relay structure ">Relay</a> structure </td></tr>
   </table>
   </dd>
 </dl>

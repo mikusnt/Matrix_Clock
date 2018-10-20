@@ -97,9 +97,9 @@ typedef enum {
 } RelayClickType;
 
 typedef enum {
-	RelayOFF = 0,
-	RelaySilent = 1,
-	RelayBinaryFull = 2
+	RelayOFF = 0,		//!< relay not work
+	RelaySilent = 1,	//!< relay clicks one per hour
+	RelayBinaryFull = 2 //!< relay clicks hours and quaters by binary code
 } RelayMode;
 
 //! main relay structure

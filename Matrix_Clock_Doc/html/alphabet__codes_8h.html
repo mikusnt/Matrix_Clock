@@ -91,18 +91,26 @@ $(document).ready(function(){initNavTree('alphabet__codes_8h.html','');});
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a6572f1706059832f94025fa12c6c45ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alphabet__codes_8h.html#a6572f1706059832f94025fa12c6c45ed">ALPHABET_SIZE</a>&#160;&#160;&#160;91</td></tr>
+<tr class="memitem:a6572f1706059832f94025fa12c6c45ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alphabet__codes_8h.html#a6572f1706059832f94025fa12c6c45ed">ALPHABET_SIZE</a>&#160;&#160;&#160;256</td></tr>
 <tr class="memdesc:a6572f1706059832f94025fa12c6c45ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of chars in alphabet table  <a href="#a6572f1706059832f94025fa12c6c45ed">More...</a><br /></td></tr>
 <tr class="separator:a6572f1706059832f94025fa12c6c45ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a03218902c4f70e16dfd8d5296e57bf0d"><td class="memItemLeft" align="right" valign="top">const uint8_t uiAlphabet [<a class="el" href="alphabet__codes_8h.html#a6572f1706059832f94025fa12c6c45ed">ALPHABET_SIZE</a>][5]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alphabet__codes_8h.html#a03218902c4f70e16dfd8d5296e57bf0d">PROGMEM</a></td></tr>
-<tr class="memdesc:a03218902c4f70e16dfd8d5296e57bf0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">all alphabet chars and special chars  <a href="#a03218902c4f70e16dfd8d5296e57bf0d">More...</a><br /></td></tr>
-<tr class="separator:a03218902c4f70e16dfd8d5296e57bf0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a667536cad60e07da0d1f49f5f6acb56d"><td class="memItemLeft" align="right" valign="top">const uint8_t <a class="el" href="alphabet__codes_8c.html#a03218902c4f70e16dfd8d5296e57bf0d">PROGMEM</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alphabet__codes_8h.html#a667536cad60e07da0d1f49f5f6acb56d">uiAlphabet</a> [<a class="el" href="alphabet__codes_8h.html#a6572f1706059832f94025fa12c6c45ed">ALPHABET_SIZE</a>][5]</td></tr>
+<tr class="memdesc:a667536cad60e07da0d1f49f5f6acb56d"><td class="mdescLeft">&#160;</td><td class="mdescRight">all alphabet chars and special chars  <a href="#a667536cad60e07da0d1f49f5f6acb56d">More...</a><br /></td></tr>
+<tr class="separator:a667536cad60e07da0d1f49f5f6acb56d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceb7c50595e813badce9558a14892892"><td class="memItemLeft" align="right" valign="top">const uint8_t <a class="el" href="alphabet__codes_8c.html#a03218902c4f70e16dfd8d5296e57bf0d">PROGMEM</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alphabet__codes_8h.html#aceb7c50595e813badce9558a14892892">uiAlLength</a> [<a class="el" href="alphabet__codes_8h.html#a6572f1706059832f94025fa12c6c45ed">ALPHABET_SIZE</a>]</td></tr>
+<tr class="memdesc:aceb7c50595e813badce9558a14892892"><td class="mdescLeft">&#160;</td><td class="mdescRight">vertical length of uiAlphabet chars  <a href="#aceb7c50595e813badce9558a14892892">More...</a><br /></td></tr>
+<tr class="separator:aceb7c50595e813badce9558a14892892"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
+ <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a></dd></dl>
+<dl class="section rcs"><dt>Created</dt><dd>2018-10-20 </dd></dl>
+<p>Header file containing byte pixels table (Alphabet) of chars and chars byte length in PROGMEM. <br />
+ Created by Alphabet_Generator.</p>
+<dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a></dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2018-05-18 </dd></dl>
 <p>Header file containing byte pixels table (Alphabet) of chars and chars byte length in PROGMEM. </p>
@@ -114,7 +122,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define ALPHABET_SIZE&#160;&#160;&#160;91</td>
+          <td class="memname">#define ALPHABET_SIZE&#160;&#160;&#160;256</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -124,22 +132,35 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a03218902c4f70e16dfd8d5296e57bf0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03218902c4f70e16dfd8d5296e57bf0d">&#9670;&nbsp;</a></span>PROGMEM</h2>
+<a id="aceb7c50595e813badce9558a14892892"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceb7c50595e813badce9558a14892892">&#9670;&nbsp;</a></span>uiAlLength</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const uint8_t uiAlLength [<a class="el" href="alphabet__codes_8h.html#a6572f1706059832f94025fa12c6c45ed">ALPHABET_SIZE</a>] PROGMEM</td>
+          <td class="memname">const uint8_t uiAlLength</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>vertical length of uiAlphabet chars </p>
+
+</div>
+</div>
+<a id="a667536cad60e07da0d1f49f5f6acb56d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a667536cad60e07da0d1f49f5f6acb56d">&#9670;&nbsp;</a></span>uiAlphabet</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t <a class="el" href="alphabet__codes_8c.html#a03218902c4f70e16dfd8d5296e57bf0d">PROGMEM</a> uiAlphabet[<a class="el" href="alphabet__codes_8h.html#a6572f1706059832f94025fa12c6c45ed">ALPHABET_SIZE</a>][5]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>all alphabet chars and special chars </p>
-<p>vertical length of uiAlphabet chars</p>
-<p>all alphabet chars and special chars</p>
-<p>first coorinate in number of cha [0..ALPHABET_SIZE], second is char vertical length [0..4], all chars format is 5x8 </p>
 
 </div>
 </div>

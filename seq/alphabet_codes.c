@@ -67,12 +67,12 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 	{ 0x00, 0x00, 0x00, 0x00, 0x00 },
 	// Space| y = 32
 	{ 0x00, 0x00, 0x00, 0x00, 0x00 },
-	// !| y = 33
-	{ 0x00, 0x00, 0x5F, 0x00, 0x00 },
-	// "| y = 34
+	// "| y = 33
 	{ 0x02, 0x01, 0x02, 0x01, 0x00 },
-	// #| y = 35
+	// #| y = 34
 	{ 0x28, 0x7F, 0x14, 0x7F, 0x0A },
+	// !| y = 35
+	{ 0x00, 0x00, 0x5F, 0x00, 0x00 },
 	// $| y = 36
 	{ 0x24, 0x2A, 0x7F, 0x2A, 0x12 },
 	// %| y = 37
@@ -89,7 +89,7 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 	{ 0x00, 0x05, 0x02, 0x05, 0x00 },
 	// +| y = 43
 	{ 0x00, 0x08, 0x1C, 0x08, 0x00 },
-	// , single| y = 44
+	// ,| y = 44
 	{ 0x00, 0x80, 0x40, 0x00, 0x00 },
 	// -| y = 45
 	{ 0x00, 0x08, 0x08, 0x08, 0x00 },
@@ -108,7 +108,7 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 	// 4| y = 52
 	{ 0x18, 0x14, 0x12, 0x7F, 0x10 },
 	// 5| y = 53
-	{ 0x47, 0x45, 0x45, 0x45, 0x39 },
+	{ 0x27, 0x45, 0x45, 0x45, 0x39 },
 	// 6| y = 54
 	{ 0x3C, 0x4A, 0x49, 0x49, 0x30 },
 	// 7| y = 55
@@ -248,11 +248,11 @@ const uint8_t uiAlphabet[ALPHABET_SIZE][5] PROGMEM = {
 	// z| y = 122
 	{ 0x44, 0x64, 0x54, 0x4C, 0x44 },
 	// {| y = 123
-	{ 0x08, 0x36, 0x41, 0x41, 0x00 },
+	{ 0x00, 0x08, 0x36, 0x41, 0x00 },
 	// || y = 124
 	{ 0x00, 0x00, 0x7F, 0x00, 0x00 },
 	// }| y = 125
-	{ 0x41, 0x41, 0x36, 0x08, 0x00 },
+	{ 0x00, 0x41, 0x36, 0x08, 0x00 },
 	// ~| y = 126
 	{ 0x10, 0x08, 0x10, 0x20, 0x10 },
 	// Error| y = 127
@@ -549,9 +549,9 @@ const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM = {
 	1, 	// _empty| y = 30
 	1, 	// _empty| y = 31
 	1, 	// Space| y = 32
-	1, 	// !| y = 33
-	4, 	// "| y = 34
-	5, 	// #| y = 35
+	4, 	// "| y = 33
+	5, 	// #| y = 34
+	1, 	// !| y = 35
 	5, 	// $| y = 36
 	5, 	// %| y = 37
 	5, 	// &| y = 38
@@ -560,7 +560,7 @@ const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM = {
 	2, 	// )| y = 41
 	3, 	// *| y = 42
 	3, 	// +| y = 43
-	2, 	// , single| y = 44
+	2, 	// ,| y = 44
 	3, 	// -| y = 45
 	1, 	// .| y = 46
 	3, 	// /| y = 47
@@ -639,9 +639,9 @@ const uint8_t uiAlLength[ALPHABET_SIZE] PROGMEM = {
 	5, 	// x| y = 120
 	4, 	// y| y = 121
 	5, 	// z| y = 122
-	4, 	// {| y = 123
+	3, 	// {| y = 123
 	1, 	// || y = 124
-	4, 	// }| y = 125
+	3, 	// }| y = 125
 	5, 	// ~| y = 126
 	5, 	// Error| y = 127
 	5, 	// € Windows 1250 start| y = 128

@@ -99,8 +99,7 @@ int main (void) {
 	DS3231_Init();
 	//eActualSeq = SeqDeCounter;
 	SetSeqParams(&matrix, &actTime, &RTCTime, &relay);
-	//RelayStartClicking(&relay, 12, RelayDataMinutes);
-	RelayClicking(&relay, RelayClickSlow, 2);
+	RelayStartClicking(&relay, 15 * relay.eState, RelayDataMinutes);
 
 	wdt_enable(WDTO_120MS);
 	DS3231_GetTime(&RTCTime.uiHour, &RTCTime.uiMinute, &RTCTime.uiSecond);
@@ -187,8 +186,8 @@ int main (void) {
 					// loading time and devices state to matrix
 					if (bNewRoundRefresh){
 						LoadTimeToMatrix(&matrix, &actTime, &RTCTime);
-						SetStatePoint(&matrix, 6, relay.eState > 0);
-						SetStatePoint(&matrix, 5, relay.eState == 2);
+						SetStatePoint(&matrix, 6, relay.eState % 2);
+						SetStatePoint(&matrix, 5, relay.eState / 2);
 						SetStatePoint(&matrix, 0, BLUETOOTH_IS_ON());
 						bNewRoundRefresh = false;
 					}

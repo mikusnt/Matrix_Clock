@@ -254,14 +254,13 @@ void LoadText(char buffer[], uint8_t uiTextNr ) {
 	}
 } // END void LoadText*/
 
-const char string_1[MAX_TEXT_SIZE] PROGMEM = "Witamy na Roboday 2017\0";
-const char string_2[MAX_TEXT_SIZE] PROGMEM = "Wy\x88wietlacz Widmowy x7\0";
-const char string_3[MAX_TEXT_SIZE] PROGMEM = "Prowadz\x82\acy drKlaus\0";
-const char string_4[MAX_TEXT_SIZE] PROGMEM = "Zapraszamy do stoiska\x7F\0";
-const char string_5[MAX_TEXT_SIZE] PROGMEM = "Error no text/\0";
+const char PROGMEM string_1[MAX_TEXT_SIZE] = "Witamy na Roboday 2017\0";
+const char PROGMEM string_2[MAX_TEXT_SIZE] = "Wy\x88wietlacz Widmowy x7\0";
+const char PROGMEM string_3[MAX_TEXT_SIZE] = "Prowadz\x82\acy drKlaus\0";
+const char PROGMEM string_4[MAX_TEXT_SIZE] = "Zapraszamy do stoiska\x7F\0";
+const char PROGMEM string_5[MAX_TEXT_SIZE] = "Error no text/\0";
 
-PGM_P const string_table[] PROGMEM =
-{
+PGM_P const PROGMEM string_table[] = {
    string_1,
    string_2,
    string_3,

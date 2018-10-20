@@ -31,9 +31,14 @@ var relay_8h =
       [ "RelayDataMinutes", "relay_8h.html#a72da5ed5620d716227a28a590c29be3dad7c25ff857ab5952f0502dfd52098321", null ],
       [ "RelayDataNumber", "relay_8h.html#a72da5ed5620d716227a28a590c29be3da35e10b360346b842d42cd71ca4132162", null ]
     ] ],
+    [ "RelayMode", "relay_8h.html#a821030bf8247cfb185fa7a17b80430d9", [
+      [ "RelayOFF", "relay_8h.html#a821030bf8247cfb185fa7a17b80430d9ac64acabe6076fb8105c81b9c1c89decd", null ],
+      [ "RelaySilent", "relay_8h.html#a821030bf8247cfb185fa7a17b80430d9af2c4a9162f689811daa0252825d3e718", null ],
+      [ "RelayBinaryFull", "relay_8h.html#a821030bf8247cfb185fa7a17b80430d9ae8844f4806bf71e4667c9d8b7527a870", null ]
+    ] ],
     [ "RelayClicking", "relay_8h.html#a027d76159c34a2873aed58d96dc145db", null ],
     [ "RelayInit", "relay_8h.html#affcc0607926e8e696a4ac26cdb00b950", null ],
     [ "RelayStartClicking", "relay_8h.html#ae6f1144ad32f22176c38912ccde370e6", null ],
     [ "RelayTryClickMS", "relay_8h.html#af03ba0687ec1d4734e06be708c95a43f", null ],
-    [ "SetRelayState", "relay_8h.html#ad7cfe7b4a3c8859802408f187ffe61f2", null ]
+    [ "SetRelayState", "relay_8h.html#a992a1ed06fc20a493acb6a700947a0c7", null ]
 ];
