@@ -2,7 +2,7 @@
  * @file text_eeprom.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-16 $
+ * $Modified: 2018-10-20 $
  * $Created: 2018-10-16 $
  * @version 1.1
  *
@@ -18,9 +18,14 @@
 
 #define TEXT_EEPROM_SIZE 6
 
-extern char EEMEM eeText[TEXT_EEPROM_SIZE][TEXT_BUFFER_SIZE];
+extern char EEMEM eeTextView[TEXT_EEPROM_SIZE][TEXT_BUFFER_SIZE];
+extern char ctTextView[TEXT_EEPROM_SIZE][TEXT_BUFFER_SIZE];
 
-extern void WriteTextToEEProm(char *buffer, uint8_t bufferSize, uint8_t adr);
-extern void ReadTextFromEEProm(char *buffer, uint8_t bufferSize, uint8_t adr);
+// starts and period in minutes
+extern uint8_t EEMEM eeTextParams[TEXT_EEPROM_SIZE][2];
+extern uint8_t uitTextViewParams[TEXT_EEPROM_SIZE][2];
+
+extern void WriteTextToEEProm(uint8_t adr);
+extern void TextEEPromInit();
 
 #endif /* DEVICES_TEXT_EEPROM_H_ */

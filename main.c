@@ -2,9 +2,9 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-16 $
+ * $Modified: 2018-10-20 $
  * $Created: 2017-11-04 $
- * @version 0.952
+ * @version 0.953
  *
  * Project main file
  * @see readme.md
@@ -86,6 +86,7 @@ int main (void) {
 	PowerReduction();
 	RegistersInit();
 	DiodeMatrixInit(&matrix);
+	TextEEPromInit();
 	RelayInit(&relay);
 	Timer0Init();
 	Timer2Init();
@@ -140,6 +141,20 @@ int main (void) {
 						if ((RTCTime.uiSecond % 10) == 0) {
 							RTCToTextBuffer(&RTCTime, '\n');
 							uart_puts(ctTextBuffer);
+						}
+
+						// date and texts from eeprom buffer, first good cancels others in the same minute
+						for (uint8_t i = 0; i < TEXT_EEPROM_SIZE; i++) {
+							if ((RTCTime.uiSecond == 10) && (uitTextViewParams[i][1] > 0) && ((RTCTime.uiMinute % uitTextViewParams[i][1]) == uitTextViewParams[i][0])) {
+								if (i == 0) {
+									DateToTextBuffer(&RTCTime, 0);
+								} else {
+									memcpy(ctTextBuffer, &ctTextView[i], TEXT_BUFFER_SIZE);
+								}
+								eActualSeq = SeqText;
+								RunSlowClearedPos(&matrix);
+								break;
+							}
 						}
 						// display date every 5 minutes on 10 second
 						if ((RTCTime.uiSecond == 10) && ((RTCTime.uiMinute % 5) == 1)) {

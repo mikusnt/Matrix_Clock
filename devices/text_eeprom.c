@@ -6,20 +6,30 @@
 
 #include "text_eeprom.h"
 
-char EEMEM eeText[TEXT_EEPROM_SIZE][TEXT_BUFFER_SIZE] = {"Matrix Clock PixBit v0.952 by MiSt", "", "", "", "", ""};
+char EEMEM eeTextView[TEXT_EEPROM_SIZE][TEXT_BUFFER_SIZE] = {"", "Matrix Clock PixBit v0.953 by MiSt", "", "", "", ""};
+char ctTextView[TEXT_EEPROM_SIZE][TEXT_BUFFER_SIZE];
 
-void WriteTextToEEProm(char *buffer, uint8_t bufferSize, uint8_t adr) {
-	if (adr < TEXT_EEPROM_SIZE) {
-		eeprom_update_block(buffer, &eeText[adr], bufferSize);
+uint8_t EEMEM eeTextParams[TEXT_EEPROM_SIZE][2] = {{1, 5}, {1, 5}, {1, 5}, {1, 5}, {1, 5}, {1, 5}};
+uint8_t uitTextViewParams[TEXT_EEPROM_SIZE][2];
+
+void WriteTextToEEProm(uint8_t addr) {
+	if (addr < TEXT_EEPROM_SIZE) {
+		eeprom_update_block(&uitTextViewParams[addr], &eeTextParams[addr], 2);
+		eeprom_busy_wait();
+
+		eeprom_update_block(&ctTextView[addr], &eeTextView[addr], TEXT_BUFFER_SIZE);
 		eeprom_busy_wait();
 	}
+
+
 } // END void WriteTextToEEProm
 
-void ReadTextFromEEProm(char *buffer, uint8_t bufferSize, uint8_t adr) {
-	if (adr < TEXT_EEPROM_SIZE) {
-		eeprom_read_block(buffer, &eeText[adr], bufferSize);
+void TextEEPromInit() {
+	for (uint8_t i = 0; i < TEXT_EEPROM_SIZE; i++) {
+		eeprom_read_block(&ctTextView[i], &eeTextView[i], TEXT_BUFFER_SIZE);
 		eeprom_busy_wait();
-	} else {
-		buffer[0] = 0;
+
+		eeprom_read_block(&uitTextViewParams[i], &eeTextParams[i], 2);
+		eeprom_busy_wait();
 	}
-}
+} // END void TextEEPromInit

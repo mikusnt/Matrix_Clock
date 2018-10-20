@@ -6,7 +6,7 @@
 
 #include "diode_matrix.h"
 
-const uint8_t gamma_o[MAX_GAMMA_BRIGHTNESS+1] = {0, 2, 4, 10, 19};
+const uint8_t gamma_o[MAX_GAMMA_BRIGHTNESS+1] = {0, 2, 2, 2, 2, 2, 2, 8, 10, 14, 19};
 
 /*! @param			m pointer of DiodeMatrix structure
  *  @param			isMoving new mode of displaying*/

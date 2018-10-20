@@ -20,7 +20,7 @@ Tasks:
   	tr9999$					relay, mode {1}, number of clicks {3} 
   	tm9$					relay state, 0 - off, 1 - on
   	tw9""$					write text to {1} position of eeprom
-  	ts999$					display text from eeprom on {1} position every {2} minutes
+  	ts999$					display text from eeprom on {1} position starts {1} minute every {1} minutes
   	te9$					read to bluetooth text from eeprom on {1} position
 
  Extras:

@@ -2,7 +2,7 @@
  * @file relay.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-15 $
+ * $Modified: 2018-10-20 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -64,10 +64,10 @@
 #define RELAY_HIGH_START_MS_NUMBER 35
 
 //! number of change relay state of start sequence when hours mode, should be even number
-#define RELAY_HIGH_START_H_COUNT 8
+#define RELAY_HIGH_START_H_COUNT 6
 
 //! number of change relay state of start sequence when minutes mode, should be even number
-#define RELAY_HIGH_START_M_COUNT 8
+#define RELAY_HIGH_START_M_COUNT 6
 
 //! number of change relay state of start sequence when numbers mode, should be even number
 #define RELAY_HIGH_START_N_COUNT 12

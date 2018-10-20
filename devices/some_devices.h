@@ -2,7 +2,7 @@
  * @file some_devices.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-11 $
+ * $Modified: 2018-10-20 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -109,8 +109,11 @@ inline void ReadADCToADCData(volatile ADCVoltageData *a, volatile uint8_t *brigh
 		a->uiActReadCount = 0;
 		a->ui16PhotoAvg = a->ui16PhotoSum / ADC_READ_COUNT;
 		a->ui16PhotoSum = 0;
-		HystData hystData = {800, 20, gamma_o[1], gamma_o[3], a->ui16PhotoAvg, bright_s};
+		uint8_t adr;
+		HystData hystData = {50, 20, 0, 1, a->ui16PhotoAvg % 100, &adr};
 		Hysteresis(&hystData);
+		adr += a->ui16PhotoAvg / 100;
+		*bright_s = gamma_o[adr];
 	}
 } // END inline void ReadADCToADCData
 

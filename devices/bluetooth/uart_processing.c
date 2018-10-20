@@ -133,18 +133,36 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 						case TaskWriteText: {
 							uint8_t addr = ctTextBuffer[1] - DIGIT_ASCII;
 							if ((i >= 2) && (addr < TEXT_EEPROM_SIZE)) {
-								WriteTextToEEProm(ctTextBuffer+2, TEXT_BUFFER_SIZE-2, addr);
+								memcpy(&ctTextView[addr], ctTextBuffer+2, TEXT_BUFFER_SIZE-2);
+								WriteTextToEEProm(addr);
 							} else
 								uiEndCode = ERROR_PARAMS;
+						} break;
+						case TaskSetText: {
+							uint8_t addr = ctTextBuffer[1] - DIGIT_ASCII;
+							uint8_t starts = ctTextBuffer[2] - DIGIT_ASCII;
+							uint8_t period = ctTextBuffer[3] - DIGIT_ASCII;
+							if ((i == 4) && (addr < TEXT_EEPROM_SIZE) && (starts < 10) && (period < 10)) {
+								uitTextViewParams[addr][0] = starts;
+								uitTextViewParams[addr][1] = period;
+								WriteTextToEEProm(addr);
+							} else {
+								uiEndCode = ERROR_PARAMS;
+							}
 						} break;
 						case TaskReadText: {
 							uint8_t addr = ctTextBuffer[1] - DIGIT_ASCII;
 							if ((i >= 2) && (addr < TEXT_EEPROM_SIZE)) {
-								ReadTextFromEEProm(ctTextBuffer, TEXT_BUFFER_SIZE, addr);
+								memcpy(ctTextBuffer, &ctTextView[addr], TEXT_BUFFER_SIZE);
 								if (ctTextBuffer[0] == 0)
 									uart_puts_p(PSTR("<empty>"));
-								else
+								else {
+									uart_puts_p(PSTR("\""));
 									uart_puts(ctTextBuffer);
+									uart_puts_p(PSTR("\""));
+								}
+								snprintf(ctTextBuffer, TEXT_BUFFER_SIZE, " starts %d, period %d", uitTextViewParams[addr][0], uitTextViewParams[addr][1]);
+								uart_puts(ctTextBuffer);
 							} else
 								uiEndCode = ERROR_PARAMS;
 						} break;

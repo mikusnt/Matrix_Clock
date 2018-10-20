@@ -15,7 +15,7 @@ Connected to:
 ## Main timer (matrix refresh)
 8bit Timer0  
 Mode: CTC  
-Refresh freq: 1kHz  
+Refresh freq: 100 Hz  
 Y levels of matrix: 8  
 Number of brightness level: 20  
 uC period of overflow: 20 000 000 / 100 / 8 / 20 =  1250  
