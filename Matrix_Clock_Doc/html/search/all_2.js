@@ -22,6 +22,12 @@ var searchData=
   ['bnewroundrefresh',['bNewRoundRefresh',['../main_8c.html#a67e62f04b80d7896d29bf0e47fe526de',1,'main.c']]],
   ['bnewtime',['bNewTime',['../main_8c.html#ac1232e2b90ff16fbded16cedf690cb98',1,'main.c']]],
   ['bquatertime',['bQuaterTime',['../main_8c.html#ae3e2233b50d807af98f759a7623cc7b3',1,'main.c']]],
+  ['bright_5faddr',['BRIGHT_ADDR',['../some__devices_8h.html#a9f922994ea3bb3eb66f51115a6367076',1,'some_devices.h']]],
+  ['bright_5fddr',['BRIGHT_DDR',['../some__devices_8h.html#af403abae8c1a2314d179c5484c75f75c',1,'some_devices.h']]],
+  ['bright_5foff',['BRIGHT_OFF',['../some__devices_8h.html#a938a6f91afcb85aa6bcc25bf171c8640',1,'some_devices.h']]],
+  ['bright_5fon',['BRIGHT_ON',['../some__devices_8h.html#af5bc6785ec49413fa400bbec79592bc8',1,'some_devices.h']]],
+  ['bright_5fport',['BRIGHT_PORT',['../some__devices_8h.html#ab2a841593725e6f30539b7e3e24965f8',1,'some_devices.h']]],
+  ['brightness_5fovf',['BRIGHTNESS_OVF',['../some__devices_8h.html#aa273d0e458e75bfa92ba0dcef7673f5b',1,'some_devices.h']]],
   ['buffer_5fx_5fsize',['BUFFER_X_SIZE',['../diode__matrix_8h.html#a73e92c4c2b0d21cc03685a7394c8a0b8',1,'diode_matrix.h']]],
   ['bwithdata',['bWithData',['../struct_relay.html#a9af75c402b1dadddb7159a00c902ebe9',1,'Relay']]],
   ['byteflag',['ByteFlag',['../union_byte_flag.html',1,'']]]

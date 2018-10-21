@@ -1,5 +1,15 @@
 var NAVTREEINDEX2 =
 {
+"struct_diode_matrix.html#ae8b3e8405ff773f1e60121e5a864006d":[2,0,2,0],
+"struct_flag.html":[2,0,3],
+"struct_flag.html#a269293d41f5c36dccdd01102ad037627":[2,0,3,3],
+"struct_flag.html#a33935a4845c9095dab5e05cd9a493c64":[2,0,3,5],
+"struct_flag.html#a72b5ae530cdd469bbba5c0360975645f":[2,0,3,7],
+"struct_flag.html#a9428f4229e2203fa643916ca52a3e663":[2,0,3,0],
+"struct_flag.html#aa455734327e76e0209738bb854f923d1":[2,0,3,6],
+"struct_flag.html#ac252074002fd2018498430cf078d3c48":[2,0,3,1],
+"struct_flag.html#ad34d4ef6759c8fd9602432f68937a151":[2,0,3,4],
+"struct_flag.html#af1d156a71c42f5c2c5b2554084b0b6de":[2,0,3,2],
 "struct_hyst_data.html":[2,0,4],
 "struct_hyst_data.html#a3b37b3cc87a31c5239da1bc003a67e01":[2,0,4,5],
 "struct_hyst_data.html#a4b9be9565698d8925fe1e6e0a68b83d3":[2,0,4,1],

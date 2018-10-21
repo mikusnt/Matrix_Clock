@@ -17,28 +17,38 @@
 #include "../ds3231.h"
 #include "../text_eeprom.h"
 
-// special byte codes
+/*
+ *
+ *		Special byte codes
+ *
+ */
+
 //! frame header code of rename sequence
 #define MODIFY_SEQ_CODE 's'
 //! frame header code of rename task
 #define DEVICE_TASK_CODE 't'
-//! frame header code of hour, date
-#define LOAD_DATE_CODE 'd'
+
 //! frame header code of spectrum analyzer
 #define SPECTRUM_CODE 0xF3
 //! frame header code of music track
 #define MUSIC_CODE 0xF4
+
+// Extras
+//! frame header code of hour, date
+#define LOAD_DATE_CODE 'd'
 //! frame header code of sending good data
 #define QUESTION_CODE 'q'
 //! frame header code of version of app
 #define VERSION_CODE 'v'
 //! output text of version of app, to manual update before compile
-#define VERSION_TEXT PSTR("Matrix Clock PixBit v0.953 by MiSt, compiled 20-10-2018")
+#define VERSION_TEXT PSTR("Matrix Clock PixBit v0.953 by MiSt, compiled 21-10-2018")
 //! frame header code of reset device
 #define RESET_CODE 'r'
 //! frame header code of last time and date modification
 #define MODIFY_DATE_CODE 'm'
-//! code of good recognize the frame
+
+// internal commands
+//! code of good frame and parameters recognize
 #define GOOD_COMMAND 0
 //! code of bad frame header code
 #define ERROR_COMMAND 1

@@ -16,7 +16,7 @@ void RegistersInit() {
 	LATCH_DDR |= LATCH_ADDR;
 	Y_ON();
 
-	for(int i = 0; i < 7; i++)
+	for(uint8_t i = 0; i < 7; i++)
 		SendRegisterY(OFF, false);
 	SendRegisterY(OFF, true);
 
@@ -25,7 +25,6 @@ void RegistersInit() {
 	X2_DATA_DDR |= X2_DATA_ADDR;
 	X3_DATA_DDR |= X3_DATA_ADDR;
 	X_CLK_DATA_DDR |= X_CLK_DATA_ADDR;
-
 } // END void RegistersInit
 
 

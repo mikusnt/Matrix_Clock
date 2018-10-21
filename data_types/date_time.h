@@ -82,9 +82,13 @@ extern void ResetProgress(TimeDate *time);
 extern void LoadToDecimalTime(TimeDate *t);
 //! one second decrement time when time greater than 0
 extern void TryDecrementTime(TimeDate *t);
+//! full copy from one location to second
 extern void CopyDateTime(TimeDate *from, TimeDate *to);
+//! write to EEPROM date (only) of set date and time
 extern void WriteDateTimeToEEProm(TimeDate *time);
+//! read from EEPROM date (only) of set date and time
 extern void ReadDateTimeFromEEProm(TimeDate *time);
+
 /*
  *
  *		Inline functions
@@ -111,6 +115,5 @@ inline void LoadToSingleTime(TimeDate *t) {
 	t->uitSingleTime[TimeS10Pos] = t->uiSecond / 10;
 	t->uitSingleTime[TimeS0Pos] = t->uiSecond % 10;
 } // END inline void LoadToSingleTime
-
 
 #endif /* DEVICES_DATE_TIME_H_ */

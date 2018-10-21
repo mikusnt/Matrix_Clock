@@ -43,6 +43,7 @@ var searchData=
   ['uiday',['uiDay',['../struct_time_date.html#a94661b6fb4a67577f5ab9de0a3030e94',1,'TimeDate']]],
   ['uidelta',['uiDelta',['../struct_hyst_data.html#a8e890a2aaab1e1fbecb17c629289387f',1,'HystData']]],
   ['uiendbufferposition',['uiEndBufferPosition',['../struct_diode_matrix.html#ac303a4830cf7f0b550bfd7b390681353',1,'DiodeMatrix']]],
+  ['uigammashift',['uiGammaShift',['../some__devices_8c.html#a8907fe1cec691dd172c121487e16c66c',1,'uiGammaShift():&#160;some_devices.c'],['../some__devices_8h.html#a8907fe1cec691dd172c121487e16c66c',1,'uiGammaShift():&#160;some_devices.c']]],
   ['uihour',['uiHour',['../struct_time_date.html#a4dfc72b6f435cd5c6e370f340b32fc52',1,'TimeDate']]],
   ['uimaxvalue',['uiMaxValue',['../struct_hyst_data.html#a74ffbbad198219ae95dff3020507e691',1,'HystData']]],
   ['uiminute',['uiMinute',['../struct_time_date.html#a06f411539d40b076543b038ebe4f813d',1,'TimeDate']]],
@@ -59,6 +60,7 @@ var searchData=
   ['uitroundbufferyx',['uitRoundBufferYX',['../struct_diode_matrix.html#a3c2938384753abea81c0a12148df4a5a',1,'DiodeMatrix']]],
   ['uitsingletime',['uitSingleTime',['../struct_time_date.html#a0e7d3783a024ea65990510885e8c4ee5',1,'TimeDate']]],
   ['uittextviewparams',['uitTextViewParams',['../text__eeprom_8c.html#aa11096ce928ba8c36fdce00c6840383b',1,'uitTextViewParams():&#160;text_eeprom.c'],['../text__eeprom_8h.html#aa11096ce928ba8c36fdce00c6840383b',1,'uitTextViewParams():&#160;text_eeprom.c']]],
+  ['uivbrightcount',['uivBrightCount',['../some__devices_8c.html#aa12a4686213b176b674e818b79a7219b',1,'uivBrightCount():&#160;some_devices.c'],['../some__devices_8h.html#aa12a4686213b176b674e818b79a7219b',1,'uivBrightCount():&#160;some_devices.c']]],
   ['uivmodifyy',['uivModifyY',['../main_8c.html#a41a2f7e61adfd52c7ee2f74c633e20a5',1,'main.c']]],
   ['uiyear',['uiYear',['../struct_time_date.html#ab236e1d5a63f3af1223aecf7a2425c77',1,'TimeDate']]],
   ['usart_5finit',['USART_Init',['../mkuart_8c.html#abcab7653206340cd128baaeef20814fa',1,'USART_Init(uint16_t baud):&#160;mkuart.c'],['../mkuart_8h.html#abcab7653206340cd128baaeef20814fa',1,'USART_Init(uint16_t baud):&#160;mkuart.c']]]

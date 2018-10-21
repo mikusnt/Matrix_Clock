@@ -6,5 +6,7 @@
 - [x] full ASCII alphabet table
 - [x] long counter mode with days, hours, minutes, seconds
 - [ ] spectrum analyzer
+- [ ] setting dots from draw in smartphone by bluetooth
 - [x] read and write date of time modification in eeprom
 - [x] few texts read and write in eeprom, programmable displaying
+- [ ] full tests and repair bugs

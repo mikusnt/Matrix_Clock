@@ -2,7 +2,7 @@
  * @file diode_matrix.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-20 $
+ * $Modified: 2018-10-21 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -29,14 +29,14 @@
 //! X size of hardware matrix buffer
 #define BUFFER_X_SIZE 32 * 8
 //! max number of brightness
-#define MAX_MATRIX_BRIGHTNESS 19
+#define MAX_MATRIX_BRIGHTNESS 39
 //! max brightness in gamma correction table
 //! @see gamma_o
 #define MAX_GAMMA_BRIGHTNESS 9
 //! time period to increment moving adress of buffer
 #define INC_POS_MS 100
 
-//! orange gamma correction
+//! orange brightness levels from ACD brightness / 100
 extern const uint8_t gamma_o[MAX_GAMMA_BRIGHTNESS+1];
 
 /*
@@ -66,6 +66,9 @@ typedef struct {
 	//! true - display clear matrix, increment start address to end buffer position
 	//! false - display first part of buffer and increment address to see end part of buffer
 	bool bIsMoving;
+	//! two Y levels of round buffer
+	//! first dim - [0] - visible, [1] - under visible matrix
+	//! second dim - max height of letter
 	uint8_t uitRoundBufferYX[2][5];
 	//! position of right to left clearing line, set by
 	//! @see 	RunSlowClearedPos

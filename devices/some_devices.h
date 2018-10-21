@@ -2,7 +2,7 @@
  * @file some_devices.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-20 $
+ * $Modified: 2018-10-21 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -41,6 +41,20 @@
 //! checks state of bluetooth power supply
 #define BLUETOOTH_IS_ON() (!(BLUETOOTH_PIN & BLUETOOTH_ADDR))
 
+//! direction register of pwm brightness output
+#define BRIGHT_DDR DDRD
+//! state register of pwm brightness output
+#define BRIGHT_PORT PORTD
+//! address register of pwm brightness output
+#define BRIGHT_ADDR (1 << PD5)
+//! set high state on pwm brightness output pin
+#define BRIGHT_ON() PORTD |= BRIGHT_ADDR
+//! set low state on pwm brightness output pin
+#define BRIGHT_OFF() PORTD &= ~BRIGHT_ADDR
+//! overflow value of brightness, must be equal or less than matrix brightness
+#define BRIGHTNESS_OVF ((MAX_MATRIX_BRIGHTNESS+1) / 2)
+
+
 #define SQW_DDR DDRC
 #define SQW_PORT PORTC
 #define SQW_PIN PINC
@@ -54,6 +68,7 @@
  *		Main data types
  *
  */
+
 //! Main ADC structure
 typedef struct {
 	//! actual number of measurements
@@ -64,14 +79,19 @@ typedef struct {
 	uint16_t ui16PhotoAvg;
 } ADCVoltageData;
 
+//! 0 or 1 to hystheresis on ReadADCToADCData
+//! @see ReadADCToADCData
 extern uint8_t uiGammaShift;
+//! incremented value of pwm brightness output to BRIGHTNESS_OVF value
+extern volatile uint8_t uivBrightCount;
+
 /*
  *
  *		Declaration of functions
  *
  */
 
-//! Initialize Timer0 to matrix refresh
+//! Initialize Timer0 to matrix refresh with bright pin
 extern void Timer0Init();
 //! Initialize Timer2 to cunting time between DS3231 interrupts
 extern void Timer2Init();

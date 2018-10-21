@@ -7,16 +7,19 @@
 #include "some_devices.h"
 
 uint8_t uiGammaShift;
+volatile uint8_t uivBrightCount;
 
 /*! interrupt period is 1250 cycles*/
 void Timer0Init() {
 	// CTC mode
 	TCCR0A |= (1 << WGM01);
-	// prescaler 64
-	TCCR0B |= (1 << CS01) | (1 << CS00);
+	// prescaler 8
+	TCCR0B |= (1 << CS01);
 	// unlock interrupt
 	TIMSK0 |= (1 << OCIE0A);
-	OCR0A = 30;
+	OCR0A = 62;
+	BRIGHT_DDR |= BRIGHT_ADDR;
+	BRIGHT_OFF();
 } // END void Timer0Init
 
 //! 1ms period

@@ -1,8 +1,5 @@
 #include "uart_processing.h"
 
-//! zamienia znaki ASCII trzech cyfr na liczbe i zapisuje do poczatku bufora jesli
-//! miesci sie na jednym bajcie
-//! @return 		dwubajtowa liczba bedaca wynikiem scalania ASCII
 //! rename ASCII chars last three signs and save to beginning of buffer
 //! @return 		two byte number from ASCII codes
 static inline uint16_t RelayThreeToOne(char buffer[4]) {
@@ -13,7 +10,9 @@ static inline uint16_t RelayThreeToOne(char buffer[4]) {
 	return temp;
 }
 
-
+/*! @param		m pointer of DiodeMatrix structure
+ *  @param		relay pointer of Relay structure
+ *  @param		time pointer of actual time structure */
 extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time) {
 	// load command when are unreaded data
 	if (UART_FirstEndFlag && IsUnreadData()) {
@@ -21,6 +20,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 		uint8_t uiEndCode = GOOD_COMMAND;
 		uint8_t uiCode = ' ';
 
+		// delete space signs
 		while (uiCode == ' ')
 			uiCode = uart_getc();
 
@@ -57,7 +57,6 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 					}
 					eActualSeq = ctTextBuffer[0];
 					if ((eActualSeq == SeqText) || (eActualSeq == SeqTextDebug)) {
-						// przesuwanie napisu o 1 w lewo
 						// shift buffer to left
 						i = 0;
 						while(ctTextBuffer[i] != 0) {

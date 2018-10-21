@@ -80,7 +80,8 @@ $(document).ready(function(){initNavTree('some__devices_8c.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">some_devices.c File Reference</div>  </div>
 </div><!--header-->
@@ -90,7 +91,7 @@ $(document).ready(function(){initNavTree('some__devices_8c.html','');});
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aba017025ab450fd915cb22f19c6ff87b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8c.html#aba017025ab450fd915cb22f19c6ff87b">Timer0Init</a> ()</td></tr>
-<tr class="memdesc:aba017025ab450fd915cb22f19c6ff87b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize Timer0 to matrix refresh.  <a href="#aba017025ab450fd915cb22f19c6ff87b">More...</a><br /></td></tr>
+<tr class="memdesc:aba017025ab450fd915cb22f19c6ff87b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize Timer0 to matrix refresh with bright pin.  <a href="#aba017025ab450fd915cb22f19c6ff87b">More...</a><br /></td></tr>
 <tr class="separator:aba017025ab450fd915cb22f19c6ff87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8df3b0bec1a50af5a7014dc8ac6fb438"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8c.html#a8df3b0bec1a50af5a7014dc8ac6fb438">Timer2Init</a> ()</td></tr>
 <tr class="memdesc:a8df3b0bec1a50af5a7014dc8ac6fb438"><td class="mdescLeft">&#160;</td><td class="mdescRight">1ms period  <a href="#a8df3b0bec1a50af5a7014dc8ac6fb438">More...</a><br /></td></tr>
@@ -104,6 +105,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a2799a5b8b042a633cc198a1657b7d74f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8c.html#a2799a5b8b042a633cc198a1657b7d74f">PowerReduction</a> ()</td></tr>
 <tr class="memdesc:a2799a5b8b042a633cc198a1657b7d74f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Power reduction.  <a href="#a2799a5b8b042a633cc198a1657b7d74f">More...</a><br /></td></tr>
 <tr class="separator:a2799a5b8b042a633cc198a1657b7d74f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a8907fe1cec691dd172c121487e16c66c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8c.html#a8907fe1cec691dd172c121487e16c66c">uiGammaShift</a></td></tr>
+<tr class="separator:a8907fe1cec691dd172c121487e16c66c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa12a4686213b176b674e818b79a7219b"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8c.html#aa12a4686213b176b674e818b79a7219b">uivBrightCount</a></td></tr>
+<tr class="memdesc:aa12a4686213b176b674e818b79a7219b"><td class="mdescLeft">&#160;</td><td class="mdescRight">incremented value of pwm brightness output to BRIGHTNESS_OVF value  <a href="#aa12a4686213b176b674e818b79a7219b">More...</a><br /></td></tr>
+<tr class="separator:aa12a4686213b176b674e818b79a7219b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
@@ -189,7 +198,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize Timer0 to matrix refresh. </p>
+<p>Initialize Timer0 to matrix refresh with bright pin. </p>
 <p>interrupt period is 1250 cycles </p>
 
 </div>
@@ -211,6 +220,38 @@ Functions</h2></td></tr>
 
 <p>1ms period </p>
 <p>Initialize Timer2 to cunting time between DS3231 interrupts. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a8907fe1cec691dd172c121487e16c66c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8907fe1cec691dd172c121487e16c66c">&#9670;&nbsp;</a></span>uiGammaShift</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t uiGammaShift</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>0 or 1 to hystheresis on ReadADCToADCData </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="some__devices_8h.html#af759822269409f7102b2123e3a294eb8" title="update ADC structure and refresh brightness, should called in end ADC measurement interrupt ...">ReadADCToADCData</a> </dd></dl>
+
+</div>
+</div>
+<a id="aa12a4686213b176b674e818b79a7219b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa12a4686213b176b674e818b79a7219b">&#9670;&nbsp;</a></span>uivBrightCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint8_t uivBrightCount</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>incremented value of pwm brightness output to BRIGHTNESS_OVF value </p>
 
 </div>
 </div>

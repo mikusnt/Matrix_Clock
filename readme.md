@@ -15,12 +15,12 @@ Connected to:
 ## Main timer (matrix refresh)
 8bit Timer0  
 Mode: CTC  
-Refresh freq: 65 Hz  
+Refresh freq: 100 Hz  
 Y levels of matrix: 8  
-Number of brightness level: 20  
-uC period of overflow: 20 000 000 / 65 / 8 / 20 =  1920  
-Prescaler: 64  
-OCR: 30
+Number of brightness level: 20 * 2 (PWM) = 40 
+uC period of overflow: 20 000 000 / 100 / 8 / 40 =  625
+Prescaler: 8
+OCR: 78
 
 ## Internal time timer (between DS3231 1Hz overflows)
 8bit Timer2  

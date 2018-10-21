@@ -10,6 +10,12 @@ var some__devices_8h =
     [ "BLUETOOTH_IS_ON", "some__devices_8h.html#a74a1bbc40b1d3ba66ac0209d4fcf37e5", null ],
     [ "BLUETOOTH_PIN", "some__devices_8h.html#a062f94cc5279ab4e7bf450232898ca3f", null ],
     [ "BLUETOOTH_PORT", "some__devices_8h.html#ab692bdcbb025f8eeb01298116c6b9277", null ],
+    [ "BRIGHT_ADDR", "some__devices_8h.html#a9f922994ea3bb3eb66f51115a6367076", null ],
+    [ "BRIGHT_DDR", "some__devices_8h.html#af403abae8c1a2314d179c5484c75f75c", null ],
+    [ "BRIGHT_OFF", "some__devices_8h.html#a938a6f91afcb85aa6bcc25bf171c8640", null ],
+    [ "BRIGHT_ON", "some__devices_8h.html#af5bc6785ec49413fa400bbec79592bc8", null ],
+    [ "BRIGHT_PORT", "some__devices_8h.html#ab2a841593725e6f30539b7e3e24965f8", null ],
+    [ "BRIGHTNESS_OVF", "some__devices_8h.html#aa273d0e458e75bfa92ba0dcef7673f5b", null ],
     [ "SQW_ADDR", "some__devices_8h.html#a8612914f68eb9de82ef3df62505c33ca", null ],
     [ "SQW_DDR", "some__devices_8h.html#a06a23a4aa336e44cfb4c4f1f1aea0bd9", null ],
     [ "SQW_IS_HIGH", "some__devices_8h.html#a649ea2bf2e2ffc6769b2bd877d02c1ed", null ],
@@ -21,5 +27,7 @@ var some__devices_8h =
     [ "PowerReduction", "some__devices_8h.html#a2799a5b8b042a633cc198a1657b7d74f", null ],
     [ "ReadADCToADCData", "some__devices_8h.html#af759822269409f7102b2123e3a294eb8", null ],
     [ "Timer0Init", "some__devices_8h.html#aba017025ab450fd915cb22f19c6ff87b", null ],
-    [ "Timer2Init", "some__devices_8h.html#a8df3b0bec1a50af5a7014dc8ac6fb438", null ]
+    [ "Timer2Init", "some__devices_8h.html#a8df3b0bec1a50af5a7014dc8ac6fb438", null ],
+    [ "uiGammaShift", "some__devices_8h.html#a8907fe1cec691dd172c121487e16c66c", null ],
+    [ "uivBrightCount", "some__devices_8h.html#aa12a4686213b176b674e818b79a7219b", null ]
 ];

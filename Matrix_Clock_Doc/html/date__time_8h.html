@@ -138,10 +138,13 @@ Functions</h2></td></tr>
 <tr class="memdesc:a8fd767ea0446fe2d20e629153c348a44"><td class="mdescLeft">&#160;</td><td class="mdescRight">one second decrement time when time greater than 0  <a href="#a8fd767ea0446fe2d20e629153c348a44">More...</a><br /></td></tr>
 <tr class="separator:a8fd767ea0446fe2d20e629153c348a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbc4925650f333499f5f13ae176f7599"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8h.html#adbc4925650f333499f5f13ae176f7599">CopyDateTime</a> (<a class="el" href="struct_time_date.html">TimeDate</a> *from, <a class="el" href="struct_time_date.html">TimeDate</a> *to)</td></tr>
+<tr class="memdesc:adbc4925650f333499f5f13ae176f7599"><td class="mdescLeft">&#160;</td><td class="mdescRight">full copy from one location to second  <a href="#adbc4925650f333499f5f13ae176f7599">More...</a><br /></td></tr>
 <tr class="separator:adbc4925650f333499f5f13ae176f7599"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a11f53d862fe361d9812a8702856e39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8h.html#a6a11f53d862fe361d9812a8702856e39">WriteDateTimeToEEProm</a> (<a class="el" href="struct_time_date.html">TimeDate</a> *time)</td></tr>
+<tr class="memdesc:a6a11f53d862fe361d9812a8702856e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">write to EEPROM date (only) of set date and time  <a href="#a6a11f53d862fe361d9812a8702856e39">More...</a><br /></td></tr>
 <tr class="separator:a6a11f53d862fe361d9812a8702856e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8badc77d213044d1d87f3479c3c799ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="date__time_8h.html#a8badc77d213044d1d87f3479c3c799ce">ReadDateTimeFromEEProm</a> (<a class="el" href="struct_time_date.html">TimeDate</a> *time)</td></tr>
+<tr class="memdesc:a8badc77d213044d1d87f3479c3c799ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">read from EEPROM date (only) of set date and time  <a href="#a8badc77d213044d1d87f3479c3c799ce">More...</a><br /></td></tr>
 <tr class="separator:a8badc77d213044d1d87f3479c3c799ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -244,6 +247,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>full copy from one location to second </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">from</td><td>source structure </td></tr>
+    <tr><td class="paramname">to</td><td>destination structure </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a6a8e8cb1f550c6f92bd42c1d9f0ca559"></a>
@@ -321,6 +333,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>read from EEPROM date (only) of set date and time </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>pointer of timer structure to read </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -401,6 +421,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>one second decrement time when time greater than 0 </p>
+<p>one second decrement time if it is possible </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>out pointer of time structure </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -419,6 +445,14 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>write to EEPROM date (only) of set date and time </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>pointer of time structure to write </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

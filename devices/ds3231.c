@@ -8,42 +8,42 @@
  *
  */
 
-/*! konwertuje liczbe z zapisu dziesietnego na bcd */
+/*! converts one number from decimal to bcd format */
 static inline uint8_t dec2bcd(uint8_t dec) {
 	return ((dec / 10) << 4) | (dec % 10);
 } // END uint8_t dec2bcd
 
-/*! konwertuje liczbe z zapisu bcd na dziesietny */
+/*! converts one number from bcd to decimal format */
 static inline uint8_t bcd2dec(uint8_t bcd) {
 	return (((bcd >> 4) & 0x0F) * 10) + (bcd & 0x0F);
 } // END uint8_t bcd2dec
 
-/*! funkcja zapisu 8 bitow danych po I2C, 0 gdy b³¹d
- * @param		deviceAddr adres urzadzenia na magistrali I2C
- * @param		registerAddr adres rejestru w danym urzadzeniu
- * @param		data dane ktore maja byc przeslane
- * @return 		1 gdy powodzenie, 0 gdy niepowodzenie*/
+/*! write one byte to I2C, 0 when error
+ * @param		deviceAddr destination device address of I2C
+ * @param		registerAddr register address of destination device
+ * @param		data byte to send
+ * @return 		1 when success, 0 otherwise */
 static uint8_t I2C_WriteRegister(uint8_t deviceAddr, uint8_t registerAddr, uint8_t data) {
         I2C_InitStart(START);  //start I2C
 
-        I2C_WriteAdr(deviceAddr);  //wyslij adres DS3231
+        I2C_WriteAdr(deviceAddr);  // send address of DS3231
         if (I2C_Error) { I2C_FailStop(); return 0; }
 
         I2C_Write(registerAddr);
         if (I2C_Error) { I2C_FailStop(); return 0; }
 
-        I2C_Write(data);  //wysy³¹ 3 ardumenty funkcji I2C_WriteRegister
+        I2C_Write(data);
         if (I2C_Error) { I2C_FailStop(); return 0; }
 
         I2C_Stop();   //stop I2C
         return 1;
 } // END void I2C_WriteRegister
 
-/*! funkcja odczytu 8 bitow danych po I2C, 0 gdy b³¹d
- * @param		deviceAddr adres urzadzenia na magistrali I2C
- * @param		registerAddr adres rejestru w danym urzadzeniu
- * @param		data_s dane odczytne z urzadzenia
- * @return 		1 gdy powodzenie, 0 gdy niepowodzenie*/
+/*! write one byte to I2C, 0 when error
+ * @param		deviceAddr destination device address of I2C
+ * @param		registerAddr register address of destination device
+ * @param		data_s output data from device
+ * @return 		1 when success, 0 otherwise */
 static uint8_t I2C_ReadRegister(uint8_t deviceAddr, uint8_t registerAddr, uint8_t *data_s) {
 
         I2C_InitStart(START);  //start I2C
@@ -69,7 +69,7 @@ static uint8_t I2C_ReadRegister(uint8_t deviceAddr, uint8_t registerAddr, uint8_
 
 /*
  *
- *		Funkcje z pliku h
+ *		Definitions of functions
  *
  */
 
@@ -120,15 +120,13 @@ uint8_t DS3231_GetTime(uint8_t *hour_s, uint8_t *minute_s, uint8_t *second_s)
 		}
 	}
 	return 0;
-
 } // END void DS3231_GetTime
 
 /*! @param			day_s pointer of day
  *  @param 			month_s pointer of month
  *  @param			year_s wpointer of year
  *  @return 		1 when success, 0 otherwise*/
-uint8_t DS3231_GetDate(uint8_t *day_s, uint8_t *month_s, uint8_t *year_s)
-{
+uint8_t DS3231_GetDate(uint8_t *day_s, uint8_t *month_s, uint8_t *year_s) {
 	if (I2C_ReadRegister(DS3231,MONTHS_REGISTER, month_s)
 			&& I2C_ReadRegister(DS3231,DAYS_REGISTER, day_s)
 			&& I2C_ReadRegister(DS3231,YEARS_REGISTER, year_s)) {
@@ -142,7 +140,6 @@ uint8_t DS3231_GetDate(uint8_t *day_s, uint8_t *month_s, uint8_t *year_s)
 		return 1;
 	}
 	else return 0;
-
 } // END void DS3231_GetDate
 
 /*! @param  		hour to set
@@ -179,6 +176,7 @@ uint8_t  DS3231_SetDate(uint8_t day, uint8_t month, uint8_t year) {
 	else return 0;
 } // END void  DS3231_SetDate
 
+//! test of communication and time count of DS3231, reset when error
 void DS3231_Test() {
 	/*  resets WATCHDog  */
 	uint8_t hour, min, sec, nhour, nmin, nsec;
@@ -200,4 +198,4 @@ void DS3231_Test() {
 	if (!count) {
 		Reset_UC();
 	}
-}
+} // END void DS3231_Test
