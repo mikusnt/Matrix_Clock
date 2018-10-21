@@ -82,7 +82,8 @@ int main (void) {
 	 *		Init block
 	 *
 	 */
-
+	USART_Init(__UBRR);
+	uart_puts_p(PSTR("<Initialization>\n"));
 	PowerReduction();
 	RegistersInit();
 	DiodeMatrixInit(&matrix);
@@ -93,7 +94,7 @@ int main (void) {
 	PCINTInit();
 
 	ADCInit(&adc);
-	USART_Init(__UBRR);
+
 	I2C_Init();
 
 	DS3231_Init();
@@ -107,7 +108,7 @@ int main (void) {
 	LoadToSingleTime(&RTCTime);
 
 	sei();
-
+	uart_puts_p(PSTR("<Running main loop>\n"));
 	/*
 	 *
 	 *		Main loop
@@ -287,6 +288,7 @@ ISR(TIMER0_COMPA_vect) {
 		}
 	} else if (matrix.uiBrightCount == matrix.uiBrightness)
 		ClearRegistersX(true);
+
 } // END ISR(TIMER0_COMPA_vect)
 
 //! CTC timer2 overflow with 1ms period, internal time

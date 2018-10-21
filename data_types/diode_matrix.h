@@ -32,7 +32,7 @@
 #define MAX_MATRIX_BRIGHTNESS 19
 //! max brightness in gamma correction table
 //! @see gamma_o
-#define MAX_GAMMA_BRIGHTNESS 10
+#define MAX_GAMMA_BRIGHTNESS 9
 //! time period to increment moving adress of buffer
 #define INC_POS_MS 100
 

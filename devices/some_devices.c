@@ -6,6 +6,8 @@
 
 #include "some_devices.h"
 
+uint8_t uiGammaShift;
+
 /*! interrupt period is 1250 cycles*/
 void Timer0Init() {
 	// CTC mode
@@ -14,7 +16,7 @@ void Timer0Init() {
 	TCCR0B |= (1 << CS01) | (1 << CS00);
 	// unlock interrupt
 	TIMSK0 |= (1 << OCIE0A);
-	OCR0A = 20;
+	OCR0A = 30;
 } // END void Timer0Init
 
 //! 1ms period

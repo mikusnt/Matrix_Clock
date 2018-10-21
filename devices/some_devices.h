@@ -64,6 +64,7 @@ typedef struct {
 	uint16_t ui16PhotoAvg;
 } ADCVoltageData;
 
+extern uint8_t uiGammaShift;
 /*
  *
  *		Declaration of functions
@@ -109,11 +110,9 @@ inline void ReadADCToADCData(volatile ADCVoltageData *a, volatile uint8_t *brigh
 		a->uiActReadCount = 0;
 		a->ui16PhotoAvg = a->ui16PhotoSum / ADC_READ_COUNT;
 		a->ui16PhotoSum = 0;
-		uint8_t adr;
-		HystData hystData = {50, 20, 0, 1, a->ui16PhotoAvg % 100, &adr};
+		HystData hystData = {50, 20, 0, 1, a->ui16PhotoAvg % 100, &uiGammaShift};
 		Hysteresis(&hystData);
-		adr += a->ui16PhotoAvg / 100;
-		*bright_s = gamma_o[adr];
+		*bright_s = gamma_o[uiGammaShift + (a->ui16PhotoAvg / 100)];
 	}
 } // END inline void ReadADCToADCData
 
