@@ -17,9 +17,7 @@ void Timer0Init() {
 	TCCR0B |= (1 << CS01);
 	// unlock interrupt
 	TIMSK0 |= (1 << OCIE0A);
-	OCR0A = 62;
-	BRIGHT_DDR |= BRIGHT_ADDR;
-	BRIGHT_OFF();
+	OCR0A = 156;
 } // END void Timer0Init
 
 //! 1ms period

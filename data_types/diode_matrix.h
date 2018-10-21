@@ -29,7 +29,7 @@
 //! X size of hardware matrix buffer
 #define BUFFER_X_SIZE 32 * 8
 //! max number of brightness
-#define MAX_MATRIX_BRIGHTNESS 39
+#define MAX_MATRIX_BRIGHTNESS 19
 //! max brightness in gamma correction table
 //! @see gamma_o
 #define MAX_GAMMA_BRIGHTNESS 9

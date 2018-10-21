@@ -41,19 +41,6 @@
 //! checks state of bluetooth power supply
 #define BLUETOOTH_IS_ON() (!(BLUETOOTH_PIN & BLUETOOTH_ADDR))
 
-//! direction register of pwm brightness output
-#define BRIGHT_DDR DDRD
-//! state register of pwm brightness output
-#define BRIGHT_PORT PORTD
-//! address register of pwm brightness output
-#define BRIGHT_ADDR (1 << PD5)
-//! set high state on pwm brightness output pin
-#define BRIGHT_ON() PORTD |= BRIGHT_ADDR
-//! set low state on pwm brightness output pin
-#define BRIGHT_OFF() PORTD &= ~BRIGHT_ADDR
-//! overflow value of brightness, must be equal or less than matrix brightness
-#define BRIGHTNESS_OVF ((MAX_MATRIX_BRIGHTNESS+1) / 2)
-
 
 #define SQW_DDR DDRC
 #define SQW_PORT PORTC

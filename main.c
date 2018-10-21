@@ -278,26 +278,17 @@ int main (void) {
 
 //! CTC timer0 overflow, refreshing matrix, required hard optimisation
 ISR(TIMER0_COMPA_vect) {
-	if (++uivBrightCount >= BRIGHTNESS_OVF) {
-		uivBrightCount = 0;
-		BRIGHT_ON();
-	}
-	if (uivBrightCount == matrix.uiBrightness)
-		BRIGHT_OFF();
-	// obsluga zmiany jasnosci
 	uivModifyY = IncrementBrightness(&matrix);
 	if (uivModifyY) {
 		SendRegisterY(ReturnYValue(&matrix), true);
-		//if (matrix.uiBrightness) {
+		if (matrix.uiBrightness) {
 			RefreshBufferFlag(&matrix);
 			SendRegistersX(matrix.uitBufferFlag, true);
-		//}
-	} /*else {
+		}
+	} else {
 		if (matrix.uiBrightCount == matrix.uiBrightness)
-			ClearRegistersX(true); old
-	}*/
-
-
+			ClearRegistersX(true); //old
+	}
 } // END ISR(TIMER0_COMPA_vect)
 
 //! CTC timer2 overflow with 1ms period, internal time
