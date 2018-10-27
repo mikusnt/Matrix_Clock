@@ -28,8 +28,8 @@ Mode: CTC
 Freq: 1kHz  
 Period: 1ms  
 uC period to overflow: 20 000 000 / 1 000 = 20 000  
-Prescaler: 256  
-OCR: 78 
+Prescaler: 256    
+OCR: 78  
 
 ## Power consumption
 Basic mode: 23mA  
