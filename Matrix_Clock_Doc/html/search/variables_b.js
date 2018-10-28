@@ -33,6 +33,8 @@ var searchData=
   ['uiminvalue',['uiMinValue',['../struct_hyst_data.html#a9e59a7423023ec8f0a03ff57711f7f8a',1,'HystData']]],
   ['uimonth',['uiMonth',['../struct_time_date.html#a38b628e8da5d34aa83e69f51023a7c6e',1,'TimeDate']]],
   ['uioutvalue_5fs',['uiOutValue_s',['../struct_hyst_data.html#a3b37b3cc87a31c5239da1bc003a67e01',1,'HystData']]],
+  ['uipwmbrightness',['uiPWMBrightness',['../struct_diode_matrix.html#a30c3c32c884abb4a8042a93a795362e4',1,'DiodeMatrix']]],
+  ['uipwmbrightnesscount',['uiPWMBrightnessCount',['../struct_diode_matrix.html#a32c22c9b047db69fbaabbc5a1293281f',1,'DiodeMatrix']]],
   ['uisecond',['uiSecond',['../struct_time_date.html#ace6d3fa818f63abc0850de38d1878be8',1,'TimeDate']]],
   ['uiseconds',['uiSeconds',['../main_8c.html#a4b9d02057e067f0cd57275bf6175e793',1,'main.c']]],
   ['uisingleprogress',['uiSingleProgress',['../struct_time_date.html#a2400f9e0c78b4160a1944e920f8172a1',1,'TimeDate']]],

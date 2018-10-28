@@ -123,24 +123,6 @@ Macros</h2></td></tr>
 <tr class="memitem:a74a1bbc40b1d3ba66ac0209d4fcf37e5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a74a1bbc40b1d3ba66ac0209d4fcf37e5">BLUETOOTH_IS_ON</a>()&#160;&#160;&#160;(!(<a class="el" href="some__devices_8h.html#a062f94cc5279ab4e7bf450232898ca3f">BLUETOOTH_PIN</a> &amp; <a class="el" href="some__devices_8h.html#acfb0263dffab16ec335955aa686dde42">BLUETOOTH_ADDR</a>))</td></tr>
 <tr class="memdesc:a74a1bbc40b1d3ba66ac0209d4fcf37e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks state of bluetooth power supply  <a href="#a74a1bbc40b1d3ba66ac0209d4fcf37e5">More...</a><br /></td></tr>
 <tr class="separator:a74a1bbc40b1d3ba66ac0209d4fcf37e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af403abae8c1a2314d179c5484c75f75c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#af403abae8c1a2314d179c5484c75f75c">BRIGHT_DDR</a>&#160;&#160;&#160;DDRD</td></tr>
-<tr class="memdesc:af403abae8c1a2314d179c5484c75f75c"><td class="mdescLeft">&#160;</td><td class="mdescRight">direction register of pwm brightness output  <a href="#af403abae8c1a2314d179c5484c75f75c">More...</a><br /></td></tr>
-<tr class="separator:af403abae8c1a2314d179c5484c75f75c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2a841593725e6f30539b7e3e24965f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#ab2a841593725e6f30539b7e3e24965f8">BRIGHT_PORT</a>&#160;&#160;&#160;PORTD</td></tr>
-<tr class="memdesc:ab2a841593725e6f30539b7e3e24965f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">state register of pwm brightness output  <a href="#ab2a841593725e6f30539b7e3e24965f8">More...</a><br /></td></tr>
-<tr class="separator:ab2a841593725e6f30539b7e3e24965f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f922994ea3bb3eb66f51115a6367076"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a9f922994ea3bb3eb66f51115a6367076">BRIGHT_ADDR</a>&#160;&#160;&#160;(1 &lt;&lt; PD5)</td></tr>
-<tr class="memdesc:a9f922994ea3bb3eb66f51115a6367076"><td class="mdescLeft">&#160;</td><td class="mdescRight">address register of pwm brightness output  <a href="#a9f922994ea3bb3eb66f51115a6367076">More...</a><br /></td></tr>
-<tr class="separator:a9f922994ea3bb3eb66f51115a6367076"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5bc6785ec49413fa400bbec79592bc8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#af5bc6785ec49413fa400bbec79592bc8">BRIGHT_ON</a>()&#160;&#160;&#160;PORTD |= <a class="el" href="some__devices_8h.html#a9f922994ea3bb3eb66f51115a6367076">BRIGHT_ADDR</a></td></tr>
-<tr class="memdesc:af5bc6785ec49413fa400bbec79592bc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">set high state on pwm brightness output pin  <a href="#af5bc6785ec49413fa400bbec79592bc8">More...</a><br /></td></tr>
-<tr class="separator:af5bc6785ec49413fa400bbec79592bc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a938a6f91afcb85aa6bcc25bf171c8640"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a938a6f91afcb85aa6bcc25bf171c8640">BRIGHT_OFF</a>()&#160;&#160;&#160;PORTD &amp;= ~<a class="el" href="some__devices_8h.html#a9f922994ea3bb3eb66f51115a6367076">BRIGHT_ADDR</a></td></tr>
-<tr class="memdesc:a938a6f91afcb85aa6bcc25bf171c8640"><td class="mdescLeft">&#160;</td><td class="mdescRight">set low state on pwm brightness output pin  <a href="#a938a6f91afcb85aa6bcc25bf171c8640">More...</a><br /></td></tr>
-<tr class="separator:a938a6f91afcb85aa6bcc25bf171c8640"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa273d0e458e75bfa92ba0dcef7673f5b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#aa273d0e458e75bfa92ba0dcef7673f5b">BRIGHTNESS_OVF</a>&#160;&#160;&#160;((<a class="el" href="diode__matrix_8h.html#af5e6e37f1b0fcad11ceaa942995e6725">MAX_MATRIX_BRIGHTNESS</a>+1) / 2)</td></tr>
-<tr class="memdesc:aa273d0e458e75bfa92ba0dcef7673f5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">overflow value of brightness, must be equal or less than matrix brightness  <a href="#aa273d0e458e75bfa92ba0dcef7673f5b">More...</a><br /></td></tr>
-<tr class="separator:aa273d0e458e75bfa92ba0dcef7673f5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06a23a4aa336e44cfb4c4f1f1aea0bd9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a06a23a4aa336e44cfb4c4f1f1aea0bd9">SQW_DDR</a>&#160;&#160;&#160;DDRC</td></tr>
 <tr class="separator:a06a23a4aa336e44cfb4c4f1f1aea0bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8165c462bbe28004e1d8dd6a93c7a35c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a8165c462bbe28004e1d8dd6a93c7a35c">SQW_PORT</a>&#160;&#160;&#160;PORTC</td></tr>
@@ -153,12 +135,27 @@ Macros</h2></td></tr>
 <tr class="separator:a649ea2bf2e2ffc6769b2bd877d02c1ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ece1145fa7d8f15afce20734f22c1b1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a2ece1145fa7d8f15afce20734f22c1b1">ADC_PHOTO_ADR</a>&#160;&#160;&#160;2</td></tr>
 <tr class="separator:a2ece1145fa7d8f15afce20734f22c1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa534d8ae5936ce47acce7e6e7bc3e286"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#aa534d8ae5936ce47acce7e6e7bc3e286">PWM_MATRIX_OVF</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:aa534d8ae5936ce47acce7e6e7bc3e286"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa8b8dd549ce6f9c1b23d2cf0290a61f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#afa8b8dd549ce6f9c1b23d2cf0290a61f">PWM_MATRIX_DDR</a>&#160;&#160;&#160;DDRD</td></tr>
+<tr class="separator:afa8b8dd549ce6f9c1b23d2cf0290a61f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8237eaa1745a3d2c341ad01b54c0106"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#aa8237eaa1745a3d2c341ad01b54c0106">PWM_MATRIX_PORT</a>&#160;&#160;&#160;PORTD</td></tr>
+<tr class="separator:aa8237eaa1745a3d2c341ad01b54c0106"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a382e68f28f38eb21475db04b9e2c9137"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a382e68f28f38eb21475db04b9e2c9137">PWM_MATRIX_ADDR</a>&#160;&#160;&#160;(1 &lt;&lt; PD5)</td></tr>
+<tr class="separator:a382e68f28f38eb21475db04b9e2c9137"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff90a6bc142387b17c5138ecefc60406"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#aff90a6bc142387b17c5138ecefc60406">PWM_MATRIX_LOW</a>()&#160;&#160;&#160;<a class="el" href="some__devices_8h.html#aa8237eaa1745a3d2c341ad01b54c0106">PWM_MATRIX_PORT</a> &amp;= ~<a class="el" href="some__devices_8h.html#a382e68f28f38eb21475db04b9e2c9137">PWM_MATRIX_ADDR</a></td></tr>
+<tr class="separator:aff90a6bc142387b17c5138ecefc60406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43a275e6822d89abf6b4901d31fdd5e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a43a275e6822d89abf6b4901d31fdd5e0">PWM_MATRIX_HIGH</a>()&#160;&#160;&#160;<a class="el" href="some__devices_8h.html#aa8237eaa1745a3d2c341ad01b54c0106">PWM_MATRIX_PORT</a> |= <a class="el" href="some__devices_8h.html#a382e68f28f38eb21475db04b9e2c9137">PWM_MATRIX_ADDR</a></td></tr>
+<tr class="separator:a43a275e6822d89abf6b4901d31fdd5e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aba017025ab450fd915cb22f19c6ff87b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#aba017025ab450fd915cb22f19c6ff87b">Timer0Init</a> ()</td></tr>
 <tr class="memdesc:aba017025ab450fd915cb22f19c6ff87b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize Timer0 to matrix refresh with bright pin.  <a href="#aba017025ab450fd915cb22f19c6ff87b">More...</a><br /></td></tr>
 <tr class="separator:aba017025ab450fd915cb22f19c6ff87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b24d4cc4d438d7d67c893e99d8da320"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a2b24d4cc4d438d7d67c893e99d8da320">Timer1Init</a> ()</td></tr>
+<tr class="memdesc:a2b24d4cc4d438d7d67c893e99d8da320"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize Timer1 to pwm matrix bright.  <a href="#a2b24d4cc4d438d7d67c893e99d8da320">More...</a><br /></td></tr>
+<tr class="separator:a2b24d4cc4d438d7d67c893e99d8da320"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8df3b0bec1a50af5a7014dc8ac6fb438"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a8df3b0bec1a50af5a7014dc8ac6fb438">Timer2Init</a> ()</td></tr>
 <tr class="memdesc:a8df3b0bec1a50af5a7014dc8ac6fb438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize Timer2 to cunting time between DS3231 interrupts.  <a href="#a8df3b0bec1a50af5a7014dc8ac6fb438">More...</a><br /></td></tr>
 <tr class="separator:a8df3b0bec1a50af5a7014dc8ac6fb438"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,9 +165,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a585fbc00b99ebf45a362e92aea115160"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a585fbc00b99ebf45a362e92aea115160">ADCStart</a> ()</td></tr>
 <tr class="memdesc:a585fbc00b99ebf45a362e92aea115160"><td class="mdescLeft">&#160;</td><td class="mdescRight">run new ADC measurement  <a href="#a585fbc00b99ebf45a362e92aea115160">More...</a><br /></td></tr>
 <tr class="separator:a585fbc00b99ebf45a362e92aea115160"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af759822269409f7102b2123e3a294eb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#af759822269409f7102b2123e3a294eb8">ReadADCToADCData</a> (volatile <a class="el" href="struct_a_d_c_voltage_data.html">ADCVoltageData</a> *a, volatile uint8_t *bright_s)</td></tr>
-<tr class="memdesc:af759822269409f7102b2123e3a294eb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">update ADC structure and refresh brightness, should called in end ADC measurement interrupt  <a href="#af759822269409f7102b2123e3a294eb8">More...</a><br /></td></tr>
-<tr class="separator:af759822269409f7102b2123e3a294eb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c3da0674d26b819fdcd4b6ac4aa9e0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#a0c3da0674d26b819fdcd4b6ac4aa9e0f">ReadADCToADCData</a> (volatile <a class="el" href="struct_a_d_c_voltage_data.html">ADCVoltageData</a> *a, volatile uint8_t *bright_s, volatile uint8_t *pwmBright_s)</td></tr>
+<tr class="memdesc:a0c3da0674d26b819fdcd4b6ac4aa9e0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">update ADC structure and refresh brightness, should called in end ADC measurement interrupt  <a href="#a0c3da0674d26b819fdcd4b6ac4aa9e0f">More...</a><br /></td></tr>
+<tr class="separator:a0c3da0674d26b819fdcd4b6ac4aa9e0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc28239638e2bf39f17f3d9a3937d812"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8h.html#adc28239638e2bf39f17f3d9a3937d812">PCINTInit</a> ()</td></tr>
 <tr class="memdesc:adc28239638e2bf39f17f3d9a3937d812"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize PCINT interrupt.  <a href="#adc28239638e2bf39f17f3d9a3937d812">More...</a><br /></td></tr>
 <tr class="separator:adc28239638e2bf39f17f3d9a3937d812"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -189,7 +186,7 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
-<dl class="section rcs"><dt>Modified</dt><dd>2018-10-21 </dd></dl>
+<dl class="section rcs"><dt>Modified</dt><dd>2018-10-28 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2017-11-04 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.1</dd></dl>
 <p>Used uC pins: 6<br />
@@ -340,105 +337,93 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a9f922994ea3bb3eb66f51115a6367076"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f922994ea3bb3eb66f51115a6367076">&#9670;&nbsp;</a></span>BRIGHT_ADDR</h2>
+<a id="a382e68f28f38eb21475db04b9e2c9137"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a382e68f28f38eb21475db04b9e2c9137">&#9670;&nbsp;</a></span>PWM_MATRIX_ADDR</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BRIGHT_ADDR&#160;&#160;&#160;(1 &lt;&lt; PD5)</td>
+          <td class="memname">#define PWM_MATRIX_ADDR&#160;&#160;&#160;(1 &lt;&lt; PD5)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>address register of pwm brightness output </p>
-
 </div>
 </div>
-<a id="af403abae8c1a2314d179c5484c75f75c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af403abae8c1a2314d179c5484c75f75c">&#9670;&nbsp;</a></span>BRIGHT_DDR</h2>
+<a id="afa8b8dd549ce6f9c1b23d2cf0290a61f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa8b8dd549ce6f9c1b23d2cf0290a61f">&#9670;&nbsp;</a></span>PWM_MATRIX_DDR</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BRIGHT_DDR&#160;&#160;&#160;DDRD</td>
+          <td class="memname">#define PWM_MATRIX_DDR&#160;&#160;&#160;DDRD</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>direction register of pwm brightness output </p>
-
 </div>
 </div>
-<a id="a938a6f91afcb85aa6bcc25bf171c8640"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a938a6f91afcb85aa6bcc25bf171c8640">&#9670;&nbsp;</a></span>BRIGHT_OFF</h2>
+<a id="a43a275e6822d89abf6b4901d31fdd5e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43a275e6822d89abf6b4901d31fdd5e0">&#9670;&nbsp;</a></span>PWM_MATRIX_HIGH</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BRIGHT_OFF</td>
+          <td class="memname">#define PWM_MATRIX_HIGH</td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td>&#160;&#160;&#160;PORTD &amp;= ~<a class="el" href="some__devices_8h.html#a9f922994ea3bb3eb66f51115a6367076">BRIGHT_ADDR</a></td>
+          <td>&#160;&#160;&#160;<a class="el" href="some__devices_8h.html#aa8237eaa1745a3d2c341ad01b54c0106">PWM_MATRIX_PORT</a> |= <a class="el" href="some__devices_8h.html#a382e68f28f38eb21475db04b9e2c9137">PWM_MATRIX_ADDR</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>set low state on pwm brightness output pin </p>
-
 </div>
 </div>
-<a id="af5bc6785ec49413fa400bbec79592bc8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5bc6785ec49413fa400bbec79592bc8">&#9670;&nbsp;</a></span>BRIGHT_ON</h2>
+<a id="aff90a6bc142387b17c5138ecefc60406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff90a6bc142387b17c5138ecefc60406">&#9670;&nbsp;</a></span>PWM_MATRIX_LOW</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BRIGHT_ON</td>
+          <td class="memname">#define PWM_MATRIX_LOW</td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td>&#160;&#160;&#160;PORTD |= <a class="el" href="some__devices_8h.html#a9f922994ea3bb3eb66f51115a6367076">BRIGHT_ADDR</a></td>
+          <td>&#160;&#160;&#160;<a class="el" href="some__devices_8h.html#aa8237eaa1745a3d2c341ad01b54c0106">PWM_MATRIX_PORT</a> &amp;= ~<a class="el" href="some__devices_8h.html#a382e68f28f38eb21475db04b9e2c9137">PWM_MATRIX_ADDR</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>set high state on pwm brightness output pin </p>
-
 </div>
 </div>
-<a id="ab2a841593725e6f30539b7e3e24965f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2a841593725e6f30539b7e3e24965f8">&#9670;&nbsp;</a></span>BRIGHT_PORT</h2>
+<a id="aa534d8ae5936ce47acce7e6e7bc3e286"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa534d8ae5936ce47acce7e6e7bc3e286">&#9670;&nbsp;</a></span>PWM_MATRIX_OVF</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BRIGHT_PORT&#160;&#160;&#160;PORTD</td>
+          <td class="memname">#define PWM_MATRIX_OVF&#160;&#160;&#160;3</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>state register of pwm brightness output </p>
-
 </div>
 </div>
-<a id="aa273d0e458e75bfa92ba0dcef7673f5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa273d0e458e75bfa92ba0dcef7673f5b">&#9670;&nbsp;</a></span>BRIGHTNESS_OVF</h2>
+<a id="aa8237eaa1745a3d2c341ad01b54c0106"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8237eaa1745a3d2c341ad01b54c0106">&#9670;&nbsp;</a></span>PWM_MATRIX_PORT</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define BRIGHTNESS_OVF&#160;&#160;&#160;((<a class="el" href="diode__matrix_8h.html#af5e6e37f1b0fcad11ceaa942995e6725">MAX_MATRIX_BRIGHTNESS</a>+1) / 2)</td>
+          <td class="memname">#define PWM_MATRIX_PORT&#160;&#160;&#160;PORTD</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>overflow value of brightness, must be equal or less than matrix brightness </p>
 
 </div>
 </div>
@@ -608,8 +593,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="af759822269409f7102b2123e3a294eb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af759822269409f7102b2123e3a294eb8">&#9670;&nbsp;</a></span>ReadADCToADCData()</h2>
+<a id="a0c3da0674d26b819fdcd4b6ac4aa9e0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c3da0674d26b819fdcd4b6ac4aa9e0f">&#9670;&nbsp;</a></span>ReadADCToADCData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -627,7 +612,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">volatile uint8_t *&#160;</td>
-          <td class="paramname"><em>bright_s</em>&#160;</td>
+          <td class="paramname"><em>bright_s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">volatile uint8_t *&#160;</td>
+          <td class="paramname"><em>pwmBright_s</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -647,6 +638,7 @@ Variables</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">a</td><td>pointer of ADC structure </td></tr>
     <tr><td class="paramname">bright_s</td><td>output brightness </td></tr>
+    <tr><td class="paramname">pwmBright_s</td><td>output PWM brightness </td></tr>
   </table>
   </dd>
 </dl>
@@ -671,6 +663,26 @@ Variables</h2></td></tr>
 
 <p>Initialize Timer0 to matrix refresh with bright pin. </p>
 <p>interrupt period is 1250 cycles </p>
+
+</div>
+</div>
+<a id="a2b24d4cc4d438d7d67c893e99d8da320"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b24d4cc4d438d7d67c893e99d8da320">&#9670;&nbsp;</a></span>Timer1Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Timer1Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize Timer1 to pwm matrix bright. </p>
+<p>interrupt period is period from Timer0 divided by number of brightness </p>
 
 </div>
 </div>
@@ -706,7 +718,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>0 or 1 to hystheresis on ReadADCToADCData </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="some__devices_8h.html#af759822269409f7102b2123e3a294eb8" title="update ADC structure and refresh brightness, should called in end ADC measurement interrupt ...">ReadADCToADCData</a> </dd></dl>
+<p>0 or 1 to hystheresis on ReadADCToADCData </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="some__devices_8h.html#a0c3da0674d26b819fdcd4b6ac4aa9e0f" title="update ADC structure and refresh brightness, should called in end ADC measurement interrupt ...">ReadADCToADCData</a> </dd></dl>
 
 </div>
 </div>

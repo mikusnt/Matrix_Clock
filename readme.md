@@ -22,6 +22,17 @@ uC period of overflow: 20 000 000 / 100 / 8 / 20 =  1250
 Prescaler: 8
 OCR: 156
 
+## Logic PWM Timer (PWM matrix brightness)
+8bit Timer0  
+Mode: CTC  
+Refresh freq: 100 Hz  
+Y levels of matrix: 8  
+Number of brightness level: 20  
+Number of PWM brightness levels: 3  
+uC period of overflow: 20 000 000 / 100 / 8 / 20 / 3 =  417  
+Prescaler: 8  
+OCR: 52  
+
 ## Internal time timer (between DS3231 1Hz overflows)
 8bit Timer2  
 Mode: CTC  

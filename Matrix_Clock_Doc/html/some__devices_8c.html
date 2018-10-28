@@ -93,6 +93,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aba017025ab450fd915cb22f19c6ff87b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8c.html#aba017025ab450fd915cb22f19c6ff87b">Timer0Init</a> ()</td></tr>
 <tr class="memdesc:aba017025ab450fd915cb22f19c6ff87b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize Timer0 to matrix refresh with bright pin.  <a href="#aba017025ab450fd915cb22f19c6ff87b">More...</a><br /></td></tr>
 <tr class="separator:aba017025ab450fd915cb22f19c6ff87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b24d4cc4d438d7d67c893e99d8da320"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8c.html#a2b24d4cc4d438d7d67c893e99d8da320">Timer1Init</a> ()</td></tr>
+<tr class="memdesc:a2b24d4cc4d438d7d67c893e99d8da320"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize Timer1 to pwm matrix bright.  <a href="#a2b24d4cc4d438d7d67c893e99d8da320">More...</a><br /></td></tr>
+<tr class="separator:a2b24d4cc4d438d7d67c893e99d8da320"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8df3b0bec1a50af5a7014dc8ac6fb438"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="some__devices_8c.html#a8df3b0bec1a50af5a7014dc8ac6fb438">Timer2Init</a> ()</td></tr>
 <tr class="memdesc:a8df3b0bec1a50af5a7014dc8ac6fb438"><td class="mdescLeft">&#160;</td><td class="mdescRight">1ms period  <a href="#a8df3b0bec1a50af5a7014dc8ac6fb438">More...</a><br /></td></tr>
 <tr class="separator:a8df3b0bec1a50af5a7014dc8ac6fb438"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,6 +206,26 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a2b24d4cc4d438d7d67c893e99d8da320"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b24d4cc4d438d7d67c893e99d8da320">&#9670;&nbsp;</a></span>Timer1Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Timer1Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize Timer1 to pwm matrix bright. </p>
+<p>interrupt period is period from Timer0 divided by number of brightness </p>
+
+</div>
+</div>
 <a id="a8df3b0bec1a50af5a7014dc8ac6fb438"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8df3b0bec1a50af5a7014dc8ac6fb438">&#9670;&nbsp;</a></span>Timer2Init()</h2>
 
@@ -235,7 +258,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>0 or 1 to hystheresis on ReadADCToADCData </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="some__devices_8h.html#af759822269409f7102b2123e3a294eb8" title="update ADC structure and refresh brightness, should called in end ADC measurement interrupt ...">ReadADCToADCData</a> </dd></dl>
+<p>0 or 1 to hystheresis on ReadADCToADCData </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="some__devices_8h.html#a0c3da0674d26b819fdcd4b6ac4aa9e0f" title="update ADC structure and refresh brightness, should called in end ADC measurement interrupt ...">ReadADCToADCData</a> </dd></dl>
 
 </div>
 </div>

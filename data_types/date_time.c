@@ -56,6 +56,7 @@ void TryDecrementTime(TimeDate *t) {
 	}
 	LoadToSingleTime(t);
 } // END void TryDecrementTime
+
 /*! @param		from source structure
  *  @param		to destination structure */
 void CopyDateTime(TimeDate *from, TimeDate *to) {

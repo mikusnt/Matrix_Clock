@@ -1,6 +1,7 @@
 var main_8c =
 [
     [ "ISR", "main_8c.html#aec43762dc86e029b395d4e5819192c2d", null ],
+    [ "ISR", "main_8c.html#ad39420cdd896dd12c68e36313139d0a5", null ],
     [ "ISR", "main_8c.html#a5686c229bdef50123688ab6cb1404230", null ],
     [ "ISR", "main_8c.html#a05c2e5b588ced1cd7312f5b0edc5b295", null ],
     [ "ISR", "main_8c.html#afe6035149a64d5f448fbda08e9d1b67f", null ],
@@ -8,6 +9,7 @@ var main_8c =
     [ "main", "main_8c.html#a840291bc02cba5474a4cb46a9b9566fe", null ],
     [ "actTime", "main_8c.html#af0984960e327a1697d00daef98055b22", null ],
     [ "adc", "main_8c.html#a60000f668af7252298f451d8b690d36d", null ],
+    [ "bCritical", "main_8c.html#aeb2a0879998531894f25d416a32927bc", null ],
     [ "bEnableDecrement", "main_8c.html#ae2e3f0621e4544f3709a44b476c6af17", null ],
     [ "bHalfTime", "main_8c.html#a579bfe32677be8152802c9a654638c43", null ],
     [ "bNewRoundRefresh", "main_8c.html#a67e62f04b80d7896d29bf0e47fe526de", null ],

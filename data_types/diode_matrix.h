@@ -2,7 +2,7 @@
  * @file diode_matrix.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-21 $
+ * $Modified: 2018-10-28 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -76,6 +76,11 @@ typedef struct {
 	uint8_t uiSlowClearedPos;
 	//! brightness of matrix, modify manually
 	uint8_t uiBrightness;
+	//! actual PWM bright level of matrix, modify by interrupt
+	//! @see 	TIMER1_COMPA_vect
+	uint8_t uiPWMBrightnessCount;
+	//! PWM brightness of matrix, modify manually
+	uint8_t uiPWMBrightness;
 } DiodeMatrix;
 
 /*

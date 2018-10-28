@@ -117,6 +117,11 @@ Data Fields</h2></td></tr>
 <tr class="memitem:ab0b0993324965a8a0f268ab7dce90e82"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#ab0b0993324965a8a0f268ab7dce90e82">uiBrightness</a></td></tr>
 <tr class="memdesc:ab0b0993324965a8a0f268ab7dce90e82"><td class="mdescLeft">&#160;</td><td class="mdescRight">brightness of matrix, modify manually  <a href="#ab0b0993324965a8a0f268ab7dce90e82">More...</a><br /></td></tr>
 <tr class="separator:ab0b0993324965a8a0f268ab7dce90e82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32c22c9b047db69fbaabbc5a1293281f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#a32c22c9b047db69fbaabbc5a1293281f">uiPWMBrightnessCount</a></td></tr>
+<tr class="separator:a32c22c9b047db69fbaabbc5a1293281f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30c3c32c884abb4a8042a93a795362e4"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_diode_matrix.html#a30c3c32c884abb4a8042a93a795362e4">uiPWMBrightness</a></td></tr>
+<tr class="memdesc:a30c3c32c884abb4a8042a93a795362e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">PWM brightness of matrix, modify manually.  <a href="#a30c3c32c884abb4a8042a93a795362e4">More...</a><br /></td></tr>
+<tr class="separator:a30c3c32c884abb4a8042a93a795362e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>main structure of LED Matrix </p>
@@ -210,6 +215,37 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>matrix buffer end address, modify manually </p>
+
+</div>
+</div>
+<a id="a30c3c32c884abb4a8042a93a795362e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30c3c32c884abb4a8042a93a795362e4">&#9670;&nbsp;</a></span>uiPWMBrightness</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t uiPWMBrightness</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PWM brightness of matrix, modify manually. </p>
+
+</div>
+</div>
+<a id="a32c22c9b047db69fbaabbc5a1293281f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32c22c9b047db69fbaabbc5a1293281f">&#9670;&nbsp;</a></span>uiPWMBrightnessCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t uiPWMBrightnessCount</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>actual PWM bright level of matrix, modify by interrupt </p><dl class="section see"><dt>See also</dt><dd>TIMER1_COMPA_vect </dd></dl>
 
 </div>
 </div>

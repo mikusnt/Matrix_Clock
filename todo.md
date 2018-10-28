@@ -10,3 +10,4 @@
 - [x] read and write date of time modification in eeprom
 - [x] few texts read and write in eeprom, programmable displaying
 - [ ] full tests and repair bugs
+- [ ] reduce the lowest brightness by add PWM brightness

@@ -2,7 +2,7 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-21 $
+ * $Modified: 2018-10-28 $
  * $Created: 2017-11-04 $
  * @version 0.953
  *
@@ -58,6 +58,7 @@ volatile uint8_t uivModifyY;
 volatile int8_t iCountToTimer;
 //! flag of decrement cleaning position on clearing mode
 volatile bool bEnableDecrement;
+volatile bool bCritical = false;
 
 /*
  *
@@ -90,6 +91,7 @@ int main (void) {
 	TextEEPromInit();
 	RelayInit(&relay);
 	Timer0Init();
+	Timer1Init();
 	Timer2Init();
 	PCINTInit();
 
@@ -276,20 +278,36 @@ int main (void) {
 	}
 } // END int main (void)
 
-//! CTC timer0 overflow, refreshing matrix, required hard optimisation
+//! CTC timer0 overflow, refreshing matrix, required hard optimisation,
+//! critical section when rename Y register
 ISR(TIMER0_COMPA_vect) {
-	uivModifyY = IncrementBrightness(&matrix);
-	if (uivModifyY) {
-		SendRegisterY(ReturnYValue(&matrix), true);
-		if (matrix.uiBrightness) {
-			RefreshBufferFlag(&matrix);
-			SendRegistersX(matrix.uitBufferFlag, true);
+	if (!bCritical) {
+		uivModifyY = IncrementBrightness(&matrix);
+		if (uivModifyY) {
+			bCritical = true;
+			SendRegisterY(ReturnYValue(&matrix), true);
+			if (matrix.uiBrightness && matrix.uiPWMBrightness) {
+				RefreshBufferFlag(&matrix);
+				SendRegistersX(matrix.uitBufferFlag, true);
+			}
+		} else {
+			if (matrix.uiBrightCount == matrix.uiBrightness)
+				ClearRegistersX(true); //old
 		}
 	} else {
-		if (matrix.uiBrightCount == matrix.uiBrightness)
-			ClearRegistersX(true); //old
+		bCritical = false;
 	}
 } // END ISR(TIMER0_COMPA_vect)
+
+//! some levels of matrix brightness regulating by logic PWM
+ISR(TIMER1_COMPA_vect) {
+	if (++matrix.uiPWMBrightnessCount == PWM_MATRIX_OVF) {
+		matrix.uiPWMBrightnessCount = 0;
+		PWM_MATRIX_HIGH();
+	}
+	if (matrix.uiPWMBrightnessCount == matrix.uiPWMBrightness)
+		PWM_MATRIX_LOW();
+} // ISR(TIMER1_COMPA_vect)
 
 //! CTC timer2 overflow with 1ms period, internal time
 ISR(TIMER2_COMPA_vect) {
@@ -320,7 +338,7 @@ ISR(TIMER2_COMPA_vect) {
 
 //! end of ADC measurement interrupt, reading ADC value
 ISR(ADC_vect) {
-	ReadADCToADCData(&adc, &matrix.uiBrightness);
+	ReadADCToADCData(&adc, &matrix.uiBrightness, &matrix.uiPWMBrightness);
 }
 
 

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['readadctoadcdata',['ReadADCToADCData',['../some__devices_8h.html#af759822269409f7102b2123e3a294eb8',1,'some_devices.h']]],
+  ['readadctoadcdata',['ReadADCToADCData',['../some__devices_8h.html#a0c3da0674d26b819fdcd4b6ac4aa9e0f',1,'some_devices.h']]],
   ['readdatetimefromeeprom',['ReadDateTimeFromEEProm',['../date__time_8c.html#a8badc77d213044d1d87f3479c3c799ce',1,'ReadDateTimeFromEEProm(TimeDate *time):&#160;date_time.c'],['../date__time_8h.html#a8badc77d213044d1d87f3479c3c799ce',1,'ReadDateTimeFromEEProm(TimeDate *time):&#160;date_time.c']]],
   ['readme_2emd',['readme.md',['../readme_8md.html',1,'']]],
   ['refreshbufferflag',['RefreshBufferFlag',['../diode__matrix_8h.html#afb47ff3cb70c99d953e54b4cd338ba38',1,'diode_matrix.h']]],

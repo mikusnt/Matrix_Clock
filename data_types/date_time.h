@@ -2,7 +2,7 @@
  * @file date_time.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-15 $
+ * $Modified: 2018-10-28 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *

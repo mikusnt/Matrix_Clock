@@ -6,6 +6,8 @@ var struct_diode_matrix =
     [ "uiBrightCount", "struct_diode_matrix.html#a91967b9662bddb76d553d8a1c111d620", null ],
     [ "uiBrightness", "struct_diode_matrix.html#ab0b0993324965a8a0f268ab7dce90e82", null ],
     [ "uiEndBufferPosition", "struct_diode_matrix.html#ac303a4830cf7f0b550bfd7b390681353", null ],
+    [ "uiPWMBrightness", "struct_diode_matrix.html#a30c3c32c884abb4a8042a93a795362e4", null ],
+    [ "uiPWMBrightnessCount", "struct_diode_matrix.html#a32c22c9b047db69fbaabbc5a1293281f", null ],
     [ "uiSlowClearedPos", "struct_diode_matrix.html#a7a0c45f6c7f7fa1fa247cd85f0cef499", null ],
     [ "uitBufferFlag", "struct_diode_matrix.html#a126c823eb3a4889f117fd3d0968edf0e", null ],
     [ "uitBufferX", "struct_diode_matrix.html#a31dbd903aab3ff31162ee3c83ca27ffb", null ],

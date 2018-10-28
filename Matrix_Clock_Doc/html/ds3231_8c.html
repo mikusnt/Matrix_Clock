@@ -113,7 +113,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:aa8f1c969ede3b8f13ee5d6949ce84ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">write decimal date to RTC  <a href="#aa8f1c969ede3b8f13ee5d6949ce84ded">More...</a><br /></td></tr>
 <tr class="separator:aa8f1c969ede3b8f13ee5d6949ce84ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dc6ce32e3d4f48659aa044120c3e915"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ds3231_8c.html#a0dc6ce32e3d4f48659aa044120c3e915">DS3231_Test</a> ()</td></tr>
-<tr class="memdesc:a0dc6ce32e3d4f48659aa044120c3e915"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTC test.  <a href="#a0dc6ce32e3d4f48659aa044120c3e915">More...</a><br /></td></tr>
+<tr class="memdesc:a0dc6ce32e3d4f48659aa044120c3e915"><td class="mdescLeft">&#160;</td><td class="mdescRight">test of communication and time count of DS3231, reset when error  <a href="#a0dc6ce32e3d4f48659aa044120c3e915">More...</a><br /></td></tr>
 <tr class="separator:a0dc6ce32e3d4f48659aa044120c3e915"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -140,7 +140,7 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>konwertuje liczbe z zapisu bcd na dziesietny </p>
+<p>converts one number from bcd to decimal format </p>
 
 </div>
 </div>
@@ -167,7 +167,7 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>konwertuje liczbe z zapisu dziesietnego na bcd </p>
+<p>converts one number from decimal to bcd format </p>
 
 </div>
 </div>
@@ -387,6 +387,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>test of communication and time count of DS3231, reset when error </p>
 <p>RTC test. </p>
 
 </div>
@@ -430,15 +431,15 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>funkcja odczytu 8 bitow danych po I2C, 0 gdy b³¹d </p><dl class="params"><dt>Parameters</dt><dd>
+<p>write one byte to I2C, 0 when error </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">deviceAddr</td><td>adres urzadzenia na magistrali I2C </td></tr>
-    <tr><td class="paramname">registerAddr</td><td>adres rejestru w danym urzadzeniu </td></tr>
-    <tr><td class="paramname">data_s</td><td>dane odczytne z urzadzenia </td></tr>
+    <tr><td class="paramname">deviceAddr</td><td>destination device address of I2C </td></tr>
+    <tr><td class="paramname">registerAddr</td><td>register address of destination device </td></tr>
+    <tr><td class="paramname">data_s</td><td>output data from device </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 gdy powodzenie, 0 gdy niepowodzenie </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 when success, 0 otherwise </dd></dl>
 
 </div>
 </div>
@@ -481,15 +482,15 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>funkcja zapisu 8 bitow danych po I2C, 0 gdy b³¹d </p><dl class="params"><dt>Parameters</dt><dd>
+<p>write one byte to I2C, 0 when error </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">deviceAddr</td><td>adres urzadzenia na magistrali I2C </td></tr>
-    <tr><td class="paramname">registerAddr</td><td>adres rejestru w danym urzadzeniu </td></tr>
-    <tr><td class="paramname">data</td><td>dane ktore maja byc przeslane </td></tr>
+    <tr><td class="paramname">deviceAddr</td><td>destination device address of I2C </td></tr>
+    <tr><td class="paramname">registerAddr</td><td>register address of destination device </td></tr>
+    <tr><td class="paramname">data</td><td>byte to send </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1 gdy powodzenie, 0 gdy niepowodzenie </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 when success, 0 otherwise </dd></dl>
 
 </div>
 </div>
