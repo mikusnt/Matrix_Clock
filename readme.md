@@ -23,7 +23,7 @@ Prescaler: 8
 OCR: 156
 
 ## Logic PWM Timer (PWM matrix brightness)
-8bit Timer0  
+16bit Timer1
 Mode: CTC  
 Refresh freq: 100 Hz  
 Y levels of matrix: 8  

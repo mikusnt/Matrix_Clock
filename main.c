@@ -58,6 +58,7 @@ volatile uint8_t uivModifyY;
 volatile int8_t iCountToTimer;
 //! flag of decrement cleaning position on clearing mode
 volatile bool bEnableDecrement;
+//! flag of critical section on Timer0 register operations
 volatile bool bCritical = false;
 
 /*
@@ -289,6 +290,7 @@ ISR(TIMER0_COMPA_vect) {
 			if (matrix.uiBrightness && matrix.uiPWMBrightness) {
 				RefreshBufferFlag(&matrix);
 				SendRegistersX(matrix.uitBufferFlag, true);
+				//TCNT1 = 0; // reset Timer1 counter
 			}
 		} else {
 			if (matrix.uiBrightCount == matrix.uiBrightness)
