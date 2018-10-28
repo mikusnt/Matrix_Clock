@@ -8,7 +8,7 @@ var searchData=
   ['b5',['b5',['../struct_flag.html#a33935a4845c9095dab5e05cd9a493c64',1,'Flag']]],
   ['b6',['b6',['../struct_flag.html#aa455734327e76e0209738bb854f923d1',1,'Flag']]],
   ['b7',['b7',['../struct_flag.html#a72b5ae530cdd469bbba5c0360975645f',1,'Flag']]],
-  ['bcritical',['bCritical',['../main_8c.html#aeb2a0879998531894f25d416a32927bc',1,'main.c']]],
+  ['bcriticaly',['bCriticalY',['../main_8c.html#afbd403c633cef85adb0030b2b91171ee',1,'main.c']]],
   ['benabledecrement',['bEnableDecrement',['../main_8c.html#ae2e3f0621e4544f3709a44b476c6af17',1,'main.c']]],
   ['bhalftime',['bHalfTime',['../main_8c.html#a579bfe32677be8152802c9a654638c43',1,'main.c']]],
   ['bismoving',['bIsMoving',['../struct_diode_matrix.html#ae8b3e8405ff773f1e60121e5a864006d',1,'DiodeMatrix']]],

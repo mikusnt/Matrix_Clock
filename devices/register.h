@@ -212,10 +212,11 @@ inline void LATCH_01() {
 /*! @param		eB new logic value
  *  @param		bWithLoad enable to reload parallel output*/
 inline void SendRegisterY(volatile BinarySwitch eB, bool bWithLoad) {
-	if (eB) Y_DATA_HIGH();
-	else Y_DATA_LOW();
+	if (eB)
+		Y_DATA_HIGH();
+	else
+		Y_DATA_LOW();
 	Y_CLK_01();
-
 	if (bWithLoad) LATCH_01();
 } // END inline void SendRegisterY
 

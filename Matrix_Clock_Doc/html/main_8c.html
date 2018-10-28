@@ -135,7 +135,6 @@ Variables</h2></td></tr>
 <tr class="memdesc:ac09b287f34287072e12729fb4b7b567b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_relay.html" title="main relay structure ">Relay</a> struct.  <a href="#ac09b287f34287072e12729fb4b7b567b">More...</a><br /></td></tr>
 <tr class="separator:ac09b287f34287072e12729fb4b7b567b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1232e2b90ff16fbded16cedf690cb98"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac1232e2b90ff16fbded16cedf690cb98">bNewTime</a> = false</td></tr>
-<tr class="memdesc:ac1232e2b90ff16fbded16cedf690cb98"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag of new second, setting by DS3231 SQW overflow  <a href="#ac1232e2b90ff16fbded16cedf690cb98">More...</a><br /></td></tr>
 <tr class="separator:ac1232e2b90ff16fbded16cedf690cb98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a579bfe32677be8152802c9a654638c43"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a579bfe32677be8152802c9a654638c43">bHalfTime</a> = false</td></tr>
 <tr class="separator:a579bfe32677be8152802c9a654638c43"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,13 +160,13 @@ Variables</h2></td></tr>
 <tr class="memitem:ae2e3f0621e4544f3709a44b476c6af17"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae2e3f0621e4544f3709a44b476c6af17">bEnableDecrement</a></td></tr>
 <tr class="memdesc:ae2e3f0621e4544f3709a44b476c6af17"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag of decrement cleaning position on clearing mode  <a href="#ae2e3f0621e4544f3709a44b476c6af17">More...</a><br /></td></tr>
 <tr class="separator:ae2e3f0621e4544f3709a44b476c6af17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb2a0879998531894f25d416a32927bc"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aeb2a0879998531894f25d416a32927bc">bCritical</a> = false</td></tr>
-<tr class="memdesc:aeb2a0879998531894f25d416a32927bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag of critical section on Timer0 register operations  <a href="#aeb2a0879998531894f25d416a32927bc">More...</a><br /></td></tr>
-<tr class="separator:aeb2a0879998531894f25d416a32927bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbd403c633cef85adb0030b2b91171ee"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#afbd403c633cef85adb0030b2b91171ee">bCriticalY</a> = false</td></tr>
+<tr class="memdesc:afbd403c633cef85adb0030b2b91171ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">flag of critical section on Timer0 register operations  <a href="#afbd403c633cef85adb0030b2b91171ee">More...</a><br /></td></tr>
+<tr class="separator:afbd403c633cef85adb0030b2b91171ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
- <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
+ <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a></dd></dl>
 <dl class="section rcs"><dt>Modified</dt><dd>2018-10-28 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2017-11-04 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.953</dd></dl>
@@ -188,7 +187,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>CTC timer0 overflow, refreshing matrix, required hard optimisation, critical section when rename Y register </p>
+<p>CTC timer0 overflow, refreshing matrix, required hard optimisation, always critical section, when rename Y, next overflow ignored </p>
 
 </div>
 </div>
@@ -342,14 +341,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aeb2a0879998531894f25d416a32927bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb2a0879998531894f25d416a32927bc">&#9670;&nbsp;</a></span>bCritical</h2>
+<a id="afbd403c633cef85adb0030b2b91171ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbd403c633cef85adb0030b2b91171ee">&#9670;&nbsp;</a></span>bCriticalY</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">volatile bool bCritical = false</td>
+          <td class="memname">volatile bool bCriticalY = false</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -385,6 +384,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>flag of new half part of second, setting by DS3231 SQW overflow </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="main_8c.html#afe6035149a64d5f448fbda08e9d1b67f" title="SQW signal from DS3231 interrupt, set new time flag. ">ISR(PCINT1_vect)</a> </dd></dl>
 
 </div>
 </div>
@@ -415,8 +415,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>flag of new second, setting by DS3231 SQW overflow </p>
+<p>flag of new second, setting by DS3231 SQW overflow </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="main_8c.html#afe6035149a64d5f448fbda08e9d1b67f" title="SQW signal from DS3231 interrupt, set new time flag. ">ISR(PCINT1_vect)</a> </dd></dl>
 
 </div>
 </div>
@@ -431,6 +430,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>flag of new quater part ofsecond, setting by internal time from Timer2 </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="main_8c.html#a5686c229bdef50123688ab6cb1404230" title="CTC timer2 overflow with 1ms period, internal time. ">ISR(TIMER2_COMPA_vect)</a> </dd></dl>
 
 </div>
 </div>

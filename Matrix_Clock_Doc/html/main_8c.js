@@ -9,7 +9,7 @@ var main_8c =
     [ "main", "main_8c.html#a840291bc02cba5474a4cb46a9b9566fe", null ],
     [ "actTime", "main_8c.html#af0984960e327a1697d00daef98055b22", null ],
     [ "adc", "main_8c.html#a60000f668af7252298f451d8b690d36d", null ],
-    [ "bCritical", "main_8c.html#aeb2a0879998531894f25d416a32927bc", null ],
+    [ "bCriticalY", "main_8c.html#afbd403c633cef85adb0030b2b91171ee", null ],
     [ "bEnableDecrement", "main_8c.html#ae2e3f0621e4544f3709a44b476c6af17", null ],
     [ "bHalfTime", "main_8c.html#a579bfe32677be8152802c9a654638c43", null ],
     [ "bNewRoundRefresh", "main_8c.html#a67e62f04b80d7896d29bf0e47fe526de", null ],

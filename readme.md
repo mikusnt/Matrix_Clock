@@ -17,10 +17,10 @@ Connected to:
 Mode: CTC  
 Refresh freq: 100 Hz  
 Y levels of matrix: 8  
-Number of brightness level: 20 
-uC period of overflow: 20 000 000 / 100 / 8 / 20 =  1250
-Prescaler: 8
-OCR: 156
+Number of brightness level: 20  
+uC period of overflow: 20 000 000 / 100 / 8 / 20 =  1250  
+Prescaler: 8  
+OCR: 156  
 
 ## Logic PWM Timer (PWM matrix brightness)
 16bit Timer1

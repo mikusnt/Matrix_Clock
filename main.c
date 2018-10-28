@@ -2,6 +2,7 @@
  * @file main.c
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
+
  * $Modified: 2018-10-28 $
  * $Created: 2017-11-04 $
  * @version 0.953
@@ -40,8 +41,13 @@ volatile DiodeMatrix matrix;
 //! Relay struct
 volatile Relay relay;
 //! flag of new second, setting by DS3231 SQW overflow
+//! @see ISR(PCINT1_vect)
 volatile bool bNewTime = false;
+//! flag of new half part of second, setting by DS3231 SQW overflow
+//! @see ISR(PCINT1_vect)
 volatile bool bHalfTime = false;
+//! flag of new quater part ofsecond, setting by internal time from Timer2
+//! @see ISR(TIMER2_COMPA_vect)
 volatile bool bQuaterTime = false;
 //! flag of refresh round buffer position
 volatile bool bNewRoundRefresh = false;
@@ -59,7 +65,7 @@ volatile int8_t iCountToTimer;
 //! flag of decrement cleaning position on clearing mode
 volatile bool bEnableDecrement;
 //! flag of critical section on Timer0 register operations
-volatile bool bCritical = false;
+volatile bool bCriticalY = false;
 
 /*
  *
@@ -68,6 +74,7 @@ volatile bool bCritical = false;
  */
 
 // ISR(TIMER0_COMPA_vect)
+// ISR(TIMER1_COMPA_vect)
 // ISR(TIMER2_COMPA_vect)
 // ISR(ADC_vect)
 // ISR(PCINT1_vect)
@@ -280,12 +287,12 @@ int main (void) {
 } // END int main (void)
 
 //! CTC timer0 overflow, refreshing matrix, required hard optimisation,
-//! critical section when rename Y register
+//! always critical section, when rename Y, next overflow ignored
 ISR(TIMER0_COMPA_vect) {
-	if (!bCritical) {
+	if (!bCriticalY) {
+		bCriticalY = true;
 		uivModifyY = IncrementBrightness(&matrix);
 		if (uivModifyY) {
-			bCritical = true;
 			SendRegisterY(ReturnYValue(&matrix), true);
 			if (matrix.uiBrightness && matrix.uiPWMBrightness) {
 				RefreshBufferFlag(&matrix);
@@ -295,9 +302,11 @@ ISR(TIMER0_COMPA_vect) {
 		} else {
 			if (matrix.uiBrightCount == matrix.uiBrightness)
 				ClearRegistersX(true); //old
+			bCriticalY = false;
 		}
 	} else {
-		bCritical = false;
+		// clear clitical flag when overflow after rename Y
+		bCriticalY = false;
 	}
 } // END ISR(TIMER0_COMPA_vect)
 

@@ -10,7 +10,7 @@ var searchData=
   ['b7',['b7',['../struct_flag.html#a72b5ae530cdd469bbba5c0360975645f',1,'Flag']]],
   ['bbsqw',['BBSQW',['../ds3231_8h.html#aab025dda5b1b276b234f3ef492cfb12e',1,'ds3231.h']]],
   ['bcd2dec',['bcd2dec',['../ds3231_8c.html#aefb9b629ce3970e10c821c3b7a9c385a',1,'ds3231.c']]],
-  ['bcritical',['bCritical',['../main_8c.html#aeb2a0879998531894f25d416a32927bc',1,'main.c']]],
+  ['bcriticaly',['bCriticalY',['../main_8c.html#afbd403c633cef85adb0030b2b91171ee',1,'main.c']]],
   ['benabledecrement',['bEnableDecrement',['../main_8c.html#ae2e3f0621e4544f3709a44b476c6af17',1,'main.c']]],
   ['bhalftime',['bHalfTime',['../main_8c.html#a579bfe32677be8152802c9a654638c43',1,'main.c']]],
   ['binaryswitch',['BinarySwitch',['../data__types_8h.html#af6e00e1318f9ec8d3c5e2f9bf6747244',1,'data_types.h']]],
