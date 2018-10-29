@@ -2,7 +2,7 @@
  * @file diode_matrix.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-28 $
+ * $Modified: 2018-10-29 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -32,7 +32,7 @@
 #define MAX_MATRIX_BRIGHTNESS 19
 //! max brightness in gamma correction table
 //! @see gamma_o
-#define MAX_GAMMA_BRIGHTNESS 9
+#define MAX_GAMMA_BRIGHTNESS 10
 //! time period to increment moving adress of buffer
 #define INC_POS_MS 100
 

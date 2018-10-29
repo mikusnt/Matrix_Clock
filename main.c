@@ -3,7 +3,7 @@
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
 
- * $Modified: 2018-10-28 $
+ * $Modified: 2018-10-29 $
  * $Created: 2017-11-04 $
  * @version 0.953
  *
@@ -104,7 +104,7 @@ int main (void) {
 	PCINTInit();
 
 	ADCInit(&adc);
-
+	matrix.uiBrightness = 1;
 	I2C_Init();
 
 	DS3231_Init();
@@ -289,35 +289,29 @@ int main (void) {
 //! CTC timer0 overflow, refreshing matrix, required hard optimisation,
 //! always critical section, when rename Y, next overflow ignored
 ISR(TIMER0_COMPA_vect) {
-	if (!bCriticalY) {
-		bCriticalY = true;
-		uivModifyY = IncrementBrightness(&matrix);
-		if (uivModifyY) {
-			SendRegisterY(ReturnYValue(&matrix), true);
-			if (matrix.uiBrightness && matrix.uiPWMBrightness) {
-				RefreshBufferFlag(&matrix);
-				SendRegistersX(matrix.uitBufferFlag, true);
-				//TCNT1 = 0; // reset Timer1 counter
-			}
-		} else {
-			if (matrix.uiBrightCount == matrix.uiBrightness)
-				ClearRegistersX(true); //old
-			bCriticalY = false;
+	uivModifyY = IncrementBrightness(&matrix);
+	if (uivModifyY) {
+		SendRegisterY(ReturnYValue(&matrix), true);
+		if (matrix.uiBrightness) {
+			TCNT0 = 0;
+			RefreshBufferFlag(&matrix);
+			TCNT0 = 0;
+			SendRegistersX(matrix.uitBufferFlag, true);
+			// brightness level at 1
+			TCNT0 = 120;
 		}
 	} else {
-		// clear clitical flag when overflow after rename Y
-		bCriticalY = false;
+		if (matrix.uiBrightCount == matrix.uiBrightness)
+			ClearRegistersX(true); //old
+
 	}
 } // END ISR(TIMER0_COMPA_vect)
 
 //! some levels of matrix brightness regulating by logic PWM
 ISR(TIMER1_COMPA_vect) {
-	if (++matrix.uiPWMBrightnessCount == PWM_MATRIX_OVF) {
-		matrix.uiPWMBrightnessCount = 0;
-		PWM_MATRIX_HIGH();
-	}
-	if (matrix.uiPWMBrightnessCount == matrix.uiPWMBrightness)
+	if (++matrix.uiPWMBrightnessCount >= matrix.uiPWMBrightness)
 		PWM_MATRIX_LOW();
+		//PWM_MATRIX_HIGH();
 } // ISR(TIMER1_COMPA_vect)
 
 //! CTC timer2 overflow with 1ms period, internal time
