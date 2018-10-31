@@ -2,7 +2,7 @@
  * @file ds3231.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-11 $
+ * $Modified: 2018-10-31 $
  * $Created: 2017-11-10 $
  * @version 1.1
  *

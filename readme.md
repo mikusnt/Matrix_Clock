@@ -43,8 +43,8 @@ Prescaler: 256
 OCR: 78  
 
 ## Power consumption
-Basic mode: 23mA  
-High brightness: 45mA  
+Basic mode: 20mA  
+High brightness: 66mA  
 
 Basic Mode + Bluetooth: 41mA  
-High brightness + Bluetooth: 63mA  
+High brightness + Bluetooth: 82mA  

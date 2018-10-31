@@ -2,7 +2,7 @@
  * @file register.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-20 $
+ * $Modified: 2018-10-31 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *

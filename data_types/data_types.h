@@ -2,7 +2,7 @@
  * @file data_types.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-11 $
+ * $Modified: 2018-10-31 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -76,12 +76,12 @@ typedef enum {
 
 //! arguments of hystheresis
 typedef struct {
-	uint16_t ui16Threshold;	//!< center point value
+	uint16_t ui16Threshold;	//!< center point value (of input)
 	uint8_t uiDelta;		//!< delta
 	uint8_t uiMinValue;		//!< minimum output value
 	uint8_t uiMaxValue;		//!< maximum output value
 	uint16_t ui16Value;		//!< input value
-	volatile uint8_t *uiOutValue_s;	//!< output value
+	volatile uint8_t *uiOutValue_s;	//!< output value (min or max)
 } HystData;
 
 /*! @param			sHistData input parameters and output*/

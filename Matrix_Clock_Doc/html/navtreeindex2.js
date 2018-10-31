@@ -1,16 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"struct_diode_matrix.html#a53e16bfeef1350df41a21ffa4083a782":[2,0,2,1],
-"struct_diode_matrix.html#a5c1346f4f510a379d3b8f1ad67d03d11":[2,0,2,2],
-"struct_diode_matrix.html#a7a0c45f6c7f7fa1fa247cd85f0cef499":[2,0,2,8],
-"struct_diode_matrix.html#a91967b9662bddb76d553d8a1c111d620":[2,0,2,3],
-"struct_diode_matrix.html#ab0b0993324965a8a0f268ab7dce90e82":[2,0,2,4],
-"struct_diode_matrix.html#ac303a4830cf7f0b550bfd7b390681353":[2,0,2,5],
-"struct_diode_matrix.html#ae8b3e8405ff773f1e60121e5a864006d":[2,0,2,0],
-"struct_flag.html":[2,0,3],
-"struct_flag.html#a269293d41f5c36dccdd01102ad037627":[2,0,3,3],
-"struct_flag.html#a33935a4845c9095dab5e05cd9a493c64":[2,0,3,5],
-"struct_flag.html#a72b5ae530cdd469bbba5c0360975645f":[2,0,3,7],
 "struct_flag.html#a9428f4229e2203fa643916ca52a3e663":[2,0,3,0],
 "struct_flag.html#aa455734327e76e0209738bb854f923d1":[2,0,3,6],
 "struct_flag.html#ac252074002fd2018498430cf078d3c48":[2,0,3,1],

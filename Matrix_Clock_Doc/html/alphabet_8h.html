@@ -103,6 +103,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:aa286ae1b2e6c7692574826b616701649"><td class="mdescLeft">&#160;</td><td class="mdescRight">number of texts in PROGMEM  <a href="#aa286ae1b2e6c7692574826b616701649">More...</a><br /></td></tr>
 <tr class="separator:aa286ae1b2e6c7692574826b616701649"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace6e750f3ee271a8fc035afe83719cc1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alphabet_8h.html#ace6e750f3ee271a8fc035afe83719cc1">ALPHABET_YX</a>(y,  x)&#160;&#160;&#160;(pgm_read_byte(&amp;(<a class="el" href="alphabet__codes_8h.html#a667536cad60e07da0d1f49f5f6acb56d">uiAlphabet</a>[y][x])))</td></tr>
+<tr class="memdesc:ace6e750f3ee271a8fc035afe83719cc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">load one data byte of char from alphabet  <a href="#ace6e750f3ee271a8fc035afe83719cc1">More...</a><br /></td></tr>
 <tr class="separator:ace6e750f3ee271a8fc035afe83719cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95cbeb34399a28549299f84514ab5597"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="alphabet_8h.html#a95cbeb34399a28549299f84514ab5597">AL_LENGTH</a>(y)&#160;&#160;&#160;(pgm_read_byte(&amp;(<a class="el" href="alphabet__codes_8h.html#aceb7c50595e813badce9558a14892892">uiAlLength</a>[y])))</td></tr>
 <tr class="memdesc:a95cbeb34399a28549299f84514ab5597"><td class="mdescLeft">&#160;</td><td class="mdescRight">load char vertical length  <a href="#a95cbeb34399a28549299f84514ab5597">More...</a><br /></td></tr>
@@ -166,7 +167,7 @@ Variables</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
-<dl class="section rcs"><dt>Modified</dt><dd>2018-10-11 </dd></dl>
+<dl class="section rcs"><dt>Modified</dt><dd>2018-10-31 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2017-11-04 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>2.1</dd></dl>
 <p>Used uC pins: 0<br />
@@ -226,7 +227,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>odczytanie bajtow danych poszczegolnych liter load one data byte of char from alphabet</p>
+
+<p>load one data byte of char from alphabet </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">y</td><td>coordinate, number of char </td></tr>

@@ -2,7 +2,7 @@
  * @file some_devices.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-29 $
+ * $Modified: 2018-10-31 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -41,21 +41,19 @@
 //! checks state of bluetooth power supply
 #define BLUETOOTH_IS_ON() (!(BLUETOOTH_PIN & BLUETOOTH_ADDR))
 
-
+//! direction register of square wave second signal from DS3231
 #define SQW_DDR DDRC
+//! state register of square wave second signal from DS3231
 #define SQW_PORT PORTC
+//! value register of square wave second signal from DS3231
 #define SQW_PIN PINC
+//! address register of square wave second signal from DS3231
 #define SQW_ADDR (1 << PC1)
+//! chect state of square wave second signal from DS3231
 #define SQW_IS_HIGH() (SQW_PIN & SQW_ADDR)
 
+//! address of photoresistor
 #define ADC_PHOTO_ADR 2
-
-#define PWM_MATRIX_OVF 3
-#define PWM_MATRIX_DDR DDRD
-#define PWM_MATRIX_PORT PORTD
-#define PWM_MATRIX_ADDR (1 << PD5)
-#define PWM_MATRIX_LOW() PWM_MATRIX_PORT &= ~PWM_MATRIX_ADDR
-#define PWM_MATRIX_HIGH() PWM_MATRIX_PORT |= PWM_MATRIX_ADDR
 
 
 /*
@@ -88,8 +86,6 @@ extern volatile uint8_t uivBrightCount;
 
 //! Initialize Timer0 to matrix refresh with bright pin
 extern void Timer0Init();
-//! Initialize Timer1 to pwm matrix bright
-extern void Timer1Init();
 //! Initialize Timer2 to cunting time between DS3231 interrupts
 extern void Timer2Init();
 //! Initialize ADC structure

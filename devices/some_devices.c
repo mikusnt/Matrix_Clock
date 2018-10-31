@@ -20,20 +20,6 @@ void Timer0Init() {
 	OCR0A = 156;
 } // END void Timer0Init
 
-/*! interrupt period is period from Timer0 divided by number of brightness */
-void Timer1Init() {
-	// CTC Mode
-	TCCR1B |= (1 << WGM12);
-	// prescaler 1
-	TCCR1B |= (1 << CS10);
-	// unlock interrupt
-	TIMSK1 |= (1 << OCIE1A);
-	OCR1A = 156 * 8 / PWM_MATRIX_OVF;
-	PWM_MATRIX_DDR |= PWM_MATRIX_ADDR;
-	PWM_MATRIX_HIGH();
-} // END void Timer1Init
-
-
 //! 1ms period
 void Timer2Init() {
 	// tryb CTC

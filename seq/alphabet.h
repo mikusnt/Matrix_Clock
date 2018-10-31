@@ -2,7 +2,7 @@
  * @file alphabet.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-11 $
+ * $Modified: 2018-10-31 $
  * $Created: 2017-11-04 $
  * @version 2.1
  *
@@ -32,7 +32,6 @@
 #define TEXT_NUMBER 5
 
 // load tables from PROGMEM
-//! odczytanie bajtow danych poszczegolnych liter
 //! load one data byte of char from alphabet
 /*! @param 			y coordinate, number of char
  *  @param 			x coordinate, number of vertical byte of char

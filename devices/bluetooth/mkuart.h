@@ -7,7 +7,6 @@
  * $Created: 2010-09-04 $
  * @version 2.0
  *
- * Kod bazowy stworzony przez Miros³awa Kardasia zawierajacy obsluge UART.
  * Code writed by Miros³aw Kardaœ containing UART staff.
  */
 

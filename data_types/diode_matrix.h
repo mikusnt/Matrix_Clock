@@ -2,7 +2,7 @@
  * @file diode_matrix.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-29 $
+ * $Modified: 2018-10-31 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -198,7 +198,6 @@ inline bool DecrementTo0SlowClear(volatile DiodeMatrix *m) {
 		m->uitBufferX[m->uiSlowClearedPos--] = 0;
 		if (m->uiSlowClearedPos == 0)
 			return true;
-		return false;
 	}
 	return false;
 } // END inline bool DecrementTo0SlowClear

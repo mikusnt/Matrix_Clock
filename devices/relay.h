@@ -2,13 +2,12 @@
  * @file relay.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-20 $
+ * $Modified: 2018-10-31 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
  * Used uC pins: 1<br>
  * Header file containing relay, which signals binary data which start sequence.
- * Bit 1 jest reprezentowany przez pewna proporcje stanu wysokiego do niskiego.
  * Bit 1 represents by high and low state proportion.
  * Bit 0 represents by other proportion.
  * After binary data is start sequence, relay vibration and pause.

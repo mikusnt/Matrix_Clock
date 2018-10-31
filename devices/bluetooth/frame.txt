@@ -1,4 +1,4 @@
-Data frames processing by bluetooth
+Data frames processing by uC, sending by bluetooth.
 Legend:
 	9 - one digit, required const length
 	"" - char table, required non-zero length

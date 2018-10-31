@@ -3,9 +3,9 @@
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
 
- * $Modified: 2018-10-29 $
+ * $Modified: 2018-10-31 $
  * $Created: 2017-11-04 $
- * @version 0.953
+ * @version 1.1
  *
  * Project main file
  * @see readme.md
@@ -99,7 +99,6 @@ int main (void) {
 	TextEEPromInit();
 	RelayInit(&relay);
 	Timer0Init();
-	Timer1Init();
 	Timer2Init();
 	PCINTInit();
 
@@ -306,13 +305,6 @@ ISR(TIMER0_COMPA_vect) {
 
 	}
 } // END ISR(TIMER0_COMPA_vect)
-
-//! some levels of matrix brightness regulating by logic PWM
-ISR(TIMER1_COMPA_vect) {
-	if (++matrix.uiPWMBrightnessCount >= matrix.uiPWMBrightness)
-		PWM_MATRIX_LOW();
-		//PWM_MATRIX_HIGH();
-} // ISR(TIMER1_COMPA_vect)
 
 //! CTC timer2 overflow with 1ms period, internal time
 ISR(TIMER2_COMPA_vect) {

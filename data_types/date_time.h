@@ -2,7 +2,7 @@
  * @file date_time.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-28 $
+ * $Modified: 2018-10-31 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -44,7 +44,7 @@ typedef enum {
 	TimeS0Pos      		//!< digit of ones of second
 } SingleTimePos;
 
-//! main time structure
+//! main time structure, expected format: dd-mm-yyyy hh:mm:ss
 typedef struct {
 	//! decimal day
 	uint8_t uiDay;
