@@ -12,10 +12,11 @@ static inline uint16_t RelayThreeToOne(char buffer[4]) {
 
 /*! @param		m pointer of DiodeMatrix structure
  *  @param		relay pointer of Relay structure
- *  @param		time pointer of actual time structure */
-extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time) {
+ *  @param		time pointer of actual time structure
+ *  @return		true if command loaded, false otherwise*/
+extern bool TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time) {
 	// load command when are unreaded data
-	if (UART_FirstEndFlag && IsUnreadData()) {
+	if (UART_EndCounter && IsUnreadData()) {
 		register uint8_t i = 0;
 		uint8_t uiEndCode = GOOD_COMMAND;
 		uint8_t uiCode = ' ';
@@ -29,8 +30,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			if (((ctTextBuffer[i] = uart_getc()) == END_FRAME_CODE)
 				|| (ctTextBuffer[i] == 0)) {
 				ctTextBuffer[i] = 0;
-				if (!IsUnreadData())
-					UART_FirstEndFlag = false;
+				UART_EndCounter--;
 				break;
 			}
 			i++;
@@ -137,7 +137,7 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 							} else
 								uiEndCode = ERROR_PARAMS;
 						} break;
-						case TaskSetText: {
+						case TaskDisplayText: {
 							uint8_t addr = ctTextBuffer[1] - DIGIT_ASCII;
 							uint8_t starts = ctTextBuffer[2] - DIGIT_ASCII;
 							uint8_t period = ctTextBuffer[3] - DIGIT_ASCII;
@@ -226,5 +226,11 @@ extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			case ERROR_PARAMS: {uart_puts_p(PSTR("<incorrect params>")); } break;
 		}
 		uart_putc('\n');
+		if ((!UART_EndCounter) && (!IsUnreadData())) {
+			uart_clear_buffers();
+		}
+		return true;
+	} else {
+		return false;
 	}
 } // END extern void TryLoadCommand

@@ -2,7 +2,7 @@
  * @file matrix_seq.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-31 $
+ * $Modified: 2019-01-03 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -61,7 +61,7 @@ typedef enum {
 	TaskRelayNumber = 'r',
 	TaskRelayMode = 'm',
 	TaskWriteText = 'w',
-	TaskSetText = 's',
+	TaskDisplayText = 'd',
 	TaskReadText = 'e'
 } DeviceTask;
 

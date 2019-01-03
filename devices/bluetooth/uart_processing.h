@@ -2,7 +2,7 @@
  * @file uart_processing.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-31 $
+ * $Modified: 2019-01-03 $
  * $Created: 2017-11-04 $
  * @version 1.1
  *
@@ -41,7 +41,7 @@
 //! frame header code of version of app
 #define VERSION_CODE 'v'
 //! output text of version of app, to manual update before compile
-#define VERSION_TEXT PSTR("Matrix Clock PixBit v0.953 by MiSt, compiled 31-10-2018")
+#define VERSION_TEXT PSTR("Matrix Clock PixBit v1.11 by MiSt, compiled 2019-01-03")
 //! frame header code of reset device
 #define RESET_CODE 'r'
 //! frame header code of last time and date modification
@@ -58,5 +58,5 @@
 
 
 //! trying load and perform command which parameters
-extern void TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time);
+extern bool TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time);
 #endif /* DEVICES_BLUETOOTH_UART_PROCESSING_H_ */

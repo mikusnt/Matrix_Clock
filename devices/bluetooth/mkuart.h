@@ -3,7 +3,7 @@
  * @author 		Miros³aw Kardaœ <br>
  * 				http://mirekk36.blogspot.com/
  * 				https://sklep.atnel.pl/
- * $Modified: 2018-04-09 $
+ * $Modified: 2019-01-03 $
  * $Created: 2010-09-04 $
  * @version 2.0
  *
@@ -59,7 +59,7 @@ extern volatile uint8_t UART_TxHead;
 //! end data of write buffer
 extern volatile uint8_t UART_TxTail;
 //! first end byte flag
-extern volatile bool UART_FirstEndFlag;
+extern volatile uint8_t UART_EndCounter;
 //! end frame code
 #define END_FRAME_CODE '$'
 
@@ -73,6 +73,8 @@ extern volatile bool UART_FirstEndFlag;
 void USART_Init( uint16_t baud );
 //! checks unreaded data
 inline bool IsUnreadData();
+//! clear input and output buffer
+inline void uart_clear_buffers();
 //! read one byte from cyclic read buffer
 char uart_getc();
 //! write one byte to cyclic write buffer
@@ -94,6 +96,15 @@ void uart_putint(int value, int radix);
 inline bool IsUnreadData() {
 	if (UART_RxHead != UART_RxTail) return true;
 	else return false;
+}
+
+//! reseting the buffers
+inline void uart_clear_buffers() {
+	uint8_t i;
+	for (i = 0; i < UART_RX_BUF_SIZE; i++)
+		UART_RxBuf[i] = END_FRAME_CODE;
+	for (i = 0; i < UART_TX_BUF_SIZE; i++)
+		UART_TxBuf[i] = END_FRAME_CODE;
 }
 
 #endif /* MKUART_H_ */

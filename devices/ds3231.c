@@ -134,7 +134,7 @@ uint8_t DS3231_GetDate(uint8_t *day_s, uint8_t *month_s, uint8_t *year_s) {
 		if (*month_s & CENTURY_MASK) {
 			*year_s += 100;
 		}
-		*month_s = bcd2dec(*month_s & MONTH_MASK);		// clear centumy mask
+		*month_s = bcd2dec(*month_s & MONTH_MASK);		// clear century mask
 		*day_s = bcd2dec(*day_s);
 
 		return 1;
@@ -180,7 +180,7 @@ uint8_t  DS3231_SetDate(uint8_t day, uint8_t month, uint8_t year) {
 void DS3231_Test() {
 	/*  resets WATCHDog  */
 	uint8_t hour, min, sec, nhour, nmin, nsec;
-	uint8_t count = 10; // maksymalna ilosc powtorzen
+	uint8_t count = 10; // max count number
 	DS3231_GetTime(&hour, &min, &sec);
 	D_MS(1200);
 	DS3231_GetTime(&nhour, &nmin, &nsec);

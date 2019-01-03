@@ -18,7 +18,8 @@ volatile uint8_t UART_RxTail;
 volatile char UART_TxBuf[UART_TX_BUF_SIZE];
 volatile uint8_t UART_TxHead;
 volatile uint8_t UART_TxTail;
-volatile bool UART_FirstEndFlag;
+volatile uint8_t UART_EndCounter;
+volatile uint8_t uiTempTail;
 
 
 
@@ -51,11 +52,7 @@ void USART_Init( uint16_t baud ) {
 		UCSRB |= (1<<RXEN0)|(1<<TXEN0)|(1<<RXCIE0);
 	#endif
 
-	// reseting the buffers
-	for (uint8_t i = 0; i < UART_RX_BUF_SIZE; i++)
-		UART_RxBuf[i] = 0;
-	for (uint8_t i = 0; i < UART_TX_BUF_SIZE; i++)
-		UART_TxBuf[i] = 0;
+	uart_clear_buffers();
 
 	UART_RxHead = UART_RxTail = UART_TxHead = UART_TxTail = 0;
 } // END void USART_Init
@@ -67,10 +64,12 @@ char uart_getc() {
     	return 0;
     }
 
-    // increment new tail intex
+    // increment new tail index and clear actual position
     UART_RxTail = (UART_RxTail + 1) & UART_RX_BUF_MASK;
+    uiTempTail = UART_RxBuf[UART_RxTail];
+    UART_RxBuf[UART_RxTail] = END_FRAME_CODE;
     // return byte from new tail position
-    return UART_RxBuf[UART_RxTail];
+    return uiTempTail;
 } // END char uart_getc
 
 
@@ -126,9 +125,10 @@ ISR( USART_UDRE_vect)  {
     	UART_TxTail = (UART_TxTail + 1) & UART_TX_BUF_MASK;
     	// write byte to hardware buffer
     	UDR0 = UART_TxBuf[UART_TxTail];
+    	UART_TxBuf[UART_TxTail] = END_FRAME_CODE;
     } else {
-    // clear interrupt flag when empty buffer
-	UCSR0B &= ~(1<<UDRIE0);
+    	// clear interrupt flag when empty buffer
+    	UCSR0B &= ~(1<<UDRIE0);
     }
 } // END ISR( USART_UDRE_vect)
 
@@ -139,7 +139,7 @@ ISR( USART_RX_vect ) {
 
     data = UDR0; // read byte from hardware buffer
     if (data == END_FRAME_CODE)
-    	UART_FirstEndFlag = true;
+    	UART_EndCounter++;
     tmp_head = ( UART_RxHead + 1) & UART_RX_BUF_MASK;
 
     // overflow buffer test, when cyclic read buffer is full
