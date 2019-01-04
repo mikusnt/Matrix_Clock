@@ -85,6 +85,9 @@ $(document).ready(function(){initNavTree('globals_u.html','');});
 <li>UART_BAUD
 : <a class="el" href="mkuart_8h.html#a1fac9153314479ad0ad495d752f0224a">mkuart.h</a>
 </li>
+<li>uart_clear_buffers()
+: <a class="el" href="mkuart_8h.html#a728b541d5fa9ee84a266bb276d4c6790">mkuart.h</a>
+</li>
 <li>UART_DE_BIT
 : <a class="el" href="mkuart_8h.html#ab891cac13a349969339c8a03af77788f">mkuart.h</a>
 </li>
@@ -100,9 +103,9 @@ $(document).ready(function(){initNavTree('globals_u.html','');});
 <li>UART_DE_PORT
 : <a class="el" href="mkuart_8h.html#a7dd90270c57ee2c24644b44d31fd9b05">mkuart.h</a>
 </li>
-<li>UART_FirstEndFlag
-: <a class="el" href="mkuart_8h.html#af490f9b4941af40cd8a02ab1ac87dd32">mkuart.h</a>
-, <a class="el" href="mkuart_8c.html#af490f9b4941af40cd8a02ab1ac87dd32">mkuart.c</a>
+<li>UART_EndCounter
+: <a class="el" href="mkuart_8c.html#a8b464a002456c2876948f3d1c561cd43">mkuart.c</a>
+, <a class="el" href="mkuart_8h.html#a8b464a002456c2876948f3d1c561cd43">mkuart.h</a>
 </li>
 <li>uart_getc()
 : <a class="el" href="mkuart_8c.html#a11508a3c55df6779452e795b23f2af40">mkuart.c</a>
@@ -117,8 +120,8 @@ $(document).ready(function(){initNavTree('globals_u.html','');});
 , <a class="el" href="mkuart_8h.html#a8b4ae0bf32fd6c73d24b41028eae2ce2">mkuart.h</a>
 </li>
 <li>uart_puts()
-: <a class="el" href="mkuart_8h.html#a2e065279ae8db44201c28eaaf6f430b5">mkuart.h</a>
-, <a class="el" href="mkuart_8c.html#a2e065279ae8db44201c28eaaf6f430b5">mkuart.c</a>
+: <a class="el" href="mkuart_8c.html#a2e065279ae8db44201c28eaaf6f430b5">mkuart.c</a>
+, <a class="el" href="mkuart_8h.html#a2e065279ae8db44201c28eaaf6f430b5">mkuart.h</a>
 </li>
 <li>uart_puts_p()
 : <a class="el" href="mkuart_8c.html#a91c55a0ba34965761f1d13b6f0af3e6a">mkuart.c</a>
@@ -149,16 +152,16 @@ $(document).ready(function(){initNavTree('globals_u.html','');});
 : <a class="el" href="mkuart_8h.html#a399dab7fb34a7513ec04c6a5788e5a45">mkuart.h</a>
 </li>
 <li>UART_TxBuf
-: <a class="el" href="mkuart_8c.html#a87a5c8f80a13efa1b48b59ad0d3de468">mkuart.c</a>
-, <a class="el" href="mkuart_8h.html#a87a5c8f80a13efa1b48b59ad0d3de468">mkuart.h</a>
+: <a class="el" href="mkuart_8h.html#a87a5c8f80a13efa1b48b59ad0d3de468">mkuart.h</a>
+, <a class="el" href="mkuart_8c.html#a87a5c8f80a13efa1b48b59ad0d3de468">mkuart.c</a>
 </li>
 <li>UART_TxHead
-: <a class="el" href="mkuart_8h.html#a6082882aabb12278dab544290a680c62">mkuart.h</a>
-, <a class="el" href="mkuart_8c.html#a6082882aabb12278dab544290a680c62">mkuart.c</a>
+: <a class="el" href="mkuart_8c.html#a6082882aabb12278dab544290a680c62">mkuart.c</a>
+, <a class="el" href="mkuart_8h.html#a6082882aabb12278dab544290a680c62">mkuart.h</a>
 </li>
 <li>UART_TxTail
-: <a class="el" href="mkuart_8c.html#a0453cc480c2971020f4a0c996daebe74">mkuart.c</a>
-, <a class="el" href="mkuart_8h.html#a0453cc480c2971020f4a0c996daebe74">mkuart.h</a>
+: <a class="el" href="mkuart_8h.html#a0453cc480c2971020f4a0c996daebe74">mkuart.h</a>
+, <a class="el" href="mkuart_8c.html#a0453cc480c2971020f4a0c996daebe74">mkuart.c</a>
 </li>
 <li>ui16Ms
 : <a class="el" href="main_8c.html#ad2484459f8c5c396fb747bfc8f08e902">main.c</a>
@@ -176,13 +179,16 @@ $(document).ready(function(){initNavTree('globals_u.html','');});
 <li>uiSeconds
 : <a class="el" href="main_8c.html#a4b9d02057e067f0cd57275bf6175e793">main.c</a>
 </li>
+<li>uiTempTail
+: <a class="el" href="mkuart_8c.html#acc8387c7ff633fec4035c7846f495b9c">mkuart.c</a>
+</li>
 <li>uitHMPos
-: <a class="el" href="matrix__seq_8h.html#a0eb9ec130b170111e7ed5f07851cf85c">matrix_seq.h</a>
-, <a class="el" href="matrix__seq_8c.html#a0eb9ec130b170111e7ed5f07851cf85c">matrix_seq.c</a>
+: <a class="el" href="matrix__seq_8c.html#a0eb9ec130b170111e7ed5f07851cf85c">matrix_seq.c</a>
+, <a class="el" href="matrix__seq_8h.html#a0eb9ec130b170111e7ed5f07851cf85c">matrix_seq.h</a>
 </li>
 <li>uitTextViewParams
-: <a class="el" href="text__eeprom_8h.html#aa11096ce928ba8c36fdce00c6840383b">text_eeprom.h</a>
-, <a class="el" href="text__eeprom_8c.html#aa11096ce928ba8c36fdce00c6840383b">text_eeprom.c</a>
+: <a class="el" href="text__eeprom_8c.html#aa11096ce928ba8c36fdce00c6840383b">text_eeprom.c</a>
+, <a class="el" href="text__eeprom_8h.html#aa11096ce928ba8c36fdce00c6840383b">text_eeprom.h</a>
 </li>
 <li>uivBrightCount
 : <a class="el" href="some__devices_8h.html#aa12a4686213b176b674e818b79a7219b">some_devices.h</a>

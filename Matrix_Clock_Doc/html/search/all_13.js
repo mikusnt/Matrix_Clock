@@ -1,12 +1,13 @@
 var searchData=
 [
   ['uart_5fbaud',['UART_BAUD',['../mkuart_8h.html#a1fac9153314479ad0ad495d752f0224a',1,'mkuart.h']]],
+  ['uart_5fclear_5fbuffers',['uart_clear_buffers',['../mkuart_8h.html#a728b541d5fa9ee84a266bb276d4c6790',1,'mkuart.h']]],
   ['uart_5fde_5fbit',['UART_DE_BIT',['../mkuart_8h.html#ab891cac13a349969339c8a03af77788f',1,'mkuart.h']]],
   ['uart_5fde_5fdir',['UART_DE_DIR',['../mkuart_8h.html#a4f06a1dc0638c3b736166ba50036f683',1,'mkuart.h']]],
   ['uart_5fde_5fnadawanie',['UART_DE_NADAWANIE',['../mkuart_8h.html#a62a44e755a8b4c84f14a960280d19068',1,'mkuart.h']]],
   ['uart_5fde_5fodbieranie',['UART_DE_ODBIERANIE',['../mkuart_8h.html#aa8fe5fc1f78e188f74d55993ce78fcc0',1,'mkuart.h']]],
   ['uart_5fde_5fport',['UART_DE_PORT',['../mkuart_8h.html#a7dd90270c57ee2c24644b44d31fd9b05',1,'mkuart.h']]],
-  ['uart_5ffirstendflag',['UART_FirstEndFlag',['../mkuart_8c.html#af490f9b4941af40cd8a02ab1ac87dd32',1,'UART_FirstEndFlag():&#160;mkuart.c'],['../mkuart_8h.html#af490f9b4941af40cd8a02ab1ac87dd32',1,'UART_FirstEndFlag():&#160;mkuart.c']]],
+  ['uart_5fendcounter',['UART_EndCounter',['../mkuart_8c.html#a8b464a002456c2876948f3d1c561cd43',1,'UART_EndCounter():&#160;mkuart.c'],['../mkuart_8h.html#a8b464a002456c2876948f3d1c561cd43',1,'UART_EndCounter():&#160;mkuart.c']]],
   ['uart_5fgetc',['uart_getc',['../mkuart_8c.html#a11508a3c55df6779452e795b23f2af40',1,'uart_getc():&#160;mkuart.c'],['../mkuart_8h.html#a11508a3c55df6779452e795b23f2af40',1,'uart_getc():&#160;mkuart.c']]],
   ['uart_5fprocessing_2ec',['uart_processing.c',['../uart__processing_8c.html',1,'']]],
   ['uart_5fprocessing_2eh',['uart_processing.h',['../uart__processing_8h.html',1,'']]],
@@ -58,6 +59,7 @@ var searchData=
   ['uislowclearedpos',['uiSlowClearedPos',['../struct_diode_matrix.html#a7a0c45f6c7f7fa1fa247cd85f0cef499',1,'DiodeMatrix']]],
   ['uitbufferflag',['uitBufferFlag',['../struct_diode_matrix.html#a126c823eb3a4889f117fd3d0968edf0e',1,'DiodeMatrix']]],
   ['uitbufferx',['uitBufferX',['../struct_diode_matrix.html#a31dbd903aab3ff31162ee3c83ca27ffb',1,'DiodeMatrix']]],
+  ['uitemptail',['uiTempTail',['../mkuart_8c.html#acc8387c7ff633fec4035c7846f495b9c',1,'mkuart.c']]],
   ['uithmpos',['uitHMPos',['../matrix__seq_8c.html#a0eb9ec130b170111e7ed5f07851cf85c',1,'uitHMPos():&#160;matrix_seq.c'],['../matrix__seq_8h.html#a0eb9ec130b170111e7ed5f07851cf85c',1,'uitHMPos():&#160;matrix_seq.c']]],
   ['uitroundbufferyx',['uitRoundBufferYX',['../struct_diode_matrix.html#a3c2938384753abea81c0a12148df4a5a',1,'DiodeMatrix']]],
   ['uitsingletime',['uitSingleTime',['../struct_time_date.html#a0e7d3783a024ea65990510885e8c4ee5',1,'TimeDate']]],

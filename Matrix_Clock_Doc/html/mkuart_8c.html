@@ -140,9 +140,11 @@ Variables</h2></td></tr>
 <tr class="memitem:a0453cc480c2971020f4a0c996daebe74"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mkuart_8c.html#a0453cc480c2971020f4a0c996daebe74">UART_TxTail</a></td></tr>
 <tr class="memdesc:a0453cc480c2971020f4a0c996daebe74"><td class="mdescLeft">&#160;</td><td class="mdescRight">end data of write buffer  <a href="#a0453cc480c2971020f4a0c996daebe74">More...</a><br /></td></tr>
 <tr class="separator:a0453cc480c2971020f4a0c996daebe74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af490f9b4941af40cd8a02ab1ac87dd32"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mkuart_8c.html#af490f9b4941af40cd8a02ab1ac87dd32">UART_FirstEndFlag</a></td></tr>
-<tr class="memdesc:af490f9b4941af40cd8a02ab1ac87dd32"><td class="mdescLeft">&#160;</td><td class="mdescRight">first end byte flag  <a href="#af490f9b4941af40cd8a02ab1ac87dd32">More...</a><br /></td></tr>
-<tr class="separator:af490f9b4941af40cd8a02ab1ac87dd32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b464a002456c2876948f3d1c561cd43"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mkuart_8c.html#a8b464a002456c2876948f3d1c561cd43">UART_EndCounter</a></td></tr>
+<tr class="memdesc:a8b464a002456c2876948f3d1c561cd43"><td class="mdescLeft">&#160;</td><td class="mdescRight">first end byte flag  <a href="#a8b464a002456c2876948f3d1c561cd43">More...</a><br /></td></tr>
+<tr class="separator:a8b464a002456c2876948f3d1c561cd43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc8387c7ff633fec4035c7846f495b9c"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mkuart_8c.html#acc8387c7ff633fec4035c7846f495b9c">uiTempTail</a></td></tr>
+<tr class="separator:acc8387c7ff633fec4035c7846f495b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a2e1a1228dec9ed3dac10f2d3fa96bede"></a>
@@ -366,14 +368,14 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="af490f9b4941af40cd8a02ab1ac87dd32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af490f9b4941af40cd8a02ab1ac87dd32">&#9670;&nbsp;</a></span>UART_FirstEndFlag</h2>
+<a id="a8b464a002456c2876948f3d1c561cd43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b464a002456c2876948f3d1c561cd43">&#9670;&nbsp;</a></span>UART_EndCounter</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">volatile bool UART_FirstEndFlag</td>
+          <td class="memname">volatile uint8_t UART_EndCounter</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -475,6 +477,20 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>end data of write buffer </p>
+
+</div>
+</div>
+<a id="acc8387c7ff633fec4035c7846f495b9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc8387c7ff633fec4035c7846f495b9c">&#9670;&nbsp;</a></span>uiTempTail</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint8_t uiTempTail</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

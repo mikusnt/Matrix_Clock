@@ -40,9 +40,11 @@ extern bool TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			while (uart_getc() != END_FRAME_CODE);
 		}
 		// DEBUG info
-		/*uart_putc(uiCode);
+		/*uart_putc('<');
+		uart_putc(uiCode);
+		uart_putc('|');
 		uart_puts(ctTextBuffer);
-		uart_putc(' ');*/
+		uart_puts(">\n");*/
 
 		// realize the commands
 		switch (uiCode) {
@@ -199,7 +201,7 @@ extern bool TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			} break;
 			default: { uiEndCode = ERROR_COMMAND; } break;
 			case QUESTION_CODE: {
-				uart_puts_p(PSTR("Hey! "));
+				uart_puts_p(PSTR("Hey!"));
 			} break;
 			case VERSION_CODE: {
 				uart_puts_p(VERSION_TEXT);
@@ -226,9 +228,6 @@ extern bool TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 			case ERROR_PARAMS: {uart_puts_p(PSTR("<incorrect params>")); } break;
 		}
 		uart_putc('\n');
-		if ((!UART_EndCounter) && (!IsUnreadData())) {
-			uart_clear_buffers();
-		}
 		return true;
 	} else {
 		return false;

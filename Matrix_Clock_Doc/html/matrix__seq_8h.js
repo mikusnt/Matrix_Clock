@@ -20,7 +20,7 @@ var matrix__seq_8h =
       [ "TaskRelayNumber", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a1a7477d6691d5ed2a3dffd0fbf8c0adf", null ],
       [ "TaskRelayMode", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a0765b7834fdbf3c5bb3cf038fc79ffc1", null ],
       [ "TaskWriteText", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a6fd7d57df7c191a4c0669b6a0c2a5fca", null ],
-      [ "TaskSetText", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4ad49a4fcf12fd07bcc2972a3a8f06e786", null ],
+      [ "TaskDisplayText", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a60cf686be7275190713bb894113b34c4", null ],
       [ "TaskReadText", "matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a69f2fa0df2601446310fcb178bbe23a9", null ]
     ] ],
     [ "DateToTextBuffer", "matrix__seq_8h.html#a8a741dacfe0106b0a514f0505d73718c", null ],

@@ -1,10 +1,10 @@
 var searchData=
 [
+  ['taskdisplaytext',['TaskDisplayText',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a60cf686be7275190713bb894113b34c4',1,'matrix_seq.h']]],
   ['taskreadtext',['TaskReadText',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a69f2fa0df2601446310fcb178bbe23a9',1,'matrix_seq.h']]],
   ['taskrelaymode',['TaskRelayMode',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a0765b7834fdbf3c5bb3cf038fc79ffc1',1,'matrix_seq.h']]],
   ['taskrelaynumber',['TaskRelayNumber',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a1a7477d6691d5ed2a3dffd0fbf8c0adf',1,'matrix_seq.h']]],
   ['tasksetpix',['TaskSetPix',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a91e058bcff2914a008cddc5a193311ae',1,'matrix_seq.h']]],
-  ['tasksettext',['TaskSetText',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4ad49a4fcf12fd07bcc2972a3a8f06e786',1,'matrix_seq.h']]],
   ['taskwritetext',['TaskWriteText',['../matrix__seq_8h.html#a39b076673e363eaf5bc1eef9569ec8d4a6fd7d57df7c191a4c0669b6a0c2a5fca',1,'matrix_seq.h']]],
   ['temperature_5fregister',['TEMPERATURE_REGISTER',['../ds3231_8h.html#a4c4954f4eaa324d87b28ee5f3d1b57db',1,'ds3231.h']]],
   ['test_5fmatrixbuffer',['Test_MatrixBuffer',['../tests_8c.html#aac59f34362c59a39f550aea5c8bf5584',1,'Test_MatrixBuffer(volatile DiodeMatrix *m):&#160;tests.c'],['../tests_8h.html#aac59f34362c59a39f550aea5c8bf5584',1,'Test_MatrixBuffer(volatile DiodeMatrix *m):&#160;tests.c']]],
@@ -33,5 +33,5 @@ var searchData=
   ['todo_2emd',['todo.md',['../todo_8md.html',1,'']]],
   ['translatetoalphabet',['TranslateToAlphabet',['../alphabet_8c.html#ad63e779db7ad39e4913a31cdb891fa8d',1,'alphabet.c']]],
   ['trydecrementtime',['TryDecrementTime',['../date__time_8c.html#a8fd767ea0446fe2d20e629153c348a44',1,'TryDecrementTime(TimeDate *t):&#160;date_time.c'],['../date__time_8h.html#a8fd767ea0446fe2d20e629153c348a44',1,'TryDecrementTime(TimeDate *t):&#160;date_time.c']]],
-  ['tryloadcommand',['TryLoadCommand',['../uart__processing_8c.html#a4aca2a05fc03c7a03622aca9c4a3d0ce',1,'TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time):&#160;uart_processing.c'],['../uart__processing_8h.html#a4aca2a05fc03c7a03622aca9c4a3d0ce',1,'TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time):&#160;uart_processing.c']]]
+  ['tryloadcommand',['TryLoadCommand',['../uart__processing_8c.html#a6d6b4e74b8078d01a4a915058f388578',1,'TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time):&#160;uart_processing.c'],['../uart__processing_8h.html#a6d6b4e74b8078d01a4a915058f388578',1,'TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeDate *time):&#160;uart_processing.c']]]
 ];

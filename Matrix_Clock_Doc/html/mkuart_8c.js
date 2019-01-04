@@ -9,11 +9,12 @@ var mkuart_8c =
     [ "uart_puts", "mkuart_8c.html#a2e065279ae8db44201c28eaaf6f430b5", null ],
     [ "uart_puts_p", "mkuart_8c.html#a91c55a0ba34965761f1d13b6f0af3e6a", null ],
     [ "USART_Init", "mkuart_8c.html#abcab7653206340cd128baaeef20814fa", null ],
-    [ "UART_FirstEndFlag", "mkuart_8c.html#af490f9b4941af40cd8a02ab1ac87dd32", null ],
+    [ "UART_EndCounter", "mkuart_8c.html#a8b464a002456c2876948f3d1c561cd43", null ],
     [ "UART_RxBuf", "mkuart_8c.html#a93659c18f1cfac7339061cb9155ebc6a", null ],
     [ "UART_RxHead", "mkuart_8c.html#a440614b6b98f48c7d4a24e62a0b4e414", null ],
     [ "UART_RxTail", "mkuart_8c.html#a770fb5434b8f243c9155733aaf5ba275", null ],
     [ "UART_TxBuf", "mkuart_8c.html#a87a5c8f80a13efa1b48b59ad0d3de468", null ],
     [ "UART_TxHead", "mkuart_8c.html#a6082882aabb12278dab544290a680c62", null ],
-    [ "UART_TxTail", "mkuart_8c.html#a0453cc480c2971020f4a0c996daebe74", null ]
+    [ "UART_TxTail", "mkuart_8c.html#a0453cc480c2971020f4a0c996daebe74", null ],
+    [ "uiTempTail", "mkuart_8c.html#acc8387c7ff633fec4035c7846f495b9c", null ]
 ];

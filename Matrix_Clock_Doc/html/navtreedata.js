@@ -29,7 +29,7 @@ var NAVTREEINDEX =
 [
 "alphabet_8c.html",
 "main_8c.html#afbd403c633cef85adb0030b2b91171ee",
-"struct_flag.html#a9428f4229e2203fa643916ca52a3e663"
+"struct_flag.html#a33935a4845c9095dab5e05cd9a493c64"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

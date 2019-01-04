@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['uart_5fclear_5fbuffers',['uart_clear_buffers',['../mkuart_8h.html#a728b541d5fa9ee84a266bb276d4c6790',1,'mkuart.h']]],
   ['uart_5fgetc',['uart_getc',['../mkuart_8c.html#a11508a3c55df6779452e795b23f2af40',1,'uart_getc():&#160;mkuart.c'],['../mkuart_8h.html#a11508a3c55df6779452e795b23f2af40',1,'uart_getc():&#160;mkuart.c']]],
   ['uart_5fputc',['uart_putc',['../mkuart_8c.html#a8bd9a02deeebc062dbfec8876dc07d2c',1,'uart_putc(char data):&#160;mkuart.c'],['../mkuart_8h.html#a8bd9a02deeebc062dbfec8876dc07d2c',1,'uart_putc(char data):&#160;mkuart.c']]],
   ['uart_5fputint',['uart_putint',['../mkuart_8c.html#a8b4ae0bf32fd6c73d24b41028eae2ce2',1,'uart_putint(int value, int radix):&#160;mkuart.c'],['../mkuart_8h.html#a8b4ae0bf32fd6c73d24b41028eae2ce2',1,'uart_putint(int value, int radix):&#160;mkuart.c']]],

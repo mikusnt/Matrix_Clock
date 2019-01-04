@@ -145,7 +145,7 @@ ISR( USART_RX_vect ) {
     // overflow buffer test, when cyclic read buffer is full
     if ( tmp_head == UART_RxTail ) {
     	UART_RxBuf[UART_RxHead] = END_FRAME_CODE;
-    	uart_putc(END_FRAME_CODE);
+    	//uart_putc(END_FRAME_CODE);
     } else {
     	UART_RxHead = tmp_head;
     	UART_RxBuf[tmp_head] = data;

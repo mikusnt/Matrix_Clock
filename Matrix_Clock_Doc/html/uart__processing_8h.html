@@ -115,7 +115,7 @@ Macros</h2></td></tr>
 <tr class="memitem:a27f0e9d965d44228e76473c63a74e26f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a27f0e9d965d44228e76473c63a74e26f">VERSION_CODE</a>&#160;&#160;&#160;'v'</td></tr>
 <tr class="memdesc:a27f0e9d965d44228e76473c63a74e26f"><td class="mdescLeft">&#160;</td><td class="mdescRight">frame header code of version of app  <a href="#a27f0e9d965d44228e76473c63a74e26f">More...</a><br /></td></tr>
 <tr class="separator:a27f0e9d965d44228e76473c63a74e26f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e1c964667c1b62c2adf564132cd4d7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a2e1c964667c1b62c2adf564132cd4d7f">VERSION_TEXT</a>&#160;&#160;&#160;PSTR(&quot;Matrix Clock PixBit v0.953 by MiSt, compiled 31-10-2018&quot;)</td></tr>
+<tr class="memitem:a2e1c964667c1b62c2adf564132cd4d7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a2e1c964667c1b62c2adf564132cd4d7f">VERSION_TEXT</a>&#160;&#160;&#160;PSTR(&quot;Matrix Clock PixBit v1.11 by MiSt, compiled 2019-01-03&quot;)</td></tr>
 <tr class="memdesc:a2e1c964667c1b62c2adf564132cd4d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">output text of version of app, to manual update before compile  <a href="#a2e1c964667c1b62c2adf564132cd4d7f">More...</a><br /></td></tr>
 <tr class="separator:a2e1c964667c1b62c2adf564132cd4d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29b114b6b70277b6e0215f975c842d33"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a29b114b6b70277b6e0215f975c842d33">RESET_CODE</a>&#160;&#160;&#160;'r'</td></tr>
@@ -136,14 +136,14 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4aca2a05fc03c7a03622aca9c4a3d0ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a4aca2a05fc03c7a03622aca9c4a3d0ce">TryLoadCommand</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>, <a class="el" href="struct_time_date.html">TimeDate</a> *time)</td></tr>
-<tr class="memdesc:a4aca2a05fc03c7a03622aca9c4a3d0ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">trying load and perform command which parameters  <a href="#a4aca2a05fc03c7a03622aca9c4a3d0ce">More...</a><br /></td></tr>
-<tr class="separator:a4aca2a05fc03c7a03622aca9c4a3d0ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d6b4e74b8078d01a4a915058f388578"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="uart__processing_8h.html#a6d6b4e74b8078d01a4a915058f388578">TryLoadCommand</a> (volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *m, volatile <a class="el" href="struct_relay.html">Relay</a> *<a class="el" href="main_8c.html#ac09b287f34287072e12729fb4b7b567b">relay</a>, <a class="el" href="struct_time_date.html">TimeDate</a> *time)</td></tr>
+<tr class="memdesc:a6d6b4e74b8078d01a4a915058f388578"><td class="mdescLeft">&#160;</td><td class="mdescRight">trying load and perform command which parameters  <a href="#a6d6b4e74b8078d01a4a915058f388578">More...</a><br /></td></tr>
+<tr class="separator:a6d6b4e74b8078d01a4a915058f388578"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Mikolaj Stankowiak <br />
  <a href="#" onclick="location.href='mai'+'lto:'+'mik'+'-s'+'tan'+'@g'+'o2.'+'pl'; return false;">mik-s<span style="display: none;">.nosp@m.</span>tan@<span style="display: none;">.nosp@m.</span>go2.p<span style="display: none;">.nosp@m.</span>l</a> </dd></dl>
-<dl class="section rcs"><dt>Modified</dt><dd>2018-10-31 </dd></dl>
+<dl class="section rcs"><dt>Modified</dt><dd>2019-01-03 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2017-11-04 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>1.1</dd></dl>
 <p>Header file containing processing data from UART buffer. </p>
@@ -347,7 +347,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define VERSION_TEXT&#160;&#160;&#160;PSTR(&quot;Matrix Clock PixBit v0.953 by MiSt, compiled 31-10-2018&quot;)</td>
+          <td class="memname">#define VERSION_TEXT&#160;&#160;&#160;PSTR(&quot;Matrix Clock PixBit v1.11 by MiSt, compiled 2019-01-03&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -357,14 +357,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a4aca2a05fc03c7a03622aca9c4a3d0ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4aca2a05fc03c7a03622aca9c4a3d0ce">&#9670;&nbsp;</a></span>TryLoadCommand()</h2>
+<a id="a6d6b4e74b8078d01a4a915058f388578"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d6b4e74b8078d01a4a915058f388578">&#9670;&nbsp;</a></span>TryLoadCommand()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void TryLoadCommand </td>
+          <td class="memname">bool TryLoadCommand </td>
           <td>(</td>
           <td class="paramtype">volatile <a class="el" href="struct_diode_matrix.html">DiodeMatrix</a> *&#160;</td>
           <td class="paramname"><em>m</em>, </td>
@@ -398,6 +398,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>true if command loaded, false otherwise </dd></dl>
 
 </div>
 </div>

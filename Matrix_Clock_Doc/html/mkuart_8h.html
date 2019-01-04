@@ -136,6 +136,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5da3ea2d355e96f015a2350d31e53ab4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mkuart_8h.html#a5da3ea2d355e96f015a2350d31e53ab4">IsUnreadData</a> ()</td></tr>
 <tr class="memdesc:a5da3ea2d355e96f015a2350d31e53ab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">checks unreaded data  <a href="#a5da3ea2d355e96f015a2350d31e53ab4">More...</a><br /></td></tr>
 <tr class="separator:a5da3ea2d355e96f015a2350d31e53ab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a728b541d5fa9ee84a266bb276d4c6790"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mkuart_8h.html#a728b541d5fa9ee84a266bb276d4c6790">uart_clear_buffers</a> ()</td></tr>
+<tr class="memdesc:a728b541d5fa9ee84a266bb276d4c6790"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear input and output buffer  <a href="#a728b541d5fa9ee84a266bb276d4c6790">More...</a><br /></td></tr>
+<tr class="separator:a728b541d5fa9ee84a266bb276d4c6790"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11508a3c55df6779452e795b23f2af40"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mkuart_8h.html#a11508a3c55df6779452e795b23f2af40">uart_getc</a> ()</td></tr>
 <tr class="memdesc:a11508a3c55df6779452e795b23f2af40"><td class="mdescLeft">&#160;</td><td class="mdescRight">read one byte from cyclic read buffer  <a href="#a11508a3c55df6779452e795b23f2af40">More...</a><br /></td></tr>
 <tr class="separator:a11508a3c55df6779452e795b23f2af40"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,14 +175,14 @@ Variables</h2></td></tr>
 <tr class="memitem:a0453cc480c2971020f4a0c996daebe74"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mkuart_8h.html#a0453cc480c2971020f4a0c996daebe74">UART_TxTail</a></td></tr>
 <tr class="memdesc:a0453cc480c2971020f4a0c996daebe74"><td class="mdescLeft">&#160;</td><td class="mdescRight">end data of write buffer  <a href="#a0453cc480c2971020f4a0c996daebe74">More...</a><br /></td></tr>
 <tr class="separator:a0453cc480c2971020f4a0c996daebe74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af490f9b4941af40cd8a02ab1ac87dd32"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mkuart_8h.html#af490f9b4941af40cd8a02ab1ac87dd32">UART_FirstEndFlag</a></td></tr>
-<tr class="memdesc:af490f9b4941af40cd8a02ab1ac87dd32"><td class="mdescLeft">&#160;</td><td class="mdescRight">first end byte flag  <a href="#af490f9b4941af40cd8a02ab1ac87dd32">More...</a><br /></td></tr>
-<tr class="separator:af490f9b4941af40cd8a02ab1ac87dd32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b464a002456c2876948f3d1c561cd43"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mkuart_8h.html#a8b464a002456c2876948f3d1c561cd43">UART_EndCounter</a></td></tr>
+<tr class="memdesc:a8b464a002456c2876948f3d1c561cd43"><td class="mdescLeft">&#160;</td><td class="mdescRight">first end byte flag  <a href="#a8b464a002456c2876948f3d1c561cd43">More...</a><br /></td></tr>
+<tr class="separator:a8b464a002456c2876948f3d1c561cd43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Miros³aw Kardaœ <br />
  <a href="http://mirekk36.blogspot.com/">http://mirekk36.blogspot.com/</a> <a href="https://sklep.atnel.pl/">https://sklep.atnel.pl/</a> </dd></dl>
-<dl class="section rcs"><dt>Modified</dt><dd>2018-04-09 </dd></dl>
+<dl class="section rcs"><dt>Modified</dt><dd>2019-01-03 </dd></dl>
 <dl class="section rcs"><dt>Created</dt><dd>2010-09-04 </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>2.0</dd></dl>
 <p>Code writed by Miros³aw Kardaœ containing UART staff. </p>
@@ -411,6 +414,34 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a728b541d5fa9ee84a266bb276d4c6790"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a728b541d5fa9ee84a266bb276d4c6790">&#9670;&nbsp;</a></span>uart_clear_buffers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void uart_clear_buffers </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>clear input and output buffer </p>
+<p>reseting the buffers </p>
+
+</div>
+</div>
 <a id="a11508a3c55df6779452e795b23f2af40"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a11508a3c55df6779452e795b23f2af40">&#9670;&nbsp;</a></span>uart_getc()</h2>
 
@@ -573,14 +604,14 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="af490f9b4941af40cd8a02ab1ac87dd32"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af490f9b4941af40cd8a02ab1ac87dd32">&#9670;&nbsp;</a></span>UART_FirstEndFlag</h2>
+<a id="a8b464a002456c2876948f3d1c561cd43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b464a002456c2876948f3d1c561cd43">&#9670;&nbsp;</a></span>UART_EndCounter</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">volatile bool UART_FirstEndFlag</td>
+          <td class="memname">volatile uint8_t UART_EndCounter</td>
         </tr>
       </table>
 </div><div class="memdoc">
