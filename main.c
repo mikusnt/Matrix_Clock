@@ -3,9 +3,9 @@
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
 
- * $Modified: 2019-01-03 $
+ * $Modified: 2019-01-07 $
  * $Created: 2017-11-04 $
- * @version 1.11
+ * @version 1.12
  *
  * Project main file
  * @see readme.md
@@ -157,19 +157,13 @@ int main (void) {
 							if ((RTCTime.uiSecond == 10) && (uitTextViewParams[i][1] > 0) && ((RTCTime.uiMinute % uitTextViewParams[i][1]) == uitTextViewParams[i][0])) {
 								if (i == 0) {
 									DateToTextBuffer(&RTCTime, 0);
-								} else {
+								} else if (ctTextView[i] != 0) {
 									memcpy(ctTextBuffer, &ctTextView[i], TEXT_BUFFER_SIZE);
-								}
+								} else continue;
 								eActualSeq = SeqText;
 								RunSlowClearedPos(&matrix);
 								break;
 							}
-						}
-						// display date every 5 minutes on 10 second
-						if ((RTCTime.uiSecond == 10) && ((RTCTime.uiMinute % 5) == 1)) {
-							DateToTextBuffer(&RTCTime, 0);
-							eActualSeq = SeqText;
-							RunSlowClearedPos(&matrix);
 						}
 
 						// activate relay and read date every hour, synchronize ui16Ms with RTC
@@ -196,9 +190,9 @@ int main (void) {
 					// loading time and devices state to matrix
 					if (bNewRoundRefresh){
 						LoadTimeToMatrix(&matrix, &actTime, &RTCTime);
-						SetStatePoint(&matrix, 6, relay.eState % 2);
-						SetStatePoint(&matrix, 5, relay.eState / 2);
-						SetStatePoint(&matrix, 0, BLUETOOTH_IS_ON());
+						SetStatePoint(&matrix, 31, relay.eState % 2);
+						SetStatePoint(&matrix, 30, relay.eState / 2);
+						SetStatePoint(&matrix, 26, BLUETOOTH_IS_ON());
 						bNewRoundRefresh = false;
 					}
 				} break;

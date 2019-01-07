@@ -2,7 +2,7 @@
  * @file text_eeprom.h
  * @author 		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
- * $Modified: 2018-10-31 $
+ * $Modified: 2019-01-07 $
  * $Created: 2018-10-16 $
  * @version 1.1
  *

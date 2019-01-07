@@ -3,7 +3,7 @@
  * @author		Mikolaj Stankowiak <br>
  * 				mik-stan@go2.pl
  * 				
- * $Created: 2018-10-20 $
+ * $Created: 2019-01-07 $
  * Header file containing byte pixels table (Alphabet) of chars and chars byte length in PROGMEM. <br>
  * Created by Alphabet_Generator.
  */

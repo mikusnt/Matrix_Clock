@@ -6,7 +6,7 @@
 
 #include "text_eeprom.h"
 
-char EEMEM eeTextView[TEXT_EEPROM_SIZE][TEXT_BUFFER_SIZE] = {"time and date", "Matrix Clock PixBit v0.953 by MiSt", "", "", "", ""};
+char EEMEM eeTextView[TEXT_EEPROM_SIZE][TEXT_BUFFER_SIZE] = {"time and date", "Matrix Clock PixBit v1.12 by MiSt", "", "", "", ""};
 char ctTextView[TEXT_EEPROM_SIZE][TEXT_BUFFER_SIZE];
 
 uint8_t EEMEM eeTextParams[TEXT_EEPROM_SIZE][2] = {{1, 5}, {1, 5}, {1, 5}, {1, 5}, {1, 5}, {1, 5}};

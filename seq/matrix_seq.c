@@ -28,10 +28,10 @@ static inline void SecondsBinary(volatile DiodeMatrix *m, volatile uint8_t secon
 	for(uint8_t i = 0; i < 4; i++) {
 		m->uitBufferX[SEC_END_POS - i] = 0;
 		if (tens % 2)
-			m->uitBufferX[SEC_END_POS - i] |= 1 << 2;
+			m->uitBufferX[SEC_END_POS - i] |= 1 << 1;
 		tens >>= 1;
 		if (ones % 2)
-			m->uitBufferX[SEC_END_POS - i] |= 1 << 5;
+			m->uitBufferX[SEC_END_POS - i] |= 1 << 4;
 		ones >>= 1;
 	}
 } // END static inline void SecondsBinary
@@ -237,11 +237,13 @@ void SetSeqParams(volatile DiodeMatrix *m, TimeDate *actTime, TimeDate *RTCTime,
 /*! @param 		m poiner of DiodeMatrix structure
  *  @param		y_pos y position in matrix buffer
  *  @param		state (logic) of point in matrix buffer*/
-inline void SetStatePoint(volatile DiodeMatrix *m, uint8_t y_pos, BinarySwitch state) {
+inline void SetStatePoint(volatile DiodeMatrix *m, uint8_t x_pos, BinarySwitch state) {
 	if (state == ON) {
-		m->uitBufferX[26] |= (1 << y_pos);
+		//m->uitBufferX[26] |= (1 << x_pos);
+		m->uitBufferX[x_pos] |= 1 << 6;
 	} else {
-		m->uitBufferX[26] &= ~(1 << y_pos);
+		//m->uitBufferX[26] &= ~(1 << x_pos);
+		m->uitBufferX[x_pos] &= ~(1 << 6);
 	}
 } // END inline void SetStatePoint
 
