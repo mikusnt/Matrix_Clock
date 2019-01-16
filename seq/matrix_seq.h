@@ -62,7 +62,8 @@ typedef enum {
 	TaskRelayMode = 'm',
 	TaskWriteText = 'w',
 	TaskDisplayText = 'd',
-	TaskReadText = 'e'
+	TaskReadText = 'e',
+	TaskSpectrum = 's'
 } DeviceTask;
 
 //! actual sequence displaying by device

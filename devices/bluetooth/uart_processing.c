@@ -1,5 +1,8 @@
 #include "uart_processing.h"
 
+//! internal table to rename height positions to byte in matrix buffer
+uint8_t uitSpectrumBytes[9] = { 0x00, 0x80, 0xC0, 0xE0, 0xF0, 0xF8, 0xFC, 0xFE, 0xFF };
+
 //! rename ASCII chars last three signs and save to beginning of buffer
 //! @return 		two byte number from ASCII codes
 static inline uint16_t RelayThreeToOne(char buffer[4]) {
@@ -166,6 +169,15 @@ extern bool TryLoadCommand(volatile DiodeMatrix *m, volatile Relay *relay, TimeD
 								uart_puts(ctTextBuffer);
 							} else
 								uiEndCode = ERROR_PARAMS;
+						} break;
+						case TaskSpectrum: {
+							if (i <= 32) {
+								for(uint8_t j = 0; j < i; j++) {
+									m->uitBufferX[j] = uitSpectrumBytes[ctTextBuffer[j] - DIGIT_ASCII];
+								}
+							} else {
+								uiEndCode = ERROR_PARAMS;
+							}
 						} break;
 						default: { uiEndCode = ERROR_COMMAND; } break;
 
